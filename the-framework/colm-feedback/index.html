@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework Vocabulary — Keep · Rename · Cut</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0;
+  --white:#FFF; --off-white:#F7F6F2; --text-dark:#111; --text-mid:#444; --text-muted:#777; --border:#E2E0D8;
+  --keep:#3F8A46; --keep-bg:#E9F5E9; --rename:#B07D0F; --rename-bg:#FDF6E3; --cut:#C9402F; --cut-bg:#FBEAE7; --call:#5B4FA0; --call-bg:#EFEDF8;
+  --warn-bg:#FFF3E6;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'IBM Plex Sans',sans-serif; background:var(--off-white); color:var(--text-dark); font-size:13px; line-height:1.55;}
+.page{max-width:980px; margin:0 auto; padding:20px 28px 28px;}
+
+.hero{background:var(--dark-forest); border-radius:10px; padding:22px 26px 18px; color:var(--white); position:relative; overflow:hidden;}
+.hero::after{content:''; position:absolute; left:0; right:0; bottom:0; height:4px; background:linear-gradient(90deg,var(--orange),var(--turquoise));}
+.eyebrow{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--turquoise); margin-bottom:6px;}
+.hero h1{font-size:24px; font-weight:700; letter-spacing:-.01em;}
+.hero .sub{color:var(--pistachio); font-size:12.5px; margin-top:6px; font-weight:300; max-width:860px;}
+.hero .meta{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;}
+.chip{font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.06em; padding:3px 9px; border-radius:20px; border:1px solid rgba(255,255,255,.28); color:rgba(255,255,255,.85);}
+.chip.hot{background:var(--orange); border-color:var(--orange); color:#fff; font-weight:500;}
+
+h2{font-size:12px; font-family:'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--forest); border-bottom:2px solid var(--turquoise); padding-bottom:4px; margin:20px 0 10px;}
+p.lede{font-size:13px; color:var(--text-mid); max-width:920px; margin-bottom:8px;}
+p.lede b{color:var(--text-dark);}
+
+.ask{background:var(--white); border:1px solid var(--orange); border-top:4px solid var(--orange); border-radius:8px; padding:13px 16px; margin-top:12px; font-size:12.5px; color:var(--text-mid);}
+.ask b{color:var(--text-dark);}
+.ask .num{font-family:'IBM Plex Mono',monospace; color:var(--orange); font-weight:500; margin-right:6px;}
+.ask p{margin-bottom:6px;}
+.ask p:last-child{margin-bottom:0;}
+
+.rule{background:var(--white); border:1px solid var(--border); border-radius:8px; padding:11px 14px; margin-bottom:8px; font-size:12px; color:var(--text-mid);}
+.rule b{color:var(--forest);}
+
+table{width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--border); border-radius:8px; overflow:hidden; font-size:11.5px; margin-bottom:6px;}
+th{background:var(--forest); color:#fff; padding:7px 10px; text-align:left; font-size:10.5px; font-weight:600;}
+td{padding:7px 10px; border-top:1px solid var(--border); color:var(--text-mid); vertical-align:top;}
+td b{color:var(--text-dark);}
+td.term{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-dark); font-weight:500;}
+td.n{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-muted); white-space:nowrap;}
+td.cost{font-family:'IBM Plex Mono',monospace; font-size:9.5px; white-space:nowrap;}
+.tag{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em; padding:2px 8px; border-radius:20px; font-weight:500;}
+.tag.keep{background:var(--keep-bg); color:var(--keep);}
+.tag.ren{background:var(--rename-bg); color:var(--rename);}
+.tag.cut{background:var(--cut-bg); color:var(--cut);}
+.tag.call{background:var(--call-bg); color:var(--call);}
+.tag.free{background:var(--keep-bg); color:var(--keep);}
+.tag.mod{background:var(--rename-bg); color:var(--rename);}
+.tag.exp{background:var(--warn-bg); color:var(--orange);}
+
+.not{background:var(--warn-bg); border:1px solid var(--orange); border-radius:8px; padding:11px 14px; font-size:11.5px; color:var(--text-dark); margin-bottom:8px;}
+.not b{color:var(--orange);}
+.win{background:var(--keep-bg); border:1px solid var(--keep); border-radius:8px; padding:11px 14px; font-size:12px; color:var(--text-mid);}
+.win b{color:var(--keep);}
+
+.footer{margin-top:18px; padding-top:9px; border-top:1px solid var(--border); font-size:10px; color:var(--text-muted); display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace;}
+@media print{ body{background:#fff;} .page{padding:0;} .hero{border-radius:0;} @page{margin:8mm;} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="eyebrow">Priority Commerce · Engineering Expectations · Plain-Language Pass · For Colm's Review</div>
+    <h1>Framework Vocabulary — Keep · Rename · Cut</h1>
+    <div class="sub">Colm's post-launch feedback named the problem: the accumulated invented vocabulary makes the framework harder to read than it should be. This page is the fix, made concrete — every term he listed, plus every other coined phrase found by counting across <b>all 77 pages of the framework</b>, each with a verdict and a reason. Nothing changes until this list survives Colm.</div>
+    <div class="meta">
+      <span class="chip hot">ALL 77 PAGES COUNTED — 18 CORE + 59 HIRING &amp; SUPPORT</span>
+      <span class="chip">EVERY ROW HAS A COST</span>
+      <span class="chip">COLM DECIDES THE BORDERLINE CALLS</span>
+    </div>
+  </div>
+
+  <div class="ask">
+    <p><b>Colm — here's what I need from you.</b></p>
+    <p><span class="num">1</span><b>Scan the Keep, Rename, and Cut tables.</b> Reply only with the rows you'd overturn — name the term and what you'd do instead. Anything you don't flag, I ship as written.</p>
+    <p><span class="num">2</span><b>Give me a verdict on each of the four rows in "Your call."</b> Those are the arguable ones; each has my recommendation. One line per term is plenty.</p>
+    <p><span class="num">3</span><b>Add what the count missed.</b> If a phrase taxed you and it isn't on this page, name it.</p>
+  </div>
+
+  <h2>How each verdict was made</h2>
+  <p class="lede">Three tests, applied to every term. <b>Does the word carry a precise meaning with real consequences?</b> A Staff engineer owns a <i>domain</i>; a Principal owns a <i>workstream</i> — use those words loosely and you've moved someone's job two levels. <b>Is it ordinary English an engineer already knows?</b> Career track, single point of failure, escaped defect — no tax. <b>If it's an invented phrase, does it earn its keep?</b> If plain English says the same thing, the invention is a tax on the reader, and it goes.</p>
+  <div class="rule"><b>What the Cost column means.</b> Changing a word costs different amounts depending on where it lives. <span class="tag free">FREE</span> = ordinary page text; find-and-replace territory. <span class="tag mod">MODERATE</span> = also appears in the hiring pages' own text (interview loops, job descriptions), so the sweep is wider. <span class="tag exp">EXPENSIVE</span> = lives inside a role card's capability blocks. Card text is pasted verbatim into every evidence note and promotion packet in use, and block first sentences are quoted on the interview loop pages as "the bar" — so a card change means re-syncing loops and templates, and every manager's working copy goes stale until refreshed. Verified: all 29 loop pages quote only first sentences, never full blocks.</div>
+
+  <h2>Keep — structural terms and ordinary conventions</h2>
+  <p class="lede">These stay because removing them trades one hard first read for permanent ambiguity — or because they're plain English already. Counts are across all 77 pages.</p>
+  <table>
+    <thead><tr><th style="width:26%">Term</th><th style="width:14%">Where</th><th>Why it stays</th></tr></thead>
+    <tbody>
+      <tr><td class="term">role card</td><td class="n">42× core + hiring pages</td><td>The framework's core object. Its exact text is the job description, the interview bar, the assessment line, and the promotion criterion — the words must be identical everywhere they appear.</td></tr>
+      <tr><td class="term">Craft · Impact · Ownership · Influence · Judgment / capability area</td><td class="n">30× core, 30× hiring</td><td>The five lenses every role is defined and scored through. The whole system hangs on these five words.</td></tr>
+      <tr><td class="term">track / level</td><td class="n">everywhere</td><td>Ordinary career vocabulary. No tax. (The synonyms <i>rung</i> and <i>spine</i> go — see Rename.)</td></tr>
+      <tr><td class="term">domain / workstream / scope</td><td class="n">~450× total, ~170 in cards</td><td>The scope words with level consequences. Defined once in the Glossary; the fix is linking that definition on first use, not renaming ~170 card occurrences and every page that quotes them.</td></tr>
+      <tr><td class="term">Below / At / Above</td><td class="n">13 pages</td><td>The three assessment reads. Three plain words doing precise work.</td></tr>
+      <tr><td class="term">calibration</td><td class="n">throughout</td><td>Industry-standard term for exactly this process.</td></tr>
+      <tr><td class="term">evidence note / promotion packet / opportunity record / gap map</td><td class="n">46× / 23× / 12× / 26×</td><td>Instrument names that describe themselves. "The gap map is the development plan" is doctrine worth its two words.</td></tr>
+      <tr><td class="term">Team EMM</td><td class="n">21× · 6 pages</td><td>Keeps — with a discipline rule: expanded on first use on every page (Team Engineering Maturity Model).</td></tr>
+      <tr><td class="term">safety net</td><td class="n">12× · in cards</td><td>Plain-English metaphor carrying the QA doctrine: quality partners are never where engineers throw untested work.</td></tr>
+      <tr><td class="term">single point of failure / escaped defect</td><td class="n">18× / 21× · in cards</td><td>Industry standards. Engineers arrive knowing them.</td></tr>
+      <tr><td class="term">heroics / "doesn't need heroes" · the bench · two-way door</td><td class="n">17× / 13× / 6× · in cards</td><td>Ordinary idioms, vivid and instantly understood.</td></tr>
+      <tr><td class="term">AI-native</td><td class="n">29× · in cards</td><td>The transformation's own vocabulary — strategic, and increasingly standard.</td></tr>
+      <tr><td class="term">playbook / plays</td><td class="n">~28× / 23×</td><td>Ordinary business English; two published pages carry the name, and each play is labeled by its moment.</td></tr>
+      <tr><td class="term">firewall</td><td class="n">15× · 7 pages</td><td>Ordinary metaphor doing real work: "Team EMM data is never evidence about a person" needs a hard word.</td></tr>
+      <tr><td class="term">"sustained behavior" · "prevention counts as evidence" · "decisions that age well"</td><td class="n">26× / 8× / 16× · in cards</td><td>Not decoration — these are the assessment's actual tests, quoted at calibration.</td></tr>
+      <tr><td class="term">the hiring pages' own working vocabulary</td><td class="n">29 loops + JD pages</td><td>"The bar (from the card)," "Look for / Cut-off," "a pass sounds like / a miss sounds like," "a guide, never a gate" — dense but consistent, labeled, and functional for interviewers. Out of scope for this pass unless Colm flags specifics.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Rename — same concept, plainer word</h2>
+  <table>
+    <thead><tr><th style="width:20%">Term</th><th style="width:12%">Where</th><th style="width:18%">Becomes</th><th>Why</th><th style="width:10%">Cost</th></tr></thead>
+    <tbody>
+      <tr><td class="term">spine</td><td class="n">5× core + 3× legacy</td><td><b>ladder</b></td><td>"Career ladder" is the word engineers already have. Zero loss.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">rung</td><td class="n">11× core + 8× hiring</td><td><b>level</b></td><td>Two words for one concept — one goes. Level wins ~208 to 19.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">sanctioned (move / path)</td><td class="n">11× + 1× legacy</td><td><b>supported move</b></td><td>"Sanctioned" reads legalistic and famously means its own opposite.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">five contexts</td><td class="n">2×</td><td><b>"one card, five uses"</b></td><td>What it names: the same role card is used in five places — the published card, the job description, the interview loop, the capability assessment, and the promotion packet. The Manager's Playbook already says this plainly as "one card, five uses" — the home page adopts that wording.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">"moves land with…"</td><td class="n">6×</td><td><b>"take effect with…"</b></td><td>Plain verb, same meaning.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">harvest (at review time)</td><td class="n">2× + 1 workbook cell</td><td><b>assemble</b></td><td>The doctrine's own verb; one Evidence Note workbook cell updates too.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">"cashed in" (annually)</td><td class="n">2× + 1 workbook cell</td><td><b>"used at the annual review"</b></td><td>Plain; one workbook cell updates too.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">measurement stack</td><td class="n">3×</td><td><b>measurement model</b></td><td>"Stack" adds nothing here.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">knowledge layer</td><td class="n">10×</td><td><b>knowledge base</b> (in text)</td><td>The section title and its deep-link stay; casual uses go plain.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">two-lever split</td><td class="n">11× core + 17× hiring + 1 card sentence</td><td><b>spell it out</b></td><td>The concept is essential; the invented noun isn't. Text says: "the manager owns delivery and people; the senior engineer owns technical direction — each measured through their own lever." The word <i>lever</i> itself stays (22 more uses in cards, no shorter substitute). One Staff SWE card sentence uses the coined form — Colm's call whether that one changes.</td><td class="cost"><span class="tag mod">MODERATE</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Cut — invented language that taxes the reader</h2>
+  <table>
+    <thead><tr><th style="width:20%">Term</th><th style="width:12%">Where</th><th style="width:20%">Becomes</th><th>Why</th><th style="width:10%">Cost</th></tr></thead>
+    <tbody>
+      <tr><td class="term">front door</td><td class="n">7× + 1× hiring</td><td><b>the Framework home page</b></td><td>Pure dialect; the plain name needs no decoding.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">map / script / territory family</td><td class="n">7 variants · 3 core pages</td><td><b>"a guide, not a script"</b> — once</td><td>Seven variations on one metaphor. One survives; the rest go plain. (The loops' own "not a script to recite verbatim" is ordinary usage and stays.)</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">calibrated cadence</td><td class="n">1×</td><td><b>a regular rhythm</b></td><td>Alliteration doing no work.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">"hold this framework"</td><td class="n">1×</td><td><b>"use this framework"</b></td><td>Plain verb.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">"no folklore"</td><td class="n">2×</td><td><b>"no guessing"</b></td><td>Already paired with it — the pair collapses to the plain half.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+      <tr><td class="term">"in one breath" / "one breath each"</td><td class="n">2×</td><td><b>"in one sentence"</b></td><td>Same instruction, no image.</td><td class="cost"><span class="tag free">FREE</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Your call, Colm — four arguable ones</h2>
+  <table>
+    <thead><tr><th style="width:18%">Term</th><th style="width:13%">Where</th><th>The case both ways</th><th style="width:22%">My recommendation</th></tr></thead>
+    <tbody>
+      <tr><td class="term">start-left</td><td class="n">5× core + 7× hiring · in card blocks, one in an anchor</td><td>The industry says <b>shift-left</b>; our coinage makes engineers wonder if it means something different (it doesn't). But it sits in QA, SDET, and QAE Management card blocks — one inside a quoted anchor — so the fix re-syncs those cards, their loops, and the templates.</td><td><span class="tag ren">RENAME to shift-left</span> — worth the bounded sweep; the count makes it verifiable.</td></tr>
+      <tr><td class="term">quality trio</td><td class="n">24× core + 26× hiring · 10 card blocks</td><td>Invented — but it names a real unit (your SE, QAE, and SDET working as one), and every substitute is longer. Renaming would be the widest sweep on this page: 50 occurrences, ten card blocks, eighteen hiring pages.</td><td><span class="tag keep">KEEP</span> + spell out on first use per page.</td></tr>
+      <tr><td class="term">"shipping is the beginning of the evidence"</td><td class="n">10× · 9 pages</td><td>A coined credo — deliberately repeated. It's the belief statement behind outcome-driven, never task-oriented.</td><td><span class="tag keep">KEEP</span> — this one is the culture, not decoration.</td></tr>
+      <tr><td class="term">Engineering Operating System (page title)</td><td class="n">12× · 5 pages</td><td>Retitling churns deep links across dozens of pages. But "the operating system" used casually in text adds to the dialect feel.</td><td><span class="tag keep">KEEP the title</span>; text stops saying "the operating system" and says "how engineering runs day to day," linked.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>One name for the whole thing</h2>
+  <div class="rule"><b>Recommendation: the proper name becomes "Priority Commerce Engineering Expectations Framework" — "the Framework" for short.</b> Today the pages drift between "the Engineering Expectations," "the framework," "the system," and "the map," and several page footers still carry an older working title. The pass standardizes all of it: the full name on first use and in titles, <b>the Framework</b> everywhere after, and the stray synonyms ("the system," "the map") retired. One legacy page from an earlier draft (titled "Engineering Career Framework," still using spine/rung vocabulary) gets folded in or archived — Eric's call, flagged in the pass.</div>
+
+  <h2>Other one-name fixes</h2>
+  <table>
+    <thead><tr><th style="width:30%">Today</th><th style="width:22%">Standardizes to</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="term">public card → role card</td><td><b>role card</b></td><td>A handful of stray uses on the playbooks and senior loops. "Public" stays as a plain adjective where openness is the point.</td></tr>
+      <tr><td class="term">rung → level · spine → ladder</td><td><b>level · ladder</b></td><td>Per the Rename table.</td></tr>
+      <tr><td class="term">the system / the map / the Expectations</td><td><b>the Framework</b></td><td>One generic name. "Priority Commerce Engineering Expectations Framework" remains the proper name.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>PRIORITY COMMERCE ENGINEERING EXPECTATIONS · OWNED BY ERIC NORMANT, CHIEF OF STAFF, OFFICE OF THE CTO</span>
+    <span>VOCABULARY REVIEW FOR COLM · V2.0 · CONFIDENTIAL — INTERNAL</span>
+  </div>
+
+</div>
+</body>
+</html>
