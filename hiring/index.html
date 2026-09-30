@@ -10,7 +10,7 @@
   --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
   --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
   --s1:#3F8A46; --s1-bg:#E9F5E9;   /* backfill · approved & budgeted */
-  --s2:#008573; --s2-bg:#E3F3EF;   /* new · approved & budgeted */
+  --s2:#008573; --s2-bg:#E3F3EF;   /* incremental · approved & budgeted */
   --s3:#D45A00; --s3-bg:#FFF1E4;   /* Yi approved · Finance pending */
   --s4:#5B6760; --s4-bg:#EEF0EE;   /* not yet to Yi */
   --s5:#01271A; --s5-bg:#DDE7E2;   /* hired · starting */
@@ -69,7 +69,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .pipe{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
 .stage{padding:16px 18px;border-right:1px solid var(--border);position:relative}
 .stage:last-child{border-right:none}
-.stage .tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.stage .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:10px;line-height:1.5;max-width:100%}
 .stage .big{font-size:38px;font-weight:700;line-height:1;letter-spacing:-.5px}
 .stage .who{font-size:12.5px;color:var(--text-mid);margin-top:8px;line-height:1.45}
 .stage .next{font-size:11.5px;color:var(--text-muted);margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)}
@@ -156,7 +156,7 @@ tfoot td.c{font-family:var(--mono)}
 .wshead .sum{display:flex;gap:5px;align-items:center}
 .wshead .sum .b{font-size:9.5px;padding:1px 7px}
 .wshead .tot{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text-mid);margin-left:6px}
-.role{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px dashed var(--border);font-size:13px}
+.role{display:grid;grid-template-columns:200px 1fr auto;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px dashed var(--border);font-size:13px}
 .role:last-child{border-bottom:none}
 .role.hide{display:none}
 .role .title{font-weight:600;color:var(--text-dark)}
@@ -218,7 +218,7 @@ tfoot td.c{font-family:var(--mono)}
         <tr>
           <th>Workstream</th>
           <th class="c">Backfill<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
-          <th class="c">New<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
+          <th class="c">Incremental<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
           <th class="c">Yi approved<br><span style="font-weight:400;opacity:.7">needs Finance</span></th>
           <th class="c">Not yet to Yi<br><span style="font-weight:400;opacity:.7">not budgeted</span></th>
           <th class="c">Total ask</th>
@@ -238,7 +238,7 @@ tfoot td.c{font-family:var(--mono)}
     <span class="lbl">Stage</span>
     <button class="fbtn on" data-f="stage" data-v="all">All</button>
     <button class="fbtn s1" data-f="stage" data-v="s1">Backfill · budgeted</button>
-    <button class="fbtn s2" data-f="stage" data-v="s2">New · budgeted</button>
+    <button class="fbtn s2" data-f="stage" data-v="s2">Incremental · budgeted</button>
     <button class="fbtn s3" data-f="stage" data-v="s3">Yi approved · needs Finance</button>
     <button class="fbtn s4" data-f="stage" data-v="s4">Not yet to Yi</button>
     <span class="fsep"></span>
@@ -251,14 +251,6 @@ tfoot td.c{font-family:var(--mono)}
   </div>
   <div class="wsgrid" id="wsgrid"></div>
 
-  <h2>Flags &amp; gaps <span class="hint">Resolve before this goes to Finance</span></h2>
-  <div class="two">
-    <div class="callout red"><span class="k">Repost ASAP · Owner: Eric</span><b>Billing &amp; Revenue Management — Andrew Brim backfill (HR-414313)</b> is posted as <b>Senior Manager, Engineering</b>. Recommend reposting this role as <b>Director, Engineering</b> ASAP: this is the largest workstream on the plan and needs immediate scale.</div>
-    <div class="callout"><span class="k">Missing role</span><b>Banking &amp; Treasury — Vansh Ahuja backfill</b> has no role or level recorded. Confirm before it's counted against budget.</div>
-    <div class="callout grey"><span class="k">Not on this page yet</span><b>Cost.</b> No loaded cost per role is attached. Add it per role and location before the Finance conversation so the ask is in dollars, not only in heads.</div>
-    <div class="callout grey"><span class="k">Not on this page yet</span><b>Start-date need.</b> Roles aren't sequenced by when the workstream needs them. Once Finance approves, the next cut should show Q4 2026 vs 2027 starts.</div>
-  </div>
-
   <div class="footer">
     <span><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</span>
     <span>Confidential · Internal · September 2026</span>
@@ -267,10 +259,10 @@ tfoot td.c{font-family:var(--mono)}
 
 <script>
 /* ---------- DATA ---------- */
-// stage: s1 backfill·approved·budgeted | s2 new·approved·budgeted | s3 Yi approved·needs Finance | s4 not yet to Yi | s5 hired·starting
+// stage: s1 backfill·approved·budgeted | s2 incremental·approved·budgeted | s3 Yi approved·needs Finance | s4 not yet to Yi | s5 hired·starting
 const STAGES = {
   s1:{short:'Backfill · budgeted', next:'Open the search'},
-  s2:{short:'New · budgeted', next:'Open the search'},
+  s2:{short:'Incremental · budgeted', next:'Open the search'},
   s3:{short:'Yi approved · needs Finance', next:'Finance approval'},
   s4:{short:'Not yet to Yi', next:'Yi review, then Finance'},
   s5:{short:'Hired · starts Nov', next:'Onboard'}
@@ -290,7 +282,7 @@ const ROLES = [
   // Banking & Treasury
   {ws:'Banking & Treasury', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
-  {ws:'Banking & Treasury', loc:'IDC', role:'Role & level TBC', stage:'s1', bf:'Vansh Ahuja', flag:'Role missing', assumedOpen:true},
+  {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
   {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November'},
   {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', assumedOpen:true},
@@ -349,7 +341,7 @@ const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort(
 const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
 
 const S = {s1:n(ROLES,r=>r.stage==='s1'), s2:n(ROLES,r=>r.stage==='s2'), s3:n(ROLES,r=>r.stage==='s3'), s4:n(ROLES,r=>r.stage==='s4'), s5:n(ROLES,r=>r.stage==='s5')};
-const isOpen = r => (r.ticket && !r.notStarted) || r.assumedOpen;
+const isOpen = r => (r.ticket && !r.notStarted) || r.assumedOpen || r.open;
 const searchesOpen = n(ROLES,isOpen);
 const assumedOpen = n(ROLES,r=>r.assumedOpen);
 const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(r));
@@ -359,7 +351,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const ctr=n(ROLES,r=>r.ctr);
   document.getElementById('kpis').innerHTML = `
     <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire · ${S.s5} hired, starting Nov · ${ctr} contractors</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} new · ${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental · ${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
     <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
 })();
@@ -373,8 +365,8 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
     <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
     <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length} roles</b> Yi has already approved — mostly ${topWs(s3)}. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
     <div class="dec"><div class="num">3</div><div class="t"><b>Repost the Brim backfill as Director, Engineering</b> (HR-414313, currently Senior Manager) — ASAP.<span class="own">Owner: Eric</span></div></div>
-    <div class="dec"><div class="num">4</div><div class="t"><b>Rahul: confirm the ${assumedOpen} IDC searches assumed open</b> (all ${idcBudgeted} approved &amp; budgeted IDC roles) — which are underway, and which still need to be opened.<span class="own">Owner: Rahul</span></div></div>
-    <div class="dec"><div class="num">5</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740), and close the one data gap (Vansh Ahuja role) so every line reconciles.<span class="own">Owner: Eric</span></div></div>`;
+    <div class="dec"><div class="num">4</div><div class="t"><b>Rahul: confirm the ${assumedOpen} IDC searches assumed open</b> — which are underway, and which still need to be opened.<span class="own">Owner: Rahul</span></div></div>
+    <div class="dec"><div class="num">5</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
 })();
 
 /* ---------- PIPELINE ---------- */
@@ -382,8 +374,8 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const idc=n(ROLES,r=>r.loc==='IDC'), adc=n(ROLES,r=>r.loc==='ADC'), wat=n(ROLES,r=>r.loc==='WAT');
   const stages = [
     {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&r.ticket&&!r.notStarted)} searches confirmed open, ${n(ROLES,r=>r.stage==='s1'&&r.assumedOpen)} assumed open — Eric will confirm with Rahul.`},
-    {k:'s2', title:'New headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&r.ticket&&!r.notStarted)} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
-    {k:'s3', title:'Yi approved', sub:'awaiting Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
+    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&r.ticket&&!r.notStarted)} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
+    {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
     {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
   ];
   document.getElementById('pipe').innerHTML = stages.map((s,i)=>`
