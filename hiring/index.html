@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P&E Hiring Plan — Headcount Reconciliation</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
+  --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
+  --s1:#3F8A46; --s1-bg:#E9F5E9;   /* backfill · approved & budgeted */
+  --s2:#008573; --s2-bg:#E3F3EF;   /* new · approved & budgeted */
+  --s3:#D45A00; --s3-bg:#FFF1E4;   /* Yi approved · Finance pending */
+  --s4:#5B6760; --s4-bg:#EEF0EE;   /* not yet to Yi */
+  --s5:#01271A; --s5-bg:#DDE7E2;   /* hired · starting */
+  --flag:#C9402F; --flag-bg:#FBEAE7;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+a{color:var(--teal);text-decoration:none;border-bottom:1px solid var(--turquoise)}
+a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1040px;margin:0 auto;padding:36px 40px 30px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:28px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.4px;margin-bottom:10px}
+.doc-subtitle{font-size:14px;font-weight:300;color:rgba(231,229,170,.8);max-width:640px;line-height:1.55}
+.doc-subtitle b{color:#fff;font-weight:500}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+
+.doc-body{max-width:1040px;margin:0 auto;padding:0 40px 56px}
+h2{font-size:12px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--forest);border-bottom:2px solid var(--turquoise);padding-bottom:5px;margin:30px 0 14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:12px;color:var(--text-muted);font-weight:400;text-align:right}
+
+/* deadline banner */
+.why{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 16px;margin-top:22px;font-size:13.5px}
+.why .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--s3);white-space:nowrap}
+.why b{color:var(--dark-forest)}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--forest)}
+.kpi.s1::before{background:var(--s1)} .kpi.s2::before{background:var(--s2)} .kpi.s3::before{background:var(--s3)} .kpi.s4::before{background:var(--s4)}
+.kpi .n{font-size:32px;font-weight:700;line-height:1;letter-spacing:-.5px;color:var(--dark-forest)}
+.kpi .l{font-size:12.5px;font-weight:600;color:var(--text-dark);margin-top:6px}
+.kpi .d{font-size:11.5px;color:var(--text-muted);margin-top:2px}
+
+/* decisions (top) */
+.decisions{background:var(--dark-forest);color:#fff;border-radius:10px;padding:16px 20px;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.decisions .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise);grid-column:1 / -1;margin-bottom:2px}
+.dec{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
+.dec .num{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--orange);line-height:1.3}
+.dec .t{font-size:13.5px;line-height:1.45}
+.dec .t b{color:var(--pistachio)}
+.dec .own{display:block;font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,.55);margin-top:3px}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.stage{padding:16px 18px;border-right:1px solid var(--border);position:relative}
+.stage:last-child{border-right:none}
+.stage .tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:10px}
+.stage .big{font-size:38px;font-weight:700;line-height:1;letter-spacing:-.5px}
+.stage .who{font-size:12.5px;color:var(--text-mid);margin-top:8px;line-height:1.45}
+.stage .next{font-size:11.5px;color:var(--text-muted);margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)}
+.stage .next b{color:var(--text-dark)}
+.stage.s1 .tag{background:var(--s1-bg);color:var(--s1)} .stage.s1 .big{color:var(--s1)}
+.stage.s2 .tag{background:var(--s2-bg);color:var(--s2)} .stage.s2 .big{color:var(--s2)}
+.stage.s3 .tag{background:var(--s3-bg);color:var(--s3)} .stage.s3 .big{color:var(--s3)}
+.stage.s4 .tag{background:var(--s4-bg);color:var(--s4)} .stage.s4 .big{color:var(--s4)}
+.arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:9px solid var(--border);z-index:2}
+.arrow::after{content:'';position:absolute;right:1px;top:-8px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:8px solid #fff}
+.stackbar{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:14px 0 6px;border:1px solid var(--border)}
+.stackbar div{height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--text-mid)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%}
+.families{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.fam{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:baseline;gap:10px}
+.fam .n{font-size:22px;font-weight:700;color:var(--dark-forest);font-family:var(--mono)}
+.fam .l{font-size:12.5px;font-weight:600}
+.fam .d{font-size:11px;color:var(--text-muted);display:block;font-weight:400}
+
+/* badges */
+.b{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.04em;padding:2px 8px;border-radius:20px;white-space:nowrap;line-height:1.6}
+.b.s1{background:var(--s1-bg);color:var(--s1)} .b.s2{background:var(--s2-bg);color:var(--s2)} .b.s3{background:var(--s3-bg);color:var(--s3)} .b.s4{background:var(--s4-bg);color:var(--s4)} .b.s5{background:var(--s5-bg);color:var(--s5)}
+.loc{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.06em;padding:1px 7px;border-radius:3px;border:1px solid var(--border);color:var(--text-mid);background:#fff;white-space:nowrap}
+.loc.IDC{border-color:#C9B26A;color:#7A6410;background:#FBF7E6}
+.loc.ADC{border-color:#7FB3D5;color:#1F5B86;background:#EAF3F9}
+.loc.WAT{border-color:#9DD3D2;color:#0E5E5D;background:#E6F5F5}
+.flagpill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--flag-bg);color:var(--flag);white-space:nowrap}
+.ctr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#EEE9F7;color:#5A3E99;white-space:nowrap}
+.confirm{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--s3-bg);color:var(--s3);border:1px dashed var(--s3);white-space:nowrap}
+
+/* matrix */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--dark-forest);color:#fff;text-align:left;font-weight:600;padding:9px 12px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+thead th.c{text-align:center}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--bg-soft)}
+td.c{text-align:center;font-family:var(--mono);font-size:13px}
+td.c.zero{color:#C8CCC9}
+td.c .chip{display:inline-block;min-width:26px;padding:2px 7px;border-radius:12px;font-weight:600}
+td.c.s1 .chip{background:var(--s1-bg);color:var(--s1)} td.c.s2 .chip{background:var(--s2-bg);color:var(--s2)} td.c.s3 .chip{background:var(--s3-bg);color:var(--s3)} td.c.s4 .chip{background:var(--s4-bg);color:var(--s4)}
+td.tot{font-family:var(--mono);font-weight:700;text-align:center;color:var(--dark-forest)}
+td.ws a{color:var(--text-dark);font-weight:600;border-bottom:1px dotted var(--border)}
+td.ws a:hover{color:var(--orange)}
+td.locs{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
+tfoot td{padding:9px 12px;background:var(--bg-soft);font-weight:700;border-top:2px solid var(--border)}
+tfoot td.c{font-family:var(--mono)}
+
+/* action lists */
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.alist{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.alist .ah{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.alist.s4 .ah{background:var(--s4-bg)} .alist.s3 .ah{background:var(--s3-bg)}
+.alist .ah h3{font-size:13.5px;font-weight:700;color:var(--dark-forest)}
+.alist .ah .n{font-family:var(--mono);font-size:20px;font-weight:700}
+.alist.s4 .ah .n{color:var(--s4)} .alist.s3 .ah .n{color:var(--s3)}
+.alist .ah .sub{font-size:11.5px;color:var(--text-muted);font-weight:400;display:block}
+.agroup{padding:8px 14px;border-bottom:1px dashed var(--border)}
+.agroup:last-child{border-bottom:none}
+.agroup .gname{font-size:12px;font-weight:700;color:var(--forest);margin-bottom:3px;display:flex;justify-content:space-between}
+.agroup .gname span{font-family:var(--mono);font-weight:500;color:var(--text-muted);font-size:11px}
+.agroup .item{font-size:12.5px;color:var(--text-mid);display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.agroup .item .loc{font-size:9.5px}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.filters .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-right:4px}
+.fbtn{font-family:var(--sans);font-size:12px;padding:5px 11px;border-radius:20px;border:1px solid var(--border);background:#fff;color:var(--text-mid);cursor:pointer}
+.fbtn:hover{border-color:var(--forest);color:var(--forest)}
+.fbtn.on{background:var(--forest);border-color:var(--forest);color:#fff}
+.fbtn.on.s1{background:var(--s1);border-color:var(--s1)} .fbtn.on.s2{background:var(--s2);border-color:var(--s2)} .fbtn.on.s3{background:var(--s3);border-color:var(--s3)} .fbtn.on.s4{background:var(--s4);border-color:var(--s4)}
+.fsep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.count{font-size:12px;color:var(--text-muted);margin-left:auto}
+
+/* workstream cards */
+.wsgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wscard{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 3px 10px rgba(0,0,0,.04)}
+.wscard.wide{grid-column:1 / -1}
+.wshead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.wshead h3{font-size:14px;font-weight:700;color:var(--dark-forest)}
+.wshead .sum{display:flex;gap:5px;align-items:center}
+.wshead .sum .b{font-size:9.5px;padding:1px 7px}
+.wshead .tot{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text-mid);margin-left:6px}
+.role{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px dashed var(--border);font-size:13px}
+.role:last-child{border-bottom:none}
+.role.hide{display:none}
+.role .title{font-weight:600;color:var(--text-dark)}
+.role .meta{font-size:11.5px;color:var(--text-muted);margin-top:1px}
+.role .meta b{color:var(--text-mid);font-weight:500}
+.role .side{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.wscard.empty{opacity:.35}
+
+/* flags */
+.callout{border:1px solid var(--border);border-left:4px solid var(--orange);background:#FFF7EF;border-radius:8px;padding:12px 16px;margin:0 0 10px;font-size:13.5px}
+.callout.red{border-left-color:var(--flag);background:var(--flag-bg)}
+.callout.grey{border-left-color:var(--s4);background:var(--bg-soft)}
+.callout b{color:var(--dark-forest)}
+.callout .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-muted)}
+.footer strong{color:var(--dark-forest)}
+
+@media (max-width:860px){.kpis,.families{grid-template-columns:1fr 1fr}.pipe{grid-template-columns:1fr 1fr}.wsgrid,.two,.actions,.decisions{grid-template-columns:1fr}.header-meta{display:none}.role{grid-template-columns:1fr}.role .side{justify-content:flex-start}.arrow{display:none}}
+@media print{body{background:#fff}.filters,.count{display:none}.wscard,.kpi,.pipe,.table-wrap,.alist,.decisions{box-shadow:none;break-inside:avoid}@page{margin:10mm}}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="doc-eyebrow">Product &amp; Engineering · Chief of Staff · Headcount Reconciliation</div>
+      <h1 class="doc-title">P&amp;E Hiring Plan</h1>
+      <p class="doc-subtitle">Every open role, sorted by how far it has travelled through approval, and the total ask per workstream. Two gates: <b>Yi</b> approves the need; <b>Finance</b> budgets it.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Working draft</span>
+      <span class="meta-badge badge-date">29 Sep 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-body">
+
+  <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="decisions" id="decisions"></div>
+
+  <h2>Approval pipeline <span class="hint">Left is closest to a start date. Right still needs the most decisions.</span></h2>
+  <div class="pipe" id="pipe"></div>
+  <div class="stackbar" id="stackbar"></div>
+  <div class="legend" id="legend"></div>
+  <div class="families" id="families"></div>
+
+  <h2>Ask per workstream <span class="hint">Counts by approval stage · click a workstream to jump to its roles</span></h2>
+  <div class="table-wrap">
+    <table id="matrix">
+      <thead>
+        <tr>
+          <th>Workstream</th>
+          <th class="c">Backfill<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
+          <th class="c">New<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
+          <th class="c">Yi approved<br><span style="font-weight:400;opacity:.7">needs Finance</span></th>
+          <th class="c">Not yet to Yi<br><span style="font-weight:400;opacity:.7">not budgeted</span></th>
+          <th class="c">Total ask</th>
+          <th>Locations</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+
+  <h2>Action lists <span class="hint">The two queues that move the plan — grouped by workstream</span></h2>
+  <div class="actions" id="actions"></div>
+
+  <h2 id="roles">All roles by workstream <span class="hint">Filter by stage or location · every row is one hire</span></h2>
+  <div class="filters" id="filters">
+    <span class="lbl">Stage</span>
+    <button class="fbtn on" data-f="stage" data-v="all">All</button>
+    <button class="fbtn s1" data-f="stage" data-v="s1">Backfill · budgeted</button>
+    <button class="fbtn s2" data-f="stage" data-v="s2">New · budgeted</button>
+    <button class="fbtn s3" data-f="stage" data-v="s3">Yi approved · needs Finance</button>
+    <button class="fbtn s4" data-f="stage" data-v="s4">Not yet to Yi</button>
+    <span class="fsep"></span>
+    <span class="lbl">Location</span>
+    <button class="fbtn on" data-f="loc" data-v="all">All</button>
+    <button class="fbtn" data-f="loc" data-v="IDC">IDC · India</button>
+    <button class="fbtn" data-f="loc" data-v="ADC">ADC · USA</button>
+    <button class="fbtn" data-f="loc" data-v="WAT">Waterloo · Canada</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="wsgrid" id="wsgrid"></div>
+
+  <h2>Flags &amp; gaps <span class="hint">Resolve before this goes to Finance</span></h2>
+  <div class="two">
+    <div class="callout red"><span class="k">Repost ASAP · Owner: Eric</span><b>Billing &amp; Revenue Management — Andrew Brim backfill (HR-414313)</b> is posted as <b>Senior Manager, Engineering</b>. Recommend reposting this role as <b>Director, Engineering</b> ASAP: this is the largest workstream on the plan and needs immediate scale.</div>
+    <div class="callout"><span class="k">Missing role</span><b>Banking &amp; Treasury — Vansh Ahuja backfill</b> has no role or level recorded. Confirm before it's counted against budget.</div>
+    <div class="callout grey"><span class="k">Not on this page yet</span><b>Cost.</b> No loaded cost per role is attached. Add it per role and location before the Finance conversation so the ask is in dollars, not only in heads.</div>
+    <div class="callout grey"><span class="k">Not on this page yet</span><b>Start-date need.</b> Roles aren't sequenced by when the workstream needs them. Once Finance approves, the next cut should show Q4 2026 vs 2027 starts.</div>
+  </div>
+
+  <div class="footer">
+    <span><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</span>
+    <span>Confidential · Internal · September 2026</span>
+  </div>
+</main>
+
+<script>
+/* ---------- DATA ---------- */
+// stage: s1 backfill·approved·budgeted | s2 new·approved·budgeted | s3 Yi approved·needs Finance | s4 not yet to Yi | s5 hired·starting
+const STAGES = {
+  s1:{short:'Backfill · budgeted', next:'Open the search'},
+  s2:{short:'New · budgeted', next:'Open the search'},
+  s3:{short:'Yi approved · needs Finance', next:'Finance approval'},
+  s4:{short:'Not yet to Yi', next:'Yi review, then Finance'},
+  s5:{short:'Hired · starts Nov', next:'Onboard'}
+};
+
+const ROLES = [
+  // Payables
+  {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', assumedOpen:true},
+  {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', assumedOpen:true},
+  {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Armen Shahbazyan', assumedOpen:true},
+  // Merchant Experience
+  {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4'},
+  {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
+  {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
+  // Acquiring Stability
+  {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
+  // Banking & Treasury
+  {ws:'Banking & Treasury', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
+  {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
+  {ws:'Banking & Treasury', loc:'IDC', role:'Role & level TBC', stage:'s1', bf:'Vansh Ahuja', flag:'Role missing', assumedOpen:true},
+  // PCE
+  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November'},
+  {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', assumedOpen:true},
+  {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Platform APIs)', stage:'s2', ticket:'HR-415001'},
+  {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Strategic Solutions)', stage:'s2', ticket:'HR-415002'},
+  // EBM / Partner Experience
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413728'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Manager, Engineering', stage:'s1', bf:'Derek Robati', ticket:'HR-415086'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s4'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior SDET', stage:'s4'},
+  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'IDC', role:'Senior SDET', stage:'s3'},
+  // Fraud & Risk Governance
+  {ws:'Fraud & Risk Governance', loc:'IDC', role:'Team Lead, Engineering', stage:'s4'},
+  {ws:'Fraud & Risk Governance', loc:'IDC', role:'Senior Staff Software Engineer', stage:'s4'},
+  // Card Processing
+  {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
+  {ws:'Card Processing', loc:'IDC', role:'Team Lead, QA Engineering', stage:'s3'},
+  {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Card Processing', loc:'ADC', role:'SDET', stage:'s2', ticket:'HR-412740', notStarted:true},
+  // Account to Account
+  {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  // Routing & Optimization
+  {ws:'Routing & Optimization', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
+  {ws:'Routing & Optimization', loc:'IDC', role:'Product Manager', stage:'s4'},
+  // Innovation Lab
+  {ws:'Innovation Lab', loc:'WAT', role:'Manager, Engineering', stage:'s2', ticket:'HR-412937'},
+  {ws:'Innovation Lab', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-412938'},
+  {ws:'Innovation Lab', loc:'WAT', role:'Staff Software Engineer', stage:'s2', ticket:'HR-413910'},
+  // Billing & Revenue Management
+  {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', flag:'Repost as Director ASAP'},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', assumedOpen:true},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, QA Engineering', stage:'s3'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Product Manager', stage:'s4'},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior SDET', stage:'s2', ticket:'HR-414036'},
+];
+
+/* ---------- HELPERS ---------- */
+const by = (arr, f) => arr.reduce((m,x)=>{const k=f(x);(m[k]=m[k]||[]).push(x);return m;},{});
+const n = (arr, f) => arr.filter(f).length;
+const open = ROLES.filter(r=>r.stage!=='s5');
+const stageVar = s => `var(--${s})`;
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+const locName = l => l==='WAT'?'Waterloo':l;
+const family = r => /Product Manager/i.test(r.role) ? 'Product' : /Manager|Team Lead|Director/i.test(r.role) ? 'Leadership' : /SDET|QA/i.test(r.role) ? 'Quality' : 'Engineering';
+const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort((a,b)=>g[b].length-g[a].length).slice(0,3).map(w=>`${short(w)} (${g[w].length})`).join(', '); };
+const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
+
+const S = {s1:n(ROLES,r=>r.stage==='s1'), s2:n(ROLES,r=>r.stage==='s2'), s3:n(ROLES,r=>r.stage==='s3'), s4:n(ROLES,r=>r.stage==='s4'), s5:n(ROLES,r=>r.stage==='s5')};
+const isOpen = r => (r.ticket && !r.notStarted) || r.assumedOpen;
+const searchesOpen = n(ROLES,isOpen);
+const assumedOpen = n(ROLES,r=>r.assumedOpen);
+const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(r));
+
+/* ---------- KPIs ---------- */
+(function(){
+  const ctr=n(ROLES,r=>r.ctr);
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire · ${S.s5} hired, starting Nov · ${ctr} contractors</div></div>
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} new · ${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
+    <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
+    <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
+})();
+
+/* ---------- DECISIONS (dynamic counts) ---------- */
+(function(){
+  const s3 = ROLES.filter(r=>r.stage==='s3'), s4 = ROLES.filter(r=>r.stage==='s4');
+  const idcBudgeted = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && r.loc==='IDC');
+  document.getElementById('decisions').innerHTML = `
+    <div class="k">Actions needed</div>
+    <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
+    <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length} roles</b> Yi has already approved — mostly ${topWs(s3)}. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
+    <div class="dec"><div class="num">3</div><div class="t"><b>Repost the Brim backfill as Director, Engineering</b> (HR-414313, currently Senior Manager) — ASAP.<span class="own">Owner: Eric</span></div></div>
+    <div class="dec"><div class="num">4</div><div class="t"><b>Rahul: confirm the ${assumedOpen} IDC searches assumed open</b> (all ${idcBudgeted} approved &amp; budgeted IDC roles) — which are underway, and which still need to be opened.<span class="own">Owner: Rahul</span></div></div>
+    <div class="dec"><div class="num">5</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740), and close the one data gap (Vansh Ahuja role) so every line reconciles.<span class="own">Owner: Eric</span></div></div>`;
+})();
+
+/* ---------- PIPELINE ---------- */
+(function(){
+  const idc=n(ROLES,r=>r.loc==='IDC'), adc=n(ROLES,r=>r.loc==='ADC'), wat=n(ROLES,r=>r.loc==='WAT');
+  const stages = [
+    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&r.ticket&&!r.notStarted)} searches confirmed open, ${n(ROLES,r=>r.stage==='s1'&&r.assumedOpen)} assumed open — Eric will confirm with Rahul.`},
+    {k:'s2', title:'New headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&r.ticket&&!r.notStarted)} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
+    {k:'s3', title:'Yi approved', sub:'awaiting Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
+    {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
+  ];
+  document.getElementById('pipe').innerHTML = stages.map((s,i)=>`
+    <div class="stage ${s.k}">
+      <span class="tag">${s.title} · ${s.sub}</span>
+      <div class="big">${s.cnt}</div>
+      <div class="who">${s.who}</div>
+      <div class="next"><b>Next:</b> ${STAGES[s.k].next}</div>
+      ${i<3?'<span class="arrow"></span>':''}
+    </div>`).join('');
+  const tot = open.length;
+  document.getElementById('stackbar').innerHTML = stages.map(s=>`<div style="width:${(s.cnt/tot*100).toFixed(1)}%;background:${stageVar(s.k)}" title="${s.title}: ${s.cnt}"></div>`).join('');
+  document.getElementById('legend').innerHTML = stages.map(s=>`<span><i style="background:${stageVar(s.k)}"></i>${s.title} · ${s.sub} — <b>${s.cnt}</b></span>`).join('') +
+    `<span style="margin-left:auto"><b>${idc}</b> IDC · <b>${adc}</b> ADC · <b>${wat}</b> Waterloo</span>`;
+
+  const fams = by(open, family);
+  const famMeta = {
+    Leadership:'Managers, Team Leads, Directors',
+    Engineering:'Individual-contributor engineers',
+    Quality:'SDETs and QA engineers',
+    Product:'Product Managers'
+  };
+  document.getElementById('families').innerHTML = ['Leadership','Engineering','Quality','Product'].map(f=>`
+    <div class="fam"><span class="n">${(fams[f]||[]).length}</span><span class="l">${f}<span class="d">${famMeta[f]}</span></span></div>`).join('');
+})();
+
+/* ---------- MATRIX ---------- */
+const groups = by(ROLES, r=>r.ws);
+const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length || a.localeCompare(b));
+(function(){
+  const tb = document.querySelector('#matrix tbody'), tf = document.querySelector('#matrix tfoot');
+  const cell = (arr,k) => { const c=n(arr,r=>r.stage===k); return `<td class="c ${k} ${c?'':'zero'}">${c?`<span class="chip">${c}</span>`:'—'}</td>`; };
+  const T = {s1:0,s2:0,s3:0,s4:0,tot:0};
+  tb.innerHTML = wsOrder.map(ws=>{
+    const arr = groups[ws], o = arr.filter(r=>r.stage!=='s5');
+    ['s1','s2','s3','s4'].forEach(k=>T[k]+=n(arr,r=>r.stage===k)); T.tot+=o.length;
+    const locs = ['IDC','ADC','WAT'].map(l=>{const c=n(arr,r=>r.loc===l);return c?`${c} ${locName(l)}`:null}).filter(Boolean).join(' · ');
+    const hired = n(arr,r=>r.stage==='s5');
+    return `<tr>
+      <td class="ws"><a href="#ws-${slug(ws)}">${esc(ws)}</a>${hired?` <span class="b s5" style="margin-left:6px">+${hired} hired</span>`:''}</td>
+      ${cell(arr,'s1')}${cell(arr,'s2')}${cell(arr,'s3')}${cell(arr,'s4')}
+      <td class="tot">${o.length}</td>
+      <td class="locs">${locs}</td>
+    </tr>`;
+  }).join('');
+  tf.innerHTML = `<tr><td>Total to hire</td><td class="c">${T.s1}</td><td class="c">${T.s2}</td><td class="c">${T.s3}</td><td class="c">${T.s4}</td><td class="c">${T.tot}</td><td class="locs">${n(open,r=>r.loc==='IDC')} IDC · ${n(open,r=>r.loc==='ADC')} ADC · ${n(open,r=>r.loc==='WAT')} Waterloo</td></tr>`;
+})();
+
+/* ---------- ACTION LISTS ---------- */
+(function(){
+  const list = (k, title, sub) => {
+    const arr = ROLES.filter(r=>r.stage===k);
+    const g = by(arr, r=>r.ws);
+    const order = Object.keys(g).sort((a,b)=>g[b].length-g[a].length || a.localeCompare(b));
+    return `<div class="alist ${k}">
+      <div class="ah"><h3>${title}<span class="sub">${sub}</span></h3><span class="n">${arr.length}</span></div>
+      ${order.map(ws=>`<div class="agroup"><div class="gname">${esc(ws)}<span>${g[ws].length}</span></div>
+        ${g[ws].map(r=>`<div class="item"><span>${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</span><span class="loc ${r.loc}">${locName(r.loc)}</span></div>`).join('')}
+      </div>`).join('')}
+    </div>`;
+  };
+  document.getElementById('actions').innerHTML =
+    list('s4','Needs Yi','Not yet reviewed · not budgeted') +
+    list('s3','Needs Finance','Yi approved · awaiting budget');
+})();
+
+/* ---------- WORKSTREAM CARDS ---------- */
+(function(){
+  const g = document.getElementById('wsgrid');
+  g.innerHTML = wsOrder.map(ws=>{
+    const arr = groups[ws];
+    const order = {s1:1,s2:2,s3:3,s4:4,s5:0};
+    const rows = [...arr].sort((a,b)=>order[a.stage]-order[b.stage] || a.loc.localeCompare(b.loc)).map(r=>{
+      const meta = [];
+      if(r.bf) meta.push(`Backfill for <b>${esc(r.bf)}</b>`);
+      if(r.ticket && !r.notStarted) meta.push(`Search open · <b>${r.ticket}</b>`);
+      if(r.ticket && r.notStarted) meta.push(`Search hasn't started yet · <b>${r.ticket}</b>`);
+      if(r.note) meta.push(esc(r.note));
+      if(r.assumedOpen) meta.push('Search assumed open · <b>no ticket recorded</b>');
+      if(r.stage==='s2' && !r.ticket && !r.assumedOpen) meta.push('Budgeted · search not yet opened');
+      return `<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
+        <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
+        <div><div class="title">${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</div>${meta.length?`<div class="meta">${meta.join(' · ')}</div>`:''}</div>
+        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}${r.assumedOpen?`<span class="confirm">Rahul: confirm open</span>`:''}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
+      </div>`;
+    }).join('');
+    const sum = ['s1','s2','s3','s4'].map(k=>{const c=n(arr,r=>r.stage===k);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
+    const o = n(arr,r=>r.stage!=='s5');
+    return `<div class="wscard ${arr.length>=7?'wide':''}" id="ws-${slug(ws)}">
+      <div class="wshead"><h3>${esc(ws)}</h3><div class="sum">${sum}<span class="tot">${o} to hire</span></div></div>
+      ${rows}
+    </div>`;
+  }).join('');
+})();
+
+/* ---------- FILTERS ---------- */
+(function(){
+  const state = {stage:'all', loc:'all'};
+  const btns = document.querySelectorAll('.fbtn');
+  const apply = () => {
+    let shown = 0;
+    document.querySelectorAll('.role').forEach(el=>{
+      const ok = (state.stage==='all' || el.dataset.stage===state.stage) && (state.loc==='all' || el.dataset.loc===state.loc);
+      el.classList.toggle('hide', !ok); if(ok) shown++;
+    });
+    document.querySelectorAll('.wscard').forEach(card=>{
+      card.classList.toggle('empty', card.querySelectorAll('.role:not(.hide)').length===0);
+    });
+    document.getElementById('count').textContent = `${shown} of ${ROLES.length} roles shown`;
+  };
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    state[b.dataset.f] = b.dataset.v;
+    btns.forEach(x=>{ if(x.dataset.f===b.dataset.f) x.classList.toggle('on', x===b); });
+    apply();
+  }));
+  apply();
+})();
+</script>
+</body>
+</html>
