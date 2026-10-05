@@ -100,6 +100,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .loc.IDC{border-color:#C9B26A;color:#7A6410;background:#FBF7E6}
 .loc.ADC{border-color:#7FB3D5;color:#1F5B86;background:#EAF3F9}
 .loc.WAT{border-color:#9DD3D2;color:#0E5E5D;background:#E6F5F5}
+.loc.AZR{border-color:#C4B5E3;color:#5A3E99;background:#EEE9F7}
 .flagpill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--flag-bg);color:var(--flag);white-space:nowrap}
 .ctr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#EEE9F7;color:#5A3E99;white-space:nowrap}
 
@@ -203,7 +204,7 @@ tfoot td.c{font-family:var(--mono)}
   <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
 
   <div class="kpis" id="kpis"></div>
-  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 3 filled roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering). Added 4 Aziro contractors already in seat on Merchant Experience. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway.</span></div>
+  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat: 2 on Merchant Experience (Terminal Integration &amp; Distribution), 2 on Acquiring Stability. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway.</span></div>
 
   <div class="decisions" id="decisions"></div>
 
@@ -250,6 +251,7 @@ tfoot td.c{font-family:var(--mono)}
     <button class="fbtn" data-f="loc" data-v="IDC">IDC · India</button>
     <button class="fbtn" data-f="loc" data-v="ADC">ADC · USA</button>
     <button class="fbtn" data-f="loc" data-v="WAT">Waterloo · Canada</button>
+    <button class="fbtn" data-f="loc" data-v="AZR">Aziro · contractors</button>
     <span class="count" id="count"></span>
   </div>
   <div class="wsgrid" id="wsgrid"></div>
@@ -279,17 +281,16 @@ const ROLES = [
   {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
-  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
-  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
   // Acquiring Stability
   {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
   // Banking & Treasury
   {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
-  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November (FTE)'},
   {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', open:true, rahul:true},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Platform APIs)', stage:'s2', ticket:'HR-415001'},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Strategic Solutions)', stage:'s2', ticket:'HR-415002'},
@@ -339,7 +340,7 @@ const open = ROLES.filter(r=>r.stage!=='s5');
 const stageVar = s => `var(--${s})`;
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-const locName = l => l==='WAT'?'Waterloo':l;
+const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l;
 const family = r => /Product Manager/i.test(r.role) ? 'Product' : /Manager|Team Lead|Director/i.test(r.role) ? 'Leadership' : /SDET|QA/i.test(r.role) ? 'Quality' : 'Engineering';
 const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort((a,b)=>g[b].length-g[a].length).slice(0,3).map(w=>`${short(w)} (${g[w].length})`).join(', '); };
 const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
@@ -353,7 +354,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
 (function(){
   const ctrOpen=n(open,r=>r.ctr), ctrIn=n(ROLES,r=>r.stage==='s5'&&r.ctr), fteIn=S.s5-ctrIn;
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled (${fteIn} FTE starting Nov · ${ctrIn} contractors in seat)</div></div>
+    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled · ${fteIn?`${fteIn} FTE, `:''}${ctrIn} Aziro contractors in seat</div></div>
     <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open · ${budgetedNoSearch} not yet opened</div></div>
     <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
