@@ -321,7 +321,7 @@ const ROLES = [
   {ws:'Innovation Lab', loc:'WAT', role:'Staff Software Engineer', stage:'s2', ticket:'HR-413910'},
   // Billing & Revenue Management
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997'},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', flag:'Repost as Director ASAP'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313'},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, QA Engineering', stage:'s3'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
@@ -368,8 +368,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
     <div class="k">Actions needed</div>
     <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
     <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length+NF.length} roles</b> Yi has already approved — ${s3.length} to hire (mostly ${topWs(s3)}) plus ${NF.length} Aziro contractors already in seat. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
-    <div class="dec"><div class="num">3</div><div class="t"><b>Repost the Brim backfill as Director, Engineering</b> (HR-414313, currently Senior Manager) — ASAP.<span class="own">Owner: Eric</span></div></div>
-    <div class="dec"><div class="num">4</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
+    <div class="dec"><div class="num">3</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
 })();
 
 /* ---------- PIPELINE ---------- */
