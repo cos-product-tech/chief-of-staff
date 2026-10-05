@@ -102,7 +102,6 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .loc.WAT{border-color:#9DD3D2;color:#0E5E5D;background:#E6F5F5}
 .flagpill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--flag-bg);color:var(--flag);white-space:nowrap}
 .ctr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#EEE9F7;color:#5A3E99;white-space:nowrap}
-.confirm{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--s3-bg);color:var(--s3);border:1px dashed var(--s3);white-space:nowrap}
 
 /* matrix */
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
@@ -204,7 +203,7 @@ tfoot td.c{font-family:var(--mono)}
   <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
 
   <div class="kpis" id="kpis"></div>
-  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 3 filled roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering). Added 4 Aziro contractors already in seat on Merchant Experience.</span></div>
+  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 3 filled roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering). Added 4 Aziro contractors already in seat on Merchant Experience. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway.</span></div>
 
   <div class="decisions" id="decisions"></div>
 
@@ -265,8 +264,8 @@ tfoot td.c{font-family:var(--mono)}
 /* ---------- DATA ---------- */
 // stage: s1 backfill·approved·budgeted | s2 incremental·approved·budgeted | s3 Yi approved·needs Finance | s4 not yet to Yi | s5 hired·starting
 const STAGES = {
-  s1:{short:'Backfill · budgeted', next:'Open the search'},
-  s2:{short:'Incremental · budgeted', next:'Open the search'},
+  s1:{short:'Backfill · budgeted', next:'Recruit and fill'},
+  s2:{short:'Incremental · budgeted', next:'Recruit and fill; open the last search'},
   s3:{short:'Yi approved · needs Finance', next:'Finance approval'},
   s4:{short:'Not yet to Yi', next:'Yi review, then Finance'},
   s5:{short:'Hired', next:'Onboard'}
@@ -274,8 +273,8 @@ const STAGES = {
 
 const ROLES = [
   // Payables
-  {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', assumedOpen:true},
-  {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', assumedOpen:true},
+  {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', open:true, rahul:true},
+  {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', open:true, rahul:true},
   // Merchant Experience
   {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
@@ -291,7 +290,7 @@ const ROLES = [
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
   {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November (FTE)'},
-  {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', assumedOpen:true},
+  {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', open:true, rahul:true},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Platform APIs)', stage:'s2', ticket:'HR-415001'},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Strategic Solutions)', stage:'s2', ticket:'HR-415002'},
   // EBM / Partner Experience
@@ -322,7 +321,7 @@ const ROLES = [
   // Billing & Revenue Management
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', flag:'Repost as Director ASAP'},
-  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', assumedOpen:true},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, QA Engineering', stage:'s3'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Product Manager', stage:'s4'},
@@ -346,10 +345,8 @@ const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort(
 const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
 
 const S = {s1:n(ROLES,r=>r.stage==='s1'), s2:n(ROLES,r=>r.stage==='s2'), s3:n(ROLES,r=>r.stage==='s3'), s4:n(ROLES,r=>r.stage==='s4'), s5:n(ROLES,r=>r.stage==='s5')};
-const isOpen = r => (r.ticket && !r.notStarted) || r.assumedOpen || r.open;
-const isConfirmed = r => (r.ticket && !r.notStarted) || r.open;
+const isOpen = r => (r.ticket && !r.notStarted) || r.open;
 const searchesOpen = n(ROLES,isOpen);
-const assumedOpen = n(ROLES,r=>r.assumedOpen);
 const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(r));
 
 /* ---------- KPIs ---------- */
@@ -357,7 +354,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const ctrOpen=n(open,r=>r.ctr), ctrIn=n(ROLES,r=>r.stage==='s5'&&r.ctr), fteIn=S.s5-ctrIn;
   document.getElementById('kpis').innerHTML = `
     <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled (${fteIn} FTE starting Nov · ${ctrIn} contractors in seat)</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open · ${budgetedNoSearch} not yet opened</div></div>
     <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
 })();
@@ -365,22 +362,20 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
 /* ---------- DECISIONS (dynamic counts) ---------- */
 (function(){
   const s3 = ROLES.filter(r=>r.stage==='s3'), s4 = ROLES.filter(r=>r.stage==='s4');
-  const idcBudgeted = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && r.loc==='IDC');
   document.getElementById('decisions').innerHTML = `
     <div class="k">Actions needed</div>
     <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
     <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length} roles</b> Yi has already approved — mostly ${topWs(s3)}. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
     <div class="dec"><div class="num">3</div><div class="t"><b>Repost the Brim backfill as Director, Engineering</b> (HR-414313, currently Senior Manager) — ASAP.<span class="own">Owner: Eric</span></div></div>
-    <div class="dec"><div class="num">4</div><div class="t"><b>Rahul: confirm the ${assumedOpen} IDC searches assumed open</b> — which are underway, and which still need to be opened.<span class="own">Owner: Rahul</span></div></div>
-    <div class="dec"><div class="num">5</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
+    <div class="dec"><div class="num">4</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
 })();
 
 /* ---------- PIPELINE ---------- */
 (function(){
   const idc=n(open,r=>r.loc==='IDC'), adc=n(open,r=>r.loc==='ADC'), wat=n(open,r=>r.loc==='WAT');
   const stages = [
-    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&isConfirmed(r))} searches confirmed open, ${n(ROLES,r=>r.stage==='s1'&&r.assumedOpen)} assumed open — Eric will confirm with Rahul.`},
-    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&isConfirmed(r))} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
+    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&isOpen(r))} of ${S.s1} searches open.`},
+    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&isOpen(r))} of ${S.s2} searches open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
     {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
     {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
   ];
@@ -460,12 +455,12 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
       if(r.ticket && !r.notStarted) meta.push(`Search open · <b>${r.ticket}</b>`);
       if(r.ticket && r.notStarted) meta.push(`Search hasn't started yet · <b>${r.ticket}</b>`);
       if(r.note) meta.push(esc(r.note));
-      if(r.assumedOpen) meta.push('Search assumed open · <b>no ticket recorded</b>');
-      if(r.stage==='s2' && !r.ticket && !r.assumedOpen) meta.push('Budgeted · search not yet opened');
+      if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
+      if(r.stage==='s2' && !isOpen(r)) meta.push('Budgeted · search not yet opened');
       return `<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
         <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
         <div><div class="title">${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</div>${meta.length?`<div class="meta">${meta.join(' · ')}</div>`:''}</div>
-        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}${r.assumedOpen?`<span class="confirm">Rahul: confirm open</span>`:''}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
+        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
       </div>`;
     }).join('');
     const sum = ['s1','s2','s3','s4'].map(k=>{const c=n(arr,r=>r.stage===k);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
