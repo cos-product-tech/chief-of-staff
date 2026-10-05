@@ -204,7 +204,7 @@ tfoot td.c{font-family:var(--mono)}
   <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
 
   <div class="kpis" id="kpis"></div>
-  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat: 2 on Merchant Experience (Terminal Integration &amp; Distribution), 2 on Acquiring Stability. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway.</span></div>
+  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat (2 Merchant Experience · Terminal Integration &amp; Distribution, 2 Acquiring Stability); they also sit in the Needs Finance list because they are not yet budgeted. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway.</span></div>
 
   <div class="decisions" id="decisions"></div>
 
@@ -281,10 +281,10 @@ const ROLES = [
   {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
-  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
-  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Acquiring Stability'},
   // Acquiring Stability
   {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
   // Banking & Treasury
@@ -337,6 +337,7 @@ const ROLES = [
 const by = (arr, f) => arr.reduce((m,x)=>{const k=f(x);(m[k]=m[k]||[]).push(x);return m;},{});
 const n = (arr, f) => arr.filter(f).length;
 const open = ROLES.filter(r=>r.stage!=='s5');
+const NF = ROLES.filter(r=>r.nf); // in seat, Yi approved, not yet budgeted
 const stageVar = s => `var(--${s})`;
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
@@ -356,7 +357,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   document.getElementById('kpis').innerHTML = `
     <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled · ${fteIn?`${fteIn} FTE, `:''}${ctrIn} Aziro contractors in seat</div></div>
     <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open · ${budgetedNoSearch} not yet opened</div></div>
-    <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
+    <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">${S.s3} roles to hire · plus ${NF.length} Aziro contractors in seat, unbudgeted</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
 })();
 
@@ -366,7 +367,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   document.getElementById('decisions').innerHTML = `
     <div class="k">Actions needed</div>
     <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
-    <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length} roles</b> Yi has already approved — mostly ${topWs(s3)}. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
+    <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length+NF.length} roles</b> Yi has already approved — ${s3.length} to hire (mostly ${topWs(s3)}) plus ${NF.length} Aziro contractors already in seat. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
     <div class="dec"><div class="num">3</div><div class="t"><b>Repost the Brim backfill as Director, Engineering</b> (HR-414313, currently Senior Manager) — ASAP.<span class="own">Owner: Eric</span></div></div>
     <div class="dec"><div class="num">4</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
 })();
@@ -377,7 +378,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const stages = [
     {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&isOpen(r))} of ${S.s1} searches open.`},
     {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&isOpen(r))} of ${S.s2} searches open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
-    {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
+    {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted. Plus ${NF.length} Aziro contractors already in seat, awaiting budget.`},
     {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
   ];
   document.getElementById('pipe').innerHTML = stages.map((s,i)=>`
@@ -429,19 +430,19 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
 /* ---------- ACTION LISTS ---------- */
 (function(){
   const list = (k, title, sub) => {
-    const arr = ROLES.filter(r=>r.stage===k);
+    const arr = ROLES.filter(r=>r.stage===k || (k==='s3' && r.nf));
     const g = by(arr, r=>r.ws);
     const order = Object.keys(g).sort((a,b)=>g[b].length-g[a].length || a.localeCompare(b));
     return `<div class="alist ${k}">
       <div class="ah"><h3>${title}<span class="sub">${sub}</span></h3><span class="n">${arr.length}</span></div>
       ${order.map(ws=>`<div class="agroup"><div class="gname">${esc(ws)}<span>${g[ws].length}</span></div>
-        ${g[ws].map(r=>`<div class="item"><span>${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</span><span class="loc ${r.loc}">${locName(r.loc)}</span></div>`).join('')}
+        ${g[ws].map(r=>`<div class="item"><span>${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}${r.nf?' <span class="b s5">In seat</span>':''}</span><span class="loc ${r.loc}">${locName(r.loc)}</span></div>`).join('')}
       </div>`).join('')}
     </div>`;
   };
   document.getElementById('actions').innerHTML =
     list('s4','Needs Yi','Not yet reviewed · not budgeted') +
-    list('s3','Needs Finance','Yi approved · awaiting budget');
+    list('s3','Needs Finance','Yi approved · awaiting budget · incl. in-seat contractors');
 })();
 
 /* ---------- WORKSTREAM CARDS ---------- */
