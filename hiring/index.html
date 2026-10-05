@@ -49,6 +49,8 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 
 /* KPI strip */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.chg{margin-top:10px;font-size:12px;color:var(--text-muted);display:flex;gap:10px;align-items:baseline}
+.chg .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);white-space:nowrap}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--forest)}
 .kpi.s1::before{background:var(--s1)} .kpi.s2::before{background:var(--s2)} .kpi.s3::before{background:var(--s3)} .kpi.s4::before{background:var(--s4)}
@@ -143,7 +145,7 @@ tfoot td.c{font-family:var(--mono)}
 .fbtn{font-family:var(--sans);font-size:12px;padding:5px 11px;border-radius:20px;border:1px solid var(--border);background:#fff;color:var(--text-mid);cursor:pointer}
 .fbtn:hover{border-color:var(--forest);color:var(--forest)}
 .fbtn.on{background:var(--forest);border-color:var(--forest);color:#fff}
-.fbtn.on.s1{background:var(--s1);border-color:var(--s1)} .fbtn.on.s2{background:var(--s2);border-color:var(--s2)} .fbtn.on.s3{background:var(--s3);border-color:var(--s3)} .fbtn.on.s4{background:var(--s4);border-color:var(--s4)}
+.fbtn.on.s1{background:var(--s1);border-color:var(--s1)} .fbtn.on.s2{background:var(--s2);border-color:var(--s2)} .fbtn.on.s3{background:var(--s3);border-color:var(--s3)} .fbtn.on.s4{background:var(--s4);border-color:var(--s4)} .fbtn.on.s5{background:var(--s5);border-color:var(--s5)}
 .fsep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .count{font-size:12px;color:var(--text-muted);margin-left:auto}
 
@@ -192,7 +194,7 @@ tfoot td.c{font-family:var(--mono)}
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
       <span class="meta-badge badge-status">⚡ Working draft</span>
-      <span class="meta-badge badge-date">29 Sep 2026 · Eric Normant</span>
+      <span class="meta-badge badge-date">5 Oct 2026 · Eric Normant</span>
     </div>
   </div>
 </header>
@@ -202,6 +204,7 @@ tfoot td.c{font-family:var(--mono)}
   <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
 
   <div class="kpis" id="kpis"></div>
+  <div class="chg"><span class="k">Since 29 Sep</span><span>Removed 3 filled roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering). Added 4 Aziro contractors already in seat on Merchant Experience.</span></div>
 
   <div class="decisions" id="decisions"></div>
 
@@ -241,6 +244,7 @@ tfoot td.c{font-family:var(--mono)}
     <button class="fbtn s2" data-f="stage" data-v="s2">Incremental · budgeted</button>
     <button class="fbtn s3" data-f="stage" data-v="s3">Yi approved · needs Finance</button>
     <button class="fbtn s4" data-f="stage" data-v="s4">Not yet to Yi</button>
+    <button class="fbtn s5" data-f="stage" data-v="s5">Hired</button>
     <span class="fsep"></span>
     <span class="lbl">Location</span>
     <button class="fbtn on" data-f="loc" data-v="all">All</button>
@@ -253,7 +257,7 @@ tfoot td.c{font-family:var(--mono)}
 
   <div class="footer">
     <span><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</span>
-    <span>Confidential · Internal · September 2026</span>
+    <span>Confidential · Internal · October 2026</span>
   </div>
 </main>
 
@@ -265,26 +269,28 @@ const STAGES = {
   s2:{short:'Incremental · budgeted', next:'Open the search'},
   s3:{short:'Yi approved · needs Finance', next:'Finance approval'},
   s4:{short:'Not yet to Yi', next:'Yi review, then Finance'},
-  s5:{short:'Hired · starts Nov', next:'Onboard'}
+  s5:{short:'Hired', next:'Onboard'}
 };
 
 const ROLES = [
   // Payables
   {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', assumedOpen:true},
   {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', assumedOpen:true},
-  {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Armen Shahbazyan', assumedOpen:true},
   // Merchant Experience
   {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
+  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
+  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Merchant Experience', loc:'IDC', role:'Senior Software Engineer', stage:'s5', ctr:true, note:'In seat · Aziro contractor · Acquiring Stability'},
   // Acquiring Stability
   {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
   // Banking & Treasury
-  {ws:'Banking & Treasury', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
-  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November'},
+  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s5', note:'Hired · name TBD · starts November (FTE)'},
   {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', assumedOpen:true},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Platform APIs)', stage:'s2', ticket:'HR-415001'},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Strategic Solutions)', stage:'s2', ticket:'HR-415002'},
@@ -301,7 +307,6 @@ const ROLES = [
   {ws:'Fraud & Risk Governance', loc:'IDC', role:'Senior Staff Software Engineer', stage:'s4'},
   // Card Processing
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
-  {ws:'Card Processing', loc:'IDC', role:'Team Lead, QA Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Card Processing', loc:'ADC', role:'SDET', stage:'s2', ticket:'HR-412740', notStarted:true},
   // Account to Account
@@ -342,16 +347,17 @@ const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 
 
 const S = {s1:n(ROLES,r=>r.stage==='s1'), s2:n(ROLES,r=>r.stage==='s2'), s3:n(ROLES,r=>r.stage==='s3'), s4:n(ROLES,r=>r.stage==='s4'), s5:n(ROLES,r=>r.stage==='s5')};
 const isOpen = r => (r.ticket && !r.notStarted) || r.assumedOpen || r.open;
+const isConfirmed = r => (r.ticket && !r.notStarted) || r.open;
 const searchesOpen = n(ROLES,isOpen);
 const assumedOpen = n(ROLES,r=>r.assumedOpen);
 const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(r));
 
 /* ---------- KPIs ---------- */
 (function(){
-  const ctr=n(ROLES,r=>r.ctr);
+  const ctrOpen=n(open,r=>r.ctr), ctrIn=n(ROLES,r=>r.stage==='s5'&&r.ctr), fteIn=S.s5-ctrIn;
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire · ${S.s5} hired, starting Nov · ${ctr} contractors</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental · ${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
+    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled (${fteIn} FTE starting Nov · ${ctrIn} contractors in seat)</div></div>
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open (${assumedOpen} assumed — Rahul to confirm) · ${budgetedNoSearch} not yet opened</div></div>
     <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">Ready for the budget conversation</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
 })();
@@ -371,10 +377,10 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
 
 /* ---------- PIPELINE ---------- */
 (function(){
-  const idc=n(ROLES,r=>r.loc==='IDC'), adc=n(ROLES,r=>r.loc==='ADC'), wat=n(ROLES,r=>r.loc==='WAT');
+  const idc=n(open,r=>r.loc==='IDC'), adc=n(open,r=>r.loc==='ADC'), wat=n(open,r=>r.loc==='WAT');
   const stages = [
-    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&r.ticket&&!r.notStarted)} searches confirmed open, ${n(ROLES,r=>r.stage==='s1'&&r.assumedOpen)} assumed open — Eric will confirm with Rahul.`},
-    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&r.ticket&&!r.notStarted)} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
+    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&isConfirmed(r))} searches confirmed open, ${n(ROLES,r=>r.stage==='s1'&&r.assumedOpen)} assumed open — Eric will confirm with Rahul.`},
+    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&isConfirmed(r))} of ${S.s2} already being recruited, ${n(ROLES,r=>r.stage==='s2'&&r.assumedOpen)} assumed open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
     {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted.`},
     {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
   ];
@@ -389,7 +395,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const tot = open.length;
   document.getElementById('stackbar').innerHTML = stages.map(s=>`<div style="width:${(s.cnt/tot*100).toFixed(1)}%;background:${stageVar(s.k)}" title="${s.title}: ${s.cnt}"></div>`).join('');
   document.getElementById('legend').innerHTML = stages.map(s=>`<span><i style="background:${stageVar(s.k)}"></i>${s.title} · ${s.sub} — <b>${s.cnt}</b></span>`).join('') +
-    `<span style="margin-left:auto"><b>${idc}</b> IDC · <b>${adc}</b> ADC · <b>${wat}</b> Waterloo</span>`;
+    `<span style="margin-left:auto">To hire: <b>${idc}</b> IDC · <b>${adc}</b> ADC · <b>${wat}</b> Waterloo</span>`;
 
   const fams = by(open, family);
   const famMeta = {
@@ -412,7 +418,7 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
   tb.innerHTML = wsOrder.map(ws=>{
     const arr = groups[ws], o = arr.filter(r=>r.stage!=='s5');
     ['s1','s2','s3','s4'].forEach(k=>T[k]+=n(arr,r=>r.stage===k)); T.tot+=o.length;
-    const locs = ['IDC','ADC','WAT'].map(l=>{const c=n(arr,r=>r.loc===l);return c?`${c} ${locName(l)}`:null}).filter(Boolean).join(' · ');
+    const locs = ['IDC','ADC','WAT'].map(l=>{const c=n(o,r=>r.loc===l);return c?`${c} ${locName(l)}`:null}).filter(Boolean).join(' · ');
     const hired = n(arr,r=>r.stage==='s5');
     return `<tr>
       <td class="ws"><a href="#ws-${slug(ws)}">${esc(ws)}</a>${hired?` <span class="b s5" style="margin-left:6px">+${hired} hired</span>`:''}</td>
