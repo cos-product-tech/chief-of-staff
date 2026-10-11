@@ -47,7 +47,21 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 
 .now-list{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
 .now-item{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:12px 16px}
-.now-item .num{font-family:var(--mono);font-size:14px;color:var(--orange);font-weight:500;padding-top:2px}
+.now-item.p0{border-left-color:var(--p0);background:linear-gradient(90deg,var(--p0-bg) 0,#fff 220px)}
+.now-item.p1{border-left-color:var(--p1);background:linear-gradient(90deg,var(--p1-bg) 0,#fff 220px)}
+.now-item.p2{border-left-color:var(--p2);background:linear-gradient(90deg,var(--p2-bg) 0,#fff 220px)}
+.now-item.p3{border-left-color:var(--p3);background:linear-gradient(90deg,var(--p3-bg) 0,#fff 220px)}
+.now-item.bl{border-left-color:var(--bl);background:linear-gradient(90deg,var(--bl-bg) 0,#fff 220px);opacity:.92}
+.now-item .num{font-family:var(--mono);font-size:14px;font-weight:500;padding-top:2px}
+.now-item.p0 .num{color:var(--p0)} .now-item.p1 .num{color:var(--p1)} .now-item.p2 .num{color:var(--p2)} .now-item.p3 .num{color:var(--p3)} .now-item.bl .num{color:var(--bl)}
+.now-item.p0 .lz.p0,.now-item.p1 .lz.p1,.now-item.p2 .lz.p2,.now-item.p3 .lz.p3,.now-item.bl .lz.bl{font-weight:600}
+.okr{margin-top:8px;border-top:1px dashed var(--border);padding-top:7px;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px;line-height:1.45}
+.okr .ok{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding-top:2px;white-space:nowrap}
+.okr .o{color:var(--dark-forest);font-weight:600}
+.okr .kr{color:var(--text-mid)}
+.okr .kr span{display:block}
+.okr .kr span::before{content:'›';color:var(--teal);margin-right:5px}
+.okr .tgt{font-family:var(--mono);font-size:11px;color:var(--now);background:var(--now-bg);padding:0 4px;border-radius:3px}
 .now-item .t{font-size:14px;font-weight:600;color:var(--dark-forest);line-height:1.35}
 .now-item .d{font-size:12.5px;color:var(--text-mid);line-height:1.5;margin-top:3px}
 .now-item .lzs{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:300px;padding-top:1px}
@@ -143,41 +157,43 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <span class="lz tag">🎯 strategic</span><span class="lz tag">👔 executive</span><span class="lz tag">⛔ blocked</span><span class="lz tag">⚠️ at risk</span><span class="lz tag">⚡ quick win</span>
     <span>·</span>
     <span class="lz cat">category</span>
+    <span>·</span>
+    <span><span class="tgt" style="font-family:var(--mono);font-size:10px;color:var(--now);background:var(--now-bg);padding:0 4px;border-radius:3px">[x]</span> target to be set with the owner</span>
   </div>
   <section class="now-list">
 
-    <div class="now-item"><div class="num">01</div><div><div class="t">Forecasting, annual budgeting, and hiring reconciliation</div><div class="d">Partner with FP&amp;A and P&amp;T leaders on forecasting and annual budgeting across Product &amp; Technology. Lead the hiring reconciliation for Product &amp; Engineering incremental headcount.</div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">👔 executive</span><span class="lz cat">Finance &amp; headcount</span></div></div>
+    <div class="now-item p0"><div class="num">01</div><div><div class="t">Forecasting, annual budgeting, and hiring reconciliation</div><div class="d">Partner with FP&amp;A and P&amp;T leaders on forecasting and annual budgeting across Product &amp; Technology. Lead the hiring reconciliation for Product &amp; Engineering incremental headcount.</div><div class="okr"><div class="ok">Objective</div><div class="o">The FY27 Product &amp; Technology plan is approved on time with every role and every dollar accounted for.</div><div class="ok">Key results</div><div class="kr"><span>FP&amp;A templates submitted by Oct 16 with 100% of open roles tied to a budget line</span><span>Monthly forecast variance to actual within <span class="tgt">[x]%</span></span><span>Zero roles opened without an approved budget line</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">👔 executive</span><span class="lz cat">Finance &amp; headcount</span></div></div>
 
-    <div class="now-item"><div class="num">02</div><div><div class="t">AI-native development as the default: Merchant Experience</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Merchant Experience team.</div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
+    <div class="now-item p0"><div class="num">02</div><div><div class="t">AI-native development as the default: Merchant Experience</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Merchant Experience team.</div><div class="okr"><div class="ok">Objective</div><div class="o">Merchant Experience ships faster, with AI-native development as its default way of working.</div><div class="ok">Key results</div><div class="kr"><span>100% of Merchant Experience engineers working in AI-DLC workflows by <span class="tgt">[date]</span></span><span>Idea-to-production cycle time down <span class="tgt">[x]%</span> against the Q3 baseline, with change failure rate no worse than baseline</span><span>One documented rollout playbook that the next team reuses without the Innovation Lab in the room</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
-    <div class="now-item"><div class="num">03</div><div><div class="t">AI-native development as the default: Payables</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Payables team.</div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
+    <div class="now-item p0"><div class="num">03</div><div><div class="t">Execution Command Board</div><div class="d">A single source of truth from program managers to the CEO: status, dependencies, accountability, and revenue impact for up to 100 initiatives, replacing the manual weekly deck.</div><div class="okr"><div class="ok">Objective</div><div class="o">The CEO and CTO can see the true state of any initiative at any time without a deck.</div><div class="ok">Key results</div><div class="kr"><span>Manual weekly deck retired by <span class="tgt">[date]</span></span><span>Agent-determined status matches PM-validated status in <span class="tgt">≥[x]%</span> of cases over <span class="tgt">[N]</span> weeks</span><span>All ~100 initiatives on the board, and every red item has a named owner and a next action</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">👔 executive</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Execution visibility</span></div></div>
 
-    <div class="now-item"><div class="num">04</div><div><div class="t">Execution Command Board</div><div class="d">A single source of truth from program managers to the CEO: status, dependencies, accountability, and revenue impact for up to 100 initiatives, replacing the manual weekly deck.</div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">👔 executive</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Execution visibility</span></div></div>
+    <div class="now-item p1"><div class="num">04</div><div><div class="t">Talent acquisition</div><div class="d">Keep every open role moving from a standard job description, interview loop, and scorecard, with a reconciled hiring plan that ties across HR, Finance, and P&amp;E.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every open role is filled with a candidate who clears the standard bar, on a predictable timeline.</div><div class="ok">Key results</div><div class="kr"><span>All 43 reconciled roles have an HR ticket and an active search</span><span>Median time from search open to accepted offer <span class="tgt">≤[x] days</span>; offer acceptance <span class="tgt">≥[x]%</span></span><span>100% of hires assessed through the standard loop and scorecard for their role</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz cat">Talent</span></div></div>
 
-    <div class="now-item"><div class="num">05</div><div><div class="t">Modernize our operating mechanisms for the new organization</div><div class="d">Partner with our Head of Product and our EPMO to modernize how we plan, review, and commit so the mechanisms match our new way of working: a Product &amp; Engineering organization of four platform domains (Surfaces &amp; Applications, Commerce API, Commerce Core, and Bedrock) working with our business partners, GTM, and Sales. This includes quarterly planning that assigns teams problems and outcomes rather than feature lists, product reviews that examine discovery evidence rather than approve features, and one commitment and escalation path shared with the business.</div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Product operating model</span></div></div>
+    <div class="now-item p1"><div class="num">05</div><div><div class="t">People management</div><div class="d">Retention, reviews, calibration, promotions, and performance management handled with care, with a recommendation to the CTO before any action that affects a person.</div><div class="okr"><div class="ok">Objective</div><div class="o">We keep the engineers we can least afford to lose and grow everyone else.</div><div class="ok">Key results</div><div class="kr"><span>Zero regrettable attrition from the retention list through <span class="tgt">[period]</span></span><span>Every promotion case supported by ECF evidence, and every manager running quarterly development plans</span><span>Performance actions resolved within <span class="tgt">[x] days</span> of the decision, each with a recommendation to the CTO first</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz cat">Talent</span></div></div>
 
-    <div class="now-item"><div class="num">06</div><div><div class="t">Engineering health: build up the engineering organization</div><div class="d">With Rahul, Purush, and the other engineering leaders, use the data we already have to understand delivery predictability, quality, stability, capacity, and productivity. Identify where teams or leaders need help, put a corrective plan in place, and drive improvement.</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Engineering health</span></div></div>
+    <div class="now-item p2"><div class="num">06</div><div><div class="t">Modernize our operating mechanisms for the new organization</div><div class="d">Partner with our Head of Product and our EPMO to modernize how we plan, review, and commit so the mechanisms match our new way of working: a Product &amp; Engineering organization of four platform domains (Surfaces &amp; Applications, Commerce API, Commerce Core, and Bedrock) working with our business partners, GTM, and Sales. This includes quarterly planning that assigns teams problems and outcomes rather than feature lists, product reviews that examine discovery evidence rather than approve features, and one commitment and escalation path shared with the business.</div><div class="okr"><div class="ok">Objective</div><div class="o">Teams are given problems and outcomes to own, and the business sees every commitment through one mechanism.</div><div class="ok">Key results</div><div class="kr"><span>Q1 FY27 planning assigns outcomes, not feature lists, to 100% of platform-domain teams</span><span>Every initiative in product review shows its discovery evidence and riskiest assumption</span><span>One commitment and escalation path adopted by GTM and Sales; <span class="tgt">[x]%</span> of commitments met on the committed date</span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Product operating model</span></div></div>
 
-    <div class="now-item"><div class="num">07</div><div><div class="t">Talent acquisition</div><div class="d">Keep every open role moving from a standard job description, interview loop, and scorecard, with a reconciled hiring plan that ties across HR, Finance, and P&amp;E.</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz cat">Talent</span></div></div>
+    <div class="now-item p2"><div class="num">07</div><div><div class="t">Engineering health: build up the engineering organization</div><div class="d">With Rahul, Purush, and the other engineering leaders, use the data we already have to understand delivery predictability, quality, stability, capacity, and productivity. Identify where teams or leaders need help, put a corrective plan in place, and drive improvement.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every team's predictability, quality, stability, capacity, and productivity are known, and any team below the bar has a plan.</div><div class="ok">Key results</div><div class="kr"><span>Baseline published for every team on all five dimensions by <span class="tgt">[date]</span></span><span>Every team below threshold has a corrective plan within 30 days and a named engineering leader driving it</span><span>Median sprint predictability <span class="tgt">≥[x]%</span> and change failure rate <span class="tgt">≤[x]%</span> across the organization</span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Engineering health</span></div></div>
 
-    <div class="now-item"><div class="num">08</div><div><div class="t">People management</div><div class="d">Retention, reviews, calibration, promotions, and performance management handled with care, with a recommendation to the CTO before any action that affects a person.</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz cat">Talent</span></div></div>
+    <div class="now-item p3"><div class="num">08</div><div><div class="t">Vendor execution</div><div class="d">Maintain an active view of each engagement's scope, owner, and performance.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every vendor engagement delivers to its scope and milestones, and we pay only for what we accept.</div><div class="ok">Key results</div><div class="kr"><span>100% of engagements on one register with scope, owner, milestones, and performance</span><span>Milestone payments released only against accepted deliverables</span><span>Rate cards renegotiated and signed by <span class="tgt">[date]</span>; vendor delivery to plan <span class="tgt">≥[x]%</span></span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz cat">Vendors</span></div></div>
 
-    <div class="now-item"><div class="num">09</div><div><div class="t">Vendor execution</div><div class="d">Maintain an active view of each engagement's scope, owner, and performance.</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz cat">Vendors</span></div></div>
+    <div class="now-item p3"><div class="num">09</div><div><div class="t">Make the architecture half of the Engineering Operating System real</div><div class="d">Partner with Sim to make the architecture half of the Engineering Operating System real: the system that connects every Principal and Architect, so it is practiced, not just published. This is the scope of the future senior architecture leadership role, available for Sim to demonstrate now; demonstrated first, titled after.</div><div class="okr"><div class="ok">Objective</div><div class="o">Architecture decisions are made, recorded, and followed by every Principal and Architect.</div><div class="ok">Key results</div><div class="kr"><span>Architecture decision records for 100% of cross-domain decisions</span><span>Architecture Review Board meeting on cadence with <span class="tgt">[x]%</span> attendance and decisions closed within one cycle</span><span><span class="tgt">[x]</span> duplicate implementations retired against plan; Sim leading reviews and demonstrating the scope by <span class="tgt">[date]</span></span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Architecture</span></div></div>
 
-    <div class="now-item"><div class="num">10</div><div><div class="t">Make the architecture half of the Engineering Operating System real</div><div class="d">Partner with Sim to make the architecture half of the Engineering Operating System real: the system that connects every Principal and Architect, so it is practiced, not just published. This is the scope of the future senior architecture leadership role, available for Sim to demonstrate now; demonstrated first, titled after.</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Architecture</span></div></div>
+    <div class="now-item bl"><div class="num">10</div><div><div class="t">AI-native development as the default: Payables</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Payables team, once Merchant Experience has proven the rollout pattern.</div><div class="okr"><div class="ok">Objective</div><div class="o">Payables adopts the Merchant Experience rollout pattern and sees the same gains.</div><div class="ok">Key results</div><div class="kr"><span>100% of Payables engineers in AI-DLC workflows within <span class="tgt">[x] weeks</span> of kickoff, using the MX playbook</span><span>Cycle-time improvement at or above the Merchant Experience result, with quality no worse than baseline</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
-    <div class="now-item"><div class="num">11</div><div><div class="t">AI-native development as the default: Debt Resolution</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Debt Resolution teams (CFTPay and CFTConnect).</div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
+    <div class="now-item bl"><div class="num">11</div><div><div class="t">AI-native development as the default: Debt Resolution</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Debt Resolution teams (CFTPay and CFTConnect).</div><div class="okr"><div class="ok">Objective</div><div class="o">Debt Resolution (CFTPay and CFTConnect) adopts AI-native development without compromising its compliance posture.</div><div class="ok">Key results</div><div class="kr"><span>100% of Debt Resolution engineers in AI-DLC workflows within <span class="tgt">[x] weeks</span> of kickoff</span><span>Cycle-time improvement at or above the Merchant Experience result, with zero compliance findings attributable to the change</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
-    <div class="now-item"><div class="num">12</div><div><div class="t">AI-native development as the default: Prisma</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for Prisma.</div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
+    <div class="now-item bl"><div class="num">12</div><div><div class="t">AI-native development as the default: Prisma</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for Prisma.</div><div class="okr"><div class="ok">Objective</div><div class="o">Prisma adopts AI-native development as its default.</div><div class="ok">Key results</div><div class="kr"><span>100% of Prisma engineers in AI-DLC workflows within <span class="tgt">[x] weeks</span> of kickoff</span><span>Cycle-time improvement at or above the Merchant Experience result, with quality no worse than baseline</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
   </section>
 
   <h2>How the focus moved <span class="sub">each quarter built on the one before</span></h2>
   <section class="arc">
-    <div class="q"><div class="k">Q1 · Foundations</div><div class="t">Learn the business, build the people system</div><div class="d">Reviews and calibration, the competency framework, vendor MSAs, IDC culture trip, Waterloo hub decision.</div></div>
-    <div class="q"><div class="k">Q2 · Capacity</div><div class="t">Hire and keep the right people</div><div class="d">Interview loops and JDs, headcount tickets, compensation and retention plays, Jellyfish rollout, ERP platform SOW.</div></div>
-    <div class="q"><div class="k">Q3 · Structure</div><div class="t">Reorganize and make execution visible</div><div class="d">Platform reorganization, Commitment Register, weekly executive reporting, headcount reconciliation, hiring plan.</div></div>
-    <div class="q now"><div class="k">Q4 · Now</div><div class="t">Operationalize</div><div class="d">The twelve priorities above: FY27 budget, AI-native development team by team, the Execution Command Board, and operating mechanisms for the new organization.</div></div>
+    <div class="q"><div class="k">Q1 · Baseline</div><div class="t">Know the organization before changing it</div><div class="d">Calibrated ratings across all of Engineering, skills assessments for every engineer, vendor MSAs, the IDC culture sessions, and the Waterloo hub business case.</div></div>
+    <div class="q"><div class="k">Q2 · Competencies</div><div class="t">Raise the bar on who we hire and keep</div><div class="d">Competency framework and ladder, standard interview loops and scorecards, compensation and retention plays, engineering metrics live, ERP platform SOW.</div></div>
+    <div class="q"><div class="k">Q3 · Structure</div><div class="t">Organize around platforms and make commitments visible</div><div class="d">Four platform domains established, Commitment Register for every P0, weekly executive reporting, one reconciled hiring plan.</div></div>
+    <div class="q now"><div class="k">Q4 · Now</div><div class="t">Operationalize</div><div class="d">The twelve priorities above: FY27 budget, AI-native development proven on Merchant Experience first, the Execution Command Board, and planning and review mechanisms that fit the new organization.</div></div>
   </section>
 
   <h2>What the focus produced <span class="sub">outcomes by area · January to October 2026</span></h2>
@@ -186,36 +202,36 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <div class="card">
       <div class="ch"><h3>Engineering Competency Framework &amp; Operating System</h3><span class="n">~40 items</span></div>
       <ul>
-        <li><b>ECF delivered</b> for every engineering and QA role, mapped to the company ladder, with Distinguished Engineer and Principal tracks defined.</li>
-        <li><b>Skills assessments</b> completed by managers alongside performance reviews, giving a baseline for every engineer.</li>
-        <li><b>Engineering maturity model</b> and manager playbook set the bar for teams and leaders.</li>
+        <li><b>One standard for every engineering and QA role</b>, mapped to the company ladder with Distinguished Engineer and Principal tracks, so hiring, calibration, and promotion decisions are judged the same way everywhere.</li>
+        <li><b>A skills baseline for every engineer</b>, completed by managers alongside performance reviews, so development plans and staffing decisions start from evidence.</li>
+        <li><b>An eight-dimension team maturity model and manager playbook</b> that set the bar for teams and leaders and give managers a coaching agenda, not just a review form.</li>
       </ul>
     </div>
 
     <div class="card">
       <div class="ch"><h3>Hiring machinery</h3><span class="n">~70 items</span></div>
       <ul>
-        <li><b>One information architecture</b> for job descriptions, interview loops, and scorecards, so every open role starts from a standard.</li>
-        <li><b>Headcount reconciled</b> across HR, Finance, and P&amp;E budgets ahead of the FY27 cycle; every open role tied to a ticket and a budget line.</li>
-        <li><b>Geography strategy</b> executed: Waterloo tech hub cost-benefit, salary bands, and search partner; IDC and LATAM pipelines reviewed role by role.</li>
+        <li><b>Every open role starts from a standard</b>: one information architecture for job descriptions, interview loops, and scorecards, so interviewers assess the same things and candidates get a consistent bar.</li>
+        <li><b>One hiring plan that ties across HR, Finance, and P&amp;E</b>: 43 open roles reconciled ahead of the FY27 cycle, each tied to a ticket and a budget line.</li>
+        <li><b>Geography strategy executed</b>: Waterloo hub business case, salary bands, and search partner; IDC and LATAM pipelines reviewed role by role.</li>
       </ul>
     </div>
 
     <div class="card">
       <div class="ch"><h3>Retention &amp; performance</h3><span class="n">~40 items</span></div>
       <ul>
-        <li><b>Retention strategy</b> built from post-review sentiment, with compensation recommendations funded through Finance and HR for the engineers we could least afford to lose.</li>
-        <li><b>Annual review cycle</b> run end to end: calibration across all of Engineering, review discussions, merit validation, follow-ups.</li>
-        <li><b>Performance management</b> handled with care, including transitions, backfills, and continuity plans for single points of failure.</li>
+        <li><b>Retention strategy built from evidence</b>: post-review sentiment identified the engineers we could least afford to lose, and compensation recommendations were funded through Finance and HR.</li>
+        <li><b>Annual review cycle run end to end</b>: calibration across all of Engineering, review discussions, merit validation, and follow-ups.</li>
+        <li><b>Performance management handled with care</b>, including transitions, backfills, and continuity plans that removed single points of failure on critical systems.</li>
       </ul>
     </div>
 
     <div class="card">
       <div class="ch"><h3>Organizational design</h3><span class="n">~15 items</span></div>
       <ul>
-        <li><b>Platform reorganization</b> designed and communicated: leader-by-leader alignment, the CTO's announcement, and 1:1s with every affected person.</li>
+        <li><b>Four platform domains established</b> (Surfaces &amp; Applications, Commerce API, Commerce Core, Bedrock) so each team owns something meaningful and dependencies are visible; aligned leader by leader, communicated by the CTO, followed by 1:1s with every affected person.</li>
         <li><b>Reporting lines clarified</b> for QA and SDET, hiring-manager ownership, and a proposed Central Services structure.</li>
-        <li><b>Workstream definition</b> kept current so teams, budgets, and metrics all describe the organization the same way.</li>
+        <li><b>One workstream definition</b> kept current so teams, budgets, and metrics all describe the organization the same way.</li>
       </ul>
     </div>
 
@@ -223,7 +239,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
       <div class="ch"><h3>Vendors &amp; the money system</h3><span class="n">~40 items</span></div>
       <ul>
         <li><b>Agreements closed</b>: two master services agreements and three statements of work, including the ERP platform build, through P&amp;E, Finance, and Legal review.</li>
-        <li><b>Milestone payment schedules</b> established with Finance for vendor-built products, so spend tracks delivery.</li>
+        <li><b>Spend tracks delivery</b>: milestone payment schedules established with Finance for every vendor-built product.</li>
         <li><b>Budget moved to need</b>: roles re-leveled and re-sited, incremental hires mapped to budget lines, capitalization questions answered.</li>
       </ul>
     </div>
@@ -231,27 +247,27 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <div class="card">
       <div class="ch"><h3>Execution &amp; engineering health</h3><span class="n">~45 items</span></div>
       <ul>
-        <li><b>Engineering metrics live</b>: DORA setup, roster and cost accuracy, manager playbook and training, Q2 developer experience survey.</li>
-        <li><b>Weekly executive reporting</b> for P&amp;T, the Commitment Register for every P0, and the Quality &amp; Release transformation charter.</li>
-        <li><b>Execution Command Board</b> built: an AI-assisted live view of status, dependencies, accountability, and revenue impact for up to 100 initiatives.</li>
+        <li><b>Engineering metrics live for every team</b>: DORA setup, roster and cost accuracy, manager playbook and training, Q2 developer experience survey, and one agreed definition of sprint predictability.</li>
+        <li><b>Leadership sees commitments without asking</b>: weekly executive reporting for P&amp;T, the Commitment Register for every P0, and the Quality &amp; Release transformation charter.</li>
+        <li><b>Execution Command Board MVP built</b>: an AI-assisted live view of status, dependencies, accountability, and revenue impact for up to 100 initiatives, with the reasoning behind each status visible and a human in the loop.</li>
       </ul>
     </div>
 
   </section>
 
   <section class="kpis">
-    <div class="kpi"><div class="n">271</div><div class="l">Items closed</div><div class="d">Tracked work completed since January</div></div>
     <div class="kpi"><div class="n">~300</div><div class="l">People in scope</div><div class="d">Product, design &amp; engineering · US, Canada, India</div></div>
+    <div class="kpi"><div class="n">4</div><div class="l">Platform domains</div><div class="d">Surfaces &amp; Applications, Commerce API, Commerce Core, Bedrock</div></div>
     <div class="kpi"><div class="n">43</div><div class="l">Open roles reconciled</div><div class="d">One hiring plan that ties across HR, Finance, and P&amp;E</div></div>
     <div class="kpi"><div class="n">9</div><div class="l">Interview loops built</div><div class="d">Standard loops and scorecards, SE through Senior Manager</div></div>
     <div class="kpi"><div class="n">5</div><div class="l">Vendor agreements</div><div class="d">2 MSAs and 3 SOWs through P&amp;E, Finance, and Legal</div></div>
-    <div class="kpi"><div class="n">1</div><div class="l">Reorganization delivered</div><div class="d">Platform model: Surfaces, Commerce API, Core, Bedrock</div></div>
+    <div class="kpi"><div class="n">1</div><div class="l">Competency standard</div><div class="d">Every engineering and QA role, mapped to the company ladder</div></div>
   </section>
 
   <section class="mandate">
-    <div class="m"><div class="k">The people system</div><div class="t">Hire the right people, keep the best ones, organize them clearly</div><div class="d">Competency framework, hiring machinery, retention, reviews, and the platform reorganization.</div></div>
+    <div class="m"><div class="k">The people system</div><div class="t">Hire the right people, keep and grow the best ones, organize them clearly</div><div class="d">Competency framework, hiring machinery, retention, coaching through the manager playbook, and the platform model.</div></div>
     <div class="m"><div class="k">The money system</div><div class="t">Every dollar of engineering spend is budgeted, contracted, and defensible</div><div class="d">Headcount reconciliation, vendor agreements, capitalization, and the FY27 budget partnership with Finance.</div></div>
-    <div class="m"><div class="k">The execution system</div><div class="t">Leadership sees status, risk, and commitments without asking</div><div class="d">Engineering metrics, weekly executive reporting, the Commitment Register, and the Execution Command Board.</div></div>
+    <div class="m"><div class="k">The execution system</div><div class="t">Leadership sees status, risk, commitments, and the reasoning behind them without asking</div><div class="d">Engineering metrics, weekly executive reporting, the Commitment Register, and the Execution Command Board.</div></div>
   </section>
 
   <footer>
