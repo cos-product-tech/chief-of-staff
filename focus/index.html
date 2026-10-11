@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Office of the CTO — Chief of Staff Focus</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
+  --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
+  --ok:#3F8A46; --ok-bg:#E9F5E9; --now:#D45A00; --now-bg:#FFF1E4;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1040px;margin:0 auto;padding:36px 40px 32px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:30px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
+.doc-subtitle{font-size:14.5px;font-weight:300;color:rgba(231,229,170,.85);max-width:680px;line-height:1.6}
+.doc-subtitle b{color:#fff;font-weight:500}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+
+.doc-body{max-width:1040px;margin:0 auto;padding:28px 40px 56px}
+
+.mandate{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:26px}
+.mandate .m{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;border-top:3px solid var(--forest)}
+.mandate .m .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.mandate .m .t{font-size:14.5px;font-weight:600;color:var(--dark-forest);line-height:1.35;margin-bottom:4px}
+.mandate .m .d{font-size:12.5px;color:var(--text-mid);line-height:1.45}
+
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 14px 12px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
+.kpi .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--dark-forest);line-height:1;margin-bottom:6px}
+.kpi .l{font-size:12px;font-weight:600;color:var(--forest);line-height:1.3}
+.kpi .d{font-size:11px;color:var(--text-muted);margin-top:3px;line-height:1.35}
+
+h2{font-size:17px;font-weight:700;color:var(--forest);padding-bottom:7px;border-bottom:3px solid var(--forest);margin:0 0 14px;display:flex;align-items:baseline;gap:10px}
+h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
+
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px}
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 14px rgba(0,0,0,.04)}
+.card .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.card h3{font-size:14.5px;font-weight:700;color:var(--dark-forest);line-height:1.3}
+.card .n{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
+.card ul{list-style:none;margin:0}
+.card li{font-size:12.75px;color:var(--text-dark);line-height:1.45;padding:4px 0 4px 14px;position:relative;border-top:1px dashed var(--border)}
+.card li:first-child{border-top:none}
+.card li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.card li b{font-weight:600;color:var(--forest)}
+
+.arc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.arc .q{padding:14px 16px;border-left:1px solid var(--border)}
+.arc .q:first-child{border-left:none}
+.arc .q .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
+.arc .q .t{font-size:13.5px;font-weight:700;color:var(--dark-forest);margin-bottom:4px}
+.arc .q .d{font-size:12px;color:var(--text-mid);line-height:1.45}
+.arc .q.now{background:var(--now-bg)}
+.arc .q.now .k{color:var(--now)}
+
+.now-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-bottom:28px}
+.now-item{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:11px 14px}
+.now-item .num{font-family:var(--mono);font-size:13px;color:var(--orange);font-weight:500;padding-top:1px}
+.now-item .t{font-size:13.5px;font-weight:600;color:var(--dark-forest);line-height:1.35}
+.now-item .d{font-size:12.25px;color:var(--text-mid);line-height:1.45;margin-top:2px}
+
+.principle{background:var(--dark-forest);color:#fff;border-radius:10px;padding:18px 22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:28px}
+.principle .p .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);margin-bottom:5px}
+.principle .p .t{font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.92)}
+.principle .p .t b{color:var(--pistachio);font-weight:600}
+
+footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
+.footer-brand{font-size:12.5px;color:var(--text-mid)}
+.footer-brand strong{color:var(--dark-forest)}
+.footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
+
+@media (max-width:900px){
+  .header-inner{flex-direction:column}
+  .header-meta{display:none}
+  .mandate,.grid,.principle{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr 1fr}
+  .arc{grid-template-columns:1fr 1fr}
+  .arc .q{border-left:none;border-top:1px solid var(--border)}
+  .now-grid{grid-template-columns:1fr}
+  .doc-body{padding:20px 16px 40px}
+  .header-inner{padding:28px 16px 24px}
+}
+@media print{
+  body{background:#fff}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.kpi,.mandate .m,.now-item,.arc{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="doc-eyebrow">Office of the CTO · Chief of Staff · Focus to Date</div>
+      <h1 class="doc-title">Making a 300-person Product &amp; Engineering<br>organization run as one system</h1>
+      <p class="doc-subtitle">The Chief of Staff role exists so the CTO's decisions turn into execution without the CTO carrying every thread. Since January, the focus has been on <b>the people system</b>, <b>the money system</b>, and <b>the execution system</b>: who we hire and keep, what we spend and with whom, and whether we deliver what we committed.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Jan – Oct 2026</span>
+      <span class="meta-badge badge-date">October 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-body">
+
+  <section class="mandate">
+    <div class="m"><div class="k">The people system</div><div class="t">Hire the right people, keep the best ones, organize them clearly</div><div class="d">Competency framework, hiring machinery, retention, reviews, and the platform reorganization.</div></div>
+    <div class="m"><div class="k">The money system</div><div class="t">Every dollar of engineering spend is budgeted, contracted, and defensible</div><div class="d">Headcount reconciliation, vendor agreements, capitalization, and the FY27 budget partnership with Finance.</div></div>
+    <div class="m"><div class="k">The execution system</div><div class="t">Leadership sees status, risk, and commitments without asking</div><div class="d">Engineering metrics, weekly executive reporting, the Commitment Register, and the Execution Command Board.</div></div>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><div class="n">271</div><div class="l">Items closed</div><div class="d">Tracked work completed since January</div></div>
+    <div class="kpi"><div class="n">~300</div><div class="l">People in scope</div><div class="d">Product, design &amp; engineering · US, Canada, India</div></div>
+    <div class="kpi"><div class="n">43</div><div class="l">Open roles reconciled</div><div class="d">One hiring plan that ties across HR, Finance, and P&amp;E</div></div>
+    <div class="kpi"><div class="n">9</div><div class="l">Interview loops built</div><div class="d">Standard loops and scorecards, SE through Senior Manager</div></div>
+    <div class="kpi"><div class="n">5</div><div class="l">Vendor agreements</div><div class="d">2 MSAs and 3 SOWs through P&amp;E, Finance, and Legal</div></div>
+    <div class="kpi"><div class="n">1</div><div class="l">Reorganization delivered</div><div class="d">Platform model: Surfaces, Commerce API, Core, Bedrock</div></div>
+  </section>
+
+  <h2>What the focus produced <span class="sub">outcomes by area · January to October 2026</span></h2>
+  <section class="grid">
+
+    <div class="card">
+      <div class="ch"><h3>Engineering Competency Framework &amp; Operating System</h3><span class="n">~40 items</span></div>
+      <ul>
+        <li><b>ECF delivered</b> for every engineering and QA role, mapped to the company ladder, with Distinguished Engineer and Principal tracks defined.</li>
+        <li><b>Skills assessments</b> completed by managers alongside performance reviews, giving a baseline for every engineer.</li>
+        <li><b>Engineering maturity model</b> and manager playbook set the bar for teams and leaders.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>Hiring machinery</h3><span class="n">~70 items</span></div>
+      <ul>
+        <li><b>One information architecture</b> for job descriptions, interview loops, and scorecards, so every open role starts from a standard.</li>
+        <li><b>Headcount reconciled</b> across HR, Finance, and P&amp;E budgets ahead of the FY27 cycle; every open role tied to a ticket and a budget line.</li>
+        <li><b>Geography strategy</b> executed: Waterloo tech hub cost-benefit, salary bands, and search partner; IDC and LATAM pipelines reviewed role by role.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>Retention &amp; performance</h3><span class="n">~40 items</span></div>
+      <ul>
+        <li><b>Retention strategy</b> built from post-review sentiment, with compensation recommendations funded through Finance and HR for the engineers we could least afford to lose.</li>
+        <li><b>Annual review cycle</b> run end to end: calibration across all of Engineering, review discussions, merit validation, follow-ups.</li>
+        <li><b>Performance management</b> handled with care, including transitions, backfills, and continuity plans for single points of failure.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>Organizational design</h3><span class="n">~15 items</span></div>
+      <ul>
+        <li><b>Platform reorganization</b> designed and communicated: leader-by-leader alignment, the CTO's announcement, and 1:1s with every affected person.</li>
+        <li><b>Reporting lines clarified</b> for QA and SDET, hiring-manager ownership, and a proposed Central Services structure.</li>
+        <li><b>Workstream definition</b> kept current so teams, budgets, and metrics all describe the organization the same way.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>Vendors &amp; the money system</h3><span class="n">~40 items</span></div>
+      <ul>
+        <li><b>Agreements closed</b>: two master services agreements and three statements of work, including the ERP platform build, through P&amp;E, Finance, and Legal review.</li>
+        <li><b>Milestone payment schedules</b> established with Finance for vendor-built products, so spend tracks delivery.</li>
+        <li><b>Budget moved to need</b>: roles re-leveled and re-sited, incremental hires mapped to budget lines, capitalization questions answered.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>Execution &amp; engineering health</h3><span class="n">~45 items</span></div>
+      <ul>
+        <li><b>Engineering metrics live</b>: DORA setup, roster and cost accuracy, manager playbook and training, Q2 developer experience survey.</li>
+        <li><b>Weekly executive reporting</b> for P&amp;T, the Commitment Register for every P0, and the Quality &amp; Release transformation charter.</li>
+        <li><b>Execution Command Board</b> built: an AI-assisted live view of status, dependencies, accountability, and revenue impact for up to 100 initiatives.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <h2>How the focus moved <span class="sub">each quarter built on the one before</span></h2>
+  <section class="arc">
+    <div class="q"><div class="k">Q1 · Foundations</div><div class="t">Learn the business, build the people system</div><div class="d">Reviews and calibration, the competency framework, vendor MSAs, IDC culture trip, Waterloo hub decision.</div></div>
+    <div class="q"><div class="k">Q2 · Capacity</div><div class="t">Hire and keep the right people</div><div class="d">Interview loops and JDs, headcount tickets, compensation and retention plays, Jellyfish rollout, ERP platform SOW.</div></div>
+    <div class="q"><div class="k">Q3 · Structure</div><div class="t">Reorganize and make execution visible</div><div class="d">Platform reorganization, Commitment Register, weekly executive reporting, headcount reconciliation, hiring plan.</div></div>
+    <div class="q now"><div class="k">Q4 · Now</div><div class="t">Operationalize</div><div class="d">The CTO's six priorities below, FY27 budget, AI-native development lifecycle, and the Execution Command Board for the CEO.</div></div>
+  </section>
+
+  <h2>Where the focus is now <span class="sub">the CTO's priorities for the Chief of Staff</span></h2>
+  <section class="now-grid">
+    <div class="now-item"><div class="num">01</div><div><div class="t">PCI DSS program</div><div class="d">Scope, evidence, and the pentest deadline held, with penalty exposure tracked weekly.</div></div></div>
+    <div class="now-item"><div class="num">02</div><div><div class="t">IntelliPay integration</div><div class="d">Acquisition integration tracked to committed milestones.</div></div></div>
+    <div class="now-item"><div class="num">03</div><div><div class="t">Vendor execution and PFD</div><div class="d">Vendor-built products delivered against milestone payments; rate cards renegotiated.</div></div></div>
+    <div class="now-item"><div class="num">04</div><div><div class="t">Critical enterprise partnerships</div><div class="d">Known blockers for each strategic partner named, owned, and escalated early.</div></div></div>
+    <div class="now-item"><div class="num">05</div><div><div class="t">Engineering health baseline</div><div class="d">One agreed definition of sprint predictability and completion across every team and every tool.</div></div></div>
+    <div class="now-item"><div class="num">06</div><div><div class="t">Execution Command Board</div><div class="d">A single source of truth from program managers to the CEO, replacing the manual weekly deck.</div></div></div>
+  </section>
+
+  <section class="principle">
+    <div class="p"><div class="k">Operating principle</div><div class="t"><b>Recommend, then act.</b> Every decision that stops work, moves a customer date, adds spend, changes a vendor agreement, or affects a person comes to the CTO with a recommendation attached.</div></div>
+    <div class="p"><div class="k">What changed</div><div class="t">Leadership now has <b>one hiring plan, one competency framework, one set of engineering metrics, and one execution view</b> where there were several of each.</div></div>
+    <div class="p"><div class="k">What's next</div><div class="t">Make AI-native development the default: take the <b>AI-driven development lifecycle</b> the Innovation Lab proved out and operationalize it across every team.</div></div>
+  </section>
+
+  <footer>
+    <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
+    <div class="footer-conf">Confidential · Internal · October 2026 · Source: 271 completed items in the Chief of Staff workspace, January–October 2026</div>
+  </footer>
+
+</main>
+</body>
+</html>
