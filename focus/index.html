@@ -62,6 +62,16 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:2px}
 .chip.dec{background:var(--p0-bg);color:var(--p0)} .chip.clo{background:var(--now-bg);color:var(--now)} .chip.onb{background:var(--p2-bg);color:var(--p2)} .chip.off{background:var(--p3-bg);color:var(--p3)} .chip.intro{background:var(--tag-bg);color:var(--tag)}
 
+/* This week */
+.week{display:flex;flex-direction:column;gap:8px;margin-bottom:30px}
+.wk{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:8px;padding:12px 16px}
+.wk .num{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--teal);padding-top:2px}
+.wk .t{font-size:14px;font-weight:600;color:var(--dark-forest);line-height:1.35}
+.wk .d{font-size:12.5px;color:var(--text-mid);line-height:1.5;margin-top:3px}
+.wk .d b{font-weight:600;color:var(--forest)}
+.wk .ppl{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.wk .ppl span{font-family:var(--mono);font-size:10.5px;color:var(--dark-forest);background:var(--bg-soft);border:1px solid var(--border);border-radius:4px;padding:2px 7px}
+
 .legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:11px;color:var(--text-muted);margin:-6px 0 14px}
 .legend .lz{font-size:10px}
 
@@ -143,7 +153,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
   <h2>What I need now, to focus <span class="sub">open items that block the priorities below · each has a recommendation ready</span></h2>
   <section class="unblock">
     <div class="ub ask">
-      <div class="k">Decisions and closures<b>Needed from the CTO or waiting on one more step</b></div>
+      <div class="k">Decisions and closures<b>Needed from Yi, others, or waiting on one more step</b></div>
       <ol>
         <li><div><b>Approve the reporting-line move</b> <span class="who">of Tommy Carroll, Colm Caffrey, Tony Ripberger, and Paul Erwin to Simran Chahal</span></div><span class="chip dec">Decision from Yi</span></li>
         <li><div><b>Finalize Paul Erwin's move</b> <span class="who">from Principal Software Engineer to Director, Engineering</span></div><span class="chip dec">Decision from Paul</span></li>
@@ -152,6 +162,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
         <li><div><b>Onboard POSiLabs as a vendor</b> <span class="who">MSA, MNDA, and SOW</span></div><span class="chip onb">Onboarding</span></li>
         <li><div><b>Finish onboarding Matthew Erwin</b> <span class="who">and his LLC, SnapTech</span></div><span class="chip onb">Onboarding</span></li>
         <li><div><b>Connect Tina Fletcher with Shawn Ellis</b> <span class="who">for Director, Quality &amp; Release Transformation</span></div><span class="chip intro">Intro</span></li>
+        <li><div><b>Guide the Banking &amp; Treasury delivery manager transition</b> <span class="who">from Tony to Simran, and press the Sila Money transition from Tony, JB, and Heather to Product &amp; Engineering, with a named owner for each</span></div><span class="chip clo">Follow up</span></li>
       </ol>
     </div>
     <div class="ub off">
@@ -161,7 +172,14 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     </div>
   </section>
 
-  <h2>Where the focus is now <span class="sub">the CTO's priorities for the Chief of Staff · ranked · each with an objective and key results</span></h2>
+  <h2>This week <span class="sub">top priorities for the week of Monday, October 12, 2026</span></h2>
+  <section class="week">
+    <div class="wk"><div class="num">01</div><div><div class="t">IT-TRG headcount template: 9+3 forecast and 2027 budget</div><div class="d">Validate current and future headcount projections for Engineering, and confirm each leader below is on track to return their organization's template to FP&amp;A by <b>Friday, October 16</b>.</div><div class="ppl"><span>Devika · Product</span><span>Bart · Innovation Lab</span><span>Craig · Design</span><span>Simran · Platform Engineering</span><span>Wen Ying · Data</span><span>Shawn · Infrastructure</span></div></div></div>
+    <div class="wk"><div class="num">02</div><div><div class="t">Banking &amp; Treasury and Sila Money transitions</div><div class="d">Guide the Banking &amp; Treasury delivery manager transition from Tony to Simran, and press the Sila Money transition from Tony, JB, and Heather to Product &amp; Engineering until each piece has a named owner.</div></div></div>
+    <div class="wk"><div class="num">03</div><div><div class="t">Paul's move to the Engineering Management track</div><div class="d">Finalize discussions with Paul on moving from the Software Engineering track to the Engineering Management track, leading Commerce Core, Money Movement, and Card Processing.</div></div></div>
+  </section>
+
+  <h2>Where the focus is now <span class="sub">Yi's priorities for Eric · ranked · each with an objective and key results</span></h2>
   <div class="legend">
     <span class="lz p0">🔴 P0 critical</span><span class="lz p1">🟠 P1 high</span><span class="lz p2">🔵 P2 medium</span><span class="lz p3">⚪ P3 low</span><span class="lz bl">📥 backlog</span>
     <span>·</span>
