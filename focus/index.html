@@ -9,7 +9,7 @@
 :root{
   --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
   --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
-  --ok:#3F8A46; --ok-bg:#E9F5E9; --now:#D45A00; --now-bg:#FFF1E4;
+  --now:#D45A00; --now-bg:#FFF1E4;
   --p0:#C9402F; --p0-bg:#FBEAE7; --p1:#D45A00; --p1-bg:#FFF1E4; --p2:#1F5FA8; --p2-bg:#E6EEF8; --p3:#5B6760; --p3-bg:#EEF0EE; --bl:#777; --bl-bg:#F1F1EE;
   --tag:#003E29; --tag-bg:#E3F3EF; --cat:#5B6760; --cat-bg:#F3F1E6;
   --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -34,7 +34,7 @@ body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);
 
 .doc-body{max-width:1040px;margin:0 auto;padding:28px 40px 56px}
 
-h2{font-size:17px;font-weight:700;color:var(--forest);padding-bottom:7px;border-bottom:3px solid var(--forest);margin:0 0 14px;display:flex;align-items:baseline;gap:10px}
+h2{font-size:17px;font-weight:700;color:var(--forest);padding-bottom:7px;border-bottom:3px solid var(--forest);margin:0 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 
 .principle{background:var(--dark-forest);color:#fff;border-radius:10px;padding:18px 22px;margin-bottom:28px}
@@ -42,26 +42,38 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .principle .t{font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.92);max-width:860px}
 .principle .t b{color:var(--pistachio);font-weight:600}
 
-.legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:11px;color:var(--text-muted);margin:-6px 0 12px}
+/* Unblock section */
+.unblock{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-bottom:30px}
+.ub{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px 10px}
+.ub.ask{border-top:3px solid var(--orange)}
+.ub.off{border-top:3px solid var(--p3)}
+.ub .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.ub .k b{color:var(--dark-forest);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13.5px;display:block;margin-top:2px}
+.ub ol{list-style:none;counter-reset:a}
+.ub li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;padding:7px 0;border-top:1px dashed var(--border);font-size:13px;line-height:1.45}
+.ub li:first-child{border-top:none}
+.ub li::before{counter-increment:a;content:counter(a,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--orange);padding-top:2px}
+.ub.off li::before{color:var(--p3)}
+.ub li b{font-weight:600;color:var(--dark-forest)}
+.ub li .who{color:var(--text-mid)}
+.chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:2px}
+.chip.dec{background:var(--p0-bg);color:var(--p0)} .chip.clo{background:var(--now-bg);color:var(--now)} .chip.onb{background:var(--p2-bg);color:var(--p2)} .chip.off{background:var(--p3-bg);color:var(--p3)} .chip.intro{background:var(--tag-bg);color:var(--tag)}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:11px;color:var(--text-muted);margin:-6px 0 14px}
 .legend .lz{font-size:10px}
 
 .now-list{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.grp{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);padding:10px 0 2px;display:flex;align-items:center;gap:10px}
+.grp::after{content:'';flex:1;height:1px;background:var(--border)}
+.grp.p0{color:var(--p0)} .grp.p1{color:var(--p1)} .grp.p2{color:var(--p2)} .grp.p3{color:var(--p3)} .grp.bl{color:var(--bl)}
 .now-item{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:12px 16px}
 .now-item.p0{border-left-color:var(--p0);background:linear-gradient(90deg,var(--p0-bg) 0,#fff 220px)}
 .now-item.p1{border-left-color:var(--p1);background:linear-gradient(90deg,var(--p1-bg) 0,#fff 220px)}
 .now-item.p2{border-left-color:var(--p2);background:linear-gradient(90deg,var(--p2-bg) 0,#fff 220px)}
 .now-item.p3{border-left-color:var(--p3);background:linear-gradient(90deg,var(--p3-bg) 0,#fff 220px)}
-.now-item.bl{border-left-color:var(--bl);background:linear-gradient(90deg,var(--bl-bg) 0,#fff 220px);opacity:.92}
+.now-item.bl{border-left-color:var(--bl);background:linear-gradient(90deg,var(--bl-bg) 0,#fff 220px)}
 .now-item .num{font-family:var(--mono);font-size:14px;font-weight:500;padding-top:2px}
 .now-item.p0 .num{color:var(--p0)} .now-item.p1 .num{color:var(--p1)} .now-item.p2 .num{color:var(--p2)} .now-item.p3 .num{color:var(--p3)} .now-item.bl .num{color:var(--bl)}
-.now-item.p0 .lz.p0,.now-item.p1 .lz.p1,.now-item.p2 .lz.p2,.now-item.p3 .lz.p3,.now-item.bl .lz.bl{font-weight:600}
-.okr{margin-top:8px;border-top:1px dashed var(--border);padding-top:7px;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px;line-height:1.45}
-.okr .ok{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding-top:2px;white-space:nowrap}
-.okr .o{color:var(--dark-forest);font-weight:600}
-.okr .kr{color:var(--text-mid)}
-.okr .kr span{display:block}
-.okr .kr span::before{content:'›';color:var(--teal);margin-right:5px}
-.okr .tgt{font-family:var(--mono);font-size:11px;color:var(--now);background:var(--now-bg);padding:0 4px;border-radius:3px}
 .now-item .t{font-size:14px;font-weight:600;color:var(--dark-forest);line-height:1.35}
 .now-item .d{font-size:12.5px;color:var(--text-mid);line-height:1.5;margin-top:3px}
 .now-item .lzs{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:300px;padding-top:1px}
@@ -69,39 +81,15 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .lz.p0{background:var(--p0-bg);color:var(--p0)} .lz.p1{background:var(--p1-bg);color:var(--p1)} .lz.p2{background:var(--p2-bg);color:var(--p2)} .lz.p3{background:var(--p3-bg);color:var(--p3)} .lz.bl{background:var(--bl-bg);color:var(--bl)}
 .lz.tag{background:var(--tag-bg);color:var(--tag)}
 .lz.cat{background:var(--cat-bg);color:var(--cat);border-color:var(--border)}
+.now-item.p0 .lz.p0,.now-item.p1 .lz.p1,.now-item.p2 .lz.p2,.now-item.p3 .lz.p3,.now-item.bl .lz.bl{font-weight:600}
 
-.arc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
-.arc .q{padding:14px 16px;border-left:1px solid var(--border)}
-.arc .q:first-child{border-left:none}
-.arc .q .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:5px}
-.arc .q .t{font-size:13.5px;font-weight:700;color:var(--dark-forest);margin-bottom:4px}
-.arc .q .d{font-size:12px;color:var(--text-mid);line-height:1.45}
-.arc .q.now{background:var(--now-bg)}
-.arc .q.now .k{color:var(--now)}
-
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px}
-.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px 14px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 14px rgba(0,0,0,.04)}
-.card .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
-.card h3{font-size:14.5px;font-weight:700;color:var(--dark-forest);line-height:1.3}
-.card .n{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
-.card ul{list-style:none;margin:0}
-.card li{font-size:12.75px;color:var(--text-dark);line-height:1.45;padding:4px 0 4px 14px;position:relative;border-top:1px dashed var(--border)}
-.card li:first-child{border-top:none}
-.card li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
-.card li b{font-weight:600;color:var(--forest)}
-
-.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:28px}
-.kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 14px 12px;position:relative;overflow:hidden}
-.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
-.kpi .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--dark-forest);line-height:1;margin-bottom:6px}
-.kpi .l{font-size:12px;font-weight:600;color:var(--forest);line-height:1.3}
-.kpi .d{font-size:11px;color:var(--text-muted);margin-top:3px;line-height:1.35}
-
-.mandate{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:26px}
-.mandate .m{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;border-top:3px solid var(--forest)}
-.mandate .m .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
-.mandate .m .t{font-size:14.5px;font-weight:600;color:var(--dark-forest);line-height:1.35;margin-bottom:4px}
-.mandate .m .d{font-size:12.5px;color:var(--text-mid);line-height:1.45}
+.okr{margin-top:8px;border-top:1px dashed var(--border);padding-top:7px;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12px;line-height:1.45}
+.okr .ok{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding-top:2px;white-space:nowrap}
+.okr .o{color:var(--dark-forest);font-weight:600}
+.okr .kr{color:var(--text-mid)}
+.okr .kr span{display:block}
+.okr .kr span::before{content:'›';color:var(--teal);margin-right:5px}
+.okr .tgt{font-family:var(--mono);font-size:11px;color:var(--now);background:var(--now-bg);padding:0 4px;border-radius:3px}
 
 footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
 .footer-brand{font-size:12.5px;color:var(--text-mid)}
@@ -111,18 +99,17 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
 @media (max-width:900px){
   .header-inner{flex-direction:column;padding:28px 16px 24px}
   .header-meta{display:none}
-  .mandate,.grid{grid-template-columns:1fr}
-  .kpis{grid-template-columns:1fr 1fr 1fr}
-  .arc{grid-template-columns:1fr 1fr}
-  .arc .q{border-left:none;border-top:1px solid var(--border)}
+  .unblock{grid-template-columns:1fr}
+  .ub li{grid-template-columns:22px 1fr}
+  .ub li .chip{grid-column:2;justify-self:start}
   .now-item{grid-template-columns:30px 1fr}
   .now-item .lzs{grid-column:2;justify-content:flex-start;max-width:none;margin-top:6px}
   .doc-body{padding:20px 16px 40px}
 }
 @media print{
   body{background:#fff}
-  .doc-header,.principle,.lz{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .card,.kpi,.mandate .m,.now-item,.arc{box-shadow:none;break-inside:avoid}
+  .doc-header,.principle,.lz,.chip,.now-item{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .now-item,.ub{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
@@ -131,13 +118,13 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
 <header class="doc-header">
   <div class="header-inner">
     <div class="header-left">
-      <div class="doc-eyebrow">Office of the CTO · Chief of Staff · Focus to Date</div>
+      <div class="doc-eyebrow">Office of the CTO · Chief of Staff · Focus</div>
       <h1 class="doc-title">Making a 300-person Product &amp; Engineering<br>organization run as one system</h1>
-      <p class="doc-subtitle">The Chief of Staff role exists so the CTO's decisions turn into execution without the CTO carrying every thread. Since January, the focus has been on <b>the people system</b>, <b>the money system</b>, and <b>the execution system</b>: who we hire and keep, what we spend and with whom, and whether we deliver what we committed.</p>
+      <p class="doc-subtitle">The Chief of Staff role exists so the CTO's decisions turn into execution without the CTO carrying every thread. The focus is <b>the people system</b>, <b>the money system</b>, and <b>the execution system</b>: who we hire and keep, what we spend and with whom, and whether we deliver what we committed.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
-      <span class="meta-badge badge-status">⚡ Jan – Oct 2026</span>
+      <span class="meta-badge badge-status">⚡ Q4 2026 · Q1 2027</span>
       <span class="meta-badge badge-date">October 2026 · Eric Normant</span>
     </div>
   </div>
@@ -150,7 +137,30 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <div class="t"><b>Recommend, then act.</b> Every decision that stops work, moves a customer date, adds spend, changes a vendor agreement, or affects a person comes to the CTO with a recommendation attached.</div>
   </section>
 
-  <h2>Where the focus is now <span class="sub">the CTO's priorities for the Chief of Staff · ranked</span></h2>
+  <h2>What I need now, to focus <span class="sub">open items that block the priorities below · each has a recommendation ready</span></h2>
+  <section class="unblock">
+    <div class="ub ask">
+      <div class="k">Decisions and closures<b>Needed from the CTO or waiting on one more step</b></div>
+      <ol>
+        <li><div><b>Approve the reporting-line move</b> <span class="who">of Tommy Carroll, Colm Caffrey, Tony Ripberger, and Paul Erwin to Simran Chahal</span></div><span class="chip dec">Decision</span></li>
+        <li><div><b>Finalize Paul Erwin's move</b> <span class="who">from Principal Software Engineer to Director, Engineering</span></div><span class="chip dec">Decision</span></li>
+        <li><div><b>Close the promotions</b> <span class="who">for Simran Chahal and Hareet Gill</span></div><span class="chip clo">Closure</span></li>
+        <li><div><b>Make offers to Parker and Stephanie</b> <span class="who">from Corvia Payments</span></div><span class="chip clo">Offer</span></li>
+        <li><div><b>Onboard POSiLabs as a vendor</b> <span class="who">MSA, MNDA, and SOW</span></div><span class="chip onb">Onboarding</span></li>
+        <li><div><b>Finish onboarding Matthew Erwin</b> <span class="who">and his LLC, SnapTech</span></div><span class="chip onb">Onboarding</span></li>
+        <li><div><b>Connect Tina Fletcher with Shawn Ellis</b> <span class="who">for Director, Quality &amp; Release Transformation</span></div><span class="chip intro">Intro</span></li>
+      </ol>
+    </div>
+    <div class="ub off">
+      <div class="k">Stepping back from<b>So the priorities below get full attention</b></div>
+      <ol>
+        <li><div><b>PCI DSS program</b> <span class="who">I leaned in to get it moving; I am not continuing as the driver. It needs a named owner.</span></div><span class="chip off">Hand off</span></li>
+        <li><div><b>IntelliPay integration</b> <span class="who">I will not sit in on the integration meetings. The PMO owns tracking it.</span></div><span class="chip off">Hand off</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <h2>Where the focus is now <span class="sub">the CTO's priorities for the Chief of Staff · ranked · each with an objective and key results</span></h2>
   <div class="legend">
     <span class="lz p0">🔴 P0 critical</span><span class="lz p1">🟠 P1 high</span><span class="lz p2">🔵 P2 medium</span><span class="lz p3">⚪ P3 low</span><span class="lz bl">📥 backlog</span>
     <span>·</span>
@@ -160,115 +170,45 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
   </div>
   <section class="now-list">
 
+    <div class="grp p0">P0 · Critical</div>
+
     <div class="now-item p0"><div class="num">01</div><div><div class="t">AI-native development as the default: Merchant Experience</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Merchant Experience team.</div><div class="okr"><div class="ok">Objective</div><div class="o">Merchant Experience ships faster, with AI-native development as its default way of working.</div><div class="ok">Key results</div><div class="kr"><span>100% of Merchant Experience engineers working in AI-DLC workflows by <span class="tgt">December 31, 2026</span></span><span>Sprint completion rate and sprint predictability trending up against the Q3 baseline, with change failure rate no worse than baseline</span><span>One documented rollout playbook that the next team reuses without the Innovation Lab in the room</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
     <div class="now-item p0"><div class="num">02</div><div><div class="t">Execution Command Board</div><div class="d">A single source of truth from program managers to the CEO: status, dependencies, accountability, and revenue impact for up to 100 initiatives, replacing the manual weekly deck.</div><div class="okr"><div class="ok">Objective</div><div class="o">The CEO and CTO can see the true state of any initiative at any time without a deck.</div><div class="ok">Key results</div><div class="kr"><span>Manual weekly deck retired by <span class="tgt">November 20, 2026</span></span><span>Agent-determined status matches PM-validated status in <span class="tgt">≥80%</span> of cases over <span class="tgt">6</span> weeks</span><span>All ~100 initiatives on the board, and every red item has a named owner and a next action</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">👔 executive</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Execution visibility</span></div></div>
 
     <div class="now-item p0"><div class="num">03</div><div><div class="t">Forecasting, annual budgeting, and hiring reconciliation</div><div class="d">Partner with FP&amp;A and P&amp;T leaders on the 9+3 forecast and the 2027 budget across Product &amp; Technology. Lead the hiring reconciliation for Product &amp; Engineering incremental headcount. Key dates: headcount templates 10/16/26 · Opex templates, revenue and gross profit models, and KPIs 11/6/26 · 9+3 forecast and 2027 v1 10/29/26 · budget refinement to targets 11/24/26 · bottoms-up finalized 12/11/26.</div><div class="okr"><div class="ok">Objective</div><div class="o">The 9+3 forecast and the 2027 budget for Product &amp; Technology land on FP&amp;A's calendar with every role and every dollar accounted for.</div><div class="ok">Key results</div><div class="kr"><span>Headcount templates returned by <span class="tgt">10/16/26</span>: adds and backfills through 2027 against ADP headcount as of 9/1/26, with 100% of open roles tied to a budget line</span><span>Opex templates, revenue and gross profit models, and KPIs returned by <span class="tgt">11/6/26</span></span><span>2027 v2 refined to the targets issued 11/13/26 by <span class="tgt">11/24/26</span>, so nothing changes after 12/11/26 except adjustments from final 2026 results</span></div></div></div><div class="lzs"><span class="lz p0">🔴 P0</span><span class="lz tag">👔 executive</span><span class="lz cat">Finance &amp; headcount</span></div></div>
 
-    <div class="now-item p1"><div class="num">04</div><div><div class="t">Talent acquisition</div><div class="d">Keep every open role moving from a standard job description, interview loop, and scorecard, with a reconciled hiring plan that ties across HR, Finance, and P&amp;E.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every open role is filled with a candidate who clears the standard bar, on a predictable timeline.</div><div class="ok">Key results</div><div class="kr"><span>All key product and engineering leadership roles have an HR ticket and an active search</span><span>Median time from search open to accepted offer <span class="tgt">≤90 days</span></span><span>Offer acceptance <span class="tgt">≥80%</span></span><span>100% of hires assessed through the standard loop and scorecard for their role</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz cat">Talent</span></div></div>
+    <div class="grp p1">P1 · High</div>
 
-    <div class="now-item p1"><div class="num">05</div><div><div class="t">People management</div><div class="d">Retention, reviews, calibration, promotions, and performance management handled with care, with a recommendation to the CTO before any action that affects a person.</div><div class="okr"><div class="ok">Objective</div><div class="o">We keep the engineers we can least afford to lose and grow everyone else.</div><div class="ok">Key results</div><div class="kr"><span>Zero regrettable attrition from the retention list through <span class="tgt">Q1 2027</span></span><span>Every promotion case supported by ECF evidence, and every manager running quarterly development plans</span><span>Performance actions resolved within <span class="tgt">30 days</span> of the decision, each with a recommendation to the CTO first</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz cat">Talent</span></div></div>
+    <div class="now-item p1"><div class="num">04</div><div><div class="t">Modernize our operating mechanisms for the new organization</div><div class="d">Partner with our Head of Product and our EPMO to modernize how we plan, allocate capacity, review, and commit so the mechanisms match our new way of working: a Product &amp; Engineering organization of four platform domains (Surfaces &amp; Applications, Commerce API, Commerce Core, and Bedrock) working with our business partners, GTM, and Sales. This includes quarterly planning that assigns teams problems and outcomes rather than feature lists, capacity that is known before anything is committed, product reviews that examine discovery evidence rather than approve features, and one commitment and escalation path shared with the business.</div><div class="okr"><div class="ok">Objective</div><div class="o">Teams are given problems and outcomes to own, every commitment is made against known capacity, and the business sees every commitment through one mechanism.</div><div class="ok">Key results</div><div class="kr"><span>Q1 FY27 planning assigns outcomes, not feature lists, to 100% of platform-domain teams, each with a key result the team itself can move</span><span>Every team's capacity is known and allocated before planning closes: committed work, the 30% reserve for tech debt and security, and remaining headroom visible per team per quarter</span><span>No commitment to GTM or Sales is made without a capacity check and a named owner for every cross-team dependency</span><span>Every initiative in product review shows its discovery evidence and riskiest assumption, and every shipped initiative reports the outcome it was meant to move within one quarter of launch</span><span>One commitment and escalation path adopted by GTM and Sales, with <span class="tgt">80%</span> of commitments met on the committed date</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Product operating model</span></div></div>
 
-    <div class="now-item p1"><div class="num">06</div><div><div class="t">Team management</div><div class="d">Every Director and Principal assesses the teams they lead against the eight-dimension Team Engineering Maturity Model and works a plan, so coaching is a standing part of leading a team rather than an annual event.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every Director and Principal knows where each of their teams stands and is moving it.</div><div class="ok">Key results</div><div class="kr"><span>Every Director and Principal completes a Team Engineering Maturity Assessment for each team they lead in <span class="tgt">Q4 2026</span></span><span>Each assessment carries a plan naming the two or three dimensions to move next quarter, reviewed in their 1:1s</span><span>Q1 2027 reassessment shows movement on the targeted dimensions for <span class="tgt">100%</span> of teams</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz cat">Engineering leadership</span></div></div>
+    <div class="now-item p1"><div class="num">05</div><div><div class="t">Engineering health: know every team's performance and act on it</div><div class="d">Use the data we already have to understand speed, quality, process, productivity, collaboration, and change failure rate. Identify where teams or leaders need help, put a corrective plan in place, and drive improvement.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every team's speed, quality, process, productivity, collaboration, and change failure rate are known, and any team below the bar has a plan.</div><div class="ok">Key results</div><div class="kr"><span>Baseline published for every team on all six dimensions by <span class="tgt">November 16, 2026</span></span><span>Every team below threshold has a corrective plan within 30 days and a named engineering leader driving it</span><span>Median sprint predictability <span class="tgt">≥70%</span> and change failure rate <span class="tgt">≤15%</span> across the organization by end of Q1 2027, both improving quarter over quarter from the November baseline</span></div></div></div><div class="lzs"><span class="lz p1">🟠 P1</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Engineering health</span></div></div>
 
-    <div class="now-item p2"><div class="num">07</div><div><div class="t">Modernize our operating mechanisms for the new organization</div><div class="d">Partner with our Head of Product and our EPMO to modernize how we plan, allocate capacity, review, and commit so the mechanisms match our new way of working: a Product &amp; Engineering organization of four platform domains (Surfaces &amp; Applications, Commerce API, Commerce Core, and Bedrock) working with our business partners, GTM, and Sales. This includes quarterly planning that assigns teams problems and outcomes rather than feature lists, capacity that is known before anything is committed, product reviews that examine discovery evidence rather than approve features, and one commitment and escalation path shared with the business.</div><div class="okr"><div class="ok">Objective</div><div class="o">Teams are given problems and outcomes to own, every commitment is made against known capacity, and the business sees every commitment through one mechanism.</div><div class="ok">Key results</div><div class="kr"><span>Q1 FY27 planning assigns outcomes, not feature lists, to 100% of platform-domain teams, each with a key result the team itself can move</span><span>Every team's capacity is known and allocated before planning closes: committed work, the 30% reserve for tech debt and security, and remaining headroom visible per team per quarter</span><span>No commitment to GTM or Sales is made without a capacity check and a named owner for every cross-team dependency</span><span>Every initiative in product review shows its discovery evidence and riskiest assumption, and every shipped initiative reports the outcome it was meant to move within one quarter of launch</span><span>One commitment and escalation path adopted by GTM and Sales, with <span class="tgt">80%</span> of commitments met on the committed date</span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Product operating model</span></div></div>
+    <div class="grp p2">P2 · Medium</div>
 
-    <div class="now-item p2"><div class="num">08</div><div><div class="t">Engineering health: build up the engineering organization</div><div class="d">Use the data we already have to understand speed, quality, process, productivity, collaboration, and change failure rate. Identify where teams or leaders need help, put a corrective plan in place, and drive improvement.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every team's speed, quality, process, productivity, collaboration, and change failure rate are known, and any team below the bar has a plan.</div><div class="ok">Key results</div><div class="kr"><span>Baseline published for every team on all six dimensions by <span class="tgt">November 16, 2026</span></span><span>Every team below threshold has a corrective plan within 30 days and a named engineering leader driving it</span><span>Median sprint predictability <span class="tgt">≥70%</span> and change failure rate <span class="tgt">≤15%</span> across the organization by end of Q1 2027, both improving quarter over quarter from the November baseline</span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Engineering health</span></div></div>
+    <div class="now-item p2"><div class="num">06</div><div><div class="t">Vendor execution and partnerships</div><div class="d">Maintain an active view of each engagement's scope, owner, and performance. Onboard new vendors as product engineering needs them. Keep growing the Revelo and Aziro relationships while seeking new relationships and strategic partnerships.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every vendor engagement delivers to its scope and milestones, we pay only for what we accept, and the team never waits on paperwork to start work.</div><div class="ok">Key results</div><div class="kr"><span>100% of engagements on one register with scope, owner, milestones, and performance</span><span>Milestone payments released only against accepted deliverables</span><span>Vendor delivery to plan <span class="tgt">≥80%</span></span><span>New vendors onboarded as needed, with MSAs and MNDAs facilitated and new SOWs and change controls to existing SOWs supported for the team</span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz cat">Vendors</span></div></div>
 
-    <div class="now-item p3"><div class="num">09</div><div><div class="t">Vendor execution</div><div class="d">Maintain an active view of each engagement's scope, owner, and performance.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every vendor engagement delivers to its scope and milestones, and we pay only for what we accept.</div><div class="ok">Key results</div><div class="kr"><span>100% of engagements on one register with scope, owner, milestones, and performance</span><span>Milestone payments released only against accepted deliverables</span><span>Vendor delivery to plan <span class="tgt">≥80%</span></span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz cat">Vendors</span></div></div>
+    <div class="now-item p2"><div class="num">07</div><div><div class="t">Make the architecture half of the Engineering Operating System real</div><div class="d">Partner with Sim to make the architecture half of the Engineering Operating System real: the system that connects every Principal and Architect, so it is practiced, not just published. This is the scope of the future senior architecture leadership role, available for Sim to demonstrate now; demonstrated first, titled after.</div><div class="okr"><div class="ok">Objective</div><div class="o">Architecture is practiced, not just published: decisions are made in the open, recorded, and followed by every Principal and Architect.</div><div class="ok">Key results</div><div class="kr"><span>Every cross-domain decision has an architecture decision record before build starts</span><span>Architecture Review Board runs on cadence with <span class="tgt">100%</span> attendance from Principals and Architects, and every decision is closed within one cycle</span><span>Sim leads the reviews and demonstrates the senior architecture leadership scope by <span class="tgt">December 31, 2026</span></span></div></div></div><div class="lzs"><span class="lz p2">🔵 P2</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Architecture</span></div></div>
 
-    <div class="now-item p3"><div class="num">10</div><div><div class="t">Make the architecture half of the Engineering Operating System real</div><div class="d">Partner with Sim to make the architecture half of the Engineering Operating System real: the system that connects every Principal and Architect, so it is practiced, not just published. This is the scope of the future senior architecture leadership role, available for Sim to demonstrate now; demonstrated first, titled after.</div><div class="okr"><div class="ok">Objective</div><div class="o">Architecture is practiced, not just published: decisions are made in the open, recorded, and followed by every Principal and Architect.</div><div class="ok">Key results</div><div class="kr"><span>Every cross-domain decision has an architecture decision record before build starts</span><span>Architecture Review Board runs on cadence with <span class="tgt">100%</span> attendance from Principals and Architects, and every decision is closed within one cycle</span><span>Sim leads the reviews and demonstrates the senior architecture leadership scope by <span class="tgt">December 31, 2026</span></span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Architecture</span></div></div>
+    <div class="grp p3">P3 · Low</div>
 
-    <div class="now-item bl"><div class="num">11</div><div><div class="t">AI-native development as the default: Payables, Debt Resolution, Prisma</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it, one team per month, using the Merchant Experience playbook: Payables, then Debt Resolution (CFTPay and CFTConnect), then Prisma.</div><div class="okr"><div class="ok">Objective</div><div class="o">Each team adopts AI-native development within a month of its start and matches or beats the Merchant Experience result.</div><div class="ok">Key results</div><div class="kr"><span>Payables: 100% of engineers working in AI-DLC workflows by <span class="tgt">January 31, 2027</span>, with sprint completion, predictability, and change failure rate at or better than the Merchant Experience result</span><span>Debt Resolution (CFTPay and CFTConnect): 100% of engineers working in AI-DLC workflows by <span class="tgt">February 28, 2027</span>, with sprint completion, predictability, and change failure rate at or better than the Merchant Experience result</span><span>Prisma: 100% of engineers working in AI-DLC workflows by <span class="tgt">March 31, 2027</span>, with sprint completion, predictability, and change failure rate at or better than the Merchant Experience result</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
+    <div class="now-item p3"><div class="num">08</div><div><div class="t">Talent acquisition</div><div class="d">Keep every open role moving from a standard job description, interview loop, and scorecard, with a reconciled hiring plan that ties across HR, Finance, and P&amp;E. Then move the day-to-day with Talent Acquisition to the hiring managers themselves.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every open role is filled with a candidate who clears the standard bar, on a predictable timeline, by hiring managers who run their own searches.</div><div class="ok">Key results</div><div class="kr"><span>Hiring reconciliation finalized by <span class="tgt">October 16, 2026</span> for product, design, and engineering, with every incremental role sited: US, Canada, LATAM (Revelo), India (IDC), or POD / CoE staff augmentation with Aziro</span><span>All key product and engineering leadership roles have an HR ticket and an active search</span><span>Median time from search open to accepted offer <span class="tgt">≤90 days</span></span><span>Offer acceptance <span class="tgt">≥80%</span></span><span>100% of hires assessed through the standard loop and scorecard for their role</span><span>By <span class="tgt">December 31, 2026</span>, hiring managers run the majority of interactions with Talent Acquisition, with the TA team ramped on the Engineering Expectations Framework and its hiring template</span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz cat">Talent</span></div></div>
 
-  </section>
+    <div class="now-item p3"><div class="num">09</div><div><div class="t">People management</div><div class="d">Retention, reviews, calibration, promotions, performance management, and reorganizations supported end to end and handled with care, with a recommendation to the CTO before any action that affects a person.</div><div class="okr"><div class="ok">Objective</div><div class="o">We keep the engineers we can least afford to lose and grow everyone else.</div><div class="ok">Key results</div><div class="kr"><span>Zero regrettable attrition from the retention list through <span class="tgt">Q1 2027</span></span><span>Every promotion case supported by ECF evidence, and every manager running quarterly development plans</span><span>Performance actions resolved within <span class="tgt">30 days</span> of the decision, each with a recommendation to the CTO first</span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz cat">Talent</span></div></div>
 
-  <h2>How the focus moved <span class="sub">each quarter built on the one before</span></h2>
-  <section class="arc">
-    <div class="q"><div class="k">Q1 · Baseline</div><div class="t">Know the organization before changing it</div><div class="d">Calibrated ratings across all of Engineering, skills assessments for every engineer, vendor MSAs, the IDC culture sessions, and the Waterloo hub business case.</div></div>
-    <div class="q"><div class="k">Q2 · Competencies</div><div class="t">Raise the bar on who we hire and keep</div><div class="d">Competency framework and ladder, standard interview loops and scorecards, compensation and retention plays, engineering metrics live, ERP platform SOW.</div></div>
-    <div class="q"><div class="k">Q3 · Structure</div><div class="t">Organize around platforms and make commitments visible</div><div class="d">Four platform domains established, Commitment Register for every P0, weekly executive reporting, one reconciled hiring plan.</div></div>
-    <div class="q now"><div class="k">Q4 · Now</div><div class="t">Operationalize</div><div class="d">The eleven priorities above: FY27 budget, AI-native development proven on Merchant Experience first, the Execution Command Board, and planning and review mechanisms that fit the new organization.</div></div>
-  </section>
+    <div class="now-item p3"><div class="num">10</div><div><div class="t">Team management</div><div class="d">Every Director and Principal assesses the teams they lead against the eight-dimension Team Engineering Maturity Model and works a plan, so coaching is a standing part of leading a team rather than an annual event.</div><div class="okr"><div class="ok">Objective</div><div class="o">Every Director and Principal knows where each of their teams stands and is moving it.</div><div class="ok">Key results</div><div class="kr"><span>Every Director and Principal completes a Team Engineering Maturity Assessment for each team they lead in <span class="tgt">Q4 2026</span></span><span>Each assessment carries a plan naming the two or three dimensions to move next quarter, reviewed in their 1:1s</span><span>Q1 2027 reassessment shows movement on the targeted dimensions for <span class="tgt">100%</span> of teams</span></div></div></div><div class="lzs"><span class="lz p3">⚪ P3</span><span class="lz cat">Engineering leadership</span></div></div>
 
-  <h2>What the focus produced <span class="sub">outcomes by area · January to October 2026</span></h2>
-  <section class="grid">
+    <div class="grp bl">Backlog · Not yet scheduled or resourced</div>
 
-    <div class="card">
-      <div class="ch"><h3>Engineering Competency Framework &amp; Operating System</h3><span class="n">~40 items</span></div>
-      <ul>
-        <li><b>One standard for every engineering and QA role</b>, mapped to the company ladder with Distinguished Engineer and Principal tracks, so hiring, calibration, and promotion decisions are judged the same way everywhere.</li>
-        <li><b>A skills baseline for every engineer</b>, completed by managers alongside performance reviews, so development plans and staffing decisions start from evidence.</li>
-        <li><b>An eight-dimension team maturity model and manager playbook</b> that set the bar for teams and leaders and give managers a coaching agenda, not just a review form.</li>
-      </ul>
-    </div>
+    <div class="now-item bl"><div class="num">11</div><div><div class="t">AI-native development as the default: Payables</div><div class="d">Take the AI-driven development lifecycle the Innovation Lab proved out and operationalize it for the Payables team, using the Merchant Experience playbook.</div><div class="okr"><div class="ok">Objective</div><div class="o">Payables adopts AI-native development within a month of its start and matches or beats the Merchant Experience result.</div><div class="ok">Key results</div><div class="kr"><span>100% of Payables engineers working in AI-DLC workflows by <span class="tgt">February 15, 2027</span>, with sprint completion, predictability, and change failure rate at or better than the Merchant Experience result</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">AI-native development</span></div></div>
 
-    <div class="card">
-      <div class="ch"><h3>Hiring machinery</h3><span class="n">~70 items</span></div>
-      <ul>
-        <li><b>Every open role starts from a standard</b>: one information architecture for job descriptions, interview loops, and scorecards, so interviewers assess the same things and candidates get a consistent bar.</li>
-        <li><b>One hiring plan that ties across HR, Finance, and P&amp;E</b>: 43 open roles reconciled ahead of the FY27 cycle, each tied to a ticket and a budget line.</li>
-        <li><b>Geography strategy executed</b>: Waterloo hub business case, salary bands, and search partner; IDC and LATAM pipelines reviewed role by role.</li>
-      </ul>
-    </div>
+    <div class="now-item bl"><div class="num">12</div><div><div class="t">Build the Partner Solutions team from 0 to 1</div><div class="d">Stand up the partner-success organization chartered in the Office of the CTO: a team that gives enterprise and strategic partners and financial institutions a white-glove integration experience on PCE without pulling the core product and engineering roadmap off course. Five functions: Solution Architects, Technical Account Management, Solution Implementation and Professional Services, API Help and Technical Support, and UX Design Support, running a four-stage process from pre-sales discovery through 90-day post-launch support.</div><div class="okr"><div class="ok">Objective</div><div class="o">Enterprise partners get a white-glove integration experience from a dedicated team, and the core roadmap stops absorbing custom partner work.</div><div class="ok">Key results</div><div class="kr"><span>Team chartered and staffed across all five functions with named leads, and one intake path for custom or accelerated work that requires CEO, CRO, business lead, and CTO approval</span><span>Weekly deal review and weekly technical retro running, with every Tier 1 strategic partner on a partner-visible implementation plan and known-issue tracker</span><span>Baselines and targets set for implementation length, opportunity conversion, and 30/60/90-day post-launch check-ins, with Implementation Engineer utilization held at 60–70%</span></div></div></div><div class="lzs"><span class="lz bl">📥 Backlog</span><span class="lz tag">🎯 strategic</span><span class="lz cat">Partner solutions</span></div></div>
 
-    <div class="card">
-      <div class="ch"><h3>Retention &amp; performance</h3><span class="n">~40 items</span></div>
-      <ul>
-        <li><b>Retention strategy built from evidence</b>: post-review sentiment identified the engineers we could least afford to lose, and compensation recommendations were funded through Finance and HR.</li>
-        <li><b>Annual review cycle run end to end</b>: calibration across all of Engineering, review discussions, merit validation, and follow-ups.</li>
-        <li><b>Performance management handled with care</b>, including transitions, backfills, and continuity plans that removed single points of failure on critical systems.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="ch"><h3>Organizational design</h3><span class="n">~15 items</span></div>
-      <ul>
-        <li><b>Four platform domains established</b> (Surfaces &amp; Applications, Commerce API, Commerce Core, Bedrock) so each team owns something meaningful and dependencies are visible; aligned leader by leader, communicated by the CTO, followed by 1:1s with every affected person.</li>
-        <li><b>Reporting lines clarified</b> for QA and SDET, hiring-manager ownership, and a proposed Central Services structure.</li>
-        <li><b>One workstream definition</b> kept current so teams, budgets, and metrics all describe the organization the same way.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="ch"><h3>Vendors &amp; the money system</h3><span class="n">~40 items</span></div>
-      <ul>
-        <li><b>Agreements closed</b>: two master services agreements and three statements of work, including the ERP platform build, through P&amp;E, Finance, and Legal review.</li>
-        <li><b>Spend tracks delivery</b>: milestone payment schedules established with Finance for every vendor-built product.</li>
-        <li><b>Budget moved to need</b>: roles re-leveled and re-sited, incremental hires mapped to budget lines, capitalization questions answered.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="ch"><h3>Execution &amp; engineering health</h3><span class="n">~45 items</span></div>
-      <ul>
-        <li><b>Engineering metrics live for every team</b>: DORA setup, roster and cost accuracy, manager playbook and training, Q2 developer experience survey, and one agreed definition of sprint predictability.</li>
-        <li><b>Leadership sees commitments without asking</b>: weekly executive reporting for P&amp;T, the Commitment Register for every P0, and the Quality &amp; Release transformation charter.</li>
-        <li><b>Execution Command Board MVP built</b>: an AI-assisted live view of status, dependencies, accountability, and revenue impact for up to 100 initiatives, with the reasoning behind each status visible and a human in the loop.</li>
-      </ul>
-    </div>
-
-  </section>
-
-  <section class="kpis">
-    <div class="kpi"><div class="n">~300</div><div class="l">People in scope</div><div class="d">Product, design &amp; engineering · US, Canada, India</div></div>
-    <div class="kpi"><div class="n">4</div><div class="l">Platform domains</div><div class="d">Surfaces &amp; Applications, Commerce API, Commerce Core, Bedrock</div></div>
-    <div class="kpi"><div class="n">43</div><div class="l">Open roles reconciled</div><div class="d">One hiring plan that ties across HR, Finance, and P&amp;E</div></div>
-    <div class="kpi"><div class="n">9</div><div class="l">Interview loops built</div><div class="d">Standard loops and scorecards, SE through Senior Manager</div></div>
-    <div class="kpi"><div class="n">5</div><div class="l">Vendor agreements</div><div class="d">2 MSAs and 3 SOWs through P&amp;E, Finance, and Legal</div></div>
-    <div class="kpi"><div class="n">1</div><div class="l">Competency standard</div><div class="d">Every engineering and QA role, mapped to the company ladder</div></div>
-  </section>
-
-  <section class="mandate">
-    <div class="m"><div class="k">The people system</div><div class="t">Hire the right people, keep and grow the best ones, organize them clearly</div><div class="d">Competency framework, hiring machinery, retention, coaching through the manager playbook, and the platform model.</div></div>
-    <div class="m"><div class="k">The money system</div><div class="t">Every dollar of engineering spend is budgeted, contracted, and defensible</div><div class="d">Headcount reconciliation, vendor agreements, capitalization, and the FY27 budget partnership with Finance.</div></div>
-    <div class="m"><div class="k">The execution system</div><div class="t">Leadership sees status, risk, commitments, and the reasoning behind them without asking</div><div class="d">Engineering metrics, weekly executive reporting, the Commitment Register, and the Execution Command Board.</div></div>
   </section>
 
   <footer>
     <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
-    <div class="footer-conf">Confidential · Internal · October 2026 · Source: 271 completed items in the Chief of Staff workspace, January–October 2026</div>
+    <div class="footer-conf">Confidential · Internal · October 2026</div>
   </footer>
 
 </main>
