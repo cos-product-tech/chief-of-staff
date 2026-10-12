@@ -10,7 +10,7 @@
   --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
   --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
   --now:#D45A00; --now-bg:#FFF1E4;
-  --p0:#C9402F; --p0-bg:#FBEAE7; --p1:#D45A00; --p1-bg:#FFF1E4; --p2:#1F5FA8; --p2-bg:#E6EEF8; --p3:#5B6760; --p3-bg:#EEF0EE; --bl:#777; --bl-bg:#F1F1EE;
+  --p0:#C9402F; --p0-bg:#FBEAE7; --p1:#D45A00; --p1-bg:#FFF1E4; --p2:#1F5FA8; --p2-bg:#E6EEF8; --p3:#5B6760; --p3-bg:#EEF0EE; --bl:#6F4FA3; --bl-bg:#F0EBF8;
   --tag:#003E29; --tag-bg:#E3F3EF; --cat:#5B6760; --cat-bg:#F3F1E6;
   --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
@@ -43,10 +43,13 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .principle .t b{color:var(--pistachio);font-weight:600}
 
 /* Unblock section */
-.unblock{display:grid;grid-template-columns:3fr 2fr;gap:14px;margin-bottom:30px}
+.unblock{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:30px}
 .ub{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px 10px}
 .ub.ask{border-top:3px solid var(--orange)}
-.ub.off{border-top:3px solid var(--p3)}
+.ub.off{border-top:3px solid var(--p3);padding-bottom:12px}
+.ub.off .note{font-size:12.5px;color:var(--text-mid);line-height:1.45;margin-bottom:8px}
+.ub.off .row{display:flex;flex-wrap:wrap;gap:8px}
+.ub.off .row span{font-size:13px;font-weight:600;color:var(--dark-forest);background:var(--p3-bg);border:1px solid var(--border);border-radius:6px;padding:5px 10px}
 .ub .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
 .ub .k b{color:var(--dark-forest);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13.5px;display:block;margin-top:2px}
 .ub ol{list-style:none;counter-reset:a}
@@ -152,11 +155,9 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
       </ol>
     </div>
     <div class="ub off">
-      <div class="k">Stepping back from<b>So the priorities below get full attention</b></div>
-      <ol>
-        <li><div><b>PCI DSS program</b> <span class="who">I leaned in to get it moving; I am not continuing as the driver. It needs a named owner.</span></div><span class="chip off">Hand off</span></li>
-        <li><div><b>IntelliPay integration</b> <span class="who">I will not sit in on the integration meetings. The PMO owns tracking it.</span></div><span class="chip off">Hand off</span></li>
-      </ol>
+      <div class="k">Stepping back from</div>
+      <div class="note">Last week the CTO asked me to lean into both of these. I am calling them out so the hand-off is explicit and each gets a named owner.</div>
+      <div class="row"><span>PCI DSS program</span><span>IntelliPay integration</span></div>
     </div>
   </section>
 
