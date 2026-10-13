@@ -65,10 +65,10 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 
 /* timeline */
 .tl{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px 12px;overflow-x:auto}
-.tl .grid{display:grid;grid-template-columns:170px repeat(24,1fr);gap:4px 2px;min-width:940px;align-items:center}
-.tl .mo{grid-column:2 / -1;display:grid;grid-template-columns:repeat(24,1fr);font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.tl .grid{display:grid;grid-template-columns:170px repeat(20,1fr);gap:4px 2px;min-width:900px;align-items:center}
+.tl .mo{grid-column:2 / -1;display:grid;grid-template-columns:repeat(20,1fr);font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
 .tl .mo span{border-left:1px solid var(--border);padding-left:4px}
-.tl .wk{grid-column:2 / -1;display:grid;grid-template-columns:repeat(24,1fr);font-family:var(--mono);font-size:9px;color:var(--text-muted);text-align:center}
+.tl .wk{grid-column:2 / -1;display:grid;grid-template-columns:repeat(20,1fr);font-family:var(--mono);font-size:9px;color:var(--text-muted);text-align:center}
 .tl .rl{grid-column:1;font-size:11.5px;font-weight:600;color:var(--dark-forest);padding-right:8px;white-space:nowrap;line-height:1.2}
 .tl .rl small{display:block;font-weight:400;color:var(--text-muted);font-size:10.5px}
 .tl .bar{height:22px;border-radius:5px;font-family:var(--mono);font-size:10px;color:#fff;display:flex;align-items:center;padding:0 8px;white-space:nowrap;overflow:hidden}
@@ -174,14 +174,14 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <section class="dates">
     <div class="date"><div class="n">Oct 26</div><div class="l">Embed begins</div><div class="d">Sprint 22 · Eric, Amrita, and Alex in every ritual</div></div>
     <div class="date"><div class="n">Dec 7</div><div class="l">New workflow starts</div><div class="d">Sprint 25 · Lab engineers pairing</div></div>
-    <div class="date hot"><div class="n">Dec 18</div><div class="l">Checkpoint</div><div class="d">Before the holiday · team fully on the workflow · Sprint 25 built the new way · trend visible</div></div>
-    <div class="date hot"><div class="n">Mar 26</div><div class="l">Result</div><div class="d">Four releases built the new way, read against baseline and outcomes</div></div>
+    <div class="date hot"><div class="n">Dec 18</div><div class="l">Checkpoint</div><div class="d">First sprint done · team fully on the workflow · trend visible</div></div>
+    <div class="date hot"><div class="n">Feb 12</div><div class="l">Re-baseline</div><div class="d">Four development sprints and four releases built the new way, read against baseline and outcomes</div></div>
   </section>
 
   <h2>Why, what, and the gate</h2>
   <section class="three">
     <div class="card"><h3>Why now</h3><p>Our business partners don't trust our commitments and see us as slow. AI tooling alone won't change that; a team that commits against unknown capacity and reports late will miss the same way, faster. So this runs two tracks together: the Lab's proven AI workflows, and the planning and commitment habits that create the trust gap.</p></div>
-    <div class="card"><h3>What done looks like</h3><p>Merchant Experience shows measurable improvement against its baseline on all six dimensions, read from telemetry only. Every engineer works in the AI-DLC workflow. A documented rollout playbook exists that Payables reads cold and runs without the Lab in the room, starting March 15.</p></div>
+    <div class="card"><h3>What done looks like</h3><p>Merchant Experience shows measurable improvement against its baseline on all six dimensions, read from telemetry only. Every engineer works in the AI-DLC workflow. A documented rollout playbook exists that Payables reads cold and runs without the Lab in the room; Payables go / no-go decided at the re-baseline.</p></div>
     <div class="card gate"><h3>The gate: outcomes before velocity</h3><p>Velocity without value is the failure mode. Before any workflow changes, Alex and Erin, the Product Lead, agree <b>two or three business outcomes</b> the team must move in this window. Every sprint reports both columns. If speed rises and outcomes don't, we stop and ask why. Trust is rebuilt one kept commitment at a time, so we also track <b>commitments shipped on the date promised</b>.</p></div>
   </section>
 
@@ -190,52 +190,45 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="pg core"><div class="k">Core three · embedded</div><div class="who"><span>Eric<i>Owner</i></span><span>Amrita<i>Software Architect, Innovation Lab</i></span><span>Alex<i>Principal Software Engineer, Merchant Experience</i></span></div></div>
     <div class="pg"><div class="k">Sponsor</div><div class="who"><span>Bart<i>Head of Innovation &amp; Applied AI</i></span></div></div>
     <div class="pg"><div class="k">Owners of the team and the numbers</div><div class="who"><span>Purush<i>Sr Director, Engineering</i></span><span>Quan<i>Director, Engineering</i></span><span>Andrew<i>Team Lead, Engineering</i></span></div></div>
-    <div class="pg"><div class="k">Next team</div><div class="who"><span>Payables<i>starts Mar 15, if the Feb 26 read passes</i></span></div></div>
+    <div class="pg"><div class="k">Next team</div><div class="who"><span>Payables<i>go / no-go at the Feb 12 re-baseline</i></span></div></div>
   </section>
 
   <h2>Timeline <span class="sub">a release cycle is four weeks: a two-week development sprint, then two weeks of regression and QA, then production · cycles overlap by two weeks</span></h2>
   <section class="tl">
     <div class="grid">
       <div class="rl"></div>
-      <div class="mo"><span style="grid-column:1 / 4">Oct</span><span style="grid-column:4 / 9">Nov</span><span style="grid-column:9 / 13">Dec</span><span style="grid-column:13 / 17">Jan</span><span style="grid-column:17 / 21">Feb</span><span style="grid-column:21 / 25">Mar</span></div>
+      <div class="mo"><span style="grid-column:1 / 4">Oct</span><span style="grid-column:4 / 9">Nov</span><span style="grid-column:9 / 13">Dec</span><span style="grid-column:13 / 17">Jan</span><span style="grid-column:17 / 21">Feb</span></div>
       <div class="rl"><small>week of</small></div>
-      <div class="wk"><span>12</span><span>19</span><span>26</span><span>2</span><span>9</span><span>16</span><span>23</span><span>30</span><span>7</span><span>14</span><span>21</span><span>28</span><span>4</span><span>11</span><span>18</span><span>25</span><span>1</span><span>8</span><span>15</span><span>22</span><span>1</span><span>8</span><span>15</span><span>22</span></div>
+      <div class="wk"><span>12</span><span>19</span><span>26</span><span>2</span><span>9</span><span>16</span><span>23</span><span>30</span><span>7</span><span>14</span><span>21</span><span>28</span><span>4</span><span>11</span><span>18</span><span>25</span><span>1</span><span>8</span><span>15</span><span>22</span></div>
 
       <div class="rl">Plan phase <small>what we are doing</small></div>
       <div class="bar ph0" style="grid-column:2 / 4">0 · Prepare</div>
       <div class="bar ph1" style="grid-column:4 / 8">1 · Observe one full cycle</div>
       <div class="bar ph2" style="grid-column:8 / 10">2 · Pair</div>
-      <div class="bar ph3" style="grid-column:10 / 12">3 · New workflow</div>
-      <div class="bar hold" style="grid-column:12 / 14">Holiday</div>
-      <div class="bar ph3" style="grid-column:14 / 16">3 · Lab pairing</div>
-      <div class="bar ph4" style="grid-column:16 / 24">4 · New workflow, Lab out of the room</div>
-      <div class="bar ph4" style="grid-column:24 / 26;opacity:.35">read</div>
+      <div class="bar ph3" style="grid-column:10 / 18">3 · New workflow · four development sprints</div>
+      <div class="bar ph4" style="grid-column:18 / 20">4 · Document</div>
 
       <div class="rl">Milestone <small>what we commit to · Design overlaps Sprint 23</small></div>
       <div class="bar ph2" style="grid-column:6 / 8">2 · Design</div>
       <div class="ms chk" style="grid-column:11 / 12">Checkpoint</div>
-      <div class="ms chk" style="grid-column:21 / 23">Playbook · Feb 26</div>
-      <div class="ms chk" style="grid-column:24 / 25">Payables</div>
-      <div class="ms res" style="grid-column:25 / 26">Result</div>
+      <div class="ms res" style="grid-column:19 / 20">Re-baseline</div>
 
       <div class="rl">Development sprint <small>two weeks</small></div>
-      <div class="bar dev" style="grid-column:4 / 6">Sprint 22</div><div class="bar dev" style="grid-column:6 / 8">23</div><div class="bar dev" style="grid-column:8 / 10">24 · Thanksgiving</div><div class="bar dev" style="grid-column:10 / 12">25</div><div class="bar dev" style="grid-column:12 / 14;opacity:.55">26 · holiday</div><div class="bar dev" style="grid-column:14 / 16">1</div><div class="bar dev" style="grid-column:16 / 18">2</div><div class="bar dev" style="grid-column:18 / 20">3</div><div class="bar dev" style="grid-column:20 / 22">4</div><div class="bar dev" style="grid-column:22 / 24">5</div><div class="bar dev" style="grid-column:24 / 26">6</div>
+      <div class="bar dev" style="grid-column:4 / 6">Sprint 22</div><div class="bar dev" style="grid-column:6 / 8">23</div><div class="bar dev" style="grid-column:8 / 10">24 · Thanksgiving</div><div class="bar dev" style="grid-column:10 / 12">25</div><div class="bar dev" style="grid-column:12 / 14">26 · holidays</div><div class="bar dev" style="grid-column:14 / 16">1</div><div class="bar dev" style="grid-column:16 / 18">2</div><div class="bar dev" style="grid-column:18 / 20">3</div><div class="bar dev" style="grid-column:20 / 22">4</div>
 
       <div class="rl">Regression &amp; QA <small>two weeks, previous sprint</small></div>
-      <div class="bar reg" style="grid-column:4 / 6">Sprint 21</div><div class="bar reg" style="grid-column:6 / 8">22</div><div class="bar reg" style="grid-column:8 / 10">23</div><div class="bar reg" style="grid-column:10 / 12">24</div><div class="bar reg" style="grid-column:12 / 14">25 · slips</div><div class="bar reg" style="grid-column:14 / 16">26</div><div class="bar reg" style="grid-column:16 / 18">1</div><div class="bar reg" style="grid-column:18 / 20">2</div><div class="bar reg" style="grid-column:20 / 22">3</div><div class="bar reg" style="grid-column:22 / 24">4</div><div class="bar reg" style="grid-column:24 / 26">5</div>
+      <div class="bar reg" style="grid-column:4 / 6">Sprint 21</div><div class="bar reg" style="grid-column:6 / 8">22</div><div class="bar reg" style="grid-column:8 / 10">23</div><div class="bar reg" style="grid-column:10 / 12">24</div><div class="bar reg" style="grid-column:12 / 14">25</div><div class="bar reg" style="grid-column:14 / 16">26</div><div class="bar reg" style="grid-column:16 / 18">1</div><div class="bar reg" style="grid-column:18 / 20">2</div><div class="bar reg" style="grid-column:20 / 22">3</div>
 
-      <div class="rl">Ships to production <small>orange counts in the result</small></div>
+      <div class="rl">Ships to production <small>orange counts in the re-baseline</small></div>
       <div class="ship soft" style="grid-column:7 / 8" title="Sprint 22 · Nov 20 · built the old way"><i></i></div>
       <div class="ship soft" style="grid-column:9 / 10" title="Sprint 23 · Dec 4 · built the old way"><i></i></div>
       <div class="ship soft" style="grid-column:11 / 12" title="Sprint 24 · Dec 18 · built the old way"><i></i></div>
-      <div class="ship soft" style="grid-column:14 / 15" title="Sprint 25 · week of Jan 4 · first built the new way · excluded, holiday regression"><i></i></div>
-      <div class="ship soft" style="grid-column:15 / 16" title="Sprint 26 · Jan 15 · excluded, built over the holiday"><i></i></div>
+      <div class="ship" style="grid-column:13 / 14" title="Sprint 25 · Jan 1 · first built the new way"><i></i></div>
+      <div class="ship" style="grid-column:15 / 16" title="Sprint 26 · Jan 15"><i></i></div>
       <div class="ship" style="grid-column:17 / 18" title="Sprint 1 · Jan 29"><i></i></div>
       <div class="ship" style="grid-column:19 / 20" title="Sprint 2 · Feb 12"><i></i></div>
-      <div class="ship" style="grid-column:21 / 22" title="Sprint 3 · Feb 26"><i></i></div>
-      <div class="ship" style="grid-column:23 / 24" title="Sprint 4 · Mar 12"><i></i></div>
     </div>
-    <div class="leg"><span><i style="background:var(--ph1)"></i>Observe</span><span><i style="background:var(--ph2)"></i>Design</span><span><i style="background:var(--ph3)"></i>New workflow with Lab pairing</span><span><i style="background:var(--ph4)"></i>New workflow, Lab out of the room</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dot"></i>Release counted in the result</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Release not counted</span></div>
+    <div class="leg"><span><i style="background:var(--ph1)"></i>Observe</span><span><i style="background:var(--ph2)"></i>Design and pair</span><span><i style="background:var(--ph3)"></i>New workflow</span><span><i style="background:var(--ph4)"></i>Document</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dot"></i>Release counted in the re-baseline</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Built the old way</span></div>
   </section>
 
   <h2>Phases <span class="sub">each with an exit test</span></h2>
@@ -257,24 +250,24 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <li>Agree measurement rules with Purush, Quan, Andrew.</li>
       <li><b>Nov 23 – Dec 4, Thanksgiving inside:</b> Amrita pairs with each software engineer on the team, one by one, so every engineer has tried the Lab's workflow on their own code before Dec 7. Thin attendance is fine here; it wouldn't be at a launch.</li></ul>
       <div class="exit"><b>Exit</b>Design done by Nov 20 · every engineer paired by Dec 4 · go / no-go for Dec 7</div></div>
-    <div class="ph p3"><div class="n">Phase 3 · Dec 7 – Jan 15</div><h3>Run the new workflow</h3><ul>
-      <li>Start at the Sprint 25 boundary with full participation. Amrita embedded daily; Lab engineers pairing through Sprints 25 and 1, since the holiday sprint (26) splits them.</li>
+    <div class="ph p3"><div class="n">Phase 3 · Dec 7 – Jan 29</div><h3>Run the new workflow for four sprints</h3><ul>
+      <li>Start at the Sprint 25 boundary with full participation and run Sprints 25, 26, 1, and 2 the new way, holidays included. Amrita embedded daily; Lab engineers pairing through Sprint 26 at minimum.</li>
       <li>Alex plus one or two engineers who take to it become in-team champions; the Lab pairs with them, they pair with the rest.</li>
-      <li>Expect a dip in Sprint 25. Continue unless it persists through Sprint 1.</li>
-      <li>Sprint 25's regression runs through the holiday and its release slips to the week of Jan 4; Sprint 26 is built over the holiday. Neither is counted. Sprint 1 ships Jan 29: the first counted release.</li>
+      <li>Expect a dip in Sprint 25. Continue unless it persists through Sprint 26.</li>
+      <li>Releases built the new way ship Jan 1, Jan 15, Jan 29, and Feb 12. Sprint 26 and the regression windows around the holidays will be thin; the re-baseline reads the four sprints together, not each alone.</li>
       <li>Measure every sprint against baseline and outcomes; publish to the team and its leaders, good or bad.</li></ul>
-      <div class="exit"><b>Exit · Dec 18 checkpoint</b>Before the holiday: team fully on the workflow · Sprint 25 built the new way · trend visible on the development-side measures · outcomes on track</div></div>
-    <div class="ph p4"><div class="n">Phase 4 · Jan 18 – Mar 12</div><h3>Prove and document</h3><ul>
-      <li>Full workflow, Lab out of the room, Alex and the champions teaching.</li>
-      <li>Four clean cycles ship: Sprints 1, 2, 3, and 4 on Jan 29, Feb 12, Feb 26, and Mar 12.</li>
-      <li>Playbook drafted from the first two counted cycles and finished by Feb 26: prerequisites, setup, the workflow step by step, guardrails, metrics, what went wrong and how it was fixed.</li>
-      <li>Tested cold: Payables reads it and says what's missing before its Mar 15 start.</li></ul>
-      <div class="exit"><b>Exit · Mar 26 result</b>Four releases (1, 2, 3, 4) read against baseline and outcomes, two weeks after the last one shipped · playbook handed to Payables</div></div>
+      <div class="exit"><b>Exit · Dec 18 checkpoint</b>First sprint done · team fully on the workflow · trend visible on the development-side measures · outcomes on track</div></div>
+    <div class="ph p4"><div class="n">Phase 4 · Feb 1–12</div><h3>Document and re-baseline</h3><ul>
+      <li>Playbook finished from the four sprints: prerequisites, setup, the workflow step by step, guardrails, metrics, what went wrong and how it was fixed.</li>
+      <li>Tested cold: Payables reads it and says what's missing.</li>
+      <li>Feb 12: Sprint 2 ships, the fourth release built the new way. Re-baseline all six dimensions and the outcomes against the Phase 0 baseline.</li>
+      <li>Decide at the re-baseline: continue, adjust practices, or stop; Payables go / no-go.</li></ul>
+      <div class="exit"><b>Exit · Feb 12 re-baseline</b>Four sprints and four releases (25, 26, 1, 2) read against baseline and outcomes · playbook ready · Payables decision made</div></div>
   </section>
 
-  <h2>Scorecard <span class="sub">telemetry only · baseline dashboard built with Jellyfish in Phase 0 · targets grounded in published evidence</span></h2>
+  <h2>Scorecard <span class="sub">telemetry only · baseline dashboard built with Jellyfish in Phase 0 · re-baselined Feb 12 · targets grounded in published evidence</span></h2>
   <div class="table-wrap"><table>
-    <thead><tr><th>Measure</th><th>Role</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Mar 26 target</th><th>Source</th></tr></thead>
+    <thead><tr><th>Measure</th><th>Role</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 12 re-baseline target</th><th>Source</th></tr></thead>
     <tbody>
       <tr class="grp"><td colspan="6">The gate</td></tr>
       <tr><td class="t"><b>Business outcomes</b> · two or three, agreed in Phase 0</td><td><span class="pill gate">Gate</span></td><td class="m tbd">named</td><td class="m">on track</td><td class="m">delivered</td><td class="m">Erin · business</td></tr>
@@ -304,9 +297,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <section class="risks">
     <div class="rk"><b>Baseline is soft.</b> Q3 Jellyfish data for the team may be incomplete; definitions were still moving in Q3.<span class="rule">If Q3 is unusable, Sprints 22 and 23 are the baseline cycles, decided with Andrey in Phase 0.</span></div>
     <div class="rk"><b>Phase 2 is tight.</b> Design overlaps the last two weeks of observation, and pairing holds Thanksgiving.<span class="rule">Design done by Nov 20 and every engineer paired by Dec 4, or start at the Sprint 1 boundary, Jan 4. One clean late start beats a messy early one.</span></div>
-    <div class="rk"><b>The dip, then a holiday.</b> Sprint 25 may be slower than Sprint 24, and the holiday sprint follows before Sprint 1 can confirm or deny it.<span class="rule">Continue unless the dip persists through Sprint 26; then revisit practice choice, not the plan.</span></div>
+    <div class="rk"><b>The dip.</b> Sprint 25 may be slower than Sprint 24; the evidence says to expect it.<span class="rule">Continue unless the dip persists through Sprint 26; then revisit practice choice, not the plan.</span></div>
     <div class="rk"><b>Gaming.</b> Predictability rises instantly if the team commits less.<span class="rule">Predictability is read together with throughput and the outcomes column, never alone.</span></div>
-    <div class="rk"><b>People.</b> Amrita embedded daily is a cost to the Lab; Alex carries his Principal load plus adoption; a new hire may join mid-pilot.<span class="rule">Bart agrees the trade in Phase 0. Alex is protected from interview loops and the Tom demo through Phase 3. Payables starts Mar 15 only if the Feb 26 playbook read passes.</span></div>
+    <div class="rk"><b>People.</b> Amrita embedded daily is a cost to the Lab; Alex carries his Principal load plus adoption; a new hire may join mid-pilot.<span class="rule">Bart agrees the trade in Phase 0. Alex is protected from interview loops and the Tom demo through Phase 3. Payables go / no-go is decided at the Feb 12 re-baseline, not before.</span></div>
+    <div class="rk"><b>Holiday capacity.</b> Sprint 26 and the regression windows around it run through the holidays, so two of the four sprints carry thinner data.<span class="rule">The re-baseline reads the four sprints as one block against the baseline block; no single sprint decides it.</span></div>
     <div class="rk"><b>The regression window.</b> Lab practices were proven in development, not QA, and regression is half the cycle.<span class="rule">Phase 2 must choose at least one practice aimed at regression, or speed and change failure won't move.</span></div>
   </section>
 
