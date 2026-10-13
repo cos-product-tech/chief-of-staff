@@ -292,7 +292,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
 <script>
 /* ---------- Time & energy log ---------- */
 const FOCUS_OF={hc:'fin',ecb:'ecb',mx:'ai',snap:'vendor',posi:'vendor',azcr:'vendor',pfd:'vendor',lines:'people',paul:'people',bt:'people',offers:'ta',promos:'people',intro:'ta'};
-const SEED={week:'2026-10-12',days:{azcr:[1,0,0,0,0],pfd:[1,0,0,0,0],ecb:[1,0,0,0,0],snap:[1,0,0,0,0],hc:[1,0,0,0,0],paul:[1,0,0,0,0],bt:[2,0,0,0,0],offers:[2,0,0,0,0],mx:[0,0,0,0,0],posi:[1,0,0,0,0],lines:[0,0,0,0,0],promos:[0,0,0,0,0],intro:[0,0,0,0,0]},history:[]};
+const SEED={week:'2026-10-12',days:{azcr:[1,0,0,0,0],pfd:[1,0,0,0,0],ecb:[1,0,0,0,0],snap:[1,0,0,0,0],hc:[1,0,0,0,0],paul:[1,0,0,0,0],bt:[2,0,0,0,0],offers:[2,0,0,0,0],mx:[3,0,0,0,0],posi:[1,0,0,0,0],lines:[0,0,0,0,0],promos:[0,0,0,0,0],intro:[0,0,0,0,0]},history:[]};
 const KEY='cos-focus-log-v1';
 let LOG; try{LOG=JSON.parse(localStorage.getItem(KEY))||null}catch(e){LOG=null}
 if(!LOG) LOG=JSON.parse(JSON.stringify(SEED));
