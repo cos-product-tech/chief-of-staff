@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI-Native Development — Merchant Experience</title>
+<title>Modernizing the Tech Delivery Engine — Merchant Experience</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
   --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
   --ok:#3F8A46; --ok-bg:#E9F5E9; --warn:#D45A00; --warn-bg:#FFF1E4; --risk:#C9402F; --risk-bg:#FBEAE7; --hold:#8A8F8C; --hold-bg:#ECEEEC;
-  --ph0:#CFE8DD; --ph1:#8FCBB5; --ph2:#5FB39A; --ph3:#1F7A5C; --ph4:#003E29;
+  --ph1:#CFE8DD; --ph2:#8FCBB5; --ph3:#5FB39A; --ph4:#1F7A5C;
   --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
 }
@@ -24,7 +24,7 @@ b{font-weight:600}
 .doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
 .doc-title{font-size:30px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
-.doc-subtitle{font-size:14.5px;font-weight:300;color:rgba(231,229,170,.85);max-width:700px;line-height:1.6}
+.doc-subtitle{font-size:14.5px;font-weight:300;color:rgba(231,229,170,.85);max-width:720px;line-height:1.6}
 .doc-subtitle b{color:#fff;font-weight:500}
 .header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
 .meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
@@ -37,8 +37,15 @@ h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-
 h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 
+/* problem band */
+.problem{background:var(--dark-forest);color:#fff;border-radius:10px;padding:18px 22px;display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px}
+.problem .k{color:var(--turquoise)}
+.problem .t{font-size:14px;line-height:1.5;color:rgba(255,255,255,.92)}
+.problem .t b{color:var(--pistachio)}
+.problem .big{font-size:17px;font-weight:600;line-height:1.35;color:#fff}
+
 /* dates strip */
-.dates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
+.dates{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
 .date{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
 .date::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal)}
 .date.hot::before{background:var(--orange)}
@@ -46,22 +53,40 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .date .l{font-size:12.5px;font-weight:600;color:var(--forest);margin-top:4px}
 .date .d{font-size:11.5px;color:var(--text-muted);margin-top:2px;line-height:1.4}
 
-/* three-up */
-.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+/* scope */
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 14px rgba(0,0,0,.04)}
 .card h3{font-size:14.5px;font-weight:700;color:var(--dark-forest);margin-bottom:6px;line-height:1.3}
 .card p{font-size:13px;color:var(--text-mid);line-height:1.5}
-.card.gate{border-top:3px solid var(--orange)}
-.card.gate p b{color:var(--warn)}
+.card ul{list-style:none;margin-top:4px}
+.card li{font-size:12.75px;color:var(--text-mid);line-height:1.45;padding:3px 0 3px 12px;position:relative}
+.card li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.card.out li::before{background:var(--hold)}
+.card.out{border-top:3px solid var(--hold)} .card.in{border-top:3px solid var(--orange)}
 
 /* people */
-.people{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:12px}
+.people{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
 .pg{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
 .pg .k{margin-bottom:8px}
 .pg .who{display:flex;flex-wrap:wrap;gap:6px}
 .pg .who span{font-size:12.5px;font-weight:600;color:var(--dark-forest);background:var(--bg-soft);border:1px solid var(--border);border-radius:20px;padding:3px 10px}
 .pg .who span i{font-style:normal;font-weight:400;color:var(--text-muted);font-size:11px;margin-left:4px}
 .pg.core .who span{background:#E3F3EF;border-color:#CFE8DD}
+
+/* interviews */
+.iv{display:grid;grid-template-columns:1fr 1.4fr;gap:14px}
+.iv .list{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.iv .list ol{list-style:none;counter-reset:i}
+.iv .list li{display:grid;grid-template-columns:22px 1fr;gap:8px;padding:5px 0;border-top:1px dashed var(--border);font-size:12.75px;line-height:1.4}
+.iv .list li:first-child{border-top:none}
+.iv .list li::before{counter-increment:i;content:counter(i,decimal-leading-zero);font-family:var(--mono);font-size:10.5px;color:var(--teal);padding-top:2px}
+.iv .list li b{color:var(--dark-forest)} .iv .list li i{font-style:normal;color:var(--text-muted);font-size:11.5px}
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q{background:#fff;border:1px solid var(--border);border-radius:10px;padding:11px 13px}
+.q .f{font-size:12.75px;font-weight:700;color:var(--dark-forest);margin-bottom:4px}
+.q ul{list-style:none}
+.q li{font-size:12px;color:var(--text-mid);line-height:1.4;padding:2px 0 2px 10px;position:relative}
+.q li::before{content:'›';position:absolute;left:0;color:var(--teal)}
 
 /* timeline */
 .tl{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px 12px;overflow-x:auto}
@@ -72,8 +97,7 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .tl .rl{grid-column:1;font-size:11.5px;font-weight:600;color:var(--dark-forest);padding-right:8px;white-space:nowrap;line-height:1.2}
 .tl .rl small{display:block;font-weight:400;color:var(--text-muted);font-size:10.5px}
 .tl .bar{height:22px;border-radius:5px;font-family:var(--mono);font-size:10px;color:#fff;display:flex;align-items:center;padding:0 8px;white-space:nowrap;overflow:hidden}
-.tl .bar.ph0{background:var(--ph0);color:var(--forest)} .tl .bar.ph1{background:var(--ph1);color:var(--forest)} .tl .bar.ph2{background:var(--ph2)} .tl .bar.ph3{background:var(--ph3)} .tl .bar.ph4{background:var(--ph4)}
-.tl .bar.hold{background:repeating-linear-gradient(135deg,var(--hold-bg),var(--hold-bg) 4px,#fff 4px,#fff 8px);color:var(--text-mid);border:1px solid var(--border)}
+.tl .bar.ph1{background:var(--ph1);color:var(--forest)} .tl .bar.ph2{background:var(--ph2);color:var(--forest)} .tl .bar.ph3{background:var(--ph3)} .tl .bar.ph4{background:var(--ph4)}
 .tl .bar.dev{background:#DCEFE9;color:var(--forest);height:16px;font-size:9.5px}
 .tl .bar.reg{background:#F2F0E6;color:var(--text-mid);height:16px;font-size:9.5px;border:1px dashed var(--border)}
 .tl .ship{height:16px;display:flex;align-items:center;justify-content:flex-end}
@@ -87,9 +111,9 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .tl .leg .dot{width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--orange);margin:0 6px 0 3px}
 
 /* phases */
-.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.ph{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 13px 10px;border-top:4px solid var(--ph0);display:flex;flex-direction:column}
-.ph.p1{border-top-color:var(--ph1)} .ph.p2{border-top-color:var(--ph2)} .ph.p3{border-top-color:var(--ph3)} .ph.p4{border-top-color:var(--ph4)}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ph{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 13px 10px;border-top:4px solid var(--ph1);display:flex;flex-direction:column}
+.ph.p2{border-top-color:var(--ph2)} .ph.p3{border-top-color:var(--ph3)} .ph.p4{border-top-color:var(--ph4)}
 .ph .n{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .ph h3{font-size:13.5px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin:2px 0 6px}
 .ph ul{list-style:none;flex:1}
@@ -102,31 +126,14 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead th{background:var(--forest);color:#fff;text-align:left;font-weight:600;padding:9px 12px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
-tbody td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
 tbody tr:last-child td{border-bottom:none}
 tbody tr.grp td{background:var(--bg-soft);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding:6px 12px}
 td.m{font-family:var(--mono);font-size:12px;color:var(--text-mid);white-space:nowrap}
 td.m.tbd{color:var(--text-muted)}
 td.t b{color:var(--dark-forest)}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
-.pill.gate{background:var(--warn-bg);color:var(--warn)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)}
-
-/* evidence + foundations */
-.two{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
-.ev{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.ev .e{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
-.ev .e .f{font-size:13px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:4px}
-.ev .e p{font-size:12px;color:var(--text-mid);line-height:1.45}
-.ev .e .s{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:5px}
-.found{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
-.found ol{list-style:none;counter-reset:f}
-.found li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;padding:6px 0;border-top:1px dashed var(--border);font-size:12.5px;line-height:1.4}
-.found li:first-child{border-top:none}
-.found li::before{counter-increment:f;content:counter(f,decimal-leading-zero);font-family:var(--mono);font-size:10.5px;color:var(--teal);padding-top:2px}
-.found li b{display:block;color:var(--dark-forest)}
-.found li span{color:var(--text-mid)}
-.found .st{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:2px}
-.st.todo{background:var(--hold-bg);color:var(--text-mid)} .st.first{background:var(--warn-bg);color:var(--warn)} .st.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.gate{background:var(--warn-bg);color:var(--warn)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
 
 /* risks */
 .risks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -143,12 +150,12 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 @media (max-width:900px){
   .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
   .doc-body{padding:20px 16px 40px}
-  .dates,.three,.people,.phases,.ev,.risks{grid-template-columns:1fr}
+  .problem,.dates,.scope,.people,.iv,.qs,.phases,.risks{grid-template-columns:1fr}
 }
 @media print{
   body{background:#fff}
-  .doc-header,.tl .bar,.tl .ms,.pill,.st{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .card,.ph,.rk,.tl,.table-wrap{box-shadow:none;break-inside:avoid}
+  .doc-header,.problem,.tl .bar,.tl .ms,.pill{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.ph,.rk,.tl,.table-wrap,.q{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
@@ -157,13 +164,13 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 <header class="doc-header">
   <div class="header-inner">
     <div class="header-left">
-      <div class="doc-eyebrow">Office of the CTO · Innovation Lab × Merchant Experience</div>
-      <h1 class="doc-title">AI-native development as the default:<br>Merchant Experience</h1>
-      <p class="doc-subtitle">Take the AI-driven development lifecycle the Innovation Lab proved out and make it the way Merchant Experience works, measured on <b>speed, quality, predictability, productivity, collaboration, and change failure rate</b>, with business outcomes as the gate and a playbook Payables can run next.</p>
+      <div class="doc-eyebrow">Office of the CTO · Modernizing the tech delivery engine · Starting with Merchant Experience</div>
+      <h1 class="doc-title">Make Merchant Experience fast and predictable<br>on the commitments it makes to the business</h1>
+      <p class="doc-subtitle">This is broader than AI-native development. It is about modernizing how the team plans, builds, tests, and ships: <b>operating rhythms</b>, <b>Jellyfish data turned into action</b>, <b>process and organizational drag</b>, and <b>whatever is slowing the team down</b>, people, process, tools, silos, complexity, or infrastructure. AI-native PDLC is one lever among several.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
-      <span class="meta-badge badge-status">⚡ P0 · Embed from Sprint 22</span>
+      <span class="meta-badge badge-status">⚡ P0 · Interviews by Oct 23</span>
       <span class="meta-badge badge-date">October 2026 · Eric Normant</span>
     </div>
   </div>
@@ -171,26 +178,63 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 
 <main class="doc-body">
 
+  <section class="problem">
+    <div><div class="k">Problem statement</div><div class="big">The Merchant Experience team is not fast enough and cannot predictably deliver on the commitments it promised the business.</div></div>
+    <div><div class="k">What we will find out first</div><div class="t">Where the time actually goes, and whether the team understands <b>the business, the customer, the problems it is solving, and the KPIs</b> that would show an outcome was achieved, or whether it is running as a feature factory.</div></div>
+    <div><div class="k">How we will know</div><div class="t">A Jellyfish dashboard on six dimensions, baselined before anything changes and <b>re-baselined after four sprints</b> of running the changes. The gate is simple: <b>commitments shipped on the date promised</b>.</div></div>
+  </section>
+
   <section class="dates">
-    <div class="date"><div class="n">Oct 26</div><div class="l">Embed begins</div><div class="d">Sprint 22 · Eric, Amrita, and Alex in every ritual</div></div>
-    <div class="date"><div class="n">Dec 7</div><div class="l">New workflow starts</div><div class="d">Sprint 25 · Lab engineers pairing</div></div>
-    <div class="date hot"><div class="n">Dec 18</div><div class="l">Checkpoint</div><div class="d">First sprint done · team fully on the workflow · trend visible</div></div>
-    <div class="date hot"><div class="n">Feb 12</div><div class="l">Re-baseline</div><div class="d">Four development sprints and four releases built the new way, read against baseline and outcomes</div></div>
+    <div class="date"><div class="n">Oct 23</div><div class="l">Interviews done</div><div class="d">Nine 30-minute conversations · KPIs chosen · dashboard live</div></div>
+    <div class="date"><div class="n">Oct 26</div><div class="l">Embed begins</div><div class="d">Sprint 22 · one full cycle observed</div></div>
+    <div class="date"><div class="n">Dec 7</div><div class="l">Changes go live</div><div class="d">Sprint 25 · chosen fixes plus AI-native PDLC</div></div>
+    <div class="date hot"><div class="n">Dec 18</div><div class="l">Checkpoint</div><div class="d">First sprint done · trend visible</div></div>
+    <div class="date hot"><div class="n">Feb 12</div><div class="l">Re-baseline</div><div class="d">Four sprints and four releases, read against the baseline</div></div>
   </section>
 
-  <h2>Why, what, and the gate</h2>
-  <section class="three">
-    <div class="card"><h3>Why now</h3><p>Our business partners don't trust our commitments and see us as slow. AI tooling alone won't change that; a team that commits against unknown capacity and reports late will miss the same way, faster. So this runs two tracks together: the Lab's proven AI workflows, and the planning and commitment habits that create the trust gap.</p></div>
-    <div class="card"><h3>What done looks like</h3><p>Merchant Experience shows measurable improvement against its baseline on all six dimensions, read from telemetry only. Every engineer works in the AI-DLC workflow. A documented rollout playbook exists that Payables reads cold and runs without the Lab in the room; Payables go / no-go decided at the re-baseline.</p></div>
-    <div class="card gate"><h3>The gate: outcomes before velocity</h3><p>Velocity without value is the failure mode. Before any workflow changes, Alex and Erin, the Product Lead, agree <b>two or three business outcomes</b> the team must move in this window. Every sprint reports both columns. If speed rises and outcomes don't, we stop and ask why. Trust is rebuilt one kept commitment at a time, so we also track <b>commitments shipped on the date promised</b>.</p></div>
+  <h2>Scope <span class="sub">stay focused on the problem statement</span></h2>
+  <section class="scope">
+    <div class="card in"><h3>In scope</h3><ul>
+      <li>Operating rhythms: how work enters, how commitments are made and against what capacity, how status flows to the business.</li>
+      <li>Jellyfish data used to find and act on specific drag, not to report.</li>
+      <li>Process and organizational burden: approvals, handoffs, environments, provisioning, regression length, silos between engineering, QA, product, and design.</li>
+      <li>Whether the team understands the business, the customer, the problem, and the KPI behind each commitment.</li>
+      <li>AI-native PDLC, paired in by the Innovation Lab, where it removes observed friction.</li></ul></div>
+    <div class="card out"><h3>Out of scope, deliberately</h3><ul>
+      <li>Turning Merchant Experience into a product-led team. At Priority Commerce our business partners drive product; changing that is a longer transformation than this problem needs, and it would take too long.</li>
+      <li>Reorganizing the team or changing its leaders.</li>
+      <li>Replacing the sprint and regression cadence. We make it faster and more predictable; we don't redesign it in this window.</li>
+      <li>Anything that needs business partners to change how they work. Those ideas go to a parking lot for the CTO, not into this plan.</li></ul></div>
   </section>
 
-  <h2>Who <span class="sub">the team keeps ownership; we remove friction</span></h2>
+  <h2>Who</h2>
   <section class="people">
-    <div class="pg core"><div class="k">Core three · embedded</div><div class="who"><span>Eric<i>Owner</i></span><span>Amrita<i>Software Architect, Innovation Lab</i></span><span>Alex<i>Principal Software Engineer, Merchant Experience</i></span></div></div>
-    <div class="pg"><div class="k">Sponsor</div><div class="who"><span>Bart<i>Head of Innovation &amp; Applied AI</i></span></div></div>
+    <div class="pg core"><div class="k">Core team</div><div class="who"><span>Eric<i>Owner</i></span><span>Amrita<i>Software Architect, Innovation Lab</i></span><span>Alex<i>Principal Software Engineer, Merchant Experience</i></span><span>Lilly<i>Program management</i></span></div></div>
+    <div class="pg"><div class="k">Innovation Lab</div><div class="who"><span>Bart<i>Head of Innovation &amp; Applied AI</i></span><span>Taylor<i>Innovation Lab</i></span></div></div>
     <div class="pg"><div class="k">Owners of the team and the numbers</div><div class="who"><span>Purush<i>Sr Director, Engineering</i></span><span>Quan<i>Director, Engineering</i></span><span>Andrew<i>Team Lead, Engineering</i></span></div></div>
-    <div class="pg"><div class="k">Next team</div><div class="who"><span>Payables<i>go / no-go at the Feb 12 re-baseline</i></span></div></div>
+  </section>
+
+  <h2>Phase 1 discovery interviews <span class="sub">thirty minutes each, one on one, done by Friday, October 23 · synthesized without attribution</span></h2>
+  <section class="iv">
+    <div class="list"><div class="k">Who we talk to</div><ol>
+      <li><div><b>Erin Dalessandro</b> <i>Product</i></div></li>
+      <li><div><b>Kyle Miller</b> <i>Product Design</i></div></li>
+      <li><div><b>Quan Ouyang</b> <i>Director, Engineering</i></div></li>
+      <li><div><b>Andrew Ferrer</b> <i>Team Lead, Engineering</i></div></li>
+      <li><div><b>Alex Dlugokecki</b> <i>Principal Software Engineer</i></div></li>
+      <li><div><b>Michael Hodges</b> <i>Software Engineer</i></div></li>
+      <li><div><b>Ryan Patch</b> <i>Senior Software Engineer</i></div></li>
+      <li><div><b>Earnest Gibbs</b> <i>QA Engineer</i></div></li>
+      <li><div><b>Mamatha Yella</b> <i>Manager, QA Engineering</i></div></li>
+    </ol></div>
+    <div class="qs">
+      <div class="q"><div class="f">Business, customer, problem</div><ul><li>Who is the customer for the last thing you shipped, and what changed for them?</li><li>What business result was it meant to move? How would we know it did?</li><li>Who decides what the team works on, and how does it reach you?</li></ul></div>
+      <div class="q"><div class="f">Commitments and planning</div><ul><li>When the team commits a date, what is it based on? Who checks capacity?</li><li>How often does work get added mid-sprint, and what gets dropped when it does?</li><li>When a date slips, when does the business find out, and from whom?</li></ul></div>
+      <div class="q"><div class="f">Where the time goes</div><ul><li>Walk me through the last item you finished, from pickup to production. Where did it wait?</li><li>What are your three biggest time sinks? People, process, tools, silos, complexity, environments, provisioning, approvals.</li><li>What do you do that you think nobody reads or uses?</li></ul></div>
+      <div class="q"><div class="f">Quality and regression</div><ul><li>What does the two-week regression window actually catch? What would you cut from it?</li><li>Where do defects come from, and how long until they're fixed?</li><li>What breaks in production, and why does it get through?</li></ul></div>
+      <div class="q"><div class="f">Tools and AI today</div><ul><li>What do you already use AI for? Where has it helped, and where has it wasted your time?</li><li>Which tool or system do you fight with most?</li></ul></div>
+      <div class="q"><div class="f">If you could change one thing</div><ul><li>What would you change first, and what stops you from changing it?</li><li>What would make you trust a date you give the business?</li></ul></div>
+    </div>
   </section>
 
   <h2>Timeline <span class="sub">a release cycle is four weeks: a two-week development sprint, then two weeks of regression and QA, then production · cycles overlap by two weeks</span></h2>
@@ -202,14 +246,14 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="wk"><span>12</span><span>19</span><span>26</span><span>2</span><span>9</span><span>16</span><span>23</span><span>30</span><span>7</span><span>14</span><span>21</span><span>28</span><span>4</span><span>11</span><span>18</span><span>25</span><span>1</span><span>8</span><span>15</span><span>22</span></div>
 
       <div class="rl">Plan phase <small>what we are doing</small></div>
-      <div class="bar ph0" style="grid-column:2 / 4">0 · Prepare</div>
-      <div class="bar ph1" style="grid-column:4 / 8">1 · Observe one full cycle</div>
-      <div class="bar ph2" style="grid-column:8 / 10">2 · Pair</div>
-      <div class="bar ph3" style="grid-column:10 / 18">3 · New workflow · four development sprints</div>
-      <div class="bar ph4" style="grid-column:18 / 20">4 · Document</div>
+      <div class="bar ph1" style="grid-column:2 / 4">1 · Prepare and interview</div>
+      <div class="bar ph2" style="grid-column:4 / 8">2 · Distill, embed, observe one full cycle</div>
+      <div class="bar ph3" style="grid-column:8 / 10">3 · Pair and decide</div>
+      <div class="bar ph4" style="grid-column:10 / 18">4 · Run the changes · four development sprints</div>
+      <div class="bar ph4" style="grid-column:18 / 20;opacity:.45">read</div>
 
-      <div class="rl">Milestone <small>what we commit to · Design overlaps Sprint 23</small></div>
-      <div class="bar ph2" style="grid-column:6 / 8">2 · Design</div>
+      <div class="rl">Milestone <small>what we commit to</small></div>
+      <div class="ms chk" style="grid-column:3 / 4">Interviews</div>
       <div class="ms chk" style="grid-column:11 / 12">Checkpoint</div>
       <div class="ms res" style="grid-column:19 / 20">Re-baseline</div>
 
@@ -220,93 +264,79 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="bar reg" style="grid-column:4 / 6">Sprint 21</div><div class="bar reg" style="grid-column:6 / 8">22</div><div class="bar reg" style="grid-column:8 / 10">23</div><div class="bar reg" style="grid-column:10 / 12">24</div><div class="bar reg" style="grid-column:12 / 14">25</div><div class="bar reg" style="grid-column:14 / 16">26</div><div class="bar reg" style="grid-column:16 / 18">1</div><div class="bar reg" style="grid-column:18 / 20">2</div><div class="bar reg" style="grid-column:20 / 22">3</div>
 
       <div class="rl">Ships to production <small>orange counts in the re-baseline</small></div>
-      <div class="ship soft" style="grid-column:7 / 8" title="Sprint 22 · Nov 20 · built the old way"><i></i></div>
-      <div class="ship soft" style="grid-column:9 / 10" title="Sprint 23 · Dec 4 · built the old way"><i></i></div>
-      <div class="ship soft" style="grid-column:11 / 12" title="Sprint 24 · Dec 18 · built the old way"><i></i></div>
-      <div class="ship" style="grid-column:13 / 14" title="Sprint 25 · Jan 1 · first built the new way"><i></i></div>
+      <div class="ship soft" style="grid-column:7 / 8" title="Sprint 22 · Nov 20 · before the changes"><i></i></div>
+      <div class="ship soft" style="grid-column:9 / 10" title="Sprint 23 · Dec 4 · before the changes"><i></i></div>
+      <div class="ship soft" style="grid-column:11 / 12" title="Sprint 24 · Dec 18 · before the changes"><i></i></div>
+      <div class="ship" style="grid-column:13 / 14" title="Sprint 25 · Jan 1 · first built with the changes"><i></i></div>
       <div class="ship" style="grid-column:15 / 16" title="Sprint 26 · Jan 15"><i></i></div>
       <div class="ship" style="grid-column:17 / 18" title="Sprint 1 · Jan 29"><i></i></div>
       <div class="ship" style="grid-column:19 / 20" title="Sprint 2 · Feb 12"><i></i></div>
     </div>
-    <div class="leg"><span><i style="background:var(--ph1)"></i>Observe</span><span><i style="background:var(--ph2)"></i>Design and pair</span><span><i style="background:var(--ph3)"></i>New workflow</span><span><i style="background:var(--ph4)"></i>Document</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dot"></i>Release counted in the re-baseline</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Built the old way</span></div>
+    <div class="leg"><span><i style="background:var(--ph1)"></i>Prepare</span><span><i style="background:var(--ph2)"></i>Observe</span><span><i style="background:var(--ph3)"></i>Pair and decide</span><span><i style="background:var(--ph4)"></i>Run the changes</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dot"></i>Release counted in the re-baseline</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Before the changes</span></div>
   </section>
 
   <h2>Phases <span class="sub">each with an exit test</span></h2>
   <section class="phases">
-    <div class="ph p0"><div class="n">Phase 0 · Oct 13–23</div><h3>Prepare</h3><ul>
-      <li>Meetup: Bart, Amrita, Alex, Eric. Lab brings the two or three practices it would bet on; Alex brings where the team loses time.</li>
-      <li>Eric partners with Andrey from Jellyfish to build the baseline dashboard on all six dimensions. Review it with Bart, Amrita, and Alex first, then with Purush, Quan, and Andrew. The org-wide baseline replaces it on Nov 16.</li>
-      <li>Agree the two or three business outcomes with Alex and Erin.</li>
-      <li>Brief the team through Purush, Quan, Andrew, and Alex.</li></ul>
-      <div class="exit"><b>Exit</b>Baseline dashboard live · outcomes named · team briefed</div></div>
-    <div class="ph p1"><div class="n">Phase 1 · Oct 26 – Nov 20</div><h3>Embed and observe one full cycle</h3><ul>
-      <li>Eric and Amrita in every ritual alongside Alex for four weeks: Sprint 22 from planning through development, regression and QA, and its Nov 20 release.</li>
-      <li>Watch: how work enters and how much is validated first · commitments and the capacity behind them · mid-sprint additions · where time goes between started and done · what regression catches and how long it takes · how defects flow back · where decisions live · who talks to whom · what the team already uses AI for.</li></ul>
-      <div class="exit"><b>Exit</b>Observed losses ranked by cost, with evidence from a whole cycle</div></div>
-    <div class="ph p2"><div class="n">Phase 2 · Nov 9 – Dec 4</div><h3>Design, then pair</h3><ul>
-      <li><b>Nov 9–20, overlapping Sprint 23 and the end of observation:</b> map Lab practices onto the observed losses; pick three or four. Start where engineers feel the pain and review cost is low: tests, regression authoring, docs, boilerplate, PR descriptions. Agentic generation on core logic comes later.</li>
-      <li>At least one practice aimed at the regression window; it's half of every cycle.</li>
-      <li>Fix the commitment habit: capacity known before planning, no mid-sprint additions without a trade, weekly one-line note to business partners.</li>
-      <li>Agree measurement rules with Purush, Quan, Andrew.</li>
-      <li><b>Nov 23 – Dec 4, Thanksgiving inside:</b> Amrita pairs with each software engineer on the team, one by one, so every engineer has tried the Lab's workflow on their own code before Dec 7. Thin attendance is fine here; it wouldn't be at a launch.</li></ul>
-      <div class="exit"><b>Exit</b>Design done by Nov 20 · every engineer paired by Dec 4 · go / no-go for Dec 7</div></div>
-    <div class="ph p3"><div class="n">Phase 3 · Dec 7 – Jan 29</div><h3>Run the new workflow for four sprints</h3><ul>
-      <li>Start at the Sprint 25 boundary with full participation and run Sprints 25, 26, 1, and 2 the new way, holidays included. Amrita embedded daily; Lab engineers pairing through Sprint 26 at minimum.</li>
-      <li>Alex plus one or two engineers who take to it become in-team champions; the Lab pairs with them, they pair with the rest.</li>
+    <div class="ph p1"><div class="n">Phase 1 · Oct 13–23</div><h3>Prepare</h3><ul>
+      <li>Eric hosts Bart, Amrita, Taylor, and Lilly to review the preliminary plan and sharpen it.</li>
+      <li>Write the interview script above; run nine 30-minute interviews by Friday, Oct 23.</li>
+      <li>Decide the KPIs we will track on the six dimensions and the gate.</li>
+      <li>Eric builds the Jellyfish dashboard for those KPIs and baselines the team before anything changes; review it with the core team, then with Purush, Quan, and Andrew.</li></ul>
+      <div class="exit"><b>Exit</b>Interviews done · KPIs chosen · dashboard live and baselined · plan reviewed</div></div>
+    <div class="ph p2"><div class="n">Phase 2 · Oct 26 – Nov 20</div><h3>Distill, embed, observe</h3><ul>
+      <li>Distill the interviews into a ranked list of what slows the team down and what it doesn't understand about the business, customer, problem, or KPIs.</li>
+      <li>Eric and Amrita in every ritual alongside Alex for one full cycle: Sprint 22 from planning through development, regression and QA, and its Nov 20 release.</li>
+      <li>Map the value stream for two or three real items: where each one waited, and why. Compare what people said with what the data and the observation show.</li>
+      <li>Watch commitments being made: against what capacity, with what information, and how the business hears about changes.</li></ul>
+      <div class="exit"><b>Exit</b>Drag ranked by cost with evidence from interviews, data, and observation · the two or three biggest constraints named</div></div>
+    <div class="ph p3"><div class="n">Phase 3 · Nov 23 – Dec 4</div><h3>Pair and decide</h3><ul>
+      <li>Amrita pairs with each engineer on the team, one by one, on AI-native PDLC, so every engineer has tried it on their own code before Dec 7. Thanksgiving week tolerates this; a launch wouldn't.</li>
+      <li>Decide the ideas we will implement against the problem statement: no more than three or four, each aimed at a named constraint, at least one aimed at the regression window.</li>
+      <li>Fix the commitment habit as one of them: capacity known before planning, no mid-sprint additions without a trade, a weekly one-line note to business partners on what was committed, what shipped, and what moved.</li>
+      <li>Agree measurement rules with Purush, Quan, and Andrew so no one argues about the numbers later.</li></ul>
+      <div class="exit"><b>Exit</b>Changes chosen and written down · every engineer paired · go / no-go for Dec 7</div></div>
+    <div class="ph p4"><div class="n">Phase 4 · Dec 7 – Feb 12</div><h3>Run the changes, then re-baseline</h3><ul>
+      <li>Changes go live at the Sprint 25 boundary and run for four development sprints: 25, 26, 1, and 2, holidays included. Amrita embedded through Sprint 26 at minimum.</li>
+      <li>Alex and one or two engineers who take to it carry the changes inside the team.</li>
       <li>Expect a dip in Sprint 25. Continue unless it persists through Sprint 26.</li>
-      <li>Releases built the new way ship Jan 1, Jan 15, Jan 29, and Feb 12. Sprint 26 and the regression windows around the holidays will be thin; the re-baseline reads the four sprints together, not each alone.</li>
-      <li>Measure every sprint against baseline and outcomes; publish to the team and its leaders, good or bad.</li></ul>
-      <div class="exit"><b>Exit · Dec 18 checkpoint</b>First sprint done · team fully on the workflow · trend visible on the development-side measures · outcomes on track</div></div>
-    <div class="ph p4"><div class="n">Phase 4 · Feb 1–12</div><h3>Document and re-baseline</h3><ul>
-      <li>Playbook finished from the four sprints: prerequisites, setup, the workflow step by step, guardrails, metrics, what went wrong and how it was fixed.</li>
-      <li>Tested cold: Payables reads it and says what's missing.</li>
-      <li>Feb 12: Sprint 2 ships, the fourth release built the new way. Re-baseline all six dimensions and the outcomes against the Phase 0 baseline.</li>
-      <li>Decide at the re-baseline: continue, adjust practices, or stop; Payables go / no-go.</li></ul>
-      <div class="exit"><b>Exit · Feb 12 re-baseline</b>Four sprints and four releases (25, 26, 1, 2) read against baseline and outcomes · playbook ready · Payables decision made</div></div>
+      <li>Dec 18 checkpoint after the first sprint. Releases built with the changes ship Jan 1, Jan 15, Jan 29, and Feb 12.</li>
+      <li>Feb 12: re-baseline the dashboard against Phase 1 and decide: continue, adjust, or stop; and whether the next team starts.</li></ul>
+      <div class="exit"><b>Exit · Feb 12 re-baseline</b>Four sprints and four releases read as one block against the baseline · a written account of what changed and why · next-team decision made</div></div>
   </section>
 
-  <h2>Scorecard <span class="sub">telemetry only · baseline dashboard built with Jellyfish in Phase 0 · re-baselined Feb 12 · targets grounded in published evidence</span></h2>
+  <h2>Scorecard <span class="sub">Jellyfish, telemetry only · baselined in Phase 1 · re-baselined Feb 12</span></h2>
   <div class="table-wrap"><table>
-    <thead><tr><th>Measure</th><th>Role</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 12 re-baseline target</th><th>Source</th></tr></thead>
+    <thead><tr><th>Dimension · measures</th><th>Role</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 12 re-baseline target</th><th>Source</th></tr></thead>
     <tbody>
       <tr class="grp"><td colspan="6">The gate</td></tr>
-      <tr><td class="t"><b>Business outcomes</b> · two or three, agreed in Phase 0</td><td><span class="pill gate">Gate</span></td><td class="m tbd">named</td><td class="m">on track</td><td class="m">delivered</td><td class="m">Erin · business</td></tr>
-      <tr><td class="t"><b>Commitments shipped on the date promised</b></td><td><span class="pill gate">Gate</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td><td class="m">Commitment Register</td></tr>
+      <tr><td class="t"><b>Commitments shipped on the date promised</b></td><td><span class="pill gate">Gate</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td><td class="m">Jellyfish</td></tr>
       <tr class="grp"><td colspan="6">The six dimensions</td></tr>
-      <tr><td class="t"><b>Speed</b> · PR and sprint cycle time</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↓</td><td class="m">15–20% faster</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Quality</b> · bug-linked PR share, rework</td><td><span class="pill guard">Guard</span></td><td class="m tbd">—</td><td class="m">flat</td><td class="m">flat or better</td><td class="m">Jellyfish · Jira</td></tr>
-      <tr><td class="t"><b>Predictability</b> · sprint completion, predictability</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">≥70%</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Productivity</b> · throughput per engineer</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">up, with quality flat</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Collaboration</b> · review turnaround, PRs with reviewers</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">review wait down</td><td class="m">Jellyfish</td></tr>
+      <tr><td class="t"><b>Speed</b> · issue cycle time, PR cycle time</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↓</td><td class="m">15–20% faster</td><td class="m">Jellyfish</td></tr>
+      <tr><td class="t"><b>Quality</b> · defects MTTR, defects opened, defects resolved, change failure rate</td><td><span class="pill guard">Guard</span></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR ≤15% and no worse</td><td class="m">Jellyfish · releases</td></tr>
+      <tr><td class="t"><b>Process</b> · sprint completion rate, sprint predictability</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">predictability ≥70% · completion up</td><td class="m">Jellyfish</td></tr>
+      <tr><td class="t"><b>Productivity</b> · days with commits, issues resolved, PRs merged, story points</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">up, with quality flat</td><td class="m">Jellyfish</td></tr>
+      <tr><td class="t"><b>Collaboration</b> · PR reviews, PRs without comments</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">reviews up · PRs without comments down</td><td class="m">Jellyfish</td></tr>
       <tr><td class="t"><b>Change failure rate</b> · per production release</td><td><span class="pill guard">Guard</span></td><td class="m tbd">—</td><td class="m">not yet released</td><td class="m">≤15%, no worse than baseline</td><td class="m">Releases · incidents</td></tr>
-      <tr class="grp"><td colspan="6">Adoption</td></tr>
-      <tr><td class="t"><b>Engineers active in AI-DLC weekly</b> · use, not licenses</td><td><span class="pill lead">Lead</span></td><td class="m">—</td><td class="m">100%</td><td class="m">≥80% sustained</td><td class="m">Jellyfish AI</td></tr>
-      <tr><td class="t"><b>Share of PRs AI-assisted</b></td><td><span class="pill lead">Lead</span></td><td class="m">—</td><td class="m">rising</td><td class="m">majority</td><td class="m">Jellyfish AI</td></tr>
+      <tr class="grp"><td colspan="6">AI impact</td></tr>
+      <tr><td class="t"><b>AI impact</b> · measure to be defined in Phase 1 with Jellyfish AI</td><td><span class="pill ph">Placeholder</span></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m">Jellyfish AI</td></tr>
     </tbody>
   </table></div>
 
-      <h2>What the evidence says <span class="sub">and what it changed in the plan</span></h2>
-      <div class="ev">
-        <div class="e"><div class="f">AI amplifies what's already there</div><p>Throughput rises, but instability rises too unless foundations are solid: small batches, version control discipline, a quality platform, a clear AI stance, tools connected to internal code and docs.</p><div class="s">DORA 2025 · ~5,000 respondents · why small batches and commitment discipline are part of the design</div></div>
-        <div class="e"><div class="f">Expect a dip, and don't trust self-report</div><p>Experienced developers took 19% longer with AI tools on code they knew well, while believing they were 20% faster. Time went to checking and correcting.</p><div class="s">METR 2025 RCT · why Sprint 25 may be slower and only telemetry counts</div></div>
-        <div class="e"><div class="f">The realistic prize is moderate</div><p>Across 2M+ PRs, AI-assisted work ran about 16% faster; a joint study with OpenAI projected up to 24% at full adoption. Bug tickets rose 27% at the highest adoption in one study.</p><div class="s">Jellyfish 2025 · why targets are 15–20% and quality is a guard</div></div>
-        <div class="e"><div class="f">Access is not adoption</div><p>About 84% of developers have a tool; about 45% use one weekly. Rollouts stall on change management: fast first-week exploration, then drop-off. The ones that stick start on work engineers dislike and build peer champions.</p><div class="s">Practitioner studies 2025–26 · why champions, task choice, and active-use telemetry</div></div>
-      </div>
-
   <h2>Risks and decision rules <span class="sub">named now so no one argues later</span></h2>
   <section class="risks">
-    <div class="rk"><b>Baseline is soft.</b> Q3 Jellyfish data for the team may be incomplete; definitions were still moving in Q3.<span class="rule">If Q3 is unusable, Sprints 22 and 23 are the baseline cycles, decided with Andrey in Phase 0.</span></div>
-    <div class="rk"><b>Phase 2 is tight.</b> Design overlaps the last two weeks of observation, and pairing holds Thanksgiving.<span class="rule">Design done by Nov 20 and every engineer paired by Dec 4, or start at the Sprint 1 boundary, Jan 4. One clean late start beats a messy early one.</span></div>
-    <div class="rk"><b>The dip.</b> Sprint 25 may be slower than Sprint 24; the evidence says to expect it.<span class="rule">Continue unless the dip persists through Sprint 26; then revisit practice choice, not the plan.</span></div>
-    <div class="rk"><b>Gaming.</b> Predictability rises instantly if the team commits less.<span class="rule">Predictability is read together with throughput and the outcomes column, never alone.</span></div>
-    <div class="rk"><b>People.</b> Amrita embedded daily is a cost to the Lab; Alex carries his Principal load plus adoption; a new hire may join mid-pilot.<span class="rule">Bart agrees the trade in Phase 0. Alex is protected from interview loops and the Tom demo through Phase 3. Payables go / no-go is decided at the Feb 12 re-baseline, not before.</span></div>
+    <div class="rk"><b>Scope creep into a product transformation.</b> Everything we find will tempt us to fix how product is driven.<span class="rule">If a change needs business partners to work differently, it goes to the CTO parking lot. This plan only changes what the team controls.</span></div>
+    <div class="rk"><b>Interviews that say what people think we want to hear.</b> Nine people, several of them each other's managers.<span class="rule">One on one, thirty minutes, synthesized without attribution. Observation in Phase 2 checks what was said against what happens.</span></div>
+    <div class="rk"><b>Fixing symptoms instead of the constraint.</b> The first visible problem is rarely the biggest one.<span class="rule">The value stream map and the dashboard decide, not the loudest interview. No more than three or four changes, each tied to a named constraint.</span></div>
+    <div class="rk"><b>Data nobody trusts.</b> Q3 definitions were still moving; a disputed baseline sinks the re-baseline.<span class="rule">Dashboard and definitions agreed with Quan, Andrew, and Alex before Oct 26. If Q3 is unusable, Sprints 22 and 23 are the baseline.</span></div>
+    <div class="rk"><b>The dip.</b> New ways of working are slower before they're faster.<span class="rule">Continue unless the dip persists through Sprint 26; then revisit the changes, not the plan.</span></div>
     <div class="rk"><b>Holiday capacity.</b> Sprint 26 and the regression windows around it run through the holidays, so two of the four sprints carry thinner data.<span class="rule">The re-baseline reads the four sprints as one block against the baseline block; no single sprint decides it.</span></div>
-    <div class="rk"><b>The regression window.</b> Lab practices were proven in development, not QA, and regression is half the cycle.<span class="rule">Phase 2 must choose at least one practice aimed at regression, or speed and change failure won't move.</span></div>
+    <div class="rk"><b>Bandwidth.</b> Alex carries his Principal load plus this; Amrita is away from the Lab; a new hire may land mid-plan.<span class="rule">Bart agrees the trade in Phase 1. Alex is protected from interview loops and the Tom demo through Phase 4.</span></div>
+    <div class="rk"><b>The business isn't in the room.</b> Partners don't want to spend time on this, and their trust is the real score.<span class="rule">Erin's interview stands in for the business in Phase 1. From Phase 3, the weekly one-line note is how they see the change, and the gate is read from Jellyfish, not from opinion.</span></div>
   </section>
 
   <footer>
     <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
-    <div class="footer-conf">Confidential · Internal · October 2026 · Evidence: DORA 2025 State of AI-assisted Software Development and AI Capabilities Model · METR 2025 · Jellyfish AI benchmark (2M+ PRs) and Jellyfish × OpenAI study · Faros, Coder, Institute PM practitioner reports</div>
+    <div class="footer-conf">Confidential · Internal · October 2026</div>
   </footer>
 
 </main>
