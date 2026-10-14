@@ -131,7 +131,13 @@ tbody tr:last-child td{border-bottom:none}
 tbody tr.grp td{background:var(--bg-soft);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding:6px 12px}
 td.m{font-family:var(--mono);font-size:12px;color:var(--text-mid);white-space:nowrap}
 td.m.tbd{color:var(--text-muted)}
-td.t b{color:var(--dark-forest)}
+td.t b{color:var(--dark-forest);font-size:13.5px}
+td.t small{display:block;font-size:11.5px;color:var(--text-muted);margin-top:2px}
+td.t .pill{margin-left:6px;vertical-align:1px}
+table.sc thead th{white-space:nowrap}
+table.sc td.m{white-space:normal;line-height:1.4}
+table.sc tbody td{padding:10px 12px}
+table.sc tbody tr:nth-child(even):not(.grp) td{background:#FBFBF9}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
 .pill.gate{background:var(--warn-bg);color:var(--warn)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
 
@@ -196,20 +202,21 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <section class="scope">
     <div class="card in"><h3>In scope</h3><ul>
       <li>Operating rhythms: how work enters, how commitments are made and against what capacity, how status flows to the business.</li>
-      <li>Jellyfish data used to find and act on specific drag, not to report.</li>
-      <li>Process and organizational burden: approvals, handoffs, environments, provisioning, regression length, silos between engineering, QA, product, and design.</li>
-      <li>Whether the team understands the business, the customer, the problem, and the KPI behind each commitment.</li>
+      <li>Jellyfish data used to find and act on specific drag.</li>
+      <li>Process and organizational burden: approvals, handoffs, environments, provisioning, regression length, silos between engineering, QA, product, design, and the business.</li>
+      <li>Whether the team understands the business, the customer, the problem, and the KPI behind each commitment, and making sure every commitment carries that context from the day it is made.</li>
+      <li>How the team responds to business asks: capacity checks, trades, and how the business hears about changes. We change the team's side of that exchange, not the business's.</li>
       <li>AI-native PDLC, paired in by the Innovation Lab, where it removes observed friction.</li></ul></div>
     <div class="card out"><h3>Out of scope, deliberately</h3><ul>
       <li>Turning Merchant Experience into a product-led team. At Priority Commerce our business partners drive product; changing that is a longer transformation than this problem needs, and it would take too long.</li>
-      <li>Reorganizing the team or changing its leaders.</li>
-      <li>Replacing the sprint and regression cadence. We make it faster and more predictable; we don't redesign it in this window.</li>
+      <li>Reorganizing the team or changing its leaders as a lever in this window. If structure turns out to be the constraint, that goes to the CTO as a recommendation.</li>
+      <li>Redesigning the sprint and regression cadence. Shortening regression through automation and AI is in scope; replacing the cadence is not.</li>
       <li>Anything that needs business partners to change how they work. Those ideas go to a parking lot for the CTO, not into this plan.</li></ul></div>
   </section>
 
   <h2>Who</h2>
   <section class="people">
-    <div class="pg core"><div class="k">Core team</div><div class="who"><span>Eric<i>Owner</i></span><span>Amrita<i>Software Architect, Innovation Lab</i></span><span>Alex<i>Principal Software Engineer, Merchant Experience</i></span><span>Lilly<i>Program management</i></span></div></div>
+    <div class="pg core"><div class="k">Core team</div><div class="who"><span>Eric<i>Owner</i></span><span>Amrita<i>Software Architect, Innovation Lab</i></span><span>Alex<i>Principal Software Engineer, Merchant Experience</i></span><span>Lilly<i>Program management</i></span><span>Steven<i>Staff SDET</i></span></div></div>
     <div class="pg"><div class="k">Innovation Lab</div><div class="who"><span>Bart<i>Head of Innovation &amp; Applied AI</i></span><span>Taylor<i>Innovation Lab</i></span></div></div>
     <div class="pg"><div class="k">Owners of the team and the numbers</div><div class="who"><span>Purush<i>Sr Director, Engineering</i></span><span>Quan<i>Director, Engineering</i></span><span>Andrew<i>Team Lead, Engineering</i></span></div></div>
   </section>
@@ -221,16 +228,16 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <li><div><b>Kyle Miller</b> <i>Product Design</i></div></li>
       <li><div><b>Quan Ouyang</b> <i>Director, Engineering</i></div></li>
       <li><div><b>Andrew Ferrer</b> <i>Team Lead, Engineering</i></div></li>
-      <li><div><b>Alex Dlugokecki</b> <i>Principal Software Engineer</i></div></li>
-      <li><div><b>Michael Hodges</b> <i>Software Engineer</i></div></li>
-      <li><div><b>Ryan Patch</b> <i>Senior Software Engineer</i></div></li>
-      <li><div><b>Earnest Gibbs</b> <i>QA Engineer</i></div></li>
       <li><div><b>Mamatha Yella</b> <i>Manager, QA Engineering</i></div></li>
+      <li><div><b>Alex Dlugokecki</b> <i>Principal Software Engineer</i></div></li>
+      <li><div><b>Ryan Patch</b> <i>Senior Software Engineer</i></div></li>
+      <li><div><b>Michael Hodges</b> <i>Software Engineer</i></div></li>
+      <li><div><b>Earnest Gibbs</b> <i>QA Engineer</i></div></li>
     </ol></div>
     <div class="qs">
       <div class="q"><div class="f">Business, customer, problem</div><ul><li>Who is the customer for the last thing you shipped, and what changed for them?</li><li>What business result was it meant to move? How would we know it did?</li><li>Who decides what the team works on, and how does it reach you?</li></ul></div>
       <div class="q"><div class="f">Commitments and planning</div><ul><li>When the team commits a date, what is it based on? Who checks capacity?</li><li>How often does work get added mid-sprint, and what gets dropped when it does?</li><li>When a date slips, when does the business find out, and from whom?</li></ul></div>
-      <div class="q"><div class="f">Where the time goes</div><ul><li>Walk me through the last item you finished, from pickup to production. Where did it wait?</li><li>What are your three biggest time sinks? People, process, tools, silos, complexity, environments, provisioning, approvals.</li><li>What do you do that you think nobody reads or uses?</li></ul></div>
+      <div class="q"><div class="f">Where the time goes</div><ul><li>Walk me through the last item you finished, from pickup to production. Where did it wait?</li><li>What are your three biggest time sinks? People, process, tools, silos, complexity, environments, provisioning, approvals.</li><li>Which meetings, documents, or status updates could disappear tomorrow without anyone noticing?</li></ul></div>
       <div class="q"><div class="f">Quality and regression</div><ul><li>What does the two-week regression window actually catch? What would you cut from it?</li><li>Where do defects come from, and how long until they're fixed?</li><li>What breaks in production, and why does it get through?</li></ul></div>
       <div class="q"><div class="f">Tools and AI today</div><ul><li>What do you already use AI for? Where has it helped, and where has it wasted your time?</li><li>Which tool or system do you fight with most?</li></ul></div>
       <div class="q"><div class="f">If you could change one thing</div><ul><li>What would you change first, and what stops you from changing it?</li><li>What would make you trust a date you give the business?</li></ul></div>
@@ -278,59 +285,58 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <h2>Phases <span class="sub">each with an exit test</span></h2>
   <section class="phases">
     <div class="ph p1"><div class="n">Phase 1 · Oct 13–23</div><h3>Prepare</h3><ul>
-      <li>Eric hosts Bart, Amrita, Taylor, and Lilly to review the preliminary plan and sharpen it.</li>
+      <li>Eric hosts Bart, Amrita, Taylor, Lilly, and Steven to review the preliminary plan and sharpen it.</li>
       <li>Write the interview script above; run nine 30-minute interviews by Friday, Oct 23.</li>
       <li>Decide the KPIs we will track on the six dimensions and the gate.</li>
-      <li>Eric builds the Jellyfish dashboard for those KPIs and baselines the team before anything changes; review it with the core team, then with Purush, Quan, and Andrew.</li></ul>
+      <li>Eric builds the Jellyfish dashboard for those KPIs and baselines the team before anything changes; review it with the core team, then with everyone we interview: Erin, Kyle, Quan, Andrew, Mamatha, Alex, Ryan, Michael, and Earnest.</li></ul>
       <div class="exit"><b>Exit</b>Interviews done · KPIs chosen · dashboard live and baselined · plan reviewed</div></div>
     <div class="ph p2"><div class="n">Phase 2 · Oct 26 – Nov 20</div><h3>Distill, embed, observe</h3><ul>
       <li>Distill the interviews into a ranked list of what slows the team down and what it doesn't understand about the business, customer, problem, or KPIs.</li>
-      <li>Eric and Amrita in every ritual alongside Alex for one full cycle: Sprint 22 from planning through development, regression and QA, and its Nov 20 release.</li>
-      <li>Map the value stream for two or three real items: where each one waited, and why. Compare what people said with what the data and the observation show.</li>
+      <li>Eric, Amrita, and Lilly in every ritual alongside Alex for one full cycle: Sprint 22 from planning through development, regression and QA, and its Nov 22 release.</li>
+      <li>Trace two or three real items end to end in Jira and Jellyfish, from pickup through development, review, QA, regression, and release, and record how long each waited at every step and why. Compare what people said in interviews with what the Jellyfish benchmark dashboard and the observation show.</li>
       <li>Watch commitments being made: against what capacity, with what information, and how the business hears about changes.</li></ul>
       <div class="exit"><b>Exit</b>Drag ranked by cost with evidence from interviews, data, and observation · the two or three biggest constraints named</div></div>
     <div class="ph p3"><div class="n">Phase 3 · Nov 23 – Dec 4</div><h3>Pair and decide</h3><ul>
-      <li>Amrita pairs with each engineer on the team, one by one, on AI-native PDLC, so every engineer has tried it on their own code before Dec 7. Thanksgiving week tolerates this; a launch wouldn't.</li>
-      <li>Decide the ideas we will implement against the problem statement: no more than three or four, each aimed at a named constraint, at least one aimed at the regression window.</li>
-      <li>Fix the commitment habit as one of them: capacity known before planning, no mid-sprint additions without a trade, a weekly one-line note to business partners on what was committed, what shipped, and what moved.</li>
-      <li>Agree measurement rules with Purush, Quan, and Andrew so no one argues about the numbers later.</li></ul>
+      <li>Amrita pairs with each engineer on the team, one by one, on AI-native PDLC; Bart pairs with Erin from Product; Steven pairs with each QA Engineer. Everyone has tried it on their own work before Dec 7.</li>
+      <li>Decide the ideas we will implement against the problem statement: no more than three or four, each aimed at a named constraint, at least one aimed at the regression window. Right-sizing commitments into smaller batches is a candidate from day one.</li>
+      <li>Fix the commitment habit as one of them: capacity known before planning, no mid-sprint additions without a trade, every commitment written with the customer, the problem, and the KPI it is meant to move, and a weekly one-line note to business partners on what was committed, what shipped, and what moved.</li></ul>
       <div class="exit"><b>Exit</b>Changes chosen and written down · every engineer paired · go / no-go for Dec 7</div></div>
     <div class="ph p4"><div class="n">Phase 4 · Dec 7 – Feb 12</div><h3>Run the changes, then re-baseline</h3><ul>
-      <li>Changes go live at the Sprint 25 boundary and run for four development sprints: 25, 26, 1, and 2, holidays included. Amrita embedded through Sprint 26 at minimum.</li>
-      <li>Alex and one or two engineers who take to it carry the changes inside the team.</li>
+      <li>Changes go live at the Sprint 25 boundary and run for four development sprints: 25, 26, 1, and 2, holidays included. Amrita, Bart, and Steven embedded through Sprint 26 at minimum.</li>
+      <li>Alex, as the Principal, carries the changes inside the team.</li>
       <li>Expect a dip in Sprint 25. Continue unless it persists through Sprint 26.</li>
       <li>Dec 18 checkpoint after the first sprint. Releases built with the changes ship Jan 1, Jan 15, Jan 29, and Feb 12.</li>
+      <li>For every commitment shipped, record the KPI it was meant to move; at the re-baseline, report which ones moved.</li>
       <li>Feb 12: re-baseline the dashboard against Phase 1 and decide: continue, adjust, or stop; and whether the next team starts.</li></ul>
       <div class="exit"><b>Exit · Feb 12 re-baseline</b>Four sprints and four releases read as one block against the baseline · a written account of what changed and why · next-team decision made</div></div>
   </section>
 
-  <h2>Scorecard <span class="sub">Jellyfish, telemetry only · baselined in Phase 1 · re-baselined Feb 12</span></h2>
-  <div class="table-wrap"><table>
-    <thead><tr><th>Dimension · measures</th><th>Role</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 12 re-baseline target</th><th>Source</th></tr></thead>
+  <h2>Scorecard <span class="sub">all measures from Jellyfish · baselined in Phase 1 · re-baselined Feb 12</span></h2>
+  <div class="table-wrap"><table class="sc">
+    <thead><tr><th style="width:44%">Dimension and measures</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 12 re-baseline target</th></tr></thead>
     <tbody>
-      <tr class="grp"><td colspan="6">The gate</td></tr>
-      <tr><td class="t"><b>Commitments shipped on the date promised</b></td><td><span class="pill gate">Gate</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td><td class="m">Jellyfish</td></tr>
-      <tr class="grp"><td colspan="6">The six dimensions</td></tr>
-      <tr><td class="t"><b>Speed</b> · issue cycle time, PR cycle time</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↓</td><td class="m">15–20% faster</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Quality</b> · defects MTTR, defects opened, defects resolved, change failure rate</td><td><span class="pill guard">Guard</span></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR ≤15% and no worse</td><td class="m">Jellyfish · releases</td></tr>
-      <tr><td class="t"><b>Process</b> · sprint completion rate, sprint predictability</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">predictability ≥70% · completion up</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Productivity</b> · days with commits, issues resolved, PRs merged, story points</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">up, with quality flat</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Collaboration</b> · PR reviews, PRs without comments</td><td><span class="pill lead">Lead</span></td><td class="m tbd">—</td><td class="m">trend ↑</td><td class="m">reviews up · PRs without comments down</td><td class="m">Jellyfish</td></tr>
-      <tr><td class="t"><b>Change failure rate</b> · per production release</td><td><span class="pill guard">Guard</span></td><td class="m tbd">—</td><td class="m">not yet released</td><td class="m">≤15%, no worse than baseline</td><td class="m">Releases · incidents</td></tr>
-      <tr class="grp"><td colspan="6">AI impact</td></tr>
-      <tr><td class="t"><b>AI impact</b> · measure to be defined in Phase 1 with Jellyfish AI</td><td><span class="pill ph">Placeholder</span></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m">Jellyfish AI</td></tr>
+      <tr class="grp"><td colspan="4">The gate</td></tr>
+      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill gate">Gate</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td></tr>
+      <tr class="grp"><td colspan="4">The six dimensions</td></tr>
+      <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>Issue cycle time · PR cycle time</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">15–20% faster</td></tr>
+      <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or trending down</td></tr>
+      <tr><td class="t"><b>Process</b> <span class="pill lead">Lead</span><small>Sprint completion rate · sprint predictability</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">predictability ≥70% · completion up</td></tr>
+      <tr><td class="t"><b>Productivity</b> <span class="pill lead">Lead</span><small>Days with commits · issues resolved · PRs merged · story points</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">up, with quality no worse</td></tr>
+      <tr><td class="t"><b>Collaboration</b> <span class="pill lead">Lead</span><small>PR reviews · PRs without comments</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">reviews up · PRs without comments down</td></tr>
+      <tr class="grp"><td colspan="4">AI impact</td></tr>
+      <tr><td class="t"><b>AI impact</b> <span class="pill ph">Placeholder</span><small>Measure to be defined in Phase 1 with Jellyfish AI</small></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td></tr>
     </tbody>
   </table></div>
 
   <h2>Risks and decision rules <span class="sub">named now so no one argues later</span></h2>
   <section class="risks">
-    <div class="rk"><b>Scope creep into a product transformation.</b> Everything we find will tempt us to fix how product is driven.<span class="rule">If a change needs business partners to work differently, it goes to the CTO parking lot. This plan only changes what the team controls.</span></div>
+    <div class="rk"><b>Scope creep into a product transformation.</b> Everything we find will tempt us to fix how product is driven.<span class="rule">If a change needs business partners to work differently, it goes to the CTO parking lot. This plan changes what the team controls, including the context every commitment carries.</span></div>
+    <div class="rk"><b>Output without outcome.</b> Shipping on the promised date is the gate, but a date kept on a feature that moved nothing is still a feature factory.<span class="rule">Every commitment carries the KPI it is meant to move; the re-baseline reports which ones moved, not just which ones shipped.</span></div>
     <div class="rk"><b>Interviews that say what people think we want to hear.</b> Nine people, several of them each other's managers.<span class="rule">One on one, thirty minutes, synthesized without attribution. Observation in Phase 2 checks what was said against what happens.</span></div>
-    <div class="rk"><b>Fixing symptoms instead of the constraint.</b> The first visible problem is rarely the biggest one.<span class="rule">The value stream map and the dashboard decide, not the loudest interview. No more than three or four changes, each tied to a named constraint.</span></div>
-    <div class="rk"><b>Data nobody trusts.</b> Q3 definitions were still moving; a disputed baseline sinks the re-baseline.<span class="rule">Dashboard and definitions agreed with Quan, Andrew, and Alex before Oct 26. If Q3 is unusable, Sprints 22 and 23 are the baseline.</span></div>
+    <div class="rk"><b>Fixing symptoms instead of the constraint.</b> The first visible problem is rarely the biggest one.<span class="rule">The end-to-end traces and the Jellyfish benchmark dashboard decide, not the loudest interview. No more than three or four changes, each tied to a named constraint.</span></div>
+    <div class="rk"><b>Data nobody trusts.</b> Q3 definitions were still moving; a disputed baseline sinks the re-baseline.<span class="rule">Dashboard and definitions agreed before Oct 26 with everyone we interview: Erin, Kyle, Quan, Andrew, Mamatha, Alex, Ryan, Michael, and Earnest. If Q3 is unusable, Sprints 22 and 23 are the baseline.</span></div>
     <div class="rk"><b>The dip.</b> New ways of working are slower before they're faster.<span class="rule">Continue unless the dip persists through Sprint 26; then revisit the changes, not the plan.</span></div>
     <div class="rk"><b>Holiday capacity.</b> Sprint 26 and the regression windows around it run through the holidays, so two of the four sprints carry thinner data.<span class="rule">The re-baseline reads the four sprints as one block against the baseline block; no single sprint decides it.</span></div>
-    <div class="rk"><b>Bandwidth.</b> Alex carries his Principal load plus this; Amrita is away from the Lab; a new hire may land mid-plan.<span class="rule">Bart agrees the trade in Phase 1. Alex is protected from interview loops and the Tom demo through Phase 4.</span></div>
     <div class="rk"><b>The business isn't in the room.</b> Partners don't want to spend time on this, and their trust is the real score.<span class="rule">Erin's interview stands in for the business in Phase 1. From Phase 3, the weekly one-line note is how they see the change, and the gate is read from Jellyfish, not from opinion.</span></div>
   </section>
 
