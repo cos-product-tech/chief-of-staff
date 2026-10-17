@@ -48,7 +48,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .why b{color:var(--dark-forest)}
 
 /* KPI strip */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
 .chg{margin-top:10px;font-size:12px;color:var(--text-muted);display:flex;gap:10px;align-items:baseline}
 .chg .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);white-space:nowrap}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);position:relative;overflow:hidden}
@@ -188,27 +188,27 @@ tfoot td.c{font-family:var(--mono)}
   <div class="header-inner">
     <div class="header-left">
       <div class="doc-eyebrow">Product &amp; Engineering · Chief of Staff · Headcount Reconciliation</div>
-      <h1 class="doc-title">P&amp;E Hiring Plan</h1>
-      <p class="doc-subtitle">Every open role, sorted by how far it has travelled through approval, and the total ask per workstream. Two gates: <b>Yi</b> approves the need; <b>Finance</b> budgets it.</p>
+      <h1 class="doc-title">P&amp;E Hiring Plan · Unbudgeted Roles</h1>
+      <p class="doc-subtitle">Only the roles that are not yet budgeted, sorted by how far each has travelled through approval, and the ask per workstream. Backfills and budgeted incremental roles are already on the template and are not shown. Two gates: <b>Yi</b> approves the need; <b>Finance</b> budgets it.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
       <span class="meta-badge badge-status">⚡ Working draft</span>
-      <span class="meta-badge badge-date">5 Oct 2026 · Eric Normant</span>
+      <span class="meta-badge badge-date">17 Oct 2026 · Eric Normant</span>
     </div>
   </div>
 </header>
 
 <main class="doc-body">
 
-  <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. This is the reconciled input — every role below either goes on the template or doesn't.</span></div>
+  <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. Every role below is an incremental ask that still needs Finance, Yi, or both.</span></div>
 
   <div class="kpis" id="kpis"></div>
-  <div class="chg"><span class="k">Changes</span><span>Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat (2 Merchant Experience · Terminal Integration &amp; Distribution, 2 Acquiring Stability); they also sit in the Needs Finance list because they are not yet budgeted. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway. <b>Since 8 Oct:</b> removed 2 Billing &amp; Revenue Management IDC roles filled by internal moves (Team Lead, QA Engineering · Sahil Malhotra from CFTPay; Senior Software Engineer · Poonam Rani from CFTConnect). <b>12 Oct:</b> candidates identified from Corvia Payments for two ADC roles, offers pending: Stephanie Chou (Merchant Experience Software Engineer, not yet to Yi) and Parker Abare (EBM / Partner Experience Senior Software Engineer, Yi approved, needs Finance).</span></div>
+  <div class="chg"><span class="k">Changes</span><span><b>17 Oct:</b> this view now shows only unbudgeted roles; backfills and budgeted incremental roles are hidden. Two Product Manager asks re-leveled to Senior Product Manager (Billing &amp; Revenue Management ADC, Routing &amp; Optimization IDC). Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat (2 Merchant Experience · Terminal Integration &amp; Distribution, 2 Acquiring Stability); they also sit in the Needs Finance list because they are not yet budgeted. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway. <b>Since 8 Oct:</b> removed 2 Billing &amp; Revenue Management IDC roles filled by internal moves (Team Lead, QA Engineering · Sahil Malhotra from CFTPay; Senior Software Engineer · Poonam Rani from CFTConnect). <b>12 Oct:</b> candidates identified from Corvia Payments for two ADC roles, offers pending: Stephanie Chou (Merchant Experience Software Engineer, not yet to Yi) and Parker Abare (EBM / Partner Experience Senior Software Engineer, Yi approved, needs Finance).</span></div>
 
   <div class="decisions" id="decisions"></div>
 
-  <h2>Approval pipeline <span class="hint">Left is closest to a start date. Right still needs the most decisions.</span></h2>
+  <h2>Approval pipeline <span class="hint">Left needs only Finance. Right still needs Yi, then Finance.</span></h2>
   <div class="pipe" id="pipe"></div>
   <div class="stackbar" id="stackbar"></div>
   <div class="legend" id="legend"></div>
@@ -220,8 +220,6 @@ tfoot td.c{font-family:var(--mono)}
       <thead>
         <tr>
           <th>Workstream</th>
-          <th class="c">Backfill<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
-          <th class="c">Incremental<br><span style="font-weight:400;opacity:.7">approved · budgeted</span></th>
           <th class="c">Yi approved<br><span style="font-weight:400;opacity:.7">needs Finance</span></th>
           <th class="c">Not yet to Yi<br><span style="font-weight:400;opacity:.7">not budgeted</span></th>
           <th class="c">Total ask</th>
@@ -236,15 +234,13 @@ tfoot td.c{font-family:var(--mono)}
   <h2>Action lists <span class="hint">The two queues that move the plan — grouped by workstream</span></h2>
   <div class="actions" id="actions"></div>
 
-  <h2 id="roles">All roles by workstream <span class="hint">Filter by stage or location · every row is one hire</span></h2>
+  <h2 id="roles">Unbudgeted roles by workstream <span class="hint">Filter by stage or location · every row is one ask</span></h2>
   <div class="filters" id="filters">
     <span class="lbl">Stage</span>
     <button class="fbtn on" data-f="stage" data-v="all">All</button>
-    <button class="fbtn s1" data-f="stage" data-v="s1">Backfill · budgeted</button>
-    <button class="fbtn s2" data-f="stage" data-v="s2">Incremental · budgeted</button>
     <button class="fbtn s3" data-f="stage" data-v="s3">Yi approved · needs Finance</button>
     <button class="fbtn s4" data-f="stage" data-v="s4">Not yet to Yi</button>
-    <button class="fbtn s5" data-f="stage" data-v="s5">Hired</button>
+    <button class="fbtn s5" data-f="stage" data-v="s5">In seat · unbudgeted</button>
     <span class="fsep"></span>
     <span class="lbl">Location</span>
     <button class="fbtn on" data-f="loc" data-v="all">All</button>
@@ -273,7 +269,7 @@ const STAGES = {
   s5:{short:'Hired', next:'Onboard'}
 };
 
-const ROLES = [
+const ALL_ROLES = [
   // Payables
   {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', open:true, rahul:true},
   {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', open:true, rahul:true},
@@ -314,7 +310,7 @@ const ROLES = [
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   // Routing & Optimization
   {ws:'Routing & Optimization', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
-  {ws:'Routing & Optimization', loc:'IDC', role:'Product Manager', stage:'s4'},
+  {ws:'Routing & Optimization', loc:'IDC', role:'Senior Product Manager', stage:'s4'},
   // Innovation Lab
   {ws:'Innovation Lab', loc:'WAT', role:'Manager, Engineering', stage:'s2', ticket:'HR-412937'},
   {ws:'Innovation Lab', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-412938'},
@@ -324,7 +320,7 @@ const ROLES = [
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313'},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Product Manager', stage:'s4'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Product Manager', stage:'s4'},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
@@ -333,6 +329,8 @@ const ROLES = [
 
 /* ---------- HELPERS ---------- */
 const by = (arr, f) => arr.reduce((m,x)=>{const k=f(x);(m[k]=m[k]||[]).push(x);return m;},{});
+/* This view shows only roles that are not yet budgeted: Yi approved · needs Finance, not yet to Yi, and Aziro contractors in seat without budget. Backfills and budgeted incremental roles are kept in ALL_ROLES but hidden. */
+const ROLES = ALL_ROLES.filter(r => r.stage==='s3' || r.stage==='s4' || r.nf);
 const n = (arr, f) => arr.filter(f).length;
 const open = ROLES.filter(r=>r.stage!=='s5');
 const NF = ROLES.filter(r=>r.nf); // in seat, Yi approved, not yet budgeted
@@ -353,8 +351,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
 (function(){
   const ctrOpen=n(open,r=>r.ctr), ctrIn=n(ROLES,r=>r.stage==='s5'&&r.ctr), fteIn=S.s5-ctrIn;
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Total roles on the plan</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${S.s5} filled · ${fteIn?`${fteIn} FTE, `:''}${ctrIn} Aziro contractors in seat</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open · ${budgetedNoSearch} not yet opened</div></div>
+    <div class="kpi"><div class="n">${ROLES.length}</div><div class="l">Unbudgeted roles</div><div class="d">${open.length} to hire (${open.length-ctrOpen} FTE · ${ctrOpen} contractors)</div><div class="d">${ctrIn} Aziro contractors already in seat, unbudgeted</div></div>
     <div class="kpi s3"><div class="n">${S.s3}</div><div class="l">Yi approved — needs Finance</div><div class="d">${S.s3} roles to hire · plus ${NF.length} Aziro contractors in seat, unbudgeted</div></div>
     <div class="kpi s4"><div class="n">${S.s4}</div><div class="l">Not yet to Yi</div><div class="d">Needs Yi, then Finance · not budgeted</div></div>`;
 })();
@@ -365,16 +362,13 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   document.getElementById('decisions').innerHTML = `
     <div class="k">Actions needed</div>
     <div class="dec"><div class="num">1</div><div class="t"><b>Yi: review ${s4.length} roles</b> not yet brought to you — mostly ${topWs(s4)}. Approve, defer, or decline each before Oct 16.<span class="own">Owner: Eric → Yi</span></div></div>
-    <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length+NF.length} roles</b> Yi has already approved — ${s3.length} to hire (mostly ${topWs(s3)}) plus ${NF.length} Aziro contractors already in seat. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>
-    <div class="dec"><div class="num">3</div><div class="t"><b>Open the ${budgetedNoSearch} budgeted search</b> not yet started (Card Processing SDET, ADC, HR-412740).<span class="own">Owner: Eric</span></div></div>`;
+    <div class="dec"><div class="num">2</div><div class="t"><b>Finance: approve ${s3.length+NF.length} roles</b> Yi has already approved — ${s3.length} to hire (mostly ${topWs(s3)}) plus ${NF.length} Aziro contractors already in seat. These go on the Oct 16 template as approved need.<span class="own">Owner: Eric → Finance</span></div></div>`;
 })();
 
 /* ---------- PIPELINE ---------- */
 (function(){
   const idc=n(open,r=>r.loc==='IDC'), adc=n(open,r=>r.loc==='ADC'), wat=n(open,r=>r.loc==='WAT');
   const stages = [
-    {k:'s1', title:'Backfill', sub:'approved · budgeted', cnt:S.s1, who:`Replacing people who left. ${n(ROLES,r=>r.stage==='s1'&&isOpen(r))} of ${S.s1} searches open.`},
-    {k:'s2', title:'Incremental headcount', sub:'approved · budgeted', cnt:S.s2, who:`${n(ROLES,r=>r.stage==='s2'&&isOpen(r))} of ${S.s2} searches open, ${n(ROLES,r=>r.stage==='s2'&&!isOpen(r))} not yet started.`},
     {k:'s3', title:'Yi approved', sub:'needs Finance', cnt:S.s3, who:`Need confirmed, not yet budgeted. Plus ${NF.length} Aziro contractors already in seat, awaiting budget.`},
     {k:'s4', title:'Not yet to Yi', sub:'not budgeted', cnt:S.s4, who:`Requests from workstreams, not yet reviewed.`},
   ];
@@ -384,7 +378,7 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
       <div class="big">${s.cnt}</div>
       <div class="who">${s.who}</div>
       <div class="next"><b>Next:</b> ${STAGES[s.k].next}</div>
-      ${i<3?'<span class="arrow"></span>':''}
+      ${i<stages.length-1?'<span class="arrow"></span>':''}
     </div>`).join('');
   const tot = open.length;
   document.getElementById('stackbar').innerHTML = stages.map(s=>`<div style="width:${(s.cnt/tot*100).toFixed(1)}%;background:${stageVar(s.k)}" title="${s.title}: ${s.cnt}"></div>`).join('');
@@ -415,13 +409,13 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
     const locs = ['IDC','ADC','WAT'].map(l=>{const c=n(o,r=>r.loc===l);return c?`${c} ${locName(l)}`:null}).filter(Boolean).join(' · ');
     const hired = n(arr,r=>r.stage==='s5');
     return `<tr>
-      <td class="ws"><a href="#ws-${slug(ws)}">${esc(ws)}</a>${hired?` <span class="b s5" style="margin-left:6px">+${hired} hired</span>`:''}</td>
-      ${cell(arr,'s1')}${cell(arr,'s2')}${cell(arr,'s3')}${cell(arr,'s4')}
+      <td class="ws"><a href="#ws-${slug(ws)}">${esc(ws)}</a>${hired?` <span class="b s5" style="margin-left:6px">+${hired} in seat</span>`:''}</td>
+      ${cell(arr,'s3')}${cell(arr,'s4')}
       <td class="tot">${o.length}</td>
       <td class="locs">${locs}</td>
     </tr>`;
   }).join('');
-  tf.innerHTML = `<tr><td>Total to hire</td><td class="c">${T.s1}</td><td class="c">${T.s2}</td><td class="c">${T.s3}</td><td class="c">${T.s4}</td><td class="c">${T.tot}</td><td class="locs">${n(open,r=>r.loc==='IDC')} IDC · ${n(open,r=>r.loc==='ADC')} ADC · ${n(open,r=>r.loc==='WAT')} Waterloo</td></tr>`;
+  tf.innerHTML = `<tr><td>Total to hire</td><td class="c">${T.s3}</td><td class="c">${T.s4}</td><td class="c">${T.tot}</td><td class="locs">${n(open,r=>r.loc==='IDC')} IDC · ${n(open,r=>r.loc==='ADC')} ADC · ${n(open,r=>r.loc==='WAT')} Waterloo</td></tr>`;
 })();
 
 /* ---------- ACTION LISTS ---------- */
