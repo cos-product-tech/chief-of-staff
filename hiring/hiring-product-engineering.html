@@ -301,8 +301,8 @@ const ALL_ROLES = [
   // Card Processing
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
-  {ws:'Card Processing', loc:'REV', role:'Senior Quality Automation Engineer', stage:'s2', open:true},
-  {ws:'Card Processing', loc:'REV', role:'Senior Software Engineer', stage:'s1', bf:'Backfill', open:true},
+  {ws:'Card Processing', loc:'ADC', role:'Senior SDET', stage:'s2', sal:146000, rec:{loc:'REV', role:'Senior Quality Automation Engineer', sal:100000}},
+  {ws:'Card Processing', loc:'REV', role:'Senior Software Engineer', stage:'s1', bf:'Backfill', sal:100000},
   // Account to Account
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
@@ -311,6 +311,7 @@ const ALL_ROLES = [
   {ws:'Routing & Optimization', loc:'IDC', role:'Senior Product Manager', stage:'s4'},
   // Billing & Revenue Management
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997', sal:160801},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior SDET', stage:'s2', sal:178000, rec:{loc:'REV', role:'Senior Quality Automation Engineer', sal:100000}},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', sal:238687},
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true, sal:'Unknown'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4', sal:133249},
@@ -375,18 +376,24 @@ const sumSal = a => a.reduce((t,r)=>t+salNum(r),0);
 const unkCount = a => n(a,r=>r.sal==='Unknown');
 
 /* CoS recommendations, per team. A team without one is recommended as-is. */
+const applyRec = r => r.rec ? Object.assign({}, r, r.rec, {moved:true, prev:r.sal, prevLoc:r.loc, prevRole:r.role}) : r;
+const toWAT = r => Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal, prevLoc:r.loc, prevRole:r.role});
 const REC = {
   'Billing & Revenue Management': {
-    note:'Keep the budgeted roles, with the Senior Manager backfill moved to Waterloo. Replace the unbudgeted asks with an Aziro POD.',
-    build: arr => arr.filter(r=>!isIncr(r)).map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
+    note:'Keep the budgeted roles: the Senior Manager backfill moves to Waterloo and the Senior SDET becomes a Senior Quality Automation Engineer at Revelo. Replace the unbudgeted asks with an Aziro POD.',
+    build: arr => arr.filter(r=>!isIncr(r)).map(r => r.rec ? applyRec(r) : (r.loc==='ADC' ? toWAT(r) : r)).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
   },
   'Entity Boarding & Maintenance / Partner Experience': {
     note:'Same roles; every ADC hire, including the Manager backfill, moves to Waterloo.',
-    build: arr => arr.map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r)
+    build: arr => arr.map(r => r.loc==='ADC' ? toWAT(r) : r)
+  },
+  'Card Processing': {
+    note:'The approved Senior SDET becomes a Senior Quality Automation Engineer at Revelo.',
+    build: arr => arr.map(applyRec)
   },
   'Acquiring Stability': {
     note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
-    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r)
+    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? toWAT(r) : r)
   },
 };
 const groups = by(ROLES, r=>r.ws);
@@ -399,7 +406,7 @@ const GROUPS = [
   {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:[]}]},
   {name:'Commerce Core', cls:'g-core', teams:[
     {name:'Entity Boarding & Maintenance / Partner Experience', ws:['Entity Boarding & Maintenance / Partner Experience']},{name:'Fraud & Risk Governance', ws:['Fraud & Risk Governance']},
-    {name:'Money Movement', ws:['Card Processing','Account to Account','Routing & Optimization']},{name:'Billing & Revenue Management', ws:['Billing & Revenue Management']}]},
+    {name:'Money Movement · Card Processing', ws:['Card Processing']},{name:'Money Movement · Account to Account, Routing & Optimization', ws:['Account to Account','Routing & Optimization']},{name:'Billing & Revenue Management', ws:['Billing & Revenue Management']}]},
 ];
 const wsOrder = GROUPS.flatMap(g=>g.teams.flatMap(t=>t.ws));
 const unmapped = Object.keys(groups).filter(w=>!wsOrder.includes(w)); if(unmapped.length) console.warn('Workstreams not placed in a group:', unmapped);
@@ -432,7 +439,7 @@ const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number'
     if(r.note) meta.push(esc(r.note));
     if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
     if(r.pod) meta.push(`Aziro POD · ${fmt$(r.monthly)}/mo`);
-    if(r.moved) meta.push(typeof r.prev==='number' && typeof r.sal==='number' ? `Moved from ADC to Waterloo · was ${fmt$(r.prev)}/yr` : 'Moved from ADC to Waterloo');
+    if(r.moved) meta.push(`Was ${r.prevRole!==r.role?esc(r.prevRole)+' · ':''}${locName(r.prevLoc)}${typeof r.prev==='number'?` · ${fmt$(r.prev)}/yr`:''}`);
     const badge = r.pod ? `<span class="azr">Aziro</span>` : `<span class="b ${r.stage}">${STAGES[r.stage].short}</span>${r.nf?` <span class="b s3">${STAGES.s3.short}</span>`:''}`;
     return `<div class="role" data-stage="${r.nf?'s3':r.stage}" data-loc="${r.loc}">
       <div>${badge}</div>
