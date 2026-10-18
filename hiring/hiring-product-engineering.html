@@ -101,6 +101,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .loc.ADC{border-color:#7FB3D5;color:#1F5B86;background:#EAF3F9}
 .loc.WAT{border-color:#9DD3D2;color:#0E5E5D;background:#E6F5F5}
 .loc.AZR{border-color:#C4B5E3;color:#5A3E99;background:#EEE9F7}
+.loc.REV{border-color:#E3C4B5;color:#99503E;background:#F7EEE9}
 .flagpill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--flag-bg);color:var(--flag);white-space:nowrap}
 .ctr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#EEE9F7;color:#5A3E99;white-space:nowrap}
 
@@ -152,6 +153,7 @@ tfoot td.c{font-family:var(--mono)}
 /* workstream cards */
 .wsgrid{display:grid;grid-template-columns:1fr;gap:12px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wshead .note{font-size:11.5px;color:var(--text-muted);margin-top:3px}
 .wshead .money .ml{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .wscard{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 3px 10px rgba(0,0,0,.04)}
 .wscard.wide{grid-column:1 / -1}
@@ -232,6 +234,7 @@ tfoot td.c{font-family:var(--mono)}
     <button class="fbtn" data-f="loc" data-v="ADC">ADC · USA</button>
     <button class="fbtn" data-f="loc" data-v="WAT">Waterloo · Canada</button>
     <button class="fbtn" data-f="loc" data-v="AZR">Aziro · contractors</button>
+    <button class="fbtn" data-f="loc" data-v="REV">Revelo · LATAM</button>
     <span class="count" id="count"></span>
   </div>
   <div class="wsgrid" id="wsgrid"></div>
@@ -254,17 +257,18 @@ const STAGES = {
 };
 
 const ALL_ROLES = [
+  // Product Design
+  {ws:'Product Design', loc:'WAT', role:'Principal Product Designer', stage:'s4'},
   // Payables
   {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', open:true, rahul:true},
   {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', open:true, rahul:true},
   // Merchant Experience
-  {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4', note:'Candidate: Stephanie Chou (Corvia Payments) · offer pending'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
-  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
-  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Acquiring Stability'},
-  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Acquiring Stability'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, sal:57600, note:'In seat · Aziro contractor · Terminal Integration & Distribution · $4,800/mo'},
+  {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, sal:57600, note:'In seat · Aziro contractor · Terminal Integration & Distribution · $4,800/mo'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, sal:57600, note:'In seat · Aziro contractor · $4,800/mo'},
+  {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, sal:57600, note:'In seat · Aziro contractor · $4,800/mo'},
   // Acquiring Stability
   {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
   // Banking & Treasury
@@ -280,7 +284,6 @@ const ALL_ROLES = [
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413728'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Manager, Engineering', stage:'s1', bf:'Derek Robati', ticket:'HR-415086'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
-  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s3', note:'Candidate: Parker Abare (Corvia Payments) · offer pending'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s4'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior SDET', stage:'s4'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'IDC', role:'Senior SDET', stage:'s3'},
@@ -290,17 +293,13 @@ const ALL_ROLES = [
   // Card Processing
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
-  {ws:'Card Processing', loc:'ADC', role:'SDET', stage:'s2', ticket:'HR-412740', notStarted:true},
+  {ws:'Card Processing', loc:'REV', role:'Senior Quality Automation Engineer', stage:'s2', open:true},
   // Account to Account
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   // Routing & Optimization
   {ws:'Routing & Optimization', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Routing & Optimization', loc:'IDC', role:'Senior Product Manager', stage:'s4'},
-  // Innovation Lab
-  {ws:'Innovation Lab', loc:'WAT', role:'Manager, Engineering', stage:'s2', ticket:'HR-412937'},
-  {ws:'Innovation Lab', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-412938'},
-  {ws:'Innovation Lab', loc:'WAT', role:'Staff Software Engineer', stage:'s2', ticket:'HR-413910'},
   // Billing & Revenue Management
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997', sal:160801},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', sal:238687},
@@ -322,12 +321,12 @@ const BAND = {
       'Team Lead, QA Engineering':133249,'Product Manager':108896,'Senior Product Manager':145267,'Director of Product':256318},
   CA:{'Software Engineer':74976,'Senior Software Engineer':90343,'Staff Software Engineer':107791,'Senior Staff Software Engineer':131081,'Principal Software Engineer':160801,
       'SDET':74976,'Senior SDET':90343,'Team Lead, Engineering':97729,'Manager, Engineering':114294,'Senior Manager, Engineering':134281,'Director, Engineering':156351,
-      'Team Lead, QA Engineering':82641}
+      'Team Lead, QA Engineering':82641,'Principal Product Designer':164660}
 };
 const bandFor = r => {
   if(r.sal!=null) return r.sal;
   if(r.loc==='IDC') return 'Unknown';
-  if(r.loc==='AZR') return null;
+  if(r.loc==='AZR'||r.loc==='REV') return null;
   const t = r.loc==='WAT' ? BAND.CA : BAND.US;
   const base = r.role.replace(/\s*\(.*\)$/,'').trim();
   return t[base] ?? 'Unknown';
@@ -349,7 +348,7 @@ const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const fmt$ = v => '$'+Math.round(v).toLocaleString('en-US');
 const salTag = v => v==null ? '' : (typeof v==='number' ? `<span class="sal">${fmt$(v)}/yr</span>` : `<span class="sal unk">${esc(v)}</span>`);
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l;
+const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l==='REV'?'Revelo':l;
 const family = r => /Product Manager/i.test(r.role) ? 'Product' : /Manager|Team Lead|Director/i.test(r.role) ? 'Leadership' : /SDET|QA/i.test(r.role) ? 'Quality' : 'Engineering';
 const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort((a,b)=>g[b].length-g[a].length).slice(0,3).map(w=>`${short(w)} (${g[w].length})`).join(', '); };
 const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
@@ -359,78 +358,79 @@ const isOpen = r => (r.ticket && !r.notStarted) || r.open;
 const searchesOpen = n(ROLES,isOpen);
 const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(r));
 
-/* ---------- SUMMARY ---------- */
+/* ---------- MODEL ---------- */
+/* An "incremental" role is one that is not yet budgeted: Yi approved / not yet to Yi, or a contractor in seat without budget. */
+const isIncr = r => r.stage==='s3' || r.stage==='s4' || !!r.nf;
+const salNum = r => typeof r.sal==='number' ? r.sal : 0;
+const sumSal = a => a.reduce((t,r)=>t+salNum(r),0);
+const unkCount = a => n(a,r=>r.sal==='Unknown');
+
+/* CoS recommendations, per team. A team without one is recommended as-is. */
+const REC = {
+  'Billing & Revenue Management': {
+    note:'Keep the budgeted roles. Replace the unbudgeted asks with an Aziro POD.',
+    build: arr => arr.filter(r=>!isIncr(r)).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
+  },
+  'Entity Boarding & Maintenance / Partner Experience': {
+    note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
+    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
+  },
+  'Acquiring Stability': {
+    note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
+    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
+  },
+};
+const groups = by(ROLES, r=>r.ws);
+const wsOrder = ['Product Design'].concat(Object.keys(groups).filter(w=>w!=='Product Design').sort((a,b)=>groups[b].length-groups[a].length || a.localeCompare(b)));
+const recommended = ws => { const arr=groups[ws]; const r=REC[ws]; const out = r ? r.build(arr) : arr; out.forEach(x=>{ if(x.sal==null && !x.pod) x.sal = bandFor(x); }); return out; };
+const REC_ALL = wsOrder.flatMap(recommended);
+
+/* ---------- SUMMARY (hero reflects the CoS recommendation) ---------- */
 (function(){
-  const ctrOpen=n(open,r=>r.ctr), ctrIn=n(ROLES,r=>r.stage==='s5'&&r.ctr);
-  const idc=n(open,r=>r.loc==='IDC'), adc=n(open,r=>r.loc==='ADC'), wat=n(open,r=>r.loc==='WAT');
+  const existIncr = ROLES.filter(isIncr), recIncr = REC_ALL.filter(isIncr);
+  const toHire = REC_ALL.filter(r=>r.stage!=='s5'), ctrOpen = n(toHire,r=>r.ctr||r.loc==='AZR'||r.loc==='REV');
+  const idc=n(toHire,r=>r.loc==='IDC'), adc=n(toHire,r=>r.loc==='ADC'), wat=n(toHire,r=>r.loc==='WAT');
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="n">${open.length}</div><div class="l">Roles to hire</div><div class="d">${open.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div></div>
-    <div class="kpi s3"><div class="n">${S.s3+S.s4}</div><div class="l">Not yet budgeted</div><div class="d">Incremental · not budgeted</div></div>
-    <div class="kpi s4"><div class="n">${fmt$(ROLES.filter(r=>r.stage==='s3'||r.stage==='s4').reduce((t,r)=>t+(typeof r.sal==='number'?r.sal:0),0))}</div><div class="l">Total incremental budget requested</div><div class="d">Base salary at the 50th percentile · ${n(ROLES,r=>(r.stage==='s3'||r.stage==='s4')&&r.sal==='Unknown')} IDC roles unknown and excluded</div></div>`;
-  const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',S.s3+S.s4],['s5','In seat',S.s5]];
+    <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>
+    <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">Incremental · not budgeted, incl. ${n(recIncr,r=>r.nf)} contractors in seat</div><div class="d">Existing ask: ${existIncr.length}</div></div>
+    <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>`;
+  const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',recIncr.length],['s5','In seat',S.s5]];
   document.getElementById('legend').innerHTML = stages.map(([k,t,c])=>`<span><i style="background:${stageVar(k)}"></i>${t} — <b>${c}</b></span>`).join('');
 })();
 
-const groups = by(ROLES, r=>r.ws);
-const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length || a.localeCompare(b));
-
 /* ---------- WORKSTREAM CARDS ---------- */
 (function(){
-  const g = document.getElementById('wsgrid');
-  g.innerHTML = wsOrder.map(ws=>{
-    const arr = groups[ws];
-    const order = {s1:1,s2:2,s3:3,s4:4,s5:0};
-    const rows = [...arr].sort((a,b)=>order[a.stage]-order[b.stage] || a.loc.localeCompare(b.loc)).map(r=>{
-      const meta = [];
-      if(r.bf) meta.push(`Backfill for <b>${esc(r.bf)}</b>`);
-      if(r.ticket && !r.notStarted) meta.push(`Search open · <b>${r.ticket}</b>`);
-      if(r.ticket && r.notStarted) meta.push(`Search hasn't started yet · <b>${r.ticket}</b>`);
-      if(r.note) meta.push(esc(r.note));
-      if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
-      if(r.stage==='s2' && !isOpen(r)) meta.push('Budgeted · search not yet opened');
-      return `<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
-        <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
-        <div><div class="title">${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</div>${meta.length?`<div class="meta">${meta.join(' · ')}</div>`:''}</div>
-        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}${salTag(r.sal)}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
-      </div>`;
-    }).join('');
-    const sum = [['s1',r=>r.stage==='s1'],['s2',r=>r.stage==='s2'],['s3',r=>r.stage==='s3'||r.stage==='s4']].map(([k,f])=>{const c=n(arr,f);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
-    const o = n(arr,r=>r.stage!=='s5');
-    const incr0 = arr.filter(r=>r.stage==='s3'||r.stage==='s4');
-    const known0 = incr0.reduce((t,r)=>t+(typeof r.sal==='number'?r.sal:0),0), unk0 = n(incr0,r=>r.sal==='Unknown');
-    const money0 = incr0.length ? `<span class="money"><span class="ml">Incremental budget requested</span><b>${fmt$(known0)}</b>/yr${unk0?` · ${unk0} unknown`:''}</span>` : `<span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · all budgeted</span>`;
-    if(ws!=='Billing & Revenue Management'){
-      return `<div class="wscard" id="ws-${slug(ws)}">
-        <div class="wshead"><h3>${esc(ws)}</h3><div class="sum">${sum}<span class="tot">${o} to hire</span>${money0}</div></div>
-        ${rows}
-      </div>`;
-    }
-    /* Billing & Revenue Management: existing ask (left) and CoS recommendation (right) */
-    const incr = a => a.filter(r=>r.stage==='s3'||r.stage==='s4');
-    const known = a => incr(a).reduce((t,r)=>t+(typeof r.sal==='number'?r.sal:0),0);
-    const unk = a => n(incr(a),r=>r.sal==='Unknown');
-    const money = (a,extra=0,label='Incremental budget requested') => `<span class="money"><span class="ml">${label}</span><b>${fmt$(known(a)+extra)}</b>/yr${unk(a)?` · ${unk(a)} unknown`:''}</span>`;
-    const keep = arr.filter(r=>r.stage==='s1'||r.stage==='s2');
-    const podRows = AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>`<div class="role" data-stage="s2" data-loc="AZR">
-        <div><span class="azr">Aziro</span></div>
-        <div><div class="title">${esc(p.role)}</div><div class="meta">POD · ${fmt$(p.monthly)}/mo</div></div>
-        <div class="side"><span class="sal">${fmt$(p.monthly*12)}/yr</span><span class="loc AZR">Aziro</span></div>
-      </div>`)).join('');
-    const podAnnual = AZIRO_POD.reduce((t,p)=>t+p.n*p.monthly*12,0);
-    const keepRows = [...keep].sort((a,b)=>order[a.stage]-order[b.stage] || a.loc.localeCompare(b.loc)).map(r=>`<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
-        <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
-        <div><div class="title">${esc(r.role)}</div>${r.bf?`<div class="meta">Backfill for <b>${esc(r.bf)}</b></div>`:''}</div>
-        <div class="side">${salTag(r.sal)}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
-      </div>`).join('');
-    return `<div class="pair"><div class="wscard ask" id="ws-${slug(ws)}">
-        <div class="wshead"><div><span class="k2">Existing ask</span><h3>${esc(ws)}</h3></div><div class="sum">${sum}<span class="tot">${o} to hire</span>${money(arr)}</div></div>
-        ${rows}
-      </div>
-      <div class="wscard rec" id="ws-${slug(ws)}-rec">
-        <div class="wshead"><div><span class="k2">CoS recommendation</span><h3>${esc(ws)}</h3></div><div class="sum"><span class="tot">${keep.length} to hire + Aziro POD of 7</span>${money(keep,podAnnual)}</div></div>
-        ${keepRows}${podRows}
-      </div></div>`;
+  const order = {s1:1,s2:2,s3:3,s4:4,s5:0};
+  const row = r => {
+    const meta = [];
+    if(r.bf) meta.push(`Backfill for <b>${esc(r.bf)}</b>`);
+    if(r.ticket && !r.notStarted) meta.push(`Search open · <b>${r.ticket}</b>`);
+    if(r.note) meta.push(esc(r.note));
+    if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
+    if(r.pod) meta.push(`Aziro POD · ${fmt$(r.monthly)}/mo`);
+    if(r.moved) meta.push('Moved from ADC to Waterloo');
+    const badge = r.pod ? `<span class="azr">Aziro</span>` : `<span class="b ${r.stage}">${STAGES[r.stage].short}</span>${r.nf?` <span class="b s3">${STAGES.s3.short}</span>`:''}`;
+    return `<div class="role" data-stage="${r.nf?'s3':r.stage}" data-loc="${r.loc}">
+      <div>${badge}</div>
+      <div><div class="title">${esc(r.role)}${r.ctr&&!r.pod?' <span class="ctr">Contractor</span>':''}</div>${meta.length?`<div class="meta">${meta.join(' · ')}</div>`:''}</div>
+      <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}${salTag(r.sal)}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
+    </div>`;
+  };
+  const sorted = a => [...a].sort((x,y)=>order[x.stage]-order[y.stage] || x.loc.localeCompare(y.loc));
+  const chips = a => [['s1',r=>r.stage==='s1'],['s2',r=>r.stage==='s2'],['s3',isIncr]].map(([k,f])=>{const c=n(a,f);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
+  const money = a => { const i=a.filter(isIncr); return i.length
+      ? `<span class="money"><span class="ml">Incremental budget requested</span><b>${fmt$(sumSal(i))}</b>/yr${unkCount(i)?` · ${unkCount(i)} unknown`:''}</span>`
+      : `<span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · all budgeted</span>`; };
+  const head = (label, ws, a, note) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}</div></div>`;
+  document.getElementById('wsgrid').innerHTML = wsOrder.map(ws=>{
+    const arr = groups[ws], rec = REC[ws];
+    if(!rec) return `<div class="wscard" id="ws-${slug(ws)}">${head('', ws, arr, '')}${sorted(arr).map(row).join('')}</div>`;
+    const r = recommended(ws);
+    return `<div class="pair">
+      <div class="wscard ask" id="ws-${slug(ws)}">${head('Existing ask', ws, arr, '')}${sorted(arr).map(row).join('')}</div>
+      <div class="wscard rec" id="ws-${slug(ws)}-rec">${head('CoS recommendation', ws, r, rec.note)}${sorted(r).map(row).join('')}</div>
+    </div>`;
   }).join('');
 })();
 

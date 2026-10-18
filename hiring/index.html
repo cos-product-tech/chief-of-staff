@@ -101,6 +101,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .loc.ADC{border-color:#7FB3D5;color:#1F5B86;background:#EAF3F9}
 .loc.WAT{border-color:#9DD3D2;color:#0E5E5D;background:#E6F5F5}
 .loc.AZR{border-color:#C4B5E3;color:#5A3E99;background:#EEE9F7}
+.loc.REV{border-color:#E3C4B5;color:#99503E;background:#F7EEE9}
 .flagpill{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;padding:1px 7px;border-radius:3px;background:var(--flag-bg);color:var(--flag);white-space:nowrap}
 .ctr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#EEE9F7;color:#5A3E99;white-space:nowrap}
 
@@ -204,7 +205,7 @@ tfoot td.c{font-family:var(--mono)}
   <div class="why"><span class="k">Why now</span><span>FP&amp;A headcount templates for the 9+3 forecast and 2027 budget are due back <b>Oct 16</b>. Every role below is an incremental ask that still needs Finance, Yi, or both.</span></div>
 
   <div class="kpis" id="kpis"></div>
-  <div class="chg"><span class="k">Changes</span><span><b>17 Oct:</b> this view now shows only unbudgeted roles; backfills and budgeted incremental roles are hidden. Two Product Manager asks re-leveled to Senior Product Manager (Billing &amp; Revenue Management ADC, Routing &amp; Optimization IDC). Added two PCE asks in Waterloo, Yi approved and awaiting Finance: Team Lead, Engineering and Senior SDET. Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat (2 Merchant Experience · Terminal Integration &amp; Distribution, 2 Acquiring Stability); they also sit in the Needs Finance list because they are not yet budgeted. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway. <b>Since 8 Oct:</b> removed 2 Billing &amp; Revenue Management IDC roles filled by internal moves (Team Lead, QA Engineering · Sahil Malhotra from CFTPay; Senior Software Engineer · Poonam Rani from CFTConnect). <b>12 Oct:</b> candidates identified from Corvia Payments for two ADC roles, offers pending: Stephanie Chou (Merchant Experience Software Engineer, not yet to Yi) and Parker Abare (EBM / Partner Experience Senior Software Engineer, Yi approved, needs Finance).</span></div>
+  <div class="chg"><span class="k">Changes</span><span><b>17 Oct:</b> this view now shows only unbudgeted roles; backfills and budgeted incremental roles are hidden. Two Product Manager asks re-leveled to Senior Product Manager (Billing &amp; Revenue Management ADC, Routing &amp; Optimization IDC). Added two PCE asks in Waterloo, Yi approved and awaiting Finance: Team Lead, Engineering and Senior SDET. Removed 4 filled or already-budgeted roles (Payables backfill for Armen Shahbazyan · Banking &amp; Treasury Team Lead, Engineering · Card Processing Team Lead, QA Engineering · PCE Team Lead, Engineering). Added 4 Aziro contractors already in seat (2 Merchant Experience · Terminal Integration &amp; Distribution, 2 Acquiring Stability); they also sit in the Needs Finance list because they are not yet budgeted. Rahul confirmed the 4 IDC searches (Payables ×2, PCE, Billing) are posted and underway. <b>Since 8 Oct:</b> removed 2 Billing &amp; Revenue Management IDC roles filled by internal moves (Team Lead, QA Engineering · Sahil Malhotra from CFTPay; Senior Software Engineer · Poonam Rani from CFTConnect). <b>12 Oct:</b> candidates identified from Corvia Payments for two ADC roles, offers pending: Stephanie Chou (Merchant Experience Software Engineer) and Parker Abare (EBM / Partner Experience Senior Software Engineer); both roles removed from the ask on 17 Oct. Added a Principal Product Designer ask in Waterloo (Product Design, not yet to Yi).</span></div>
 
   <div class="decisions" id="decisions"></div>
 
@@ -270,11 +271,12 @@ const STAGES = {
 };
 
 const ALL_ROLES = [
+  // Product Design
+  {ws:'Product Design', loc:'WAT', role:'Principal Product Designer', stage:'s4'},
   // Payables
   {ws:'Payables', loc:'IDC', role:'Staff / Sr Staff / Principal Software Engineer', stage:'s1', bf:'Rahul Sharma', open:true, rahul:true},
   {ws:'Payables', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Shivam Ahuja', open:true, rahul:true},
   // Merchant Experience
-  {ws:'Merchant Experience', loc:'ADC', role:'Software Engineer', stage:'s4', note:'Candidate: Stephanie Chou (Corvia Payments) · offer pending'},
   {ws:'Merchant Experience', loc:'IDC', role:'Software Engineer', stage:'s4'},
   {ws:'Merchant Experience', loc:'ADC', role:'Senior Product Manager (Equipment / Terminal Strategy)', stage:'s2', ticket:'HR-414933'},
   {ws:'Merchant Experience', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, note:'In seat · Aziro contractor · Terminal Integration & Distribution'},
@@ -296,7 +298,6 @@ const ALL_ROLES = [
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413728'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Manager, Engineering', stage:'s1', bf:'Derek Robati', ticket:'HR-415086'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
-  {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s3', note:'Candidate: Parker Abare (Corvia Payments) · offer pending'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior Software Engineer', stage:'s4'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior SDET', stage:'s4'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'IDC', role:'Senior SDET', stage:'s3'},
@@ -306,17 +307,13 @@ const ALL_ROLES = [
   // Card Processing
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
-  {ws:'Card Processing', loc:'ADC', role:'SDET', stage:'s2', ticket:'HR-412740', notStarted:true},
+  {ws:'Card Processing', loc:'REV', role:'Senior Quality Automation Engineer', stage:'s2', open:true},
   // Account to Account
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   // Routing & Optimization
   {ws:'Routing & Optimization', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Routing & Optimization', loc:'IDC', role:'Senior Product Manager', stage:'s4'},
-  // Innovation Lab
-  {ws:'Innovation Lab', loc:'WAT', role:'Manager, Engineering', stage:'s2', ticket:'HR-412937'},
-  {ws:'Innovation Lab', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-412938'},
-  {ws:'Innovation Lab', loc:'WAT', role:'Staff Software Engineer', stage:'s2', ticket:'HR-413910'},
   // Billing & Revenue Management
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313'},
@@ -338,7 +335,7 @@ const NF = ROLES.filter(r=>r.nf); // in seat, Yi approved, not yet budgeted
 const stageVar = s => `var(--${s})`;
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l;
+const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l==='REV'?'Revelo':l;
 const family = r => /Product Manager/i.test(r.role) ? 'Product' : /Manager|Team Lead|Director/i.test(r.role) ? 'Leadership' : /SDET|QA/i.test(r.role) ? 'Quality' : 'Engineering';
 const topWs = (arr) => { const g = by(arr, r=>r.ws); return Object.keys(g).sort((a,b)=>g[b].length-g[a].length).slice(0,3).map(w=>`${short(w)} (${g[w].length})`).join(', '); };
 const short = ws => ws==='Entity Boarding & Maintenance / Partner Experience' ? 'EBM / Partner Exp.' : ws==='Billing & Revenue Management' ? 'Billing & Rev Mgmt' : ws;
