@@ -165,6 +165,16 @@ tfoot td.c{font-family:var(--mono)}
 .role .meta{font-size:11.5px;color:var(--text-muted);margin-top:1px}
 .role .meta b{color:var(--text-mid);font-weight:500}
 .role .side{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.sal{font-family:var(--mono);font-size:12px;color:var(--dark-forest);white-space:nowrap}
+.sal.unk{color:var(--text-muted)}
+.azr{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;background:#FFF1E4;color:#D45A00;white-space:nowrap}
+.wshead .k2{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:2px}
+.wshead .money{font-family:var(--mono);font-size:12px;color:var(--text-mid)}
+.wshead .money b{color:var(--dark-forest)}
+.wscard.rec{border-top:3px solid var(--orange)}
+.wshead .sum{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.wshead .sum .money{margin-top:2px}
+.wscard.ask{border-top:3px solid var(--forest)}
 .wscard.empty{opacity:.35}
 
 /* flags */
@@ -290,25 +300,34 @@ const ALL_ROLES = [
   {ws:'Innovation Lab', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-412938'},
   {ws:'Innovation Lab', loc:'WAT', role:'Staff Software Engineer', stage:'s2', ticket:'HR-413910'},
   // Billing & Revenue Management
-  {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997'},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313'},
-  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4'},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Product Manager', stage:'s4'},
-  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
+  {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997', sal:160801},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', sal:238687},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true, sal:'Unknown'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4', sal:133249},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Product Manager', stage:'s4', sal:145267},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3', sal:'Unknown'},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:165863},
+  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:165863},
 ];
 
 /* ---------- HELPERS ---------- */
 const by = (arr, f) => arr.reduce((m,x)=>{const k=f(x);(m[k]=m[k]||[]).push(x);return m;},{});
 /* This view shows every role on the plan, team by team: backfills, budgeted incremental, Yi approved, not yet to Yi, and contractors in seat. */
 const ROLES = ALL_ROLES;
+/* CoS recommendation for Billing & Revenue Management: keep the budgeted asks, replace the unbudgeted ones with an Aziro POD ($35,700/month for 7 people, shown as annual). */
+const AZIRO_POD = [
+  {role:'Product Manager', n:1, monthly:6000},
+  {role:'Software Architect', n:1, monthly:6500},
+  {role:'Senior Software Engineer', n:3, monthly:4800},
+  {role:'QA Engineer', n:2, monthly:4400},
+];
 const n = (arr, f) => arr.filter(f).length;
 const open = ROLES.filter(r=>r.stage!=='s5');
 const NF = ROLES.filter(r=>r.nf); // in seat, Yi approved, not yet budgeted
 const stageVar = s => `var(--${s})`;
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const fmt$ = v => '$'+Math.round(v).toLocaleString('en-US');
+const salTag = v => v==null ? '' : (typeof v==='number' ? `<span class="sal">${fmt$(v)}/yr</span>` : `<span class="sal unk">${esc(v)}</span>`);
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
 const locName = l => l==='WAT'?'Waterloo':l==='AZR'?'Aziro':l;
 const family = r => /Product Manager/i.test(r.role) ? 'Product' : /Manager|Team Lead|Director/i.test(r.role) ? 'Leadership' : /SDET|QA/i.test(r.role) ? 'Quality' : 'Engineering';
@@ -352,15 +371,41 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
       return `<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
         <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
         <div><div class="title">${esc(r.role)}${r.ctr?' <span class="ctr">Contractor</span>':''}</div>${meta.length?`<div class="meta">${meta.join(' · ')}</div>`:''}</div>
-        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
+        <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}${salTag(r.sal)}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
       </div>`;
     }).join('');
     const sum = [['s1',r=>r.stage==='s1'],['s2',r=>r.stage==='s2'],['s3',r=>r.stage==='s3'||r.stage==='s4']].map(([k,f])=>{const c=n(arr,f);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
     const o = n(arr,r=>r.stage!=='s5');
-    return `<div class="wscard ${arr.length>=7?'wide':''}" id="ws-${slug(ws)}">
-      <div class="wshead"><h3>${esc(ws)}</h3><div class="sum">${sum}<span class="tot">${o} to hire</span></div></div>
-      ${rows}
-    </div>`;
+    if(ws!=='Billing & Revenue Management'){
+      return `<div class="wscard ${arr.length>=7?'wide':''}" id="ws-${slug(ws)}">
+        <div class="wshead"><h3>${esc(ws)}</h3><div class="sum">${sum}<span class="tot">${o} to hire</span></div></div>
+        ${rows}
+      </div>`;
+    }
+    /* Billing & Revenue Management: existing ask (left) and CoS recommendation (right) */
+    const known = a => a.reduce((t,r)=>t+(typeof r.sal==='number'?r.sal:0),0);
+    const unk = a => n(a,r=>r.sal==='Unknown');
+    const money = (a,extra=0) => `<span class="money"><b>${fmt$(known(a)+extra)}</b>/yr${unk(a)?` · ${unk(a)} unknown`:''}</span>`;
+    const keep = arr.filter(r=>r.stage==='s1'||r.stage==='s2');
+    const podRows = AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>`<div class="role" data-stage="s2" data-loc="AZR">
+        <div><span class="azr">Aziro</span></div>
+        <div><div class="title">${esc(p.role)}</div><div class="meta">POD · ${fmt$(p.monthly)}/mo</div></div>
+        <div class="side"><span class="sal">${fmt$(p.monthly*12)}/yr</span><span class="loc AZR">Aziro</span></div>
+      </div>`)).join('');
+    const podAnnual = AZIRO_POD.reduce((t,p)=>t+p.n*p.monthly*12,0);
+    const keepRows = [...keep].sort((a,b)=>order[a.stage]-order[b.stage] || a.loc.localeCompare(b.loc)).map(r=>`<div class="role" data-stage="${r.stage}" data-loc="${r.loc}">
+        <div><span class="b ${r.stage}">${STAGES[r.stage].short}</span></div>
+        <div><div class="title">${esc(r.role)}</div>${r.bf?`<div class="meta">Backfill for <b>${esc(r.bf)}</b></div>`:''}</div>
+        <div class="side">${salTag(r.sal)}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
+      </div>`).join('');
+    return `<div class="wscard ask" id="ws-${slug(ws)}">
+        <div class="wshead"><div><span class="k2">Existing ask</span><h3>${esc(ws)}</h3></div><div class="sum">${sum}<span class="tot">${o} to hire</span>${money(arr)}</div></div>
+        ${rows}
+      </div>
+      <div class="wscard rec" id="ws-${slug(ws)}-rec">
+        <div class="wshead"><div><span class="k2">CoS recommendation</span><h3>${esc(ws)}</h3></div><div class="sum"><span class="tot">${keep.length} to hire + Aziro POD of 7</span>${money(keep,podAnnual)}</div></div>
+        ${keepRows}${podRows}
+      </div>`;
   }).join('');
 })();
 
