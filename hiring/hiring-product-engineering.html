@@ -294,6 +294,7 @@ const ALL_ROLES = [
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Card Processing', loc:'REV', role:'Senior Quality Automation Engineer', stage:'s2', open:true},
+  {ws:'Card Processing', loc:'REV', role:'Senior Software Engineer', stage:'s1', bf:'Backfill', open:true},
   // Account to Account
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Account to Account', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
@@ -321,7 +322,7 @@ const BAND = {
       'Team Lead, QA Engineering':133249,'Product Manager':108896,'Senior Product Manager':145267,'Director of Product':256318},
   CA:{'Software Engineer':74976,'Senior Software Engineer':90343,'Staff Software Engineer':107791,'Senior Staff Software Engineer':131081,'Principal Software Engineer':160801,
       'SDET':74976,'Senior SDET':90343,'Team Lead, Engineering':97729,'Manager, Engineering':114294,'Senior Manager, Engineering':134281,'Director, Engineering':156351,
-      'Team Lead, QA Engineering':82641,'Principal Product Designer':164660}
+      'Team Lead, QA Engineering':90343 /* OVERRIDE per Eric 17 Oct: sheet shows $82,641 (QA Eng Mgmt · Canada · M2); $90,343 is the Canada Senior SWE/SDET P3 band */,'Principal Product Designer':164660}
 };
 const bandFor = r => {
   if(r.sal!=null) return r.sal;
@@ -368,12 +369,12 @@ const unkCount = a => n(a,r=>r.sal==='Unknown');
 /* CoS recommendations, per team. A team without one is recommended as-is. */
 const REC = {
   'Billing & Revenue Management': {
-    note:'Keep the budgeted roles. Replace the unbudgeted asks with an Aziro POD.',
-    build: arr => arr.filter(r=>!isIncr(r)).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
+    note:'Keep the budgeted roles, with the Senior Manager backfill moved to Waterloo. Replace the unbudgeted asks with an Aziro POD.',
+    build: arr => arr.filter(r=>!isIncr(r)).map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
   },
   'Entity Boarding & Maintenance / Partner Experience': {
-    note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
-    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
+    note:'Same roles; every ADC hire, including the Manager backfill, moves to Waterloo.',
+    build: arr => arr.map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
   },
   'Acquiring Stability': {
     note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
@@ -391,20 +392,20 @@ const REC_ALL = wsOrder.flatMap(recommended);
   const toHire = REC_ALL.filter(r=>r.stage!=='s5'), ctrOpen = n(toHire,r=>r.ctr||r.loc==='AZR'||r.loc==='REV');
   const idc=n(toHire,r=>r.loc==='IDC'), adc=n(toHire,r=>r.loc==='ADC'), wat=n(toHire,r=>r.loc==='WAT');
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>
+    <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>
     <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">Incremental · not budgeted, incl. ${n(recIncr,r=>r.nf)} contractors in seat</div><div class="d">Existing ask: ${existIncr.length}</div></div>
-    <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>`;
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>
+    <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>`;
   const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',recIncr.length],['s5','In seat',S.s5]];
   document.getElementById('legend').innerHTML = stages.map(([k,t,c])=>`<span><i style="background:${stageVar(k)}"></i>${t} — <b>${c}</b></span>`).join('');
 })();
 
 /* ---------- WORKSTREAM CARDS ---------- */
 (function(){
-  const order = {s1:1,s2:2,s3:3,s4:4,s5:0};
+  const order = {s1:1,s2:2,s3:3,s4:4,s5:5};
   const row = r => {
     const meta = [];
-    if(r.bf) meta.push(`Backfill for <b>${esc(r.bf)}</b>`);
+    if(r.bf) meta.push(r.bf==='Backfill' ? 'Backfill' : `Backfill for <b>${esc(r.bf)}</b>`);
     if(r.ticket && !r.notStarted) meta.push(`Search open · <b>${r.ticket}</b>`);
     if(r.note) meta.push(esc(r.note));
     if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
