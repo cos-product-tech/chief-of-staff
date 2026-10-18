@@ -180,6 +180,7 @@ tfoot td.c{font-family:var(--mono)}
 
 @media (max-width:860px){.kpis,.families{grid-template-columns:1fr 1fr}.pipe{grid-template-columns:1fr 1fr}.wsgrid,.two,.actions,.decisions{grid-template-columns:1fr}.header-meta{display:none}.role{grid-template-columns:1fr}.role .side{justify-content:flex-start}.arrow{display:none}}
 @media print{body{background:#fff}.filters,.count{display:none}.wscard,.kpi,.pipe,.table-wrap,.alist,.decisions{box-shadow:none;break-inside:avoid}@page{margin:10mm}}
+.b.s4{background:var(--s3-bg);color:var(--s3)} .fbtn.on.s34{background:var(--s3);border-color:var(--s3)}
 </style>
 </head>
 <body>
@@ -189,7 +190,7 @@ tfoot td.c{font-family:var(--mono)}
     <div class="header-left">
       <div class="doc-eyebrow">Product &amp; Engineering · Chief of Staff · Headcount Reconciliation</div>
       <h1 class="doc-title">P&amp;E Hiring · Team by Team</h1>
-      <p class="doc-subtitle">Every role in flight, grouped by team: backfills, budgeted incremental hires, roles awaiting Finance, roles awaiting Yi, and contractors in seat. Two gates: <b>Yi</b> approves the need; <b>Finance</b> budgets it.</p>
+      <p class="doc-subtitle">Every role in flight, grouped by team.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
@@ -207,11 +208,10 @@ tfoot td.c{font-family:var(--mono)}
   <h2 id="roles">All hiring by team <span class="hint">Filter by stage or location · every row is one hire</span></h2>
   <div class="filters" id="filters">
     <span class="lbl">Stage</span>
-    <button class="fbtn on" data-f="stage" data-v="all">All</button>
+    <button class="fbtn on" data-f="stage" data-v="all" title="Show all stages">All</button>
     <button class="fbtn s1" data-f="stage" data-v="s1">Backfill · budgeted</button>
     <button class="fbtn s2" data-f="stage" data-v="s2">Incremental · budgeted</button>
-    <button class="fbtn s3" data-f="stage" data-v="s3">Yi approved · needs Finance</button>
-    <button class="fbtn s4" data-f="stage" data-v="s4">Not yet to Yi</button>
+    <button class="fbtn s34 s3" title="Click again to clear" data-f="stage" data-v="s3,s4">Incremental · not budgeted</button>
     <button class="fbtn s5" data-f="stage" data-v="s5">In seat</button>
     <span class="fsep"></span>
     <span class="lbl">Location</span>
@@ -236,8 +236,8 @@ tfoot td.c{font-family:var(--mono)}
 const STAGES = {
   s1:{short:'Backfill · budgeted', next:'Recruit and fill'},
   s2:{short:'Incremental · budgeted', next:'Recruit and fill; open the last search'},
-  s3:{short:'Yi approved · needs Finance', next:'Finance approval'},
-  s4:{short:'Not yet to Yi', next:'Yi review, then Finance'},
+  s3:{short:'Incremental · not budgeted', next:'Finance approval'},
+  s4:{short:'Incremental · not budgeted', next:'Yi review, then Finance'},
   s5:{short:'Hired', next:'Onboard'}
 };
 
@@ -298,7 +298,6 @@ const ALL_ROLES = [
   {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true},
-  {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior SDET', stage:'s2', ticket:'HR-414036'},
 ];
 
 /* ---------- HELPERS ---------- */
@@ -327,9 +326,9 @@ const budgetedNoSearch = n(ROLES,r=>(r.stage==='s1'||r.stage==='s2') && !isOpen(
   const idc=n(open,r=>r.loc==='IDC'), adc=n(open,r=>r.loc==='ADC'), wat=n(open,r=>r.loc==='WAT');
   document.getElementById('kpis').innerHTML = `
     <div class="kpi"><div class="n">${open.length}</div><div class="l">Roles to hire</div><div class="d">${open.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">${searchesOpen} searches open · ${budgetedNoSearch} not yet opened</div></div>
-    <div class="kpi s3"><div class="n">${S.s3+S.s4}</div><div class="l">Not yet budgeted</div><div class="d">${S.s3} Yi approved, needs Finance · ${S.s4} not yet to Yi</div><div class="d">plus ${NF.length} Aziro contractors in seat, unbudgeted</div></div>`;
-  const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Yi approved · needs Finance',S.s3],['s4','Not yet to Yi',S.s4],['s5','In seat',S.s5]];
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div></div>
+    <div class="kpi s3"><div class="n">${S.s3+S.s4}</div><div class="l">Not yet budgeted</div><div class="d">Incremental · not budgeted</div></div>`;
+  const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',S.s3+S.s4],['s5','In seat',S.s5]];
   document.getElementById('legend').innerHTML = stages.map(([k,t,c])=>`<span><i style="background:${stageVar(k)}"></i>${t} — <b>${c}</b></span>`).join('');
 })();
 
@@ -356,7 +355,7 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
         <div class="side">${r.flag?`<span class="flagpill">⚑ ${esc(r.flag)}</span>`:''}<span class="loc ${r.loc}">${locName(r.loc)}</span></div>
       </div>`;
     }).join('');
-    const sum = ['s1','s2','s3','s4'].map(k=>{const c=n(arr,r=>r.stage===k);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
+    const sum = [['s1',r=>r.stage==='s1'],['s2',r=>r.stage==='s2'],['s3',r=>r.stage==='s3'||r.stage==='s4']].map(([k,f])=>{const c=n(arr,f);return c?`<span class="b ${k}">${c}</span>`:''}).join('');
     const o = n(arr,r=>r.stage!=='s5');
     return `<div class="wscard ${arr.length>=7?'wide':''}" id="ws-${slug(ws)}">
       <div class="wshead"><h3>${esc(ws)}</h3><div class="sum">${sum}<span class="tot">${o} to hire</span></div></div>
@@ -372,7 +371,7 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
   const apply = () => {
     let shown = 0;
     document.querySelectorAll('.role').forEach(el=>{
-      const ok = (state.stage==='all' || el.dataset.stage===state.stage) && (state.loc==='all' || el.dataset.loc===state.loc);
+      const ok = (state.stage==='all' || state.stage.split(',').includes(el.dataset.stage)) && (state.loc==='all' || el.dataset.loc===state.loc);
       el.classList.toggle('hide', !ok); if(ok) shown++;
     });
     document.querySelectorAll('.wscard').forEach(card=>{
@@ -381,8 +380,10 @@ const wsOrder = Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].lengt
     document.getElementById('count').textContent = `${shown} of ${ROLES.length} roles shown`;
   };
   btns.forEach(b=>b.addEventListener('click',()=>{
-    state[b.dataset.f] = b.dataset.v;
-    btns.forEach(x=>{ if(x.dataset.f===b.dataset.f) x.classList.toggle('on', x===b); });
+    const f=b.dataset.f, v=b.dataset.v;
+    const next = (state[f]===v && v!=='all') ? 'all' : v;   // click the active filter again to clear it
+    state[f] = next;
+    btns.forEach(x=>{ if(x.dataset.f===f) x.classList.toggle('on', x.dataset.v===next); });
     apply();
   }));
   apply();
