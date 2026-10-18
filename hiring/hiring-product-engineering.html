@@ -158,6 +158,8 @@ tfoot td.c{font-family:var(--mono)}
 .gband .gsum b{color:#fff}
 .gband.g-design{background:#4B56A8} .gband.g-surf{background:#2E7D32} .gband.g-api{background:#6D3B8E} .gband.g-core{background:#D97A00}
 .wscard.empty-team{opacity:.85}
+.wscard.empty-team.pending{opacity:1;border-left:4px solid var(--orange)}
+.wshead .note.pend{color:var(--s3);font-weight:600}
 .subteam{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-right:8px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .wshead .note{font-size:11.5px;color:var(--text-muted);margin-top:3px}
@@ -403,7 +405,7 @@ const GROUPS = [
   {name:'Surfaces & Applications', cls:'g-surf', teams:[
     {name:'Payables', ws:['Payables']},{name:'Priority Field Desk', ws:[]},{name:'Merchant Experience', ws:['Merchant Experience']},{name:'Acquiring Stability', ws:['Acquiring Stability']},
     {name:'MXPOS', ws:[]},{name:'Banking & Treasury', ws:['Banking & Treasury']},{name:'Debt Resolution', ws:[]}]},
-  {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:[]}]},
+  {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:[], pending:'Incremental headcount ask still to come from Sean Hansen'}]},
   {name:'Commerce Core', cls:'g-core', teams:[
     {name:'Entity Boarding & Maintenance / Partner Experience', ws:['Entity Boarding & Maintenance / Partner Experience']},{name:'Fraud & Risk Governance', ws:['Fraud & Risk Governance']},
     {name:'Money Movement · Card Processing', ws:['Card Processing']},{name:'Money Movement · Account to Account, Routing & Optimization', ws:['Account to Account','Routing & Optimization']},{name:'Billing & Revenue Management', ws:['Billing & Revenue Management']}]},
@@ -456,7 +458,7 @@ const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number'
   const head = (label, ws, a, note) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}${freedLine(a)(label)}</div></div>`;
   const teamCard = (t) => {
     const arr = t.ws.flatMap(w=>groups[w]||[]);
-    if(!arr.length) return `<div class="wscard empty-team" id="ws-${slug(t.name)}"><div class="wshead"><h3>${esc(t.name)}</h3><div class="sum"><span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · no incremental budget requested</span></div></div></div>`;
+    if(!arr.length) return `<div class="wscard empty-team${t.pending?' pending':''}" id="ws-${slug(t.name)}"><div class="wshead"><div><h3>${esc(t.name)}</h3>${t.pending?`<div class="note pend">⚑ ${esc(t.pending)}</div>`:''}</div><div class="sum"><span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · ${t.pending?'ask not yet received':'no incremental budget requested'}</span></div></div></div>`;
     const sub = r => t.ws.length>1 ? `<span class="subteam">${esc(r.ws)}</span>` : '';
     const rowsOf = a => sorted(a).map(r=>row(r).replace('<div class="title">','<div class="title">'+sub(r))).join('');
     const recs = t.ws.map(w=>REC[w]).filter(Boolean);
