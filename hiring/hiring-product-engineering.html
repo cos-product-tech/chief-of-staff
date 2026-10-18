@@ -48,7 +48,7 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .why b{color:var(--dark-forest)}
 
 /* KPI strip */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
 .chg{margin-top:10px;font-size:12px;color:var(--text-muted);display:flex;gap:10px;align-items:baseline}
 .chg .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);white-space:nowrap}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);position:relative;overflow:hidden}
@@ -152,8 +152,16 @@ tfoot td.c{font-family:var(--mono)}
 
 /* workstream cards */
 .wsgrid{display:grid;grid-template-columns:1fr;gap:12px}
+.gband{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-radius:8px;padding:10px 16px;margin-top:14px;color:#fff}
+.gband h2{margin:0;padding:0;border:0;font-size:15px;color:#fff}
+.gband .gsum{font-size:12px;color:rgba(255,255,255,.85)}
+.gband .gsum b{color:#fff}
+.gband.g-design{background:#4B56A8} .gband.g-surf{background:#2E7D32} .gband.g-api{background:#6D3B8E} .gband.g-core{background:#D97A00}
+.wscard.empty-team{opacity:.85}
+.subteam{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-right:8px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .wshead .note{font-size:11.5px;color:var(--text-muted);margin-top:3px}
+.wshead .money.freed b{color:var(--s1)}
 .wshead .money .ml{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .wscard{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 3px 10px rgba(0,0,0,.04)}
 .wscard.wide{grid-column:1 / -1}
@@ -370,21 +378,34 @@ const unkCount = a => n(a,r=>r.sal==='Unknown');
 const REC = {
   'Billing & Revenue Management': {
     note:'Keep the budgeted roles, with the Senior Manager backfill moved to Waterloo. Replace the unbudgeted asks with an Aziro POD.',
-    build: arr => arr.filter(r=>!isIncr(r)).map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
+    build: arr => arr.filter(r=>!isIncr(r)).map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r).concat(AZIRO_POD.flatMap(p=>Array.from({length:p.n},()=>({ws:'Billing & Revenue Management',loc:'AZR',role:p.role,stage:'s4',pod:true,monthly:p.monthly,sal:p.monthly*12}))))
   },
   'Entity Boarding & Maintenance / Partner Experience': {
     note:'Same roles; every ADC hire, including the Manager backfill, moves to Waterloo.',
-    build: arr => arr.map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
+    build: arr => arr.map(r => r.loc==='ADC' ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r)
   },
   'Acquiring Stability': {
     note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
-    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true}) : r)
+    build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? Object.assign({}, r, {loc:'WAT', sal:null, moved:true, prev:r.sal}) : r)
   },
 };
 const groups = by(ROLES, r=>r.ws);
-const wsOrder = ['Product Design'].concat(Object.keys(groups).filter(w=>w!=='Product Design').sort((a,b)=>groups[b].length-groups[a].length || a.localeCompare(b)));
+/* Groups and teams, in the order Yi reads them. A team may map to several data workstreams (Money Movement). */
+const GROUPS = [
+  {name:'Product Design', cls:'g-design', teams:[{name:'Product Design', ws:['Product Design']}]},
+  {name:'Surfaces & Applications', cls:'g-surf', teams:[
+    {name:'Payables', ws:['Payables']},{name:'Priority Field Desk', ws:[]},{name:'Merchant Experience', ws:['Merchant Experience']},{name:'Acquiring Stability', ws:['Acquiring Stability']},
+    {name:'MXPOS', ws:[]},{name:'Banking & Treasury', ws:['Banking & Treasury']},{name:'Debt Resolution', ws:[]}]},
+  {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:[]}]},
+  {name:'Commerce Core', cls:'g-core', teams:[
+    {name:'Entity Boarding & Maintenance / Partner Experience', ws:['Entity Boarding & Maintenance / Partner Experience']},{name:'Fraud & Risk Governance', ws:['Fraud & Risk Governance']},
+    {name:'Money Movement', ws:['Card Processing','Account to Account','Routing & Optimization']},{name:'Billing & Revenue Management', ws:['Billing & Revenue Management']}]},
+];
+const wsOrder = GROUPS.flatMap(g=>g.teams.flatMap(t=>t.ws));
+const unmapped = Object.keys(groups).filter(w=>!wsOrder.includes(w)); if(unmapped.length) console.warn('Workstreams not placed in a group:', unmapped);
 const recommended = ws => { const arr=groups[ws]; const r=REC[ws]; const out = r ? r.build(arr) : arr; out.forEach(x=>{ if(x.sal==null && !x.pod) x.sal = bandFor(x); }); return out; };
 const REC_ALL = wsOrder.flatMap(recommended);
+const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number' && typeof r.sal==='number').reduce((t,r)=>t+(r.prev-r.sal),0);
 
 /* ---------- SUMMARY (hero reflects the CoS recommendation) ---------- */
 (function(){
@@ -393,6 +414,7 @@ const REC_ALL = wsOrder.flatMap(recommended);
   const idc=n(toHire,r=>r.loc==='IDC'), adc=n(toHire,r=>r.loc==='ADC'), wat=n(toHire,r=>r.loc==='WAT');
   document.getElementById('kpis').innerHTML = `
     <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>
+    <div class="kpi s1"><div class="n">${fmt$(freed(REC_ALL))}</div><div class="l">Budget freed to reallocate · recommended</div><div class="d">Budgeted hires that cost less in the recommended location</div><div class="d">Plus ${fmt$(sumSal(existIncr)-sumSal(recIncr))} less incremental ask than existing</div></div>
     <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">Incremental · not budgeted, incl. ${n(recIncr,r=>r.nf)} contractors in seat</div><div class="d">Existing ask: ${existIncr.length}</div></div>
     <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>
     <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>`;
@@ -410,7 +432,7 @@ const REC_ALL = wsOrder.flatMap(recommended);
     if(r.note) meta.push(esc(r.note));
     if(r.rahul) meta.push('Search open · <b>confirmed by Rahul</b>');
     if(r.pod) meta.push(`Aziro POD · ${fmt$(r.monthly)}/mo`);
-    if(r.moved) meta.push('Moved from ADC to Waterloo');
+    if(r.moved) meta.push(typeof r.prev==='number' && typeof r.sal==='number' ? `Moved from ADC to Waterloo · was ${fmt$(r.prev)}/yr` : 'Moved from ADC to Waterloo');
     const badge = r.pod ? `<span class="azr">Aziro</span>` : `<span class="b ${r.stage}">${STAGES[r.stage].short}</span>${r.nf?` <span class="b s3">${STAGES.s3.short}</span>`:''}`;
     return `<div class="role" data-stage="${r.nf?'s3':r.stage}" data-loc="${r.loc}">
       <div>${badge}</div>
@@ -423,15 +445,27 @@ const REC_ALL = wsOrder.flatMap(recommended);
   const money = a => { const i=a.filter(isIncr); return i.length
       ? `<span class="money"><span class="ml">Incremental budget requested</span><b>${fmt$(sumSal(i))}</b>/yr${unkCount(i)?` · ${unkCount(i)} unknown`:''}</span>`
       : `<span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · all budgeted</span>`; };
-  const head = (label, ws, a, note) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}</div></div>`;
-  document.getElementById('wsgrid').innerHTML = wsOrder.map(ws=>{
-    const arr = groups[ws], rec = REC[ws];
-    if(!rec) return `<div class="wscard" id="ws-${slug(ws)}">${head('', ws, arr, '')}${sorted(arr).map(row).join('')}</div>`;
-    const r = recommended(ws);
+  const freedLine = a => label => label==='CoS recommendation' ? `<span class="money freed"><span class="ml">Budget freed from budgeted hires</span><b>${fmt$(freed(a))}</b>/yr</span>` : '';
+  const head = (label, ws, a, note) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}${freedLine(a)(label)}</div></div>`;
+  const teamCard = (t) => {
+    const arr = t.ws.flatMap(w=>groups[w]||[]);
+    if(!arr.length) return `<div class="wscard empty-team" id="ws-${slug(t.name)}"><div class="wshead"><h3>${esc(t.name)}</h3><div class="sum"><span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · no incremental budget requested</span></div></div></div>`;
+    const sub = r => t.ws.length>1 ? `<span class="subteam">${esc(r.ws)}</span>` : '';
+    const rowsOf = a => sorted(a).map(r=>row(r).replace('<div class="title">','<div class="title">'+sub(r))).join('');
+    const recs = t.ws.map(w=>REC[w]).filter(Boolean);
+    if(!recs.length) return `<div class="wscard" id="ws-${slug(t.name)}">${head('', t.name, arr, '')}${rowsOf(arr)}</div>`;
+    const r = t.ws.flatMap(recommended);
     return `<div class="pair">
-      <div class="wscard ask" id="ws-${slug(ws)}">${head('Existing ask', ws, arr, '')}${sorted(arr).map(row).join('')}</div>
-      <div class="wscard rec" id="ws-${slug(ws)}-rec">${head('CoS recommendation', ws, r, rec.note)}${sorted(r).map(row).join('')}</div>
+      <div class="wscard ask" id="ws-${slug(t.name)}">${head('Existing ask', t.name, arr, '')}${rowsOf(arr)}</div>
+      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '))}${rowsOf(r)}</div>
     </div>`;
+  };
+  document.getElementById('wsgrid').innerHTML = GROUPS.map(g=>{
+    const arr = g.teams.flatMap(t=>t.ws).flatMap(w=>groups[w]||[]);
+    const rec = g.teams.flatMap(t=>t.ws).flatMap(w=>REC[w]?recommended(w):(groups[w]||[]));
+    const inc = rec.filter(isIncr);
+    return `<div class="gband ${g.cls}"><h2>${esc(g.name)}</h2><span class="gsum">${g.teams.length} teams · incremental budget requested <b>${fmt$(sumSal(inc))}</b>/yr${unkCount(inc)?` · ${unkCount(inc)} unknown`:''}${freed(rec)?` · <b>${fmt$(freed(rec))}</b> freed`:''}</span></div>`
+      + g.teams.map(teamCard).join('');
   }).join('');
 })();
 
