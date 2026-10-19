@@ -304,11 +304,13 @@ const ALL_ROLES = [
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'ADC', role:'Senior SDET', stage:'s4'},
   {ws:'Entity Boarding & Maintenance / Partner Experience', loc:'IDC', role:'Senior SDET', stage:'s3'},
   // Fraud & Risk Governance
+  {ws:'Fraud & Risk Governance', loc:'ADC', role:'Principal Software Architect', stage:'s1', bf:'Simon Germain', sal:220000, drop:true},
   {ws:'Fraud & Risk Governance', loc:'IDC', role:'Team Lead, Engineering', stage:'s4'},
   {ws:'Fraud & Risk Governance', loc:'IDC', role:'Senior Staff Software Engineer', stage:'s4'},
   // Card Processing
   {ws:'Card Processing', loc:'IDC', role:'Team Lead, Engineering', stage:'s3'},
   {ws:'Card Processing', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
+  {ws:'Card Processing', loc:'ADC', role:'Director, Engineering', stage:'s1', bf:'Marie Cuddy', sal:300000, drop:true},
   {ws:'Card Processing', loc:'ADC', role:'Senior SDET', stage:'s2', sal:146000, rec:{loc:'REV', role:'Senior Quality Automation Engineer', sal:100000}},
   {ws:'Card Processing', loc:'REV', role:'Senior Software Engineer', stage:'s1', bf:'Backfill', sal:100000},
   // Account to Account
@@ -396,11 +398,15 @@ const REC = {
     build: arr => arr.map(r => r.loc==='ADC' ? toWAT(r) : r)
   },
   'Card Processing': {
-    note:'The approved Senior SDET becomes a Senior Quality Automation Engineer at Revelo.',
-    build: arr => arr.map(applyRec)
+    note:'The Director, Engineering backfill for Marie Cuddy is not filled and its budget returns to the pool. The approved Senior SDET becomes a Senior Quality Automation Engineer at Revelo.',
+    build: arr => arr.filter(r=>!r.drop).map(applyRec)
   },
   'PCE': {
     note:'The three budgeted support roles are not filled; their budget returns to the pool to reallocate.',
+    build: arr => arr.filter(r=>!r.drop)
+  },
+  'Fraud & Risk Governance': {
+    note:'The Principal Software Architect backfill for Simon Germain is not filled; its budget returns to the pool to reallocate.',
     build: arr => arr.filter(r=>!r.drop)
   },
   'Acquiring Stability': {
