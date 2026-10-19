@@ -157,6 +157,8 @@ tfoot td.c{font-family:var(--mono)}
 .gband .gsum{font-size:12px;color:rgba(255,255,255,.85)}
 .gband .gsum b{color:#fff}
 .gband.g-design{background:#4B56A8} .gband.g-surf{background:#2E7D32} .gband.g-api{background:#6D3B8E} .gband.g-core{background:#D97A00}
+.role.removed .title{text-decoration:line-through;color:var(--text-muted)}
+.b.removed{background:var(--s1-bg);color:var(--s1)}
 .wscard.empty-team{opacity:.85}
 .wscard.empty-team.pending{opacity:1;border-left:4px solid var(--orange)}
 .wshead .note.pend{color:var(--s3);font-weight:600}
@@ -286,6 +288,9 @@ const ALL_ROLES = [
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
   {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', open:true, rahul:true},
+  {ws:'PCE', loc:'ADC', role:'Sr Technical Customer Support Engineer', stage:'s1', bf:'Donley Gustave', sal:130000, drop:true},
+  {ws:'PCE', loc:'ADC', role:'Tech Support — Engineer', stage:'s2', sal:80000, drop:true},
+  {ws:'PCE', loc:'ADC', role:'Implementation Engineer', stage:'s2', sal:150000, drop:true},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Platform APIs)', stage:'s2', ticket:'HR-415001'},
   {ws:'PCE', loc:'ADC', role:'Senior Product Manager (Strategic Solutions)', stage:'s2', ticket:'HR-415002'},
   {ws:'PCE', loc:'WAT', role:'Team Lead, Engineering', stage:'s3'},
@@ -393,6 +398,10 @@ const REC = {
     note:'The approved Senior SDET becomes a Senior Quality Automation Engineer at Revelo.',
     build: arr => arr.map(applyRec)
   },
+  'PCE': {
+    note:'The three budgeted support roles are not filled; their budget returns to the pool to reallocate.',
+    build: arr => arr.filter(r=>!r.drop)
+  },
   'Acquiring Stability': {
     note:'Same roles; the unbudgeted ADC hires move to Waterloo.',
     build: arr => arr.map(r => (isIncr(r) && r.loc==='ADC') ? toWAT(r) : r)
@@ -414,19 +423,24 @@ const wsOrder = GROUPS.flatMap(g=>g.teams.flatMap(t=>t.ws));
 const unmapped = Object.keys(groups).filter(w=>!wsOrder.includes(w)); if(unmapped.length) console.warn('Workstreams not placed in a group:', unmapped);
 const recommended = ws => { const arr=groups[ws]; const r=REC[ws]; const out = r ? r.build(arr) : arr; out.forEach(x=>{ if(x.sal==null && !x.pod) x.sal = bandFor(x); }); return out; };
 const REC_ALL = wsOrder.flatMap(recommended);
-const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number' && typeof r.sal==='number').reduce((t,r)=>t+(r.prev-r.sal),0);
+const movedSavings = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number' && typeof r.sal==='number').reduce((t,r)=>t+(r.prev-r.sal),0);
+const droppedSavings = ws => (groups[ws]||[]).filter(r=>!isIncr(r) && r.drop).reduce((t,r)=>t+salNum(r),0);
+const freedWs = ws => movedSavings(REC[ws] ? recommended(ws) : []) + (REC[ws] ? droppedSavings(ws) : 0);
+const freedFor = wsList => wsList.reduce((t,w)=>t+freedWs(w),0);
+const freed = a => movedSavings(a); /* legacy: moves only; use freedFor for totals */
 
 /* ---------- SUMMARY (hero reflects the CoS recommendation) ---------- */
 (function(){
   const existIncr = ROLES.filter(isIncr), recIncr = REC_ALL.filter(isIncr);
   const toHire = REC_ALL.filter(r=>r.stage!=='s5'), ctrOpen = n(toHire,r=>r.ctr||r.loc==='AZR'||r.loc==='REV');
   const idc=n(toHire,r=>r.loc==='IDC'), adc=n(toHire,r=>r.loc==='ADC'), wat=n(toHire,r=>r.loc==='WAT');
+  const aziro=n(toHire,r=>r.loc==='AZR'), revelo=n(toHire,r=>r.loc==='REV'), otherCtr=n(toHire,r=>r.ctr&&r.loc!=='AZR'&&r.loc!=='REV');
   document.getElementById('kpis').innerHTML = `
     <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>
-    <div class="kpi s1"><div class="n">${fmt$(freed(REC_ALL))}</div><div class="l">Budget freed to reallocate · recommended</div><div class="d">Budgeted hires that cost less in the recommended location</div><div class="d">Plus ${fmt$(sumSal(existIncr)-sumSal(recIncr))} less incremental ask than existing</div></div>
+    <div class="kpi s1"><div class="n">${fmt$(freedFor(wsOrder))}</div><div class="l">Budget freed to reallocate · recommended</div><div class="d">Budgeted hires that cost less in the recommended location, or are not filled</div><div class="d">Plus ${fmt$(sumSal(existIncr)-sumSal(recIncr))} less incremental ask than existing</div></div>
+    <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} employees · ${ctrOpen} contractors (${aziro} Aziro${revelo?` · ${revelo} Revelo`:''}${otherCtr?` · ${otherCtr} other`:''})</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
     <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">Incremental · not budgeted, incl. ${n(recIncr,r=>r.nf)} contractors in seat</div><div class="d">Existing ask: ${existIncr.length}</div></div>
-    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>
-    <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} FTE · ${ctrOpen} contractors</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>`;
+    <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>`;
   const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',recIncr.length],['s5','In seat',S.s5]];
   document.getElementById('legend').innerHTML = stages.map(([k,t,c])=>`<span><i style="background:${stageVar(k)}"></i>${t} — <b>${c}</b></span>`).join('');
 })();
@@ -454,8 +468,7 @@ const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number'
   const money = a => { const i=a.filter(isIncr); return i.length
       ? `<span class="money"><span class="ml">Incremental budget requested</span><b>${fmt$(sumSal(i))}</b>/yr${unkCount(i)?` · ${unkCount(i)} unknown`:''}</span>`
       : `<span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · all budgeted</span>`; };
-  const freedLine = a => label => label==='CoS recommendation' ? `<span class="money freed"><span class="ml">Budget freed from budgeted hires</span><b>${fmt$(freed(a))}</b>/yr</span>` : '';
-  const head = (label, ws, a, note) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}${freedLine(a)(label)}</div></div>`;
+  const head = (label, ws, a, note, wsList) => `<div class="wshead"><div>${label?`<span class="k2">${label}</span>`:''}<h3>${esc(ws)}</h3>${note?`<div class="note">${esc(note)}</div>`:''}</div><div class="sum">${chips(a)}<span class="tot">${n(a,r=>r.stage!=='s5')} to hire</span>${money(a)}${label==='CoS recommendation'?`<span class="money freed"><span class="ml">Budget freed from budgeted hires</span><b>${fmt$(freedFor(wsList||[]))}</b>/yr</span>`:''}</div></div>`;
   const teamCard = (t) => {
     const arr = t.ws.flatMap(w=>groups[w]||[]);
     if(!arr.length) return `<div class="wscard empty-team${t.pending?' pending':''}" id="ws-${slug(t.name)}"><div class="wshead"><div><h3>${esc(t.name)}</h3>${t.pending?`<div class="note pend">⚑ ${esc(t.pending)}</div>`:''}</div><div class="sum"><span class="money"><span class="ml">Incremental budget requested</span><b>$0</b> · ${t.pending?'ask not yet received':'no incremental budget requested'}</span></div></div></div>`;
@@ -466,14 +479,14 @@ const freed = a => a.filter(r=>!isIncr(r) && r.moved && typeof r.prev==='number'
     const r = t.ws.flatMap(recommended);
     return `<div class="pair">
       <div class="wscard ask" id="ws-${slug(t.name)}">${head('Existing ask', t.name, arr, '')}${rowsOf(arr)}</div>
-      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '))}${rowsOf(r)}</div>
+      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '), t.ws)}${rowsOf(r)}${t.ws.flatMap(w=>groups[w]||[]).filter(x=>x.drop).map(x=>`<div class="role removed" data-stage="${x.stage}" data-loc="${x.loc}"><div><span class="b removed">Not filled</span></div><div><div class="title">${esc(x.role)}</div><div class="meta">${x.bf?`Backfill for <b>${esc(x.bf)}</b> · `:''}budget returned to the pool</div></div><div class="side"><span class="sal">${fmt$(x.sal)}/yr</span><span class="loc ${x.loc}">${locName(x.loc)}</span></div></div>`).join('')}</div>
     </div>`;
   };
   document.getElementById('wsgrid').innerHTML = GROUPS.map(g=>{
     const arr = g.teams.flatMap(t=>t.ws).flatMap(w=>groups[w]||[]);
     const rec = g.teams.flatMap(t=>t.ws).flatMap(w=>REC[w]?recommended(w):(groups[w]||[]));
     const inc = rec.filter(isIncr);
-    return `<div class="gband ${g.cls}"><h2>${esc(g.name)}</h2><span class="gsum">${g.teams.length} teams · incremental budget requested <b>${fmt$(sumSal(inc))}</b>/yr${unkCount(inc)?` · ${unkCount(inc)} unknown`:''}${freed(rec)?` · <b>${fmt$(freed(rec))}</b> freed`:''}</span></div>`
+    return `<div class="gband ${g.cls}"><h2>${esc(g.name)}</h2><span class="gsum">${g.teams.length} teams · incremental budget requested <b>${fmt$(sumSal(inc))}</b>/yr${unkCount(inc)?` · ${unkCount(inc)} unknown`:''}${freedFor(g.teams.flatMap(t=>t.ws))?` · <b>${fmt$(freedFor(g.teams.flatMap(t=>t.ws)))}</b> freed`:''}</span></div>`
       + g.teams.map(teamCard).join('');
   }).join('');
 })();
