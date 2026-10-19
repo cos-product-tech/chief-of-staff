@@ -160,6 +160,7 @@ tfoot td.c{font-family:var(--mono)}
 .gband.g-design{background:#4B56A8} .gband.g-surf{background:#2E7D32} .gband.g-api{background:#6D3B8E} .gband.g-core{background:#D97A00}
 .role.removed .title{text-decoration:line-through;color:var(--text-muted)}
 .b.removed{background:var(--s1-bg);color:var(--s1)}
+.role.removed .sal{text-decoration:line-through;color:var(--text-muted)}
 .wscard.empty-team{opacity:.85}
 .wscard.empty-team.pending{opacity:1;border-left:4px solid var(--orange)}
 .wshead .note.pend{color:var(--s3);font-weight:600}
@@ -361,7 +362,7 @@ const bandFor = r => {
   const base = r.role.replace(/\s*\(.*\)$/,'').trim();
   return t[base] ?? 'Unknown';
 };
-ALL_ROLES.forEach(r=>{ r.sal = bandFor(r); });
+ALL_ROLES.forEach((r,i)=>{ r.sal = bandFor(r); r._i = i; });
 const ROLES = ALL_ROLES;
 /* CoS recommendation for Billing & Revenue Management: keep the budgeted asks, replace the unbudgeted ones with an Aziro POD ($35,700/month for 7 people, shown as annual). */
 const AZIRO_POD = [
@@ -495,9 +496,16 @@ const freed = a => movedSavings(a); /* legacy: moves only; use freedFor for tota
     const recs = t.ws.map(w=>REC[w]).filter(Boolean);
     if(!recs.length) return `<div class="wscard" id="ws-${slug(t.name)}">${head('', t.name, arr, '')}${rowsOf(arr)}</div>`;
     const r = t.ws.flatMap(recommended);
+    const byI = new Map(r.filter(x=>x._i!=null).map(x=>[x._i,x]));
+    const recRows = sorted(arr).map(src => {
+      const out = byI.get(src._i);
+      if(out) return row(out).replace('<div class="title">','<div class="title">'+sub(out));
+      const why = src.drop ? 'budget returned to the pool' : 'replaced by the Aziro POD below';
+      return `<div class="role removed" data-stage="${src.nf?'s3':src.stage}" data-loc="${src.loc}"><div><span class="b removed">${src.drop?'Not filled':'Replaced'}</span></div><div><div class="title">${sub(src)}${esc(src.role)}</div><div class="meta">${src.bf?`Backfill for <b>${esc(src.bf)}</b> · `:''}${why}</div></div><div class="side">${salTag(src.sal)}<span class="loc ${src.loc}">${locName(src.loc)}</span></div></div>`;
+    }).join('') + r.filter(x=>x._i==null).map(x=>row(x)).join('');
     return `<div class="pair">
       <div class="wscard ask" id="ws-${slug(t.name)}">${head('Existing ask', t.name, arr, '')}${rowsOf(arr)}</div>
-      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '), t.ws)}${rowsOf(r)}${t.ws.flatMap(w=>groups[w]||[]).filter(x=>x.drop).map(x=>`<div class="role removed" data-stage="${x.stage}" data-loc="${x.loc}"><div><span class="b removed">Not filled</span></div><div><div class="title">${esc(x.role)}</div><div class="meta">${x.bf?`Backfill for <b>${esc(x.bf)}</b> · `:''}budget returned to the pool</div></div><div class="side"><span class="sal">${fmt$(x.sal)}/yr</span><span class="loc ${x.loc}">${locName(x.loc)}</span></div></div>`).join('')}</div>
+      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '), t.ws)}${recRows}</div>
     </div>`;
   };
   document.getElementById('wsgrid').innerHTML = GROUPS.map(g=>{
