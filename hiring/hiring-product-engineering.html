@@ -284,6 +284,16 @@ const ALL_ROLES = [
   {ws:'Acquiring Stability', loc:'AZR', role:'Senior Software Engineer', stage:'s5', ctr:true, nf:true, sal:57600, note:'In seat · Aziro contractor · $4,800/mo'},
   // Acquiring Stability
   {ws:'Acquiring Stability', loc:'ADC', role:'Senior SDET', stage:'s4'},
+  // Acquiring Production Support
+  {ws:'Acquiring Production Support', loc:'WAT', role:'Team Lead, Engineering', stage:'s4'},
+  {ws:'Acquiring Production Support', loc:'AZR', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:57600, note:'Aziro · $4,800/mo'},
+  {ws:'Acquiring Production Support', loc:'AZR', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:57600, note:'Aziro · $4,800/mo'},
+  // Commerce Command Center (C3)
+  {ws:'Commerce Command Center (C3)', loc:'WAT', role:'Senior Software Engineer', stage:'s4'},
+  {ws:'Commerce Command Center (C3)', loc:'WAT', role:'Software Engineer', stage:'s4'},
+  {ws:'Commerce Command Center (C3)', loc:'WAT', role:'Senior SDET', stage:'s4'},
+  // Professional Services
+  {ws:'Professional Services', loc:'ADC', role:'Professional Services Lead · Technical Engagement Manager', stage:'s4', sal:201182, note:'Priced at the US Manager, Engineering band'},
   // Banking & Treasury
   {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
@@ -419,9 +429,9 @@ const groups = by(ROLES, r=>r.ws);
 const GROUPS = [
   {name:'Product Design', cls:'g-design', teams:[{name:'Product Design', ws:['Product Design']}]},
   {name:'Surfaces & Applications', cls:'g-surf', teams:[
-    {name:'Payables', ws:['Payables']},{name:'Priority Field Desk', ws:[]},{name:'Merchant Experience', ws:['Merchant Experience']},{name:'Acquiring Stability', ws:['Acquiring Stability']},
+    {name:'Payables', ws:['Payables']},{name:'Priority Field Desk', ws:[]},{name:'Merchant Experience', ws:['Merchant Experience']},{name:'Acquiring Stability', ws:['Acquiring Stability']},{name:'Acquiring Production Support', ws:['Acquiring Production Support']},
     {name:'MXPOS', ws:[]},{name:'Banking & Treasury', ws:['Banking & Treasury']},{name:'Debt Resolution', ws:[]}]},
-  {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:[], pending:'Incremental headcount ask still to come from Sean Hansen'}]},
+  {name:'Commerce API', cls:'g-api', teams:[{name:'PCE (API + DevEx + Integration support)', ws:['PCE']},{name:'Commerce Command Center (C3)', ws:['Commerce Command Center (C3)']},{name:'Professional Services', ws:['Professional Services']}]},
   {name:'Commerce Core', cls:'g-core', teams:[
     {name:'Entity Boarding & Maintenance / Partner Experience', ws:['Entity Boarding & Maintenance / Partner Experience']},{name:'Fraud & Risk Governance', ws:['Fraud & Risk Governance']},
     {name:'Money Movement · Card Processing', ws:['Card Processing']},{name:'Money Movement · Account to Account, Routing & Optimization', ws:['Account to Account','Routing & Optimization']},{name:'Billing & Revenue Management', ws:['Billing & Revenue Management']}]},
