@@ -48,13 +48,14 @@ h2 .hint{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:
 .why b{color:var(--dark-forest)}
 
 /* KPI strip */
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
 .chg{margin-top:10px;font-size:12px;color:var(--text-muted);display:flex;gap:10px;align-items:baseline}
 .chg .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);white-space:nowrap}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--forest)}
 .kpi.s1::before{background:var(--s1)} .kpi.s2::before{background:var(--s2)} .kpi.s3::before{background:var(--s3)} .kpi.s4::before{background:var(--s4)}
-.kpi .n{font-size:32px;font-weight:700;line-height:1;letter-spacing:-.5px;color:var(--dark-forest)}
+.kpi .n{font-size:22px;font-weight:700;line-height:1.1;letter-spacing:-.4px;color:var(--dark-forest);font-family:var(--mono);white-space:nowrap}
+.kpi .flag{display:inline-block;margin-top:6px;font-size:11px;line-height:1.35;color:var(--s3);background:var(--s3-bg);border-radius:4px;padding:3px 7px}
 .kpi .l{font-size:12.5px;font-weight:600;color:var(--text-dark);margin-top:6px}
 .kpi .d{font-size:11.5px;color:var(--text-muted);margin-top:2px}
 
@@ -436,10 +437,11 @@ const freed = a => movedSavings(a); /* legacy: moves only; use freedFor for tota
   const idc=n(toHire,r=>r.loc==='IDC'), adc=n(toHire,r=>r.loc==='ADC'), wat=n(toHire,r=>r.loc==='WAT');
   const aziro=n(toHire,r=>r.loc==='AZR'), revelo=n(toHire,r=>r.loc==='REV'), otherCtr=n(toHire,r=>r.ctr&&r.loc!=='AZR'&&r.loc!=='REV');
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div></div>
+    <div class="kpi s4"><div class="n">${fmt$(sumSal(recIncr))}</div><div class="l">Total incremental budget requested · recommended</div><div class="d">Annualized base salary at the 50th percentile · ${unkCount(recIncr)} IDC roles unknown and excluded</div><div class="d">Existing ask: ${fmt$(sumSal(existIncr))} · ${unkCount(existIncr)} unknown</div><div class="flag">⚑ Preliminary: full-year cost per role, no start dates applied. In-year cost will be lower once hire dates are set.</div></div>
     <div class="kpi s1"><div class="n">${fmt$(freedFor(wsOrder))}</div><div class="l">Budget freed to reallocate · recommended</div><div class="d">Budgeted hires that cost less in the recommended location, or are not filled</div><div class="d">Plus ${fmt$(sumSal(existIncr)-sumSal(recIncr))} less incremental ask than existing</div></div>
+    <div class="kpi s2"><div class="n">${fmt$(sumSal(recIncr)-freedFor(wsOrder))}</div><div class="l">Net new budget needed · recommended</div><div class="d">Total incremental requested minus budget freed to reallocate</div><div class="d">${fmt$(sumSal(recIncr))} − ${fmt$(freedFor(wsOrder))}</div></div>
     <div class="kpi"><div class="n">${toHire.length}</div><div class="l">Roles to hire · recommended</div><div class="d">${toHire.length-ctrOpen} employees · ${ctrOpen} contractors (${aziro} Aziro${revelo?` · ${revelo} Revelo`:''}${otherCtr?` · ${otherCtr} other`:''})</div><div class="d">${idc} IDC · ${adc} ADC · ${wat} Waterloo</div></div>
-    <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">Incremental · not budgeted, incl. ${n(recIncr,r=>r.nf)} contractors in seat</div><div class="d">Existing ask: ${existIncr.length}</div></div>
+    <div class="kpi s3"><div class="n">${recIncr.length}</div><div class="l">Not yet budgeted · recommended</div><div class="d">${n(recIncr,r=>!r.nf)} roles to hire that have no budget yet, plus ${n(recIncr,r=>r.nf)} Aziro engineers already working without budget (${[...new Set(recIncr.filter(r=>r.nf).map(r=>r.ws))].map(w=>`${n(recIncr,r=>r.nf&&r.ws===w)} on ${short(w)}`).join(', ')})</div><div class="d">Existing ask: ${existIncr.length} (${n(existIncr,r=>!r.nf)} roles + the same ${n(existIncr,r=>r.nf)} in seat)</div></div>
     <div class="kpi s1"><div class="n">${S.s1+S.s2}</div><div class="l">Approved &amp; budgeted</div><div class="d">${S.s1} backfills · ${S.s2} incremental</div><div class="d">Unchanged by the recommendation</div></div>`;
   const stages=[['s1','Backfill · budgeted',S.s1],['s2','Incremental · budgeted',S.s2],['s3','Incremental · not budgeted',recIncr.length],['s5','In seat',S.s5]];
   document.getElementById('legend').innerHTML = stages.map(([k,t,c])=>`<span><i style="background:${stageVar(k)}"></i>${t} — <b>${c}</b></span>`).join('');
