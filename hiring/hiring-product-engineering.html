@@ -166,6 +166,15 @@ tfoot td.c{font-family:var(--mono)}
 .wshead .note.pend{color:var(--s3);font-weight:600}
 .subteam{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-right:8px}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pairgrid{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;row-gap:0;align-items:stretch}
+.pairgrid .cell{background:#fff;border-left:1px solid var(--border);border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0}
+.pairgrid .cell.head{border-top:1px solid var(--border);border-radius:10px 10px 0 0;overflow:hidden}
+.pairgrid .cell.ask.head{border-top:3px solid var(--forest)} .pairgrid .cell.rec.head{border-top:3px solid var(--orange)}
+.pairgrid .cell.head .wshead{flex:1;border-bottom:1px solid var(--border)}
+.pairgrid .cell.foot{height:8px;border-bottom:1px solid var(--border);border-radius:0 0 10px 10px}
+.pairgrid .cell .role{flex:1;border-bottom:1px dashed var(--border)}
+.pairgrid .cell.blank{background:repeating-linear-gradient(135deg,#fff,#fff 6px,var(--bg-soft) 6px,var(--bg-soft) 12px);border-bottom:1px dashed var(--border)}
+.pairgrid .cell.hide{display:none}
 .wshead .note{font-size:11.5px;color:var(--text-muted);margin-top:3px}
 .wshead .money.freed b{color:var(--s1)}
 .wshead .money .ml{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
@@ -497,15 +506,21 @@ const freed = a => movedSavings(a); /* legacy: moves only; use freedFor for tota
     if(!recs.length) return `<div class="wscard" id="ws-${slug(t.name)}">${head('', t.name, arr, '')}${rowsOf(arr)}</div>`;
     const r = t.ws.flatMap(recommended);
     const byI = new Map(r.filter(x=>x._i!=null).map(x=>[x._i,x]));
-    const recRows = sorted(arr).map(src => {
+    const askList = sorted(arr).map(x => row(x).replace('<div class="title">','<div class="title">'+sub(x)));
+    const recList = sorted(arr).map(src => {
       const out = byI.get(src._i);
       if(out) return row(out).replace('<div class="title">','<div class="title">'+sub(out));
       const why = src.drop ? 'budget returned to the pool' : 'replaced by the Aziro POD below';
       return `<div class="role removed" data-stage="${src.nf?'s3':src.stage}" data-loc="${src.loc}"><div><span class="b removed">${src.drop?'Not filled':'Replaced'}</span></div><div><div class="title">${sub(src)}${esc(src.role)}</div><div class="meta">${src.bf?`Backfill for <b>${esc(src.bf)}</b> · `:''}${why}</div></div><div class="side">${salTag(src.sal)}<span class="loc ${src.loc}">${locName(src.loc)}</span></div></div>`;
-    }).join('') + r.filter(x=>x._i==null).map(x=>row(x)).join('');
-    return `<div class="pair">
-      <div class="wscard ask" id="ws-${slug(t.name)}">${head('Existing ask', t.name, arr, '')}${rowsOf(arr)}</div>
-      <div class="wscard rec" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '), t.ws)}${recRows}</div>
+    });
+    r.filter(x=>x._i==null).forEach(x=>{ askList.push(''); recList.push(row(x)); });
+    const nRows = askList.length;
+    const cells = askList.map((a,i)=>`<div class="cell ask${a?'':' blank'}" data-pr="${i}">${a}</div><div class="cell rec" data-pr="${i}">${recList[i]}</div>`).join('');
+    return `<div class="pairgrid" id="ws-${slug(t.name)}-pair">
+      <div class="cell ask head" id="ws-${slug(t.name)}">${head('Existing ask', t.name, arr, '')}</div>
+      <div class="cell rec head" id="ws-${slug(t.name)}-rec">${head('CoS recommendation', t.name, r, recs.map(x=>x.note).join(' '), t.ws)}</div>
+      ${cells}
+      <div class="cell ask foot"></div><div class="cell rec foot"></div>
     </div>`;
   };
   document.getElementById('wsgrid').innerHTML = GROUPS.map(g=>{
@@ -529,6 +544,14 @@ const freed = a => movedSavings(a); /* legacy: moves only; use freedFor for tota
     });
     document.querySelectorAll('.wscard').forEach(card=>{
       card.classList.toggle('empty', card.querySelectorAll('.role:not(.hide)').length===0);
+    });
+    document.querySelectorAll('.pairgrid').forEach(pg=>{
+      const rows = {};
+      pg.querySelectorAll('.cell[data-pr]').forEach(c=>{ (rows[c.dataset.pr]=rows[c.dataset.pr]||[]).push(c); });
+      Object.values(rows).forEach(cs=>{
+        const keep = cs.some(c=>c.querySelector('.role') && !c.querySelector('.role').classList.contains('hide'));
+        cs.forEach(c=>{ c.classList.toggle('hide', !keep); const r=c.querySelector('.role'); if(r && keep) r.classList.remove('hide'); });
+      });
     });
     document.getElementById('count').textContent = `${shown} of ${ROLES.length} roles shown`;
   };
