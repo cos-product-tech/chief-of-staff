@@ -198,7 +198,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <section class="problem">
     <div><div class="k">The problem</div><div class="big">We make promises to the business that we can't keep.</div>
       <div class="ps"><span class="pk">The outcome</span><span>The business can trust our dates.</span></div>
-      <div class="ps"><span class="pk">How</span><span>Plan against real engineering capacity, and make every sprint predictable.</span></div>
+      <div class="ps"><span class="pk">How</span><span>Start by planning against real engineering capacity. Choose the rest of the fixes on Nov 20 from what the interviews and one observed cycle show, not before.</span></div>
       <div class="ps"><span class="pk">Measured by</span><span>Commitments shipped on the date promised. Sprint predictability.</span></div>
       <div class="ps fix">We are fixing the system the team works inside, with the team, not around it.</div></div>
     <div><div class="k">What we will find out first</div><div class="t">Why our promises break. <b>How a date gets made</b>: who commits it, what capacity it was checked against, and what gets added after. <b>Where the sprint leaks</b>: story points committed, added, removed, carried over, and completed; work pulled in without a trade; estimates that don't hold; the regression window's share of every cycle; and the waiting, rework, and interruptions between committed and done. And <b>what the team knows</b> about the customer, the problem, and the KPI behind each promise, because a promise nobody understands is the easiest one to miss.</div></div>
@@ -217,7 +217,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <h2>Scope <span class="sub">stay focused on the problem</span></h2>
   <section class="scope">
     <div class="card in"><h3>In scope</h3><ul>
-      <li><b>Capacity-based planning and sprint predictability first.</b> Every commitment is made against known capacity, and the sprint delivers what it committed. Everything below serves this.</li>
+      <li><b>Capacity-based planning is the one change we commit to before the evidence</b>: no promise is made without knowing the capacity behind it. Every other change is chosen on Nov 20 from the interviews and the observed cycle. The list below is where we will look, not what we have decided.</li>
       <li>Operating rhythms: how work enters, how commitments are made and against what capacity, how status flows to the business.</li>
       <li>Jellyfish data used to find and act on specific drag.</li>
       <li>The drag the industry sees most and we will look for first: waiting on reviews, approvals, QA, and environments; unclear requirements and hard-to-find information; interruptions from meetings, tool switching, and mid-sprint changes; technical debt and complexity; and handoffs and silos between engineering, QA, product, design, and the business.</li>
@@ -242,7 +242,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="role"><div class="rh"><h3>Product Management</h3><span class="lead">Bart leads</span></div><div class="with"><span>Erin Dalessandro<i>Staff Product Manager</i></span><span>Sharada Chandran<i>Senior Product Manager</i></span></div><ul>
       <li>Who is the customer for the last three things the team shipped, and what changed for them?</li>
       <li>What business result was each one meant to move, and how did we know whether it did?</li>
-      <li>How do asks from the business reach you, and how do they become commitments with dates?</li>
+      <li>How do asks from the business reach you, and how do they become commitments with dates? What did you know about the team's capacity at that moment, and who told you?</li>
+      <li>When the business brings you a solution, how do you find the problem behind it? Tell me about a time the problem turned out to be different from the ask.</li>
+      <li>When did you last say no to the business, and what happened?</li>
+      <li>How often does the business see a prototype or a demo before they see a date?</li>
       <li>What context does engineering get with each commitment: the customer, the problem, the KPI? What do they ask you for that you can't give them?</li>
       <li>When a date moves, when does the business hear, and from whom?</li>
       <li>What would make you trust a date from the team? What would make the business trust one?</li>
@@ -250,6 +253,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="role"><div class="rh"><h3>Product Design</h3><span class="lead">Bart leads</span></div><div class="with"><span>Kyle Miller<i>Senior Product Designer</i></span></div><ul>
       <li>Where in the flow does design enter? Is it early enough to shape the solution, or after the solution is already decided?</li>
       <li>How do design decisions get checked with customers or users before engineering builds them?</li>
+      <li>When a date is committed, has design seen the problem yet? Tell me about a time design found a problem after the date was already promised.</li>
       <li>Where does design wait on others, and where do others wait on design? What information do you have to hunt for?</li>
       <li>How often does design change after development starts, and what causes it?</li>
       <li>What would make the handoff to engineering and QA cleaner?</li>
@@ -260,6 +264,8 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <li>What are your three biggest time sinks? Waiting on reviews, approvals, QA, or environments; unclear requirements or hunting for information; meetings, tool switching, mid-sprint changes; technical debt and complexity; waiting on another team.</li>
       <li>When the team commits a date, what is it based on? Who checks capacity? How often is work added mid-sprint, and what gets dropped when it is?</li>
       <li>For what you're building now, do you know the customer, the problem, and the KPI it's meant to move? Where did that come from?</li>
+      <li>When did you last push back on what you were asked to build, or on a date? What happened?</li>
+      <li>Think of a promise this team missed. Walk me through why: was it sized wrong, did work get added, did the estimate not hold, or did it break in regression?</li>
       <li>Where does your code wait: review, QA, environments, deploy? How long, typically, and what would shorten it?</li>
       <li>How much of your week is actually building? What takes the rest?</li>
       <li>Which tool, system, or environment do you fight with most?</li>
@@ -268,6 +274,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="role"><div class="rh"><h3>QA Engineering</h3><span class="lead">Steve leads</span></div><div class="with"><span>Mamatha Yella<i>Manager, QA Engineering</i></span><span>Earnest Gibbs<i>QA Engineer</i></span><span>Anzhelika Cubbon<i>QA Engineer</i></span></div><ul>
       <li>Where does QA enter the flow: at planning, at refinement, or when the build arrives? Is it early enough to shape what gets built and how it will be tested?</li>
       <li>Who owns quality on this team? Do engineers test their own work and treat QA as a partner, or hand it over and treat QA as the safety net?</li>
+      <li>Think of a promise this team missed because of something found in regression. Could it have been caught earlier, and what would that have taken?</li>
       <li>What does the two-week regression window actually catch? What would you cut, and what would you automate first?</li>
       <li>How much of regression is automated today, and what blocks automating more?</li>
       <li>When does QA first see a change, and what arrives without enough context to test it well?</li>
@@ -330,7 +337,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <li>Eric, Amrita, Bart, and Steve in every ritual alongside Alex for one full cycle: Sprint 22 from planning through development, regression and QA, and its Sunday, Nov 22 release.</li>
       <li>Trace two or three real items end to end in Jira and Jellyfish, from pickup through development, review, QA, regression, and release, and record how long each one waited at every step and why. Wait time, not work time, is usually most of the lead time. Compare what people said in interviews with what the Jellyfish benchmark dashboard and the observation show.</li>
       <li>Watch commitments being made: against what capacity, with what information, and how the business hears about changes.</li>
-      <li><b>During the regression weeks, Nov 9–20:</b> decide the ideas we will implement against the problem: no more than three or four, each aimed at a named constraint, at least one aimed at the regression window. Capacity-based planning is always the first of them.</li>
+      <li><b>During the regression weeks, Nov 9–20:</b> decide the ideas we will implement against the problem: no more than three or four, each aimed at a named constraint. Capacity-based planning is always the first; the rest come from the evidence. If most broken promises trace to one source, such as work pulled in mid-sprint, the fix is a trade rule, not a tool. If the regression window is the leak, AI-assisted test generation and regression authoring are the most direct lever we have.</li>
       <li>Fix the commitment habit as one of them: capacity known before planning, no mid-sprint additions without a trade, every commitment written as a hypothesis (customer, KPI, value today, target, reason) with a leading indicator the team can see move within weeks when the KPI itself is slow, the team's KPIs on the team's own dashboard and reviewed every sprint, and a weekly one-line note to business partners on what was committed, what shipped, and what moved.</li></ul></div>
       <div class="exit"><b>Exit</b>Drag ranked by cost with evidence from interviews, data, and observation · the two or three biggest constraints named · changes chosen and written down by Nov 20</div></div>
 
