@@ -321,6 +321,21 @@ const KEY='cos-focus-log-v1';
 let LOG; try{LOG=JSON.parse(localStorage.getItem(KEY))||null}catch(e){LOG=null}
 if(!LOG) LOG=JSON.parse(JSON.stringify(SEED));
 function save(){try{localStorage.setItem(KEY,JSON.stringify(LOG))}catch(e){}}
+/* Roll the week forward automatically: if the saved log is from an earlier week, archive it and start this week clean. */
+function thisMonday(){const d=new Date();const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return d.toISOString().slice(0,10)}
+function rollForward(){
+  // bring in any history the page seed knows about that this browser doesn't
+  const have=new Set(LOG.history.map(w=>w.week));
+  SEED.history.forEach(w=>{ if(!have.has(w.week) && w.week!==LOG.week) LOG.history.push(JSON.parse(JSON.stringify(w))); });
+  LOG.history.sort((a,b)=>a.week<b.week?-1:1);
+  let guard=0;
+  while(LOG.week<thisMonday() && guard++<52){
+    const focus={}; for(const id in LOG.days){const f=FOCUS_OF[id]; if(f) focus[f]=(focus[f]||0)+sum(LOG.days[id])}
+    if(!LOG.history.some(w=>w.week===LOG.week)) LOG.history.push({week:LOG.week,focus,items:JSON.parse(JSON.stringify(LOG.days))});
+    LOG.week=nextMonday(LOG.week); for(const id in LOG.days) LOG.days[id]=[0,0,0,0,0];
+  }
+  save();
+}
 const sum=a=>a.reduce((x,y)=>x+y,0);
 function dayIdx(){const d=new Date().getDay();return d>=1&&d<=5?d-1:-1}
 function fmt(w){const d=new Date(w+'T00:00:00');return d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}
@@ -365,7 +380,7 @@ function renderCtl(){
   c.querySelector('#imp').onclick=()=>{const t=prompt('Paste a log export'); if(!t)return; try{LOG=JSON.parse(t);save();renderCtl();renderHeat();renderEnergy()}catch(e){alert('Not valid JSON')}};
   c.querySelector('#rst').onclick=()=>{if(confirm('Reset to the seeded log? This clears everything saved in this browser.')){LOG=JSON.parse(JSON.stringify(SEED));save();renderCtl();renderHeat();renderEnergy()}};
 }
-renderCtl(); renderHeat(); renderEnergy();
+rollForward(); renderCtl(); renderHeat(); renderEnergy();
 </script>
 </body>
 </html>
