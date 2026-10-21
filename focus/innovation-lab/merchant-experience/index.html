@@ -135,6 +135,8 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ivnote .runs{list-style:none;margin:6px 0 0}
 .ivnote .runs li{position:relative;padding:3px 0 3px 12px}
 .ivnote .runs li::before{content:'›';position:absolute;left:0;color:var(--orange)}
+.ivnote .runs li.flagnote{margin-top:6px;padding:8px 10px 8px 12px;background:var(--warn-bg);border:1px solid #F3C9A6;border-radius:6px;color:var(--text-mid)}
+.ivnote .runs li.flagnote::before{content:'!';color:var(--warn);font-weight:700;left:4px}
 .ivnote .own{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-right:2px}
 
 /* timeline */
@@ -318,8 +320,8 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <ul class="runs">
       <li><b>Survey distribution.</b> Eric sends each participant the survey for their role by end of day Wednesday, October 21.</li>
       <li><b>Responses due.</b> Participants complete the surveys by October 23. Responses are collected with respondent email addresses so the Tiger Team can follow up as needed.</li>
-      <li><b>Jellyfish DevEx survey.</b> Engineers also complete the Jellyfish Developer Experience survey, which covers tooling, AI usage, and developer experience. This keeps our role-specific surveys focused on identifying where time is lost between a business request and delivered value.</li>
       <li><b>Review and synthesis.</b> Each Tiger Team member reviews and synthesizes responses for their assigned functions and determines how to partner with those teams: <span class="own">Bart</span> Product Management and Product Design · <span class="own">Eric</span> Engineering Management and Technical Program Management · <span class="own">Amrita</span> Software Engineering · <span class="own">Steve</span> QA Engineering.</li>
+      <li class="flagnote"><b>Built for speed, not perfection.</b> The surveys were written to get signal within days, not to capture every question each Tiger Team member would have asked. Circulating every question for review would have added weeks and risked analysis paralysis. Where a survey does not cover something a Tiger Team member needs to know, they follow up with that person directly during Phase 2.</li>
     </ul>
   </div>
   <section class="ivgrid">
