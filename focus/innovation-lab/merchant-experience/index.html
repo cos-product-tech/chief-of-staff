@@ -37,11 +37,13 @@ h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-
 h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 
-.problem{background:var(--dark-forest);color:#fff;border-radius:10px;padding:18px 22px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+.problem{background:var(--dark-forest);color:#fff;border-radius:10px;padding:22px 26px;display:grid;grid-template-columns:1fr 1.15fr;gap:0}
+.problem .pcol:first-child{padding-right:26px;border-right:1px solid rgba(255,255,255,.12)}
+.problem .pcol:last-child{padding-left:26px}
 .problem .k{color:var(--turquoise)}
 .problem .t{font-size:14px;line-height:1.5;color:rgba(255,255,255,.92)}
 .problem .t b{color:var(--pistachio)}
-.problem .big{font-size:19px;font-weight:700;line-height:1.3;color:#fff;margin-bottom:10px}
+.problem .big{font-size:21px;font-weight:700;line-height:1.3;color:#fff;margin-bottom:4px;letter-spacing:-.2px}
 .problem .ps{display:grid;grid-template-columns:92px 1fr;gap:8px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.92);padding:4px 0;border-top:1px solid rgba(255,255,255,.1)}
 .problem .ps .pk{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);padding-top:3px}
 .problem .ps.fix{display:block;border-top:none;font-size:12px;color:rgba(255,255,255,.7);margin-top:6px}
@@ -83,6 +85,12 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .pg.core .who span{background:#E3F3EF;border-color:#CFE8DD}
 
 /* interviews by role */
+.diag{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.dg{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 15px 15px;border-top:3px solid var(--orange)}
+.dg .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--orange);margin-bottom:8px}
+.dg h3{font-size:13.5px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:6px}
+.dg p{font-size:12px;line-height:1.5;color:var(--text-mid)}
+@media (max-width:1000px){.diag{grid-template-columns:repeat(3,1fr)}}
 .ivgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .role{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 15px;border-top:3px solid var(--teal)}
 .role .rh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;flex-wrap:wrap}
@@ -183,9 +191,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
 
 @media (max-width:900px){
-  .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
+  .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none} .dbr{display:none}
   .doc-body{padding:20px 16px 40px}
-  .problem,.dates,.scope,.people,.ivgrid,.risks{grid-template-columns:1fr}
+  .problem,.dates,.scope,.people,.ivgrid,.risks,.diag{grid-template-columns:1fr}
+  .problem .pcol:first-child{padding-right:0;border-right:none;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.12)} .problem .pcol:last-child{padding-left:0}
   .ph{grid-template-columns:1fr} .ph .head{border-right:none;border-bottom:1px solid var(--border)} .ph .exit{border-left:none;border-top:1px dashed var(--border)}
 }
 @media print{
@@ -201,7 +210,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <div class="header-inner">
     <div class="header-left">
       <div class="doc-eyebrow">Office of the CTO · Modernizing the tech delivery engine · Starting with Merchant Experience</div>
-      <h1 class="doc-title">Accelerate Merchant Experience's<br>delivery of business value</h1>
+      <h1 class="doc-title">Accelerate Merchant Experience's<br class="dbr">delivery of business value</h1>
       <p class="doc-subtitle">We get value to the business sooner by <b>shortening the path from request to production</b> and <b>planning against real engineering capacity</b>. We modernize how the team operates, turn Jellyfish insights into action, and remove the friction that slows delivery.</p>
     </div>
     <div class="header-meta">
@@ -215,14 +224,18 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 <main class="doc-body">
 
   <section class="problem">
-    <div><div class="k">Problem statement</div><div class="big">We have an opportunity to accelerate our delivery of customer and business value.</div>
-      <div class="ps"><span class="pk">Desired outcome</span><span>The business has confidence in our ability to deliver value predictably and efficiently.</span></div>
-</div>
-    <div><div class="k">What we will find out first</div><div class="t"><b>Where the time goes</b> between a business request and delivered value. <b>Whether we are ready to commit</b>: a clear problem, a hypothesis and KPI, early collaboration across Product, Design, Engineering, and QA, and dates set against real capacity. <b>Where the cycle leaks</b>: building versus waiting on reviews, QA, regression, environments, decisions, and other teams; work added without a trade. <b>Whether we ship smaller</b> and look at the outcome after release. <b>How each role is using AI</b> and what it changes.</div></div>
-    <div><div class="k">How we will know</div>
+    <div class="pcol">
+      <div class="k">Problem statement</div>
+      <div class="big">We have an opportunity to accelerate our delivery of customer and business value.</div>
+      <div class="k" style="margin-top:14px">Desired outcome</div>
+      <div class="t">The business has confidence in our ability to deliver value predictably and efficiently.</div>
+    </div>
+    <div class="pcol">
+      <div class="k">How we will know</div>
       <div class="obj pri"><span class="tag">Primary</span><b>Issue cycle time of 2.92 days or less</b>, the 75th-percentile benchmark for comparable companies in Jellyfish, at the Feb 16 re-baseline.</div>
       <div class="obj sec"><span class="tag">Secondary</span>Faster without breaking trust: commitments <b>ship on the date promised ≥80%</b> of the time, and <b>sprint predictability</b> trends up to <b>at least 72%</b>, the 75th-percentile benchmark, while throughput and quality hold or improve.</div>
-      <div class="t small">All measured in Jellyfish, baselined before anything changes and read again at every sprint checkpoint.</div></div>
+      <div class="t small">All measured in Jellyfish, baselined before anything changes and read again at every sprint checkpoint.</div>
+    </div>
   </section>
 
 
@@ -231,6 +244,15 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="pg core"><div class="k">Tiger Team</div><div class="who"><span>Eric Normant<i>Chief of Staff · Product Engineering</i></span><span>Bart Piwowar<i>Head of Innovation &amp; Applied AI · Innovation Lab</i></span><span>Amrita Srivastava<i>Software Architect · Innovation Lab</i></span><span>Fabio Bara<i>Senior Software Engineer · Innovation Lab</i></span><span>Steve Daubert<i>Staff SDET · Innovation Lab</i></span></div></div>
     <div class="pg"><div class="k">Informed Team</div><div class="who"><span>Yi Sun<i>CTO</i></span><span>Lilly Vakili<i>Director, Technical Program Management · EPMO</i></span><span>Taylor Teal<i>Director, Engineering · Innovation Lab</i></span><span>Purush Reddy<i>Senior Director, Engineering · Merchant Experience &amp; Core API</i></span></div></div>
     <div class="pg"><div class="k">Merchant Experience Product Team</div><div class="who"><span>Erin Dalessandro<i>Staff Product Manager</i></span><span>Kyle Miller<i>Senior Product Designer</i></span><span>Quan Ouyang<i>Director, Engineering</i></span><span>Andrew Ferrer<i>Team Lead</i></span><span>Alex Dlugokecki<i>Principal Software Engineer</i></span><span>Ryan Patch<i>Senior Software Engineer</i></span><span>Leonel Santiago<i>Senior Software Engineer</i></span><span>Ramya S.<i>Senior Software Engineer</i></span><span>Michael Hodges<i>Software Engineer</i></span><span>Mamatha Yella<i>Manager, QA Engineering</i></span><span>Earnest Gibbs<i>QA Engineer</i></span><span>Avni A<i>QA Engineer</i></span><span>Josette Towles<i>Senior Technical Program Manager</i></span></div></div>
+  </section>
+
+  <h2>Discovery <span class="sub">what we'll diagnose first</span></h2>
+  <section class="diag">
+    <div class="dg"><div class="n">01</div><h3>Where the time goes</h3><p>How long it takes to move from a business request to production, and where time is spent waiting or reworking along the way.</p></div>
+    <div class="dg"><div class="n">02</div><h3>Whether work is ready to commit</h3><p>Whether we have a clear customer or business problem, a hypothesis tied to a measurable KPI, early collaboration across Product, Design, Engineering, and QA, and delivery dates grounded in actual capacity and dependencies.</p></div>
+    <div class="dg"><div class="n">03</div><h3>Where delivery gets stuck</h3><p>How much time goes into building versus waiting on reviews, QA and regression, environments, decisions, or other teams, and how often new work is added without explicit trade-offs.</p></div>
+    <div class="dg"><div class="n">04</div><h3>Whether we deliver incrementally and learn</h3><p>Whether we break work into smaller, valuable releases and measure the impact after launch to determine what to do next.</p></div>
+    <div class="dg"><div class="n">05</div><h3>How AI changes the work</h3><p>Where each role uses AI today, and whether it improves delivery speed, quality, or both.</p></div>
   </section>
 
   <div id="questionnaires">
