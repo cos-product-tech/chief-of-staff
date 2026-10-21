@@ -248,8 +248,8 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="pcol">
       <div class="k">How we will know</div>
       <div class="met pri"><div class="mh"><span class="tag">Primary</span><b>Issue cycle time</b></div><div class="mv"><span class="now">5.82 days<i>Q3 · 48th percentile</i></span><span class="arr">→</span><span class="tgt">≤ 2.92 days<i>75th percentile · Feb 16</i></span></div></div>
-      <div class="met sec"><div class="mh"><span class="tag">Secondary</span><b>Sprint predictability</b></div><div class="mv"><span class="now">18.8%<i>Q3 · 26th percentile</i></span><span class="arr">→</span><span class="tgt">≥ 72%<i>75th percentile · sustained</i></span></div></div>
-      <div class="met ter"><div class="mh"><span class="tag">Tertiary</span><b>Commitments shipped on the date promised</b></div><div class="mv"><span class="now">—<i>baseline in Phase 2</i></span><span class="arr">→</span><span class="tgt">≥ 80%<i>Feb 16</i></span></div></div>
+      <div class="met pri"><div class="mh"><span class="tag">Primary</span><b>Sprint predictability</b></div><div class="mv"><span class="now">18.8%<i>Q3 · 26th percentile</i></span><span class="arr">→</span><span class="tgt">≥ 72%<i>75th percentile · sustained</i></span></div></div>
+      <div class="met pri"><div class="mh"><span class="tag">Primary</span><b>Commitments shipped on the date promised</b></div><div class="mv"><span class="now">—<i>baseline in flight · commitments and dates being aggregated</i></span><span class="arr">→</span><span class="tgt">≥ 80%<i>Feb 16</i></span></div></div>
       <div class="t small">Faster without breaking trust: throughput and quality hold or improve. Percentiles are against comparable companies in Jellyfish; all measures baselined before anything changes and read at every sprint checkpoint.</div>
     </div>
   </section>
@@ -364,10 +364,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <div class="table-wrap"><table class="sc">
     <thead><tr><th style="width:44%">Measure</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 16 target</th></tr></thead>
     <tbody>
-      <tr class="grp"><td colspan="4">The gate</td></tr>
+      <tr class="grp"><td colspan="4">The gate · three primary measures</td></tr>
       <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m">5.82 days<small>Q3 · 48th pct</small></td><td class="m">trending down</td><td class="m">≤2.92 days</td></tr>
-      <tr><td class="t"><b>Sprint predictability</b> <span class="pill sec">Secondary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td></tr>
-      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill ter">Tertiary</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td></tr>
+      <tr><td class="t"><b>Sprint predictability</b> <span class="pill gate">Primary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td></tr>
+      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill gate">Primary</span><small>Baseline in flight · the list of commitments and dates is being aggregated</small></td><td class="m tbd">—<small>in flight</small></td><td class="m">rising</td><td class="m">≥80%</td></tr>
       <tr class="grp"><td colspan="4">The six dimensions · guards and leads</td></tr>
       <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>PR cycle time · Jellyfish 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours) · issue cycle time is the gate above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤0.06 days</td></tr>
       <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or down</td></tr>
