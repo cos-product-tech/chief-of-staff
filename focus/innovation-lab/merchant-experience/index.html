@@ -47,6 +47,19 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .problem .ps{display:grid;grid-template-columns:92px 1fr;gap:8px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.92);padding:4px 0;border-top:1px solid rgba(255,255,255,.1)}
 .problem .ps .pk{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);padding-top:3px}
 .problem .ps.fix{display:block;border-top:none;font-size:12px;color:rgba(255,255,255,.7);margin-top:6px}
+.problem .met{border-radius:8px;padding:9px 12px;margin-bottom:7px}
+.problem .met .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.problem .met .mh b{font-size:13.5px;color:#fff}
+.problem .met .tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.problem .met .mv{display:flex;align-items:center;gap:12px}
+.problem .met .mv span{display:flex;flex-direction:column;line-height:1.15}
+.problem .met .now{font-size:17px;font-weight:700;color:rgba(255,255,255,.85)}
+.problem .met .tgt{font-size:17px;font-weight:700;color:#fff}
+.problem .met .mv i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:rgba(255,255,255,.55);margin-top:3px}
+.problem .met .arr{font-size:16px;color:rgba(255,255,255,.45)}
+.problem .met.pri{background:rgba(254,109,18,.16);border:1px solid rgba(254,109,18,.5)} .problem .met.pri .tag{background:var(--orange);color:#1A1200} .problem .met.pri .tgt{color:#FFB37A}
+.problem .met.sec{background:rgba(117,209,208,.12);border:1px solid rgba(117,209,208,.45)} .problem .met.sec .tag{background:var(--turquoise);color:#01271A} .problem .met.sec .tgt{color:var(--turquoise)}
+.problem .met.ter{background:transparent;border:1px dashed rgba(255,255,255,.3)} .problem .met.ter .tag{background:rgba(255,255,255,.12);color:#fff} .problem .met.ter .tgt{color:var(--pistachio)}
 .problem .obj{border-radius:8px;padding:9px 12px;margin-bottom:6px;line-height:1.4}
 .problem .obj .tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-right:8px;vertical-align:1px}
 .problem .obj.pri{background:rgba(254,109,18,.16);border:1px solid rgba(254,109,18,.45);font-size:15px;color:#fff}
@@ -147,20 +160,21 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .tl .leg .dot{width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--orange);margin:0 6px 0 3px}
 
 /* phases, stacked */
-.phases{display:flex;flex-direction:column;gap:10px}
-.ph{background:#fff;border:1px solid var(--border);border-radius:10px;display:grid;grid-template-columns:190px 1fr 280px;gap:0;overflow:hidden}
-.ph .head{padding:14px 16px;border-right:1px solid var(--border);background:var(--bg-soft)}
-.ph.p1 .head{border-left:5px solid var(--ph1)} .ph.p2 .head{border-left:5px solid var(--ph2)} .ph.p3 .head{border-left:5px solid var(--ph3)} .ph.p4 .head{border-left:5px solid var(--ph4)}
-.ph .n{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
-.ph h3{font-size:14.5px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin:3px 0 4px}
-.ph .when{font-family:var(--mono);font-size:11px;color:var(--forest)}
-.ph .body{padding:12px 16px}
-.ph ul{list-style:none}
-.ph li{font-size:12.5px;color:var(--text-mid);line-height:1.45;padding:3px 0 3px 12px;position:relative}
-.ph li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
-.ph li b{color:var(--dark-forest)}
-.ph .exit{padding:12px 16px;border-left:1px dashed var(--border);font-size:12px;color:var(--forest);line-height:1.45}
-.ph .exit b{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:4px}
+.step{background:#fff;border:1px solid var(--border);border-radius:10px;display:grid;grid-template-columns:200px 1fr;overflow:hidden}
+.step .side{padding:14px 16px;background:var(--bg-soft);border-right:1px solid var(--border)}
+.step.p2 .side{border-left:5px solid var(--ph2)} .step.p3 .side{border-left:5px solid var(--ph3)} .step.p4 .side{border-left:5px solid var(--ph4)}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.step .when{font-size:14px;font-weight:700;color:var(--dark-forest);margin:3px 0 6px}
+.step .who{font-size:11.5px;color:var(--text-muted);line-height:1.45}
+.step ul{list-style:none;padding:12px 18px;align-self:center}
+.step li{font-size:12.75px;color:var(--text-mid);line-height:1.5;padding:4px 0 4px 14px;position:relative}
+.step li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.step li b{color:var(--dark-forest)}
+.step .pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 18px;align-self:center}
+.step .pair{display:flex;align-items:center;gap:10px;font-size:12.5px;background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;padding:8px 12px}
+.step .pair .a{font-weight:700;color:var(--dark-forest);min-width:44px}
+.step .pair .a::after{content:'→';color:var(--teal);margin-left:10px;font-weight:400}
+.step .pair .b{color:var(--text-mid)}
 
 /* scorecard */
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:#fff}
@@ -176,8 +190,9 @@ td.m.tbd{color:var(--text-muted)}
 td.t b{color:var(--dark-forest);font-size:13.5px}
 td.t small{display:block;font-size:11.5px;color:var(--text-muted);margin-top:2px}
 td.t .pill{margin-left:6px;vertical-align:1px}
+td.m small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px;font-weight:400}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
-.pill.gate{background:var(--orange);color:#1A1200;font-weight:600} .pill.sec{background:var(--hold-bg);color:var(--text-mid)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
+.pill.gate{background:var(--orange);color:#1A1200;font-weight:600} .pill.ter{background:transparent;border:1px dashed var(--border);color:var(--text-muted)} .pill.sec{background:var(--hold-bg);color:var(--text-mid)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
 
 .risks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .rk{background:#fff;border:1px solid var(--border);border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:12.5px;line-height:1.45}
@@ -195,7 +210,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   .doc-body{padding:20px 16px 40px}
   .problem,.dates,.scope,.people,.ivgrid,.risks,.diag{grid-template-columns:1fr}
   .problem .pcol:first-child{padding-right:0;border-right:none;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.12)} .problem .pcol:last-child{padding-left:0}
-  .ph{grid-template-columns:1fr} .ph .head{border-right:none;border-bottom:1px solid var(--border)} .ph .exit{border-left:none;border-top:1px dashed var(--border)}
+  .step{grid-template-columns:1fr} .step .side{border-right:none;border-bottom:1px solid var(--border)} .step .pairs{grid-template-columns:1fr}
 }
 @media print{
   body{background:#fff}
@@ -232,9 +247,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     </div>
     <div class="pcol">
       <div class="k">How we will know</div>
-      <div class="obj pri"><span class="tag">Primary</span><b>Issue cycle time of 2.92 days or less</b>, the 75th-percentile benchmark for comparable companies in Jellyfish, at the Feb 16 re-baseline.</div>
-      <div class="obj sec"><span class="tag">Secondary</span>Faster without breaking trust: commitments <b>ship on the date promised ≥80%</b> of the time, and <b>sprint predictability</b> trends up to <b>at least 72%</b>, the 75th-percentile benchmark, while throughput and quality hold or improve.</div>
-      <div class="t small">All measured in Jellyfish, baselined before anything changes and read again at every sprint checkpoint.</div>
+      <div class="met pri"><div class="mh"><span class="tag">Primary</span><b>Issue cycle time</b></div><div class="mv"><span class="now">5.82 days<i>Q3 · 48th percentile</i></span><span class="arr">→</span><span class="tgt">≤ 2.92 days<i>75th percentile · Feb 16</i></span></div></div>
+      <div class="met sec"><div class="mh"><span class="tag">Secondary</span><b>Sprint predictability</b></div><div class="mv"><span class="now">18.8%<i>Q3 · 26th percentile</i></span><span class="arr">→</span><span class="tgt">≥ 72%<i>75th percentile · sustained</i></span></div></div>
+      <div class="met ter"><div class="mh"><span class="tag">Tertiary</span><b>Commitments shipped on the date promised</b></div><div class="mv"><span class="now">—<i>baseline in Phase 2</i></span><span class="arr">→</span><span class="tgt">≥ 80%<i>Feb 16</i></span></div></div>
+      <div class="t small">Faster without breaking trust: throughput and quality hold or improve. Percentiles are against comparable companies in Jellyfish; all measures baselined before anything changes and read at every sprint checkpoint.</div>
     </div>
   </section>
 
@@ -246,35 +262,6 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="pg"><div class="k">Merchant Experience Product Team</div><div class="who"><span>Erin Dalessandro<i>Staff Product Manager</i></span><span>Kyle Miller<i>Senior Product Designer</i></span><span>Quan Ouyang<i>Director, Engineering</i></span><span>Andrew Ferrer<i>Team Lead</i></span><span>Alex Dlugokecki<i>Principal Software Engineer</i></span><span>Ryan Patch<i>Senior Software Engineer</i></span><span>Leonel Santiago<i>Senior Software Engineer</i></span><span>Ramya S.<i>Senior Software Engineer</i></span><span>Michael Hodges<i>Software Engineer</i></span><span>Mamatha Yella<i>Manager, QA Engineering</i></span><span>Earnest Gibbs<i>QA Engineer</i></span><span>Avni A<i>QA Engineer</i></span><span>Josette Towles<i>Senior Technical Program Manager</i></span></div></div>
   </section>
 
-  <h2>Discovery <span class="sub">what we'll diagnose first</span></h2>
-  <section class="diag">
-    <div class="dg"><div class="n">01</div><h3>Where the time goes</h3><p>How long it takes to move from a business request to production, and where time is spent waiting or reworking along the way.</p></div>
-    <div class="dg"><div class="n">02</div><h3>Whether work is ready to commit</h3><p>Whether we have a clear customer or business problem, a hypothesis tied to a measurable KPI, early collaboration across Product, Design, Engineering, and QA, and delivery dates grounded in actual capacity and dependencies.</p></div>
-    <div class="dg"><div class="n">03</div><h3>Where delivery gets stuck</h3><p>How much time goes into building versus waiting on reviews, QA and regression, environments, decisions, or other teams, and how often new work is added without explicit trade-offs.</p></div>
-    <div class="dg"><div class="n">04</div><h3>Whether we deliver incrementally and learn</h3><p>Whether we break work into smaller, valuable releases and measure the impact after launch to determine what to do next.</p></div>
-    <div class="dg"><div class="n">05</div><h3>How AI changes the work</h3><p>Where each role uses AI today, and whether it improves delivery speed, quality, or both.</p></div>
-  </section>
-
-  <div id="questionnaires">
-  <h2>Phase 1 discovery surveys <span class="sub">one five-question survey per role · Google Forms, about 10 minutes · answers back by Friday, October 23 · synthesized without attribution</span></h2>
-  <div class="ivnote"><b>How it runs</b>
-    <ul class="runs">
-      <li><b>Survey distribution.</b> Eric sends each participant the survey for their role by end of day Wednesday, October 21.</li>
-      <li><b>Responses due.</b> Participants complete the surveys by October 23. Responses are collected with respondent email addresses so the Tiger Team can follow up as needed.</li>
-      <li><b>Jellyfish DevEx survey.</b> Engineers also complete the Jellyfish Developer Experience survey, which covers tooling, AI usage, and developer experience. This keeps our role-specific surveys focused on identifying where time is lost between a business request and delivered value.</li>
-      <li><b>Review and synthesis.</b> Each Tiger Team member reviews and synthesizes responses for their assigned functions and determines how to partner with those teams: <span class="own">Bart</span> Product Management and Product Design · <span class="own">Eric</span> Engineering Management and Technical Program Management · <span class="own">Amrita</span> Software Engineering · <span class="own">Steve</span> QA Engineering.</li>
-    </ul>
-  </div>
-  <section class="ivgrid">
-    <div class="role"><div class="rh"><h3>Product Management</h3></div><div class="with"><span>Erin Dalessandro<i>Staff Product Manager</i></span></div><p class="sv">Where time goes, readiness to commit, how dates are set, AI in product work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSct9oTvfKYXeEjgpuiTtlOOhpsMWuKM7zYNhnzbTkbtl2cT-g/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-    <div class="role"><div class="rh"><h3>Product Design</h3></div><div class="with"><span>Kyle Miller<i>Senior Product Designer</i></span></div><p class="sv">Where time goes, early involvement and validation, handoff quality, AI in design work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvJaDtzGpnf4ksM4E8yWPshCcok0VKjLw6QETX80i87UhOjg/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-    <div class="role"><div class="rh"><h3>Software Engineering</h3></div><div class="with"><span>Alex Dlugokecki<i>Principal</i></span><span>Ryan Patch<i>Senior SE</i></span><span>Leonel Santiago<i>Senior SE</i></span><span>Ramya S.<i>Senior SE</i></span><span>Michael Hodges<i>SE</i></span></div><p class="sv">Where time goes, building versus waiting, how commitments are made, AI in engineering work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7zsxZlPNDvqhyaLSpD8LknrUbbeU0kIBH429fvNLpj3igSg/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-    <div class="role"><div class="rh"><h3>Engineering Management</h3></div><div class="with"><span>Quan Ouyang<i>Director, Engineering</i></span><span>Andrew Ferrer<i>Team Lead</i></span></div><p class="sv">Where time goes, capacity and commitments, delivery data, AI in engineering management.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSftSxsfLflrf1r8-1gffk0oduzv1CGRuXh3_mGH2OISkXdnvA/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-    <div class="role"><div class="rh"><h3>QA Engineering</h3></div><div class="with"><span>Mamatha Yella<i>Manager, QA Engineering</i></span><span>Earnest Gibbs<i>QA Engineer</i></span><span>Avni A<i>QA Engineer</i></span></div><p class="sv">Where time goes, quality ownership, regression cycle length, AI in quality engineering.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSc-ccBPvK9XWMgvCVwrRwCN3LcqUUSooOCyCHsjZVcHXBdTTA/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-    <div class="role"><div class="rh"><h3>Technical Program Management</h3></div><div class="with"><span>Josette Towles<i>Senior Technical Program Manager</i></span></div><p class="sv">Where time goes, integrated planning, dependencies and decisions, AI in program management.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSd0jDH7YsVtiLjFxS46kIKlt2I4T55i_-X3vIyWCLsXwSHuFw/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
-  </section>
-  </div>
-
   <h2>Timeline <span class="sub">a release cycle is four weeks: a two-week development sprint, then two weeks of regression and QA, then production on Sunday at 2am ET · cycles overlap by two weeks</span></h2>
   <section class="tl">
     <div class="grid">
@@ -284,10 +271,10 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="wk"><span>12</span><span>19</span><span>26</span><span>2</span><span>9</span><span>16</span><span>23</span><span>30</span><span>7</span><span>14</span><span>21</span><span>28</span><span>4</span><span>11</span><span>18</span><span>25</span><span>1</span><span>8</span><span>15</span><span>22</span></div>
 
       <div class="rl">Plan phase <small>what we are doing</small></div>
-      <div class="bar ph1" style="grid-column:2 / 4">1 · Prepare and survey</div>
-      <div class="bar ph2" style="grid-column:4 / 8">2 · Distill, embed, observe, decide</div>
-      <div class="bar ph3" style="grid-column:8 / 10">3 · Pair</div>
-      <div class="bar ph4" style="grid-column:10 / 20">4 · Run the changes · four development sprints</div>
+      <div class="bar ph1" style="grid-column:2 / 4">1 · Discovery surveys</div>
+      <div class="bar ph2" style="grid-column:4 / 8">2 · Observe one full cycle, then decide</div>
+      <div class="bar ph3" style="grid-column:8 / 10">3 · Pairing</div>
+      <div class="bar ph4" style="grid-column:10 / 20">4 · Run and monitor the changes · four development sprints</div>
 
       <div class="rl">Checkpoint <small>after every development sprint · Jellyfish data</small></div>
       <div class="rev" style="grid-column:5 / 6" title="Checkpoint · Sprint 22 · Nov 6"><i></i></div><div class="rev" style="grid-column:7 / 8" title="Checkpoint · Sprint 23 · Nov 20"><i></i></div><div class="rev" style="grid-column:9 / 10" title="Checkpoint · Sprint 24 · Dec 4"><i></i></div><div class="rev" style="grid-column:11 / 12" title="Checkpoint · Sprint 25 · Dec 18 · first with the changes"><i></i></div><div class="rev" style="grid-column:13 / 14" title="Checkpoint · Sprint 26 · Jan 1"><i></i></div><div class="rev" style="grid-column:15 / 16" title="Checkpoint · Sprint 1 · Jan 15"><i></i></div><div class="rev" style="grid-column:17 / 18" title="Checkpoint · Sprint 2 · Jan 29"><i></i></div><div class="rev" style="grid-column:19 / 20" title="Checkpoint · Sprint 3 · Feb 12"><i></i></div>
@@ -307,44 +294,80 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="ship" style="grid-column:17 / 18" title="Sprint 1 · Sun Jan 31"><i></i></div>
       <div class="ship" style="grid-column:19 / 20" title="Sprint 2 · Sun Feb 14"><i></i></div>
     </div>
-    <div class="leg"><span><i style="background:var(--ph1)"></i>Prepare</span><span><i style="background:var(--ph2)"></i>Distill, embed, observe, decide</span><span><i style="background:var(--ph3)"></i>Pair</span><span><i style="background:var(--ph4)"></i>Run the changes</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dia"></i>Checkpoint after every development sprint</span><span><i class="dot"></i>Release counted in the re-baseline</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Before the changes</span></div>
+    <div class="leg"><span><i style="background:var(--ph1)"></i>Discovery surveys</span><span><i style="background:var(--ph2)"></i>Observe, then decide</span><span><i style="background:var(--ph3)"></i>Pairing</span><span><i style="background:var(--ph4)"></i>Run and monitor</span><span><i style="background:#DCEFE9"></i>Development sprint</span><span><i style="background:#F2F0E6;border:1px dashed var(--border)"></i>Regression &amp; QA</span><span><i class="dia"></i>Checkpoint after every development sprint</span><span><i class="dot"></i>Release counted in the re-baseline</span><span><i class="dot" style="background:var(--hold);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hold)"></i>Before the changes</span></div>
   </section>
 
-  <h2>Phases <span class="sub">each with an exit test</span></h2>
-  <section class="phases">
-    <div class="ph p1"><div class="head"><div class="n">Phase 1</div><h3>Prepare</h3><div class="when">Oct 13 – Oct 23</div></div><div class="body"><ul>
-      <li>Tiger Team reviews and sharpens this plan.</li>
-      <li>Surveys out to all thirteen by end of day Oct 21, answers back by Oct 23; engineers take the Jellyfish DevEx survey in the same window.</li>
-</ul></div>
-      <div class="exit"><b>Exit</b>Survey responses and DevEx survey back</div></div>
-
-    <div class="ph p2"><div class="head"><div class="n">Phase 2</div><h3>Observe one full cycle, then decide</h3><div class="when">Oct 26 – Nov 20</div></div><div class="body"><ul>
-      <li>Eric builds the Jellyfish baseline dashboard with Andrey on the gate, sprint predictability, the six dimensions, and AI impact; reviewed with the Tiger Team, then with everyone who answered.</li>
-      <li>Distill the answers into a ranked list of where time is lost, each role's view kept separate.</li>
-      <li>Eric, Amrita, Bart, and Steve sit in every ritual with Alex for Sprint 22, from planning through regression to its Nov 22 release, and watch how commitments get made. From here on there is a checkpoint after every development sprint to review the Jellyfish data.</li>
-      <li>Trace two or three real items end to end and record how long each waited at every step; compare with what people wrote and what Jellyfish shows.</li>
-      <li><b>Nov 9–20:</b> choose no more than three or four changes, each aimed at a named constraint. Capacity-based planning is always the first. If most lost time comes from one source, such as work pulled in mid-sprint, the fix is a trade rule, not a tool. If regression is the leak, AI-assisted test generation is the most direct lever.</li></ul></div>
-      <div class="exit"><b>Exit</b>Dashboard live and baselined · biggest constraints named with evidence · changes chosen and written down by Nov 20</div></div>
-
-    <div class="ph p3"><div class="head"><div class="n">Phase 3</div><h3>Pair</h3><div class="when">Nov 23 – Dec 4</div></div><div class="body"><ul>
-      <li>Fabio pairs with each engineer, Bart with Erin and Kyle, Steve with each QA engineer, on AI-DLC and on the chosen changes, so everyone has tried them on their own work before Dec 7.</li></ul></div>
-      <div class="exit"><b>Exit</b>Everyone paired · changes understood · go / no-go for Dec 7</div></div>
-
-    <div class="ph p4"><div class="head"><div class="n">Phase 4</div><h3>Run the changes, then re-baseline</h3><div class="when">Dec 7 – Feb 16</div></div><div class="body"><ul>
-      <li>Changes run for four development sprints (25, 26, 1, 2), holidays included; releases ship Jan 3, Jan 17, Jan 31, and Feb 14. Alex carries the changes inside the team; the Tiger Team stays embedded through Sprint 26.</li>
-      <li>Expect a dip in Sprint 25; continue unless it persists through Sprint 26.</li>
-      <li>Checkpoint after every development sprint: the Tiger Team, Quan, Andrew, and Alex review the Jellyfish data together (Dec 18, Jan 1, Jan 15, Jan 29, Feb 12), adjust if needed, and write down what they saw. Feb 16 re-baseline against the Phase 2 baseline, read as one block, then decide: continue, adjust, or stop, and whether Payables starts next.</li></ul></div>
-      <div class="exit"><b>Exit · Feb 16</b>Four sprints read against the baseline · what changed and why, written down · next-team decision made</div></div>
+  <h2>What we'll diagnose first <span class="sub">Discovery · the five questions behind every survey</span></h2>
+  <section class="diag">
+    <div class="dg"><div class="n">01</div><h3>Where the time goes</h3><p>How long it takes to move from a business request to production, and where time is spent waiting or reworking along the way.</p></div>
+    <div class="dg"><div class="n">02</div><h3>Whether work is ready to commit</h3><p>Whether we have a clear customer or business problem, a hypothesis tied to a measurable KPI, early collaboration across Product, Design, Engineering, and QA, and delivery dates grounded in actual capacity and dependencies.</p></div>
+    <div class="dg"><div class="n">03</div><h3>Where delivery gets stuck</h3><p>How much time goes into building versus waiting on reviews, QA and regression, environments, decisions, or other teams, and how often new work is added without explicit trade-offs.</p></div>
+    <div class="dg"><div class="n">04</div><h3>Whether we deliver incrementally and learn</h3><p>Whether we break work into smaller, valuable releases and measure the impact after launch to determine what to do next.</p></div>
+    <div class="dg"><div class="n">05</div><h3>How AI changes the work</h3><p>Where each role uses AI today, and whether it improves delivery speed, quality, or both.</p></div>
   </section>
 
-  <h2>Scorecard <span class="sub">all measures from Jellyfish · baselined in Phase 2, before anything changes · read at every sprint checkpoint · judged Feb 16</span></h2>
+  <div id="questionnaires">
+  <h2>Discovery surveys <span class="sub">Phase 1 · Oct 13 – Oct 23 · one five-question survey per role · Google Forms, about 10 minutes · synthesized without attribution</span></h2>
+  <div class="ivnote"><b>How it runs</b>
+    <ul class="runs">
+      <li><b>Survey distribution.</b> Eric sends each participant the survey for their role by end of day Wednesday, October 21.</li>
+      <li><b>Responses due.</b> Participants complete the surveys by October 23. Responses are collected with respondent email addresses so the Tiger Team can follow up as needed.</li>
+      <li><b>Jellyfish DevEx survey.</b> Engineers also complete the Jellyfish Developer Experience survey, which covers tooling, AI usage, and developer experience. This keeps our role-specific surveys focused on identifying where time is lost between a business request and delivered value.</li>
+      <li><b>Review and synthesis.</b> Each Tiger Team member reviews and synthesizes responses for their assigned functions and determines how to partner with those teams: <span class="own">Bart</span> Product Management and Product Design · <span class="own">Eric</span> Engineering Management and Technical Program Management · <span class="own">Amrita</span> Software Engineering · <span class="own">Steve</span> QA Engineering.</li>
+    </ul>
+  </div>
+  <section class="ivgrid">
+    <div class="role"><div class="rh"><h3>Product Management</h3></div><div class="with"><span>Erin Dalessandro<i>Staff Product Manager</i></span></div><p class="sv">Where time goes, readiness to commit, how dates are set, AI in product work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSct9oTvfKYXeEjgpuiTtlOOhpsMWuKM7zYNhnzbTkbtl2cT-g/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+    <div class="role"><div class="rh"><h3>Product Design</h3></div><div class="with"><span>Kyle Miller<i>Senior Product Designer</i></span></div><p class="sv">Where time goes, early involvement and validation, handoff quality, AI in design work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSdvJaDtzGpnf4ksM4E8yWPshCcok0VKjLw6QETX80i87UhOjg/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+    <div class="role"><div class="rh"><h3>Software Engineering</h3></div><div class="with"><span>Alex Dlugokecki<i>Principal</i></span><span>Ryan Patch<i>Senior SE</i></span><span>Leonel Santiago<i>Senior SE</i></span><span>Ramya S.<i>Senior SE</i></span><span>Michael Hodges<i>SE</i></span></div><p class="sv">Where time goes, building versus waiting, how commitments are made, AI in engineering work.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSe7zsxZlPNDvqhyaLSpD8LknrUbbeU0kIBH429fvNLpj3igSg/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+    <div class="role"><div class="rh"><h3>Engineering Management</h3></div><div class="with"><span>Quan Ouyang<i>Director, Engineering</i></span><span>Andrew Ferrer<i>Team Lead</i></span></div><p class="sv">Where time goes, capacity and commitments, delivery data, AI in engineering management.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSftSxsfLflrf1r8-1gffk0oduzv1CGRuXh3_mGH2OISkXdnvA/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+    <div class="role"><div class="rh"><h3>QA Engineering</h3></div><div class="with"><span>Mamatha Yella<i>Manager, QA Engineering</i></span><span>Earnest Gibbs<i>QA Engineer</i></span><span>Avni A<i>QA Engineer</i></span></div><p class="sv">Where time goes, quality ownership, regression cycle length, AI in quality engineering.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSc-ccBPvK9XWMgvCVwrRwCN3LcqUUSooOCyCHsjZVcHXBdTTA/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+    <div class="role"><div class="rh"><h3>Technical Program Management</h3></div><div class="with"><span>Josette Towles<i>Senior Technical Program Manager</i></span></div><p class="sv">Where time goes, integrated planning, dependencies and decisions, AI in program management.</p><a class="svbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSd0jDH7YsVtiLjFxS46kIKlt2I4T55i_-X3vIyWCLsXwSHuFw/viewform?usp=sharing&ouid=103577832714708509895" target="_blank" rel="noopener">Open the survey<span>↗</span></a></div>
+  </section>
+  </div>
+
+  <h2>Observe one full cycle, then decide <span class="sub">Phase 2 · Oct 26 – Nov 20 · Sprint 22</span></h2>
+  <section class="step p2">
+    <div class="side"><div class="n">Phase 2</div><div class="when">Oct 26 – Nov 20</div><div class="who">Eric · Amrita · Bart · Steve<br>with the Merchant Experience team</div></div>
+    <ul>
+      <li><b>Observe Sprint 22 end to end.</b> Eric, Amrita, Bart, and Steve join every team ritual, from planning through regression and the Nov 22 release.</li>
+      <li><b>Turn insights into action.</b> Synthesize survey responses and observations into a role-specific plan to apply through pairing in the next sprint.</li>
+      <li><b>Nov 9–20: select the changes.</b> No more than 3–4 changes, each targeting a specific constraint.</li>
+      <li><b>Establish the baseline.</b> Eric builds the Jellyfish dashboard.</li>
+    </ul>
+  </section>
+
+  <h2>Pairing <span class="sub">Phase 3 · Nov 23 – Dec 4 · Sprint 24</span></h2>
+  <section class="step p3">
+    <div class="side"><div class="n">Phase 3</div><div class="when">Nov 23 – Dec 4</div><div class="who">Everyone applies the selected changes to their own work through pairing</div></div>
+    <div class="pairs">
+      <div class="pair"><span class="a">Fabio</span><span class="b">each engineer</span></div>
+      <div class="pair"><span class="a">Bart</span><span class="b">Erin and Kyle</span></div>
+      <div class="pair"><span class="a">Steve</span><span class="b">each QA engineer</span></div>
+      <div class="pair"><span class="a">Eric</span><span class="b">Quan, Andrew, and Josette</span></div>
+    </div>
+  </section>
+
+  <h2>Run and monitor the changes <span class="sub">Phase 4 · Dec 7 – Feb 16 · Sprints 25, 26, 1, and 2</span></h2>
+  <section class="step p4">
+    <div class="side"><div class="n">Phase 4</div><div class="when">Dec 7 – Feb 16</div><div class="who">Checkpoint after every development sprint · Feb 16 re-baseline</div></div>
+    <ul>
+      <li><b>Run.</b> Apply the changes across four development sprints (25, 26, 1, and 2).</li>
+      <li><b>Allow for adjustment.</b> Expect an initial dip in Sprint 25; continue unless it persists through Sprint 26.</li>
+      <li><b>Review and adapt.</b> After each sprint, Eric reviews Jellyfish data with the team and adjusts as needed.</li>
+    </ul>
+  </section>
+
+
+
+  <h2>Scorecard <span class="sub">all measures from Jellyfish · Q3 baselines where known, the rest set in Phase 2 · read at every sprint checkpoint · judged Feb 16</span></h2>
   <div class="table-wrap"><table class="sc">
     <thead><tr><th style="width:44%">Measure</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 16 target</th></tr></thead>
     <tbody>
       <tr class="grp"><td colspan="4">The gate</td></tr>
-      <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤2.92 days</td></tr>
-      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill sec">Secondary</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td></tr>
-      <tr><td class="t"><b>Sprint predictability</b> <span class="pill sec">Secondary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">≥72%, sustained</td></tr>
+      <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m">5.82 days<small>Q3 · 48th pct</small></td><td class="m">trending down</td><td class="m">≤2.92 days</td></tr>
+      <tr><td class="t"><b>Sprint predictability</b> <span class="pill sec">Secondary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td></tr>
+      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill ter">Tertiary</span></td><td class="m tbd">—</td><td class="m">rising</td><td class="m">≥80%</td></tr>
       <tr class="grp"><td colspan="4">The six dimensions · guards and leads</td></tr>
       <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>PR cycle time · Jellyfish 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours) · issue cycle time is the gate above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤0.06 days</td></tr>
       <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or down</td></tr>
