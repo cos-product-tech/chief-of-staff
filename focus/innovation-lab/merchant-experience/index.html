@@ -206,7 +206,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
-      <span class="meta-badge badge-status">⚡ P0 · Interviews by Oct 23</span>
+      <span class="meta-badge badge-status">⚡ P0 · Surveys by Oct 23</span>
       <span class="meta-badge badge-date">October 2026 · Eric Normant</span>
     </div>
   </div>
@@ -262,7 +262,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="wk"><span>12</span><span>19</span><span>26</span><span>2</span><span>9</span><span>16</span><span>23</span><span>30</span><span>7</span><span>14</span><span>21</span><span>28</span><span>4</span><span>11</span><span>18</span><span>25</span><span>1</span><span>8</span><span>15</span><span>22</span></div>
 
       <div class="rl">Plan phase <small>what we are doing</small></div>
-      <div class="bar ph1" style="grid-column:2 / 4">1 · Prepare and interview</div>
+      <div class="bar ph1" style="grid-column:2 / 4">1 · Prepare and survey</div>
       <div class="bar ph2" style="grid-column:4 / 8">2 · Distill, embed, observe, decide</div>
       <div class="bar ph3" style="grid-column:8 / 10">3 · Pair</div>
       <div class="bar ph4" style="grid-column:10 / 20">4 · Run the changes · four development sprints</div>
@@ -292,16 +292,16 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <section class="phases">
     <div class="ph p1"><div class="head"><div class="n">Phase 1</div><h3>Prepare</h3><div class="when">Oct 13 – Oct 23</div></div><div class="body"><ul>
       <li>Tiger Team reviews and sharpens this plan.</li>
-      <li>Questionnaires out to all twelve, answers back by Oct 23; engineers take the Jellyfish DevEx survey in the same window.</li>
+      <li>Surveys out to all thirteen by end of day Oct 21, answers back by Oct 23; engineers take the Jellyfish DevEx survey in the same window.</li>
 </ul></div>
-      <div class="exit"><b>Exit</b>Answers and survey back</div></div>
+      <div class="exit"><b>Exit</b>Survey responses and DevEx survey back</div></div>
 
     <div class="ph p2"><div class="head"><div class="n">Phase 2</div><h3>Observe one full cycle, then decide</h3><div class="when">Oct 26 – Nov 20</div></div><div class="body"><ul>
       <li>Eric builds the Jellyfish baseline dashboard with Andrey on the gate, sprint predictability, the six dimensions, and AI impact; reviewed with the Tiger Team, then with everyone who answered.</li>
-      <li>Distill the answers into a ranked list of what breaks promises, developers' view and managers' view kept separate.</li>
+      <li>Distill the answers into a ranked list of where time is lost, each role's view kept separate.</li>
       <li>Eric, Amrita, Bart, and Steve sit in every ritual with Alex for Sprint 22, from planning through regression to its Nov 22 release, and watch how commitments get made. From here on there is a checkpoint after every development sprint to review the Jellyfish data.</li>
       <li>Trace two or three real items end to end and record how long each waited at every step; compare with what people wrote and what Jellyfish shows.</li>
-      <li><b>Nov 9–20:</b> choose no more than three or four changes, each aimed at a named constraint. Capacity-based planning is always the first. If most broken promises come from one source, such as work pulled in mid-sprint, the fix is a trade rule, not a tool. If regression is the leak, AI-assisted test generation is the most direct lever.</li></ul></div>
+      <li><b>Nov 9–20:</b> choose no more than three or four changes, each aimed at a named constraint. Capacity-based planning is always the first. If most lost time comes from one source, such as work pulled in mid-sprint, the fix is a trade rule, not a tool. If regression is the leak, AI-assisted test generation is the most direct lever.</li></ul></div>
       <div class="exit"><b>Exit</b>Dashboard live and baselined · biggest constraints named with evidence · changes chosen and written down by Nov 20</div></div>
 
     <div class="ph p3"><div class="head"><div class="n">Phase 3</div><h3>Pair</h3><div class="when">Nov 23 – Dec 4</div></div><div class="body"><ul>
@@ -311,11 +311,11 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
     <div class="ph p4"><div class="head"><div class="n">Phase 4</div><h3>Run the changes, then re-baseline</h3><div class="when">Dec 7 – Feb 16</div></div><div class="body"><ul>
       <li>Changes run for four development sprints (25, 26, 1, 2), holidays included; releases ship Jan 3, Jan 17, Jan 31, and Feb 14. Alex carries the changes inside the team; the Tiger Team stays embedded through Sprint 26.</li>
       <li>Expect a dip in Sprint 25; continue unless it persists through Sprint 26.</li>
-      <li>Checkpoint after every development sprint: the Tiger Team, Quan, Andrew, and Alex review the Jellyfish data together (Dec 18, Jan 1, Jan 15, Jan 29, Feb 12), adjust if needed, and write down what they saw. Feb 16 re-baseline against Phase 1, read as one block, then decide: continue, adjust, or stop, and whether Payables starts next.</li></ul></div>
+      <li>Checkpoint after every development sprint: the Tiger Team, Quan, Andrew, and Alex review the Jellyfish data together (Dec 18, Jan 1, Jan 15, Jan 29, Feb 12), adjust if needed, and write down what they saw. Feb 16 re-baseline against the Phase 2 baseline, read as one block, then decide: continue, adjust, or stop, and whether Payables starts next.</li></ul></div>
       <div class="exit"><b>Exit · Feb 16</b>Four sprints read against the baseline · what changed and why, written down · next-team decision made</div></div>
   </section>
 
-  <h2>Scorecard <span class="sub">all measures from Jellyfish · baselined in Phase 1 · read at every sprint checkpoint · judged Feb 16</span></h2>
+  <h2>Scorecard <span class="sub">all measures from Jellyfish · baselined in Phase 2, before anything changes · read at every sprint checkpoint · judged Feb 16</span></h2>
   <div class="table-wrap"><table class="sc">
     <thead><tr><th style="width:44%">Measure</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 16 target</th></tr></thead>
     <tbody>
@@ -329,11 +329,11 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <tr><td class="t"><b>Process</b> <span class="pill lead">Lead</span><small>Sprint completion rate · unlinked PRs</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">completion &gt;90% · unlinked PRs 0%</td></tr>
       <tr><td class="t"><b>Productivity</b> <span class="pill lead">Lead</span><small>Days with commits · issues resolved · PRs merged · story points</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">up, with quality no worse</td></tr>
       <tr><td class="t"><b>Collaboration</b> <span class="pill lead">Lead</span><small>PR reviews · PRs without comments</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">reviews up · PRs without comments down</td></tr>
-      <tr><td class="t"><b>AI impact</b> <span class="pill ph">Placeholder</span><small>Measure to be defined in Phase 1 with Jellyfish AI</small></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td></tr>
+      <tr><td class="t"><b>AI impact</b> <span class="pill ph">Placeholder</span><small>Measure to be defined in Phase 2 with Jellyfish AI</small></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td></tr>
     </tbody>
   </table></div>
 
-  <h2>Future scope <span class="sub">once dates can be trusted · not held to in this window</span></h2>
+  <h2>Future scope <span class="sub">once the cycle is faster · not held to in this window</span></h2>
   <section class="risks">
     <div class="rk" style="border-left-color:var(--hold)"><b>Every new commitment states a hypothesis.</b> We believe shipping this for this customer will move this KPI from its value today to a target, because of this reason. Without the hypothesis it is a feature; with it, it is a bet the team can learn from.</div>
     <div class="rk" style="border-left-color:var(--hold)"><b>The team owns its KPIs.</b> They sit on the team's own dashboard, the team looks at them every sprint, and for every shipped commitment the team can say whether the KPI moved and what it will do next.</div>
