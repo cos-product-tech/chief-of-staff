@@ -197,10 +197,14 @@ td.m.tbd{color:var(--text-muted)}
 td.t b{color:var(--dark-forest);font-size:13.5px}
 td.t small{display:block;font-size:11.5px;color:var(--text-muted);margin-top:2px}
 td.t .pill{margin-left:6px;vertical-align:1px}
+table.sc th.ai{background:#FFFAF4;color:var(--warn);border-left:2px solid #F3C9A6} table.sc th.ai small{display:block;font-weight:400;font-size:9px;letter-spacing:.04em;text-transform:none;color:var(--text-muted);margin-top:2px}
+table.sc td.ai{background:#FFFAF4;border-left:2px solid #F3C9A6}
+table.sc td.ai.na{background:#FAF9F4}
+table.sc td.ai .aiv{font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:#D9CDBE}
 td.m small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--text-muted);margin-top:2px;font-weight:400}
 .pill{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap}
 .pill.gate{background:var(--orange);color:#1A1200;font-weight:600} .pill.owner{background:var(--warn-bg);color:var(--warn);border:1px solid #F3C9A6;font-weight:600;white-space:normal;line-height:1.35}
-tr.flag td{background:#FFFAF4} .pill.ter{background:transparent;border:1px dashed var(--border);color:var(--text-muted)} .pill.sec{background:var(--hold-bg);color:var(--text-mid)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
+ .pill.ter{background:transparent;border:1px dashed var(--border);color:var(--text-muted)} .pill.sec{background:var(--hold-bg);color:var(--text-mid)} .pill.lead{background:#E3F3EF;color:var(--teal)} .pill.guard{background:var(--risk-bg);color:var(--risk)} .pill.ph{background:var(--hold-bg);color:var(--text-mid)}
 
 .risks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .rk{background:#fff;border:1px solid var(--border);border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:12.5px;line-height:1.45}
@@ -370,19 +374,18 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 
   <h2>Scorecard <span class="sub">all measures from Jellyfish · Q3 baselines where known, the rest set in Phase 2 · read at every sprint checkpoint · judged Feb 16</span></h2>
   <div class="table-wrap"><table class="sc">
-    <thead><tr><th style="width:44%">Measure</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 16 target</th></tr></thead>
+    <thead><tr><th style="width:40%">Measure</th><th>Baseline</th><th>Dec 18 checkpoint</th><th>Feb 16 target</th><th class="ai">AI effect<small>read at Feb 16 · definition in-flight</small></th></tr></thead>
     <tbody>
-      <tr class="grp"><td colspan="4">The gate · three primary measures</td></tr>
-      <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m">5.82 days<small>Q3 · 48th pct</small></td><td class="m">trending down</td><td class="m">≤2.92 days</td></tr>
-      <tr><td class="t"><b>Sprint predictability</b> <span class="pill gate">Primary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td></tr>
-      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill gate">Primary</span><small>Baseline in flight · the list of commitments and dates is being aggregated</small></td><td class="m tbd">—<small>in flight</small></td><td class="m">rising</td><td class="m">≥90%</td></tr>
-      <tr class="grp"><td colspan="4">The six dimensions · guards and leads</td></tr>
-      <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>PR cycle time · Jellyfish 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours) · issue cycle time is the gate above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤0.06 days</td></tr>
-      <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or down</td></tr>
-      <tr><td class="t"><b>Process</b> <span class="pill lead">Lead</span><small>Sprint completion rate · unlinked PRs</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">completion &gt;90% · unlinked PRs 0%</td></tr>
-      <tr><td class="t"><b>Productivity</b> <span class="pill lead">Lead</span><small>Days with commits · issues resolved · PRs merged · story points</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">up, with quality no worse</td></tr>
-      <tr><td class="t"><b>Collaboration</b> <span class="pill lead">Lead</span><small>PR reviews · PRs without comments</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">reviews up · PRs without comments down</td></tr>
-      <tr class="flag"><td class="t"><b>AI impact</b> <span class="pill owner">Definition in-flight</span></td><td class="m tbd">—</td><td class="m tbd">—</td><td class="m tbd">—</td></tr>
+      <tr class="grp"><td colspan="5">The gate · three primary measures</td></tr>
+      <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m">5.82 days<small>Q3 · 48th pct</small></td><td class="m">trending down</td><td class="m">≤2.92 days</td><td class="m ai na"></td></tr>
+      <tr><td class="t"><b>Sprint predictability</b> <span class="pill gate">Primary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td><td class="m ai na"></td></tr>
+      <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill gate">Primary</span><small>Baseline in flight · the list of commitments and dates is being aggregated</small></td><td class="m tbd">—<small>in flight</small></td><td class="m">rising</td><td class="m">≥90%</td><td class="m ai na"></td></tr>
+      <tr class="grp"><td colspan="5">The five dimensions · guards and leads · AI effect read across all five</td></tr>
+      <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>PR cycle time · Jellyfish 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours) · issue cycle time is the gate above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤0.06 days</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or down</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>Process</b> <span class="pill lead">Lead</span><small>Sprint completion rate · unlinked PRs</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">completion &gt;90% · unlinked PRs 0%</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>Productivity</b> <span class="pill lead">Lead</span><small>Days with commits · issues resolved · PRs merged · story points</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">up, with quality no worse</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>Collaboration</b> <span class="pill lead">Lead</span><small>PR reviews · PRs without comments</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">reviews up · PRs without comments down</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
     </tbody>
   </table></div>
 
