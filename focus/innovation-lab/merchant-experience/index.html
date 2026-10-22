@@ -37,42 +37,27 @@ h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-
 h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 
-.problem{background:var(--dark-forest);color:#fff;border-radius:10px;padding:22px 26px;display:grid;grid-template-columns:1fr 1.15fr;gap:0}
-.problem .pcol:first-child{padding-right:26px;border-right:1px solid rgba(255,255,255,.12)}
-.problem .pcol:last-child{padding-left:26px}
+.problem{background:var(--dark-forest);color:#fff;border-radius:10px;padding:22px 26px 20px}
 .problem .k{color:var(--turquoise)}
+.problem .k .kn{font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:11.5px;color:rgba(255,255,255,.55);margin-left:8px;font-weight:400}
+.problem .ptop{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
+.problem .ptop > div:last-child{padding-left:26px;border-left:1px solid rgba(255,255,255,.12)}
+.problem .big{font-size:21px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.2px}
+.problem .big.soft{font-size:17px;font-weight:600;color:rgba(255,255,255,.92)}
 .problem .t{font-size:14px;line-height:1.5;color:rgba(255,255,255,.92)}
-.problem .t b{color:var(--pistachio)}
-.problem .big{font-size:21px;font-weight:700;line-height:1.3;color:#fff;margin-bottom:4px;letter-spacing:-.2px}
-.problem .ps{display:grid;grid-template-columns:92px 1fr;gap:8px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.92);padding:4px 0;border-top:1px solid rgba(255,255,255,.1)}
-.problem .ps .pk{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise);padding-top:3px}
-.problem .ps.fix{display:block;border-top:none;font-size:12px;color:rgba(255,255,255,.7);margin-top:6px}
-.problem .met{border-radius:8px;padding:9px 12px;margin-bottom:7px}
-.problem .met .mh{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
-.problem .met .mh b{font-size:13.5px;color:#fff}
-.problem .met .tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:4px}
-.problem .met .mv{display:flex;align-items:center;gap:12px}
-.problem .met .mv span{display:flex;flex-direction:column;line-height:1.15}
-.problem .met .now{font-size:17px;font-weight:700;color:rgba(255,255,255,.85)}
-.problem .met .tgt{font-size:17px;font-weight:700;color:#fff}
-.problem .met .mv i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:rgba(255,255,255,.55);margin-top:3px}
-.problem .met .arr{font-size:16px;color:rgba(255,255,255,.45)}
-.problem .met.pri{background:rgba(254,109,18,.16);border:1px solid rgba(254,109,18,.5)} .problem .met.pri .tag{background:var(--orange);color:#1A1200} .problem .met.pri .tgt{color:#FFB37A}
-.problem .met.pri.m4{background:rgba(117,209,208,.12);border:1px solid rgba(117,209,208,.5)} .problem .met.pri.m4 .tag{background:var(--turquoise);color:#01271A} .problem .met.pri.m4 .tgt{color:var(--turquoise)}
-.problem .met.pri.m2x{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.35)} .problem .met.pri.m2x .tag{background:#fff;color:#01271A} .problem .met.pri.m2x .tgt{color:#fff}
-.problem .met.pri.m3x{background:rgba(231,229,170,.10);border:1px solid rgba(231,229,170,.45)} .problem .met.pri.m3x .tag{background:var(--pistachio);color:#1F2A0B} .problem .met.pri.m3x .tgt{color:var(--pistachio)}
-.problem .met.sec{background:rgba(117,209,208,.12);border:1px solid rgba(117,209,208,.45)} .problem .met.sec .tag{background:var(--turquoise);color:#01271A} .problem .met.sec .tgt{color:var(--turquoise)}
-.problem .met.ter{background:transparent;border:1px dashed rgba(255,255,255,.3)} .problem .met.ter .tag{background:rgba(255,255,255,.12);color:#fff} .problem .met.ter .tgt{color:var(--pistachio)}
-.problem .obj{border-radius:8px;padding:9px 12px;margin-bottom:6px;line-height:1.4}
-.problem .obj .tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-right:8px;vertical-align:1px}
-.problem .obj.pri{background:rgba(254,109,18,.16);border:1px solid rgba(254,109,18,.45);font-size:15px;color:#fff}
-.problem .obj.pri .tag{background:var(--orange);color:#1A1200}
-.problem .obj.pri b{color:#fff}
-.problem .obj.sec{background:rgba(117,209,208,.12);border:1px solid rgba(117,209,208,.45);font-size:13px;color:rgba(255,255,255,.92)}
-.problem .obj.sec .tag{background:var(--turquoise);color:#01271A}
-.problem .obj.sec b{color:var(--pistachio)}
-.problem .obj.ter{background:transparent;border-style:dashed}
-.problem .t.small{font-size:12px;color:rgba(255,255,255,.7)}
+.problem .t.small{font-size:12px;color:rgba(255,255,255,.6);margin-top:12px}
+.problem .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.problem .met{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-left:4px solid var(--mc);border-radius:8px;padding:10px 12px 11px}
+.problem .met .mn{font-size:12.5px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.3;display:flex;gap:8px;align-items:baseline}
+.problem .met .idx{font-family:var(--mono);font-size:10px;color:var(--mc);letter-spacing:.08em}
+.problem .met .mv{display:flex;align-items:flex-start;gap:10px}
+.problem .met .mv span{display:flex;flex-direction:column;line-height:1.15;min-width:0;flex:1}
+.problem .met .mv span.arr{flex:0 0 auto}
+.problem .met .now{font-size:16px;font-weight:700;color:rgba(255,255,255,.8)}
+.problem .met .tgt{font-size:16px;font-weight:700;color:var(--mc)}
+.problem .met .mv i{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:rgba(255,255,255,.5);margin-top:3px;line-height:1.3}
+.problem .met .arr{font-size:15px;color:rgba(255,255,255,.4);padding-top:2px}
+.problem .met.m1{--mc:var(--orange)} .problem .met.m2{--mc:var(--turquoise)} .problem .met.m3{--mc:var(--pistachio)} .problem .met.m4{--mc:#FFB37A} .problem .met.m5{--mc:#9FE1B8} .problem .met.m6{--mc:#fff}
 
 .dates{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
 .date{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
@@ -109,7 +94,7 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .dg .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--orange);margin-bottom:8px}
 .dg h3{font-size:13.5px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:6px}
 .dg p{font-size:12px;line-height:1.5;color:var(--text-mid)}
-@media (max-width:1000px){.diag{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:1000px){.diag{grid-template-columns:repeat(3,1fr)} .problem .mgrid{grid-template-columns:repeat(2,1fr)}}
 .ivgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .role{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 15px;border-top:3px solid var(--teal)}
 .role .rh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;flex-wrap:wrap}
@@ -222,7 +207,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none} .dbr{display:none}
   .doc-body{padding:20px 16px 40px}
   .problem,.dates,.scope,.people,.ivgrid,.risks,.diag{grid-template-columns:1fr}
-  .problem .pcol:first-child{padding-right:0;border-right:none;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.12)} .problem .pcol:last-child{padding-left:0}
+  .problem .ptop{grid-template-columns:1fr;gap:14px} .problem .ptop > div:last-child{padding-left:0;border-left:none} .problem .mgrid{grid-template-columns:1fr}
   .step{grid-template-columns:1fr} .step .side{border-right:none;border-bottom:1px solid var(--border)} .step .pairs{grid-template-columns:1fr}
 }
 @media print{
@@ -238,7 +223,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <div class="header-inner">
     <div class="header-left">
       <div class="doc-eyebrow">Office of the CTO · Modernizing the tech delivery engine · Starting with Merchant Capabilities</div>
-      <h1 class="doc-title">Accelerate Merchant Capabilities'<br class="dbr">delivery of business value</h1>
+      <h1 class="doc-title">Accelerate Merchant Capabilities' <br class="dbr">delivery of business value</h1>
       <p class="doc-subtitle">We get value to the business sooner by <b>shortening the path from request to production</b> and <b>planning against real engineering capacity</b>. We modernize how the team operates, turn Jellyfish insights into action, and remove the friction that slows delivery.</p>
     </div>
     <div class="header-meta">
@@ -252,20 +237,20 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
 <main class="doc-body">
 
   <section class="problem">
-    <div class="pcol">
-      <div class="k">Problem statement</div>
-      <div class="big">We have an opportunity to accelerate our delivery of customer and business value.</div>
-      <div class="k" style="margin-top:14px">Desired outcome</div>
-      <div class="t">The business has confidence in our ability to deliver value predictably and efficiently.</div>
+    <div class="ptop">
+      <div><div class="k">Problem statement</div><div class="big">We have an opportunity to accelerate our delivery of customer and business value.</div></div>
+      <div><div class="k">Desired outcome</div><div class="big soft">The business has confidence in our ability to deliver value predictably and efficiently.</div></div>
     </div>
-    <div class="pcol">
-      <div class="k">How we will know</div>
-      <div class="met pri"><div class="mh"><span class="tag">Primary</span><b>Issue cycle time</b></div><div class="mv"><span class="now">5.82 days<i>Q3 · 48th percentile</i></span><span class="arr">→</span><span class="tgt">≤ 2.92 days<i>75th percentile · Feb 16</i></span></div></div>
-      <div class="met pri m4"><div class="mh"><span class="tag">Primary</span><b>Issues resolved</b></div><div class="mv"><span class="now">1.23 / FTE / week<i>Q4 · 53rd percentile</i></span><span class="arr">→</span><span class="tgt">≥ 2.07 / FTE / week<i>75th percentile · Feb 16</i></span></div></div>
-      <div class="met pri m3x"><div class="mh"><span class="tag">Primary</span><b>Commitments shipped on the date promised</b></div><div class="mv"><span class="now">—<i>baseline in flight · commitments and dates being aggregated</i></span><span class="arr">→</span><span class="tgt">≥ 90%<i>Feb 16</i></span></div></div>
-      <div class="met pri m2x"><div class="mh"><span class="tag">Primary</span><b>Sprint predictability</b></div><div class="mv"><span class="now">18.8%<i>Q3 · 26th percentile</i></span><span class="arr">→</span><span class="tgt">≥ 72%<i>75th percentile · sustained</i></span></div></div>
-      <div class="t small">Faster without breaking trust: throughput and quality hold or improve. Percentiles are against comparable companies in Jellyfish; all measures baselined before anything changes and read at every sprint checkpoint.</div>
+    <div class="k" style="margin-top:18px">How we will know <span class="kn">six primary measures · today → Feb 16 target · percentiles against comparable companies in Jellyfish</span></div>
+    <div class="mgrid">
+      <div class="met m1"><div class="mn"><span class="idx">01</span>Issue cycle time</div><div class="mv"><span class="now">5.82 days<i>Q3 · 48th percentile</i></span><span class="arr">→</span><span class="tgt">≤ 2.92 days<i>75th percentile</i></span></div></div>
+      <div class="met m2"><div class="mn"><span class="idx">02</span>Issues resolved</div><div class="mv"><span class="now">1.23 / FTE / wk<i>Q4 · 53rd percentile</i></span><span class="arr">→</span><span class="tgt">≥ 2.07 / FTE / wk<i>75th percentile</i></span></div></div>
+      <div class="met m3"><div class="mn"><span class="idx">03</span>Commitments shipped on the date promised</div><div class="mv"><span class="now">—<i>baseline in flight</i></span><span class="arr">→</span><span class="tgt">≥ 90%<i>Feb 16</i></span></div></div>
+      <div class="met m4"><div class="mn"><span class="idx">04</span>PR cycle time</div><div class="mv"><span class="now">0.81 days<i>Q3 · 39th percentile</i></span><span class="arr">→</span><span class="tgt">≤ 0.06 days<i>75th percentile · about 1.5 hours</i></span></div></div>
+      <div class="met m5"><div class="mn"><span class="idx">05</span>PR pass rate</div><div class="mv"><span class="now">88.2%<i>Q3 · 7th percentile</i></span><span class="arr">→</span><span class="tgt">100%<i>75th percentile</i></span></div></div>
+      <div class="met m6"><div class="mn"><span class="idx">06</span>Sprint predictability</div><div class="mv"><span class="now">18.8%<i>Q3 · 26th percentile</i></span><span class="arr">→</span><span class="tgt">≥ 72%<i>75th percentile · sustained</i></span></div></div>
     </div>
+    <div class="t small">Faster without breaking trust: throughput and quality hold or improve. All measures baselined before anything changes and read at every sprint checkpoint. For each measure we also read the effect of AI: whether it moved the number up, down, or not at all.</div>
   </section>
 
 
@@ -379,13 +364,15 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   <div class="table-wrap"><table class="sc">
     <thead><tr><th style="width:40%">Measure</th><th>Baseline</th><th>Sprintly checkpoints</th><th>Feb 16 target</th><th class="ai">AI effect</th></tr></thead>
     <tbody>
-      <tr class="grp"><td colspan="5">The gate · four primary measures</td></tr>
+      <tr class="grp"><td colspan="5">The gate · six primary measures</td></tr>
       <tr><td class="t"><b>Issue cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 2.92 days</small></td><td class="m">5.82 days<small>Q3 · 48th pct</small></td><td class="m">trending down</td><td class="m">≤2.92 days</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Issues resolved</b> <span class="pill gate">Primary</span><small>Jellyfish · per FTE per week · 75th-percentile benchmark for comparable companies is 2.07</small></td><td class="m">1.23<small>Q4 · 53rd pct</small></td><td class="m">trending up</td><td class="m">≥2.07</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Commitments shipped on the date promised</b> <span class="pill gate">Primary</span><small>Baseline in flight · the list of commitments and dates is being aggregated</small></td><td class="m tbd">—<small>in flight</small></td><td class="m">rising</td><td class="m">≥90%</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>PR cycle time</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours)</small></td><td class="m">0.81 days<small>Q3 · 39th pct</small></td><td class="m">trending down</td><td class="m">≤0.06 days</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>PR pass rate</b> <span class="pill gate">Primary</span><small>Jellyfish · 75th-percentile benchmark for comparable companies is 100%</small></td><td class="m">88.2%<small>Q3 · 7th pct</small></td><td class="m">trending up</td><td class="m">100%</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Sprint predictability</b> <span class="pill gate">Primary</span><small>Committed work delivered in the sprint · must trend up · guarded against undercommitment, scope changes, and quality trade-offs</small></td><td class="m">18.8%<small>Q3 · 26th pct</small></td><td class="m">trending up</td><td class="m">≥72%, sustained</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr class="grp"><td colspan="5">The five dimensions · guards and leads · AI effect read across every measure</td></tr>
-      <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>PR cycle time · Jellyfish 75th-percentile benchmark for comparable companies is 0.06 days (about 1.5 hours) · issue cycle time is the gate above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">≤0.06 days</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
+      <tr><td class="t"><b>Speed</b> <span class="pill lead">Lead</span><small>Coding time · review time · merge time · the parts of PR cycle time, which is gate 04 above</small></td><td class="m tbd">—</td><td class="m">trending down</td><td class="m">each down</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Quality</b> <span class="pill guard">Guard</span><small>Defects MTTR · defects opened · defects resolved · change failure rate</small></td><td class="m tbd">—</td><td class="m">no worse</td><td class="m">MTTR down · resolved ≥ opened · CFR stable or down</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Process</b> <span class="pill lead">Lead</span><small>Sprint completion rate · unlinked PRs</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">completion &gt;90% · unlinked PRs 0%</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
       <tr><td class="t"><b>Productivity</b> <span class="pill lead">Lead</span><small>Days with commits · issues resolved · PRs merged · story points</small></td><td class="m tbd">—</td><td class="m">trending up</td><td class="m">up, with quality no worse</td><td class="m ai"><span class="aiv">↑ ↓ →</span><small>to be read</small></td></tr>
