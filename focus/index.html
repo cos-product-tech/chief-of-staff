@@ -60,6 +60,9 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ub.off li::before{color:var(--p3)}
 .ub li b{font-weight:600;color:var(--dark-forest)}
 .ub li .who{color:var(--text-mid)}
+.ub li ul.sub{list-style:none;margin-top:5px}
+.ub li ul.sub li{display:block;grid-template-columns:none;padding:2px 0 2px 12px;border-top:none;font-size:12.25px;color:var(--text-mid);position:relative;line-height:1.4}
+.ub li ul.sub li::before{content:'›';counter-increment:none;position:absolute;left:0;color:var(--teal);font-family:var(--mono);font-size:12px;padding-top:0}
 .ub li a{color:var(--teal);text-decoration:none;border-bottom:1px solid var(--turquoise)} .ub li a:hover{color:var(--orange);border-bottom-color:var(--orange)}
 .chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:2px}
 .chip.wk{background:var(--tag-bg);color:var(--tag)}
@@ -225,8 +228,24 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
   <div class="ub ask" style="margin-bottom:12px">
     <div class="k">Decisions needed<b>From Yi · each arrives with my recommendation</b></div>
     <ol>
-      <li><div><b>Fahd's compensation.</b> <span class="who">Reggie just met with Fahd. He is targeting $182,753 USD, the 75th percentile of our Canada Director band, for a Senior Manager role whose 75th percentile is $152,638, about $30K higher. How do you want to approach it before we proceed?</span></div><span class="chip dec">Awaiting Rahul and Simran</span></li>
-      <li><div><b>Paul Erwin: Director, Engineering with full Card Processing scope.</b> <span class="who">Our recommendation, sent to Rahul on Oct 20 for alignment: (1) Paul takes the full Card Processing workstream at the Director level from day one. (2) Paul is Delivery Manager for Card Processing; Sandeep remains Delivery Manager for the rest of Money Movement. (3) I am Paul's local people manager; Yi owns his delivery and performance accountability, including 30/60/90/120-day expectations, review, and rating, with Paul matrixed into Yi. (4) We both lean in to help him succeed; if he misses the expectations, we either return him to the Principal track or revert to partial scope expanding with demonstrated delivery. (5) Yi documents the 30/60/90/120-day expectations before the transition so Paul commits to the outcomes up front. With the title change Paul enrolls in the Annualized Incentive Plan at 15%. Paul had asked for Senior Director, reporting directly to me, with final decision rights and a team of an EM, a Principal (presumably Goku), a Staff Engineer in IDC, and two Senior SDETs; his evidence: six change-induced production defects since Aug 1, 3 of 13 postmortems closed, a waived postmortem that delayed about $173K in Fiserv Omaha funding, 3 of 25 initiatives with an owner and date, zero rejections across 31 release approvals.</span></div><span class="chip dec">Awaiting Rahul</span></li>
+      <li><div><b>Fahd: pass. Tony: Simran assesses before we keep searching.</b>
+        <ul class="sub">
+          <li>Simran and I decided this morning to pass on Fahd: his ask moved to the top of the Director band; we expect a stronger Senior Manager fit without the outlier salary, and Simran is hiring manager from day one.</li>
+          <li>Sloan is unsure how to hire Tony given the $40K salary reduction. Simran wants to assess for himself, quickly, whether Tony can be the partner he needs before we continue the replacement search.</li>
+          <li>If Tony stays, re-level his title from Senior Director to Director.</li>
+          <li><b>My take:</b> speak with Tony directly about where things stand so he isn't left anxious in the uncertainty. <b>Your view?</b></li>
+        </ul></div><span class="chip dec">Decision: talk to Tony</span></li>
+      <li><div><b>Paul Erwin: where Rahul, Yi, and I are landing.</b> <span class="who">Sent to Rahul and Yi for correction before I go back to Paul.</span>
+        <ul class="sub">
+          <li>Sandeep stays long-term owner and Delivery Manager for Money Movement; we say so to Paul upfront.</li>
+          <li>Paul: Director, Engineering, leading Card Processing within Money Movement. Starts with Apple Pay/3DS, Lodging/Hospitality, PCI, Network updates, Visa Direct Domestic; Sandeep finishes Card on File, SMS PIN Debit post-GA, BPSP. Paul expands to full scope as those close and he delivers.</li>
+          <li>Paul has the authority to deliver his scope; specific blockers get worked before any broader change.</li>
+          <li>Delivery and performance: Paul matrixes to Sandeep, who writes his review and recommends his rating.</li>
+          <li><b>Open · reporting line:</b> we recommended Simran; Paul wants Eric; Simran wants Paul. Must be bridged.</li>
+          <li>Title: Director, Engineering. Senior Director is off the table.</li>
+          <li><b>Open · Colm:</b> Visa Direct is in Paul's scope. Principal under Sandeep across the other workstreams, or Innovation Lab? Decide proactively; retention risk after Marie's departure.</li>
+          <li><b>Open · Sandeep:</b> how and when we communicate the transition so it doesn't feel like another handover.</li>
+        </ul></div><span class="chip dec">Awaiting Rahul and Yi</span></li>
     </ol>
   </div>
   <div class="ub" style="margin-bottom:28px;border-top:3px solid var(--teal)">
@@ -331,7 +350,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
 <script>
 /* ---------- Time & energy log ---------- */
 const FOCUS_OF={bridge:'people',opsw:'ops',hc:'fin',ecb:'ecb',mx:'ai',snap:'vendor',posi:'vendor',azcr:'vendor',pfd:'vendor',lines:'people',paul:'people',bt:'people',offers:'ta',promos:'people',intro:'ta'};
-const SEED={"week":"2026-10-19","days":{"azcr":[0,0,0,0,0],"pfd":[0,0,0,0,0],"ecb":[1,0,0,0,0],"snap":[1,1,0,0,0],"hc":[3,1,0,0,0],"paul":[1,1,0,0,0],"bt":[0,0,0,0,0],"offers":[0,0,0,0,0],"mx":[1,3,0,0,0],"posi":[1,1,0,0,0],"lines":[0,0,0,0,0],"promos":[0,0,0,0,0],"intro":[0,0,0,0,0],"bridge":[0,1,0,0,0],"opsw":[1,0,0,0,0]},"history":[{"week":"2026-10-12","focus":{"vendor":7,"ecb":4,"fin":11,"people":10,"ta":6,"ai":10},"items":{"azcr":[1,0,0,0,0],"pfd":[1,1,0,0,0],"ecb":[1,1,2,0,0],"snap":[1,0,0,0,0],"hc":[1,3,1,3,3],"paul":[1,1,0,1,0],"bt":[3,0,0,0,0],"offers":[1,3,0,0,0],"mx":[3,2,3,1,1],"posi":[1,1,0,0,1],"lines":[0,0,0,0,0],"promos":[0,1,1,0,2],"intro":[1,0,0,0,1]}}]};
+const SEED={"week":"2026-10-19","days":{"azcr":[0,0,0,0,0],"pfd":[0,0,0,0,0],"ecb":[1,1,1,0,0],"snap":[1,1,0,0,0],"hc":[3,1,0,0,0],"paul":[1,1,1,0,0],"bt":[0,0,0,0,0],"offers":[0,0,0,0,0],"mx":[1,3,3,1,0],"posi":[1,1,0,0,0],"lines":[0,0,0,0,0],"promos":[0,0,0,0,0],"intro":[0,0,0,0,0],"bridge":[0,1,0,0,0],"opsw":[1,0,0,0,0]},"history":[{"week":"2026-10-12","focus":{"vendor":7,"ecb":4,"fin":11,"people":10,"ta":6,"ai":10},"items":{"azcr":[1,0,0,0,0],"pfd":[1,1,0,0,0],"ecb":[1,1,2,0,0],"snap":[1,0,0,0,0],"hc":[1,3,1,3,3],"paul":[1,1,0,1,0],"bt":[3,0,0,0,0],"offers":[1,3,0,0,0],"mx":[3,2,3,1,1],"posi":[1,1,0,0,1],"lines":[0,0,0,0,0],"promos":[0,1,1,0,2],"intro":[1,0,0,0,1]}}]};
 const KEY='cos-focus-log-v1';
 let LOG; try{LOG=JSON.parse(localStorage.getItem(KEY))||null}catch(e){LOG=null}
 if(!LOG) LOG=JSON.parse(JSON.stringify(SEED));
