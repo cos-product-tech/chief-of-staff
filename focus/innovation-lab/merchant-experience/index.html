@@ -41,8 +41,6 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .problem .k{color:var(--turquoise)}
 .problem .k .kn{font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:11.5px;color:rgba(255,255,255,.55);margin-left:8px;font-weight:400}
 .problem .ptop{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
-.problem .pnote{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
-.problem .pnote .t{font-size:13px;color:rgba(255,255,255,.85)}
 .problem .ptop > div:last-child{padding-left:26px;border-left:1px solid rgba(255,255,255,.12)}
 .problem .big{font-size:21px;font-weight:700;line-height:1.3;color:#fff;letter-spacing:-.2px}
 .problem .big.soft{font-size:17px;font-weight:600;color:rgba(255,255,255,.92)}
@@ -215,7 +213,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none} .dbr{display:none}
   .doc-body{padding:20px 16px 40px}
   .problem,.dates,.scope,.people,.ivgrid,.risks,.diag{grid-template-columns:1fr}
-  .problem .ptop,.problem .pnote{grid-template-columns:1fr;gap:14px} .problem .ptop > div:last-child{padding-left:0;border-left:none}
+  .problem .ptop{grid-template-columns:1fr;gap:14px} .problem .ptop > div:last-child{padding-left:0;border-left:none}
   .problem .row{grid-template-columns:26px 1fr 1fr;grid-template-areas:"i n n" "i now tgt" "i tr tr";row-gap:6px} .problem .row .idx{grid-area:i} .problem .row .nm{grid-area:n} .problem .row .val.now{grid-area:now} .problem .row .val.tgt{grid-area:tgt} .problem .track{grid-area:tr}
   .step{grid-template-columns:1fr} .step .side{border-right:none;border-bottom:1px solid var(--border)} .step .pairs{grid-template-columns:1fr}
 }
@@ -250,11 +248,6 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div><div class="k">Problem statement</div><div class="big">We have an opportunity to accelerate our delivery of customer and business value.</div></div>
       <div><div class="k">Desired outcome</div><div class="big soft">The business has confidence in our ability to deliver value predictably and efficiently.</div></div>
     </div>
-    <div class="pnote">
-      <div><div class="k">Where the constraints live</div><div class="t">Most of what slows the team down lives in the system around it: how work arrives, how it gets committed, and how long it takes to get through regression. That is what we are changing, with the team, not around it.</div></div>
-      <div><div class="k">What the team gets</div><div class="t">Fewer interruptions mid-sprint, less regression toil, a baseline that shows the constraints are real, and hands-on help with AI tooling from people who will sit with you, not review you.</div></div>
-    </div>
-    <div class="k" style="margin-top:18px">How we will know <span class="kn">today → Feb 16 target · percentiles against comparable companies in Jellyfish</span></div>
     <div class="k" style="margin-top:18px">How we will know <span class="kn">today → Feb 16 target · the track shows where we sit against comparable companies in Jellyfish and the distance to the 75th percentile</span></div>
     <div class="ledger">
       <div class="tier pri"><span class="tk">Primary</span><span class="td">the two measures we move together</span></div>
@@ -270,7 +263,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <div class="row qua"><span class="idx">07</span><span class="nm">PRs without comments</span><span class="val now">15 / week<i>Q3</i></span><div class="track"><i class="fill" style="left:2%;width:73%"></i><i class="goal" style="left:75%"></i><i class="dot" style="left:2%"></i><span class="pl" style="left:2%">2nd</span></div><span class="val tgt">0<i>75th pct</i></span></div>
       <div class="row qua"><span class="idx">08</span><span class="nm">Defects MTTR</span><span class="val now">33 days<i>Q3</i></span><div class="track"><i class="fill" style="left:10%;width:65%"></i><i class="goal" style="left:75%"></i><i class="dot" style="left:10%"></i><span class="pl" style="left:10%">10th</span></div><span class="val tgt">≤ 4.25 days<i>75th pct</i></span></div>
       <div class="tier grd"><span class="tk">Guards</span><span class="td">must hold or improve while we go faster</span></div>
-      <div class="row grd"><span class="idx">G1</span><span class="nm">Commitments shipped on the date promised</span><span class="val now">—<i>baseline in flight</i></span><div class="track none"><span class="nt">track appears once the baseline lands</span></div><span class="val tgt">≥ 90%<i>Feb 16 · must hold or improve</i></span></div>
+      <div class="row grd"><span class="idx">G1</span><span class="nm">Commitments shipped on the date promised</span><span class="val now">—<i>baseline in flight</i></span><div class="track none"><span class="nt">track appears once the baseline lands</span></div><span class="val tgt">100%<i>must trend up every sprint</i></span></div>
       <div class="row grd"><span class="idx">G2</span><span class="nm">Escaped defects · customer-impacting (I1)</span><span class="val now">33<i>Q3</i></span><div class="track none"><span class="nt">no benchmark · must be zero</span></div><span class="val tgt">0<i>zero escapes</i></span></div>
       <div class="row grd"><span class="idx">G3</span><span class="nm">Defects opened</span><span class="val now">0.2 / FTE / wk<i>Q3</i></span><div class="track"><i class="fill" style="left:37%;width:38%"></i><i class="goal" style="left:75%"></i><i class="dot" style="left:37%"></i><span class="pl" style="left:37%">37th</span></div><span class="val tgt">0<i>75th pct</i></span></div>
       <div class="row grd"><span class="idx">G4</span><span class="nm">Defects closed</span><span class="val now">0.08 / FTE / wk<i>Q3</i></span><div class="track"><i class="fill" style="left:56%;width:19%"></i><i class="goal" style="left:75%"></i><i class="dot" style="left:56%"></i><span class="pl" style="left:56%">56th</span></div><span class="val tgt">≥ 0.27 / FTE / wk<i>75th pct</i></span></div>
@@ -331,7 +324,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
   </section>
 
   <div id="questionnaires">
-  <h2>Discovery surveys <span class="sub">Phase 1 · Oct 13 – Oct 23 · one five-question survey per role · Google Forms, about 10 minutes · synthesized without attribution</span></h2>
+  <h2>Discovery surveys <span class="sub">Phase 1 · Oct 13 – Oct 23 · one five-question survey per role · Google Forms, about 10 minutes · responses stay with the Tiger Team and are shared without attribution</span></h2>
   <div class="ivnote"><b>How it runs</b>
     <ul class="runs">
       <li><b>Survey distribution.</b> Eric sends each participant the context of our Tiger Team and the survey for their role on Thursday, October 22.</li>
@@ -380,6 +373,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:28px}
       <li><b>Run.</b> Apply the changes across four development sprints (25, 26, 1, and 2).</li>
       <li><b>Allow for adjustment.</b> Expect an initial dip in Sprint 25; continue unless it persists through Sprint 26.</li>
       <li><b>Review and adapt.</b> After each sprint, Eric reviews Jellyfish data with the team and adjusts as needed.</li>
+      <li><b>Feb 16: decide together.</b> Read the four sprints against the baseline, then the team, Tiger Team, and sponsors decide: continue, adjust, or stop, and whether the next team starts.</li>
     </ul>
   </section>
 
