@@ -63,6 +63,9 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ub li ul.sub{list-style:none;margin-top:5px}
 .ub li ul.sub li{display:block;grid-template-columns:none;padding:2px 0 2px 12px;border-top:none;font-size:12.25px;color:var(--text-mid);position:relative;line-height:1.4}
 .ub li ul.sub li.rec{background:#FFF1E4;border:1px solid #F3C9A6;border-radius:6px;padding:6px 10px 6px 12px;margin-bottom:4px;color:var(--text-dark)}
+.ub li ul.sub li.rec ul{list-style:none;margin-top:4px}
+.ub li ul.sub li.rec ul li{display:block;padding:2px 0 2px 12px;position:relative;border:none;background:none;margin:0;font-size:12.25px}
+.ub li ul.sub li.rec ul li::before{content:'›';position:absolute;left:0;color:var(--orange);counter-increment:none}
 .ub li ul.sub li.rec::before{content:'★';color:var(--orange)}
 .ub li ul.sub li::before{content:'›';counter-increment:none;position:absolute;left:0;color:var(--teal);font-family:var(--mono);font-size:12px;padding-top:0}
 .ub li a{color:var(--teal);text-decoration:none;border-bottom:1px solid var(--turquoise)} .ub li a:hover{color:var(--orange);border-bottom-color:var(--orange)}
@@ -242,7 +245,16 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
         </ul></div><span class="chip dec">Make a decision</span></li>
       <li><div><b>Paul.</b>
         <ul class="sub">
-          <li class="rec"><b>My recommendation:</b> Paul reports to Simran as his people manager and matrixes to Sandeep for delivery and performance; Sandeep writes his review and recommends his rating, because Sandeep is accountable for all of Money Movement. Paul becomes Director, Engineering, leading Card Processing within Money Movement, accountable for Apple Pay/3DS, Lodging/Hospitality, PCI, Network updates, and Visa Direct Domestic. Sandeep finishes Card on File, SMS PIN Debit post-GA, and BPSP. Paul grows into Delivery Manager for all of Card Processing as Sandeep's items close and Paul delivers on his. <b>Risk:</b> if we don't set it up this way, we risk losing Sandeep. He is a far higher flight risk than Paul.</li>
+          <li class="rec"><b>My recommendation</b>
+            <ul>
+              <li>Paul reports to Simran as his people manager.</li>
+              <li>Paul matrixes to Sandeep for delivery and performance. Sandeep writes his review and recommends his rating, because Sandeep is accountable for all of Money Movement.</li>
+              <li>Paul becomes Director, Engineering, leading Card Processing within Money Movement, accountable for Apple Pay/3DS, Lodging/Hospitality, PCI, Network updates, and Visa Direct Domestic.</li>
+              <li>Sandeep finishes Card on File, SMS PIN Debit post-GA, and BPSP.</li>
+              <li>Paul grows into Delivery Manager for all of Card Processing as Sandeep's items close and Paul delivers on his.</li>
+              <li><b>Risk:</b> if we don't set it up this way, we risk losing Sandeep. He is a far higher flight risk than Paul.</li>
+            </ul>
+          </li>
           <li><b>Open · reporting line:</b> we recommended Simran; Paul wants Eric; Simran wants Paul. Must be bridged.</li>
           <li><b>Open · Colm:</b> Visa Direct is in Paul's scope. Principal under Sandeep across the other workstreams, or Innovation Lab? Decide proactively; retention risk after Marie's departure.</li>
         </ul></div><span class="chip dec">Make a decision</span></li>
