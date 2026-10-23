@@ -309,7 +309,7 @@ const ALL_ROLES = [
   {ws:'Banking & Treasury', loc:'IDC', role:'Software Engineer', stage:'s3'},
   {ws:'Banking & Treasury', loc:'IDC', role:'Senior Software Engineer', stage:'s1', bf:'Vansh Ahuja', open:true},
   // PCE
-  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s1', bf:'Paras Bhardwaj', sal:'Unknown', drop:true},
+  {ws:'PCE', loc:'IDC', role:'Team Lead, Engineering', stage:'s1', bf:'Paras Bhardwaj', drop:true},
   {ws:'PCE', loc:'IDC', role:'Software Engineer', stage:'s1', open:true, rahul:true},
   {ws:'PCE', loc:'ADC', role:'Sr Technical Customer Support Engineer', stage:'s1', bf:'Donley Gustave', sal:130000, drop:true},
   {ws:'PCE', loc:'ADC', role:'Tech Support — Engineer', stage:'s2', sal:80000, drop:true},
@@ -345,10 +345,10 @@ const ALL_ROLES = [
   {ws:'Billing & Revenue Management', loc:'WAT', role:'Principal Software Engineer', stage:'s2', ticket:'HR-413997', sal:160801},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior SDET', stage:'s2', sal:178000, rec:{loc:'REV', role:'Senior Quality Automation Engineer', sal:100000}},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Manager, Engineering', stage:'s1', bf:'Andrew Brim', ticket:'HR-414313', sal:238687},
-  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true, sal:'Unknown'},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Team Lead, Engineering', stage:'s2', open:true, rahul:true},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Team Lead, QA Engineering', stage:'s4', sal:133249},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Product Manager', stage:'s4', sal:145267},
-  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3', sal:'Unknown'},
+  {ws:'Billing & Revenue Management', loc:'IDC', role:'Senior Software Engineer', stage:'s3'},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:165863},
   {ws:'Billing & Revenue Management', loc:'ADC', role:'Senior Software Engineer', stage:'s4', ctr:true, sal:165863},
 ];
@@ -356,20 +356,21 @@ const ALL_ROLES = [
 /* ---------- HELPERS ---------- */
 const by = (arr, f) => arr.reduce((m,x)=>{const k=f(x);(m[k]=m[k]||[]).push(x);return m;},{});
 /* This view shows every role on the plan, team by team: backfills, budgeted incremental, Yi approved, not yet to Yi, and contractors in seat. */
-/* 50th-percentile base salary in USD from the Compensation Framework (LATEST — 2026 Q2). ADC uses the US bands; WAT uses the Canada bands in USD; IDC has no band in the sheet. */
+/* 50th-percentile base salary in USD from the Compensation Framework (LATEST — 2026 Q2). ADC uses the US bands; WAT uses the Canada bands in USD; IDC uses Rahul's USD figures (23 Oct). */
 const BAND = {
   US:{'Software Engineer':138104,'Senior Software Engineer':165863,'Staff Software Engineer':198155,'Senior Staff Software Engineer':232594,'Principal Software Engineer':266735,
       'SDET':138104,'Senior SDET':165863,'Team Lead, Engineering':202168,'Manager, Engineering':201182,'Senior Manager, Engineering':238687,'Director, Engineering':259575,
       'Team Lead, QA Engineering':133249,'Product Manager':108896,'Senior Product Manager':145267,'Director of Product':256318},
   CA:{'Software Engineer':74976,'Senior Software Engineer':90343,'Staff Software Engineer':107791,'Senior Staff Software Engineer':131081,'Principal Software Engineer':160801,
       'SDET':74976,'Senior SDET':90343,'Team Lead, Engineering':97729,'Manager, Engineering':114294,'Senior Manager, Engineering':134281,'Director, Engineering':156351,
-      'Team Lead, QA Engineering':90343 /* OVERRIDE per Eric 17 Oct: sheet shows $82,641 (QA Eng Mgmt · Canada · M2); $90,343 is the Canada Senior SWE/SDET P3 band */,'Principal Product Designer':164660}
+      'Team Lead, QA Engineering':90343 /* OVERRIDE per Eric 17 Oct: sheet shows $82,641 (QA Eng Mgmt · Canada · M2); $90,343 is the Canada Senior SWE/SDET P3 band */,'Principal Product Designer':164660},
+  /* IDC in USD, per Rahul via Eric 23 Oct */
+  IN:{'Software Engineer':20000,'Senior Software Engineer':30000,'Principal Software Engineer':60000,'Team Lead, Engineering':35000,'Senior SDET':25000,'Senior Product Manager':50000}
 };
 const bandFor = r => {
   if(r.sal!=null) return r.sal;
-  if(r.loc==='IDC') return 'Unknown';
   if(r.loc==='AZR'||r.loc==='REV') return null;
-  const t = r.loc==='WAT' ? BAND.CA : BAND.US;
+  const t = r.loc==='IDC' ? BAND.IN : r.loc==='WAT' ? BAND.CA : BAND.US;
   const base = r.role.replace(/\s*\(.*\)$/,'').trim();
   return t[base] ?? 'Unknown';
 };
@@ -424,7 +425,7 @@ const REC = {
     build: arr => arr.filter(r=>!r.drop).map(applyRec)
   },
   'PCE': {
-    note:'The Team Lead, Engineering backfill for Paras Bhardwaj (IDC) and the three budgeted support roles are not filled; their budget returns to the pool to reallocate. IDC salary pending from Rahul.',
+    note:'The Team Lead, Engineering backfill for Paras Bhardwaj (IDC) and the three budgeted support roles are not filled; their budget returns to the pool to reallocate.',
     build: arr => arr.filter(r=>!r.drop)
   },
   'Fraud & Risk Governance': {
