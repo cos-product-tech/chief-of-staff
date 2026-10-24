@@ -55,7 +55,8 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ub .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
 .ub.ticker{border-top:3px solid var(--orange);border-style:dashed solid solid;background:#FFFCF7}
 .ub.ticker ul.tk{list-style:none}
-.ub.ticker ul.tk li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:5px 0;border-top:1px dashed var(--border);font-size:12.75px;line-height:1.45;color:var(--text-mid)}
+.ub.ticker ul.tk li{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;padding:6px 0;border-top:1px dashed var(--border);font-size:12.75px;line-height:1.45;color:var(--text-mid)}
+.ub.ticker ul.tk li::before{content:none;counter-increment:none}
 .ub.ticker ul.tk li:first-child{border-top:none}
 .ub.ticker ul.tk li .d{font-family:var(--mono);font-size:10px;color:var(--orange);letter-spacing:.06em;padding-top:3px}
 .ub.ticker ul.tk li b{color:var(--dark-forest);font-weight:600}
