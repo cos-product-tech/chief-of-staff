@@ -158,16 +158,17 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .lz.t-onb{background:#E9EAF7;color:#4B56A8}
 .lz.t-intro{background:#EFF2DC;color:#5F6A1E}
 /* heat map */
-.wk{grid-template-columns:34px 1fr 150px 390px}
-.heat{display:grid;grid-template-columns:repeat(7,18px) auto;gap:4px;align-items:center;padding-top:3px}
+.wk{grid-template-columns:34px 1fr 390px;grid-template-rows:auto 1fr;grid-template-areas:"num body side" "num body heat"}
+.wk .num{grid-area:num} .wk > div:not(.num):not(.heat):not(.chips){grid-area:body} .wk .chips{grid-area:side}
+.heat{grid-area:heat;align-self:end;justify-self:end;display:grid;grid-template-columns:repeat(7,18px) auto;gap:4px;align-items:center;padding-top:8px}
 .heat .c{width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:#fff;cursor:pointer;padding:0;font:inherit}
 .heat .c:hover{border-color:var(--teal)}
 .heat .c.l1{background:#CFE8DD;border-color:#CFE8DD} .heat .c.l2{background:#6FB79A;border-color:#6FB79A} .heat .c.l3{background:#1F7A5C;border-color:#1F7A5C}
 .heat .c.today{box-shadow:0 0 0 2px var(--orange) inset}
 .heat .tot{font-family:var(--mono);font-size:11px;color:var(--text-mid);padding-left:4px;white-space:nowrap}
 .heat .tot b{color:var(--dark-forest);font-weight:600}
-.heathead{display:grid;grid-template-columns:34px 1fr 150px 390px;gap:12px;padding:0 16px 4px 20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
-.heathead .days{display:grid;grid-template-columns:repeat(7,18px) auto;gap:4px}
+.heathead{display:grid;grid-template-columns:34px 1fr 390px;gap:12px;padding:0 16px 4px 20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.heathead .days{display:grid;grid-template-columns:repeat(7,18px) auto;gap:4px;justify-self:end}
 .heat .c.we{border-style:dashed} .heathead .days .we{color:#C9B26A}
 .heathead .days span{text-align:center}
 .ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:12px;color:var(--text-mid);margin:-4px 0 12px}
@@ -196,8 +197,8 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
   .unblock{grid-template-columns:1fr}
   .ub li{grid-template-columns:22px 1fr}
   .ub li .chip{grid-column:2;justify-self:start}
-  .wk{grid-template-columns:30px 1fr}
-  .heat{grid-column:2}
+  .wk{grid-template-columns:30px 1fr;grid-template-areas:"num body" "num side" "num heat"}
+  .heat{justify-self:start}
   .heathead{display:none}
   .wk .chips{display:grid;grid-template-columns:72px 148px 1fr;gap:6px;align-items:start;padding-top:1px}
 .wk .chips .lz{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%}
@@ -295,7 +296,7 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <span class="lz hold">⏸ On hold</span>
   </div>
   <div class="ctl" id="ctl"></div>
-  <div class="heathead"><span></span><span></span><span class="days"><span class="we">S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span class="we">S</span><span></span></span><span></span></div>
+  <div class="heathead"><span></span><span></span><span class="days" style="grid-column:3"><span class="we">S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span class="we">S</span><span></span></span></div>
   <section class="week">
     <div class="wk p0" data-id="hc"><div class="num">01</div><div><div class="t">IT-TRG headcount template: 9+3 forecast and 2027 budget</div><div class="d">Headcount templates go back to FP&amp;A by Oct 21. This week: Yi reviews the reconciled hiring view, then I enter the new hires into the 2026 9+3 and FY2027 forecast sheet. Next gate: Opex templates, revenue and gross profit models, and KPIs by <b>Nov 6</b>. <a href="https://cos-product-tech-prth.vercel.app/hiring/hiring-product-engineering.html">P&amp;E Hiring · Team by Team</a>.</div></div><span class="chips"><span class="lz p0">🔴 P1</span><span class="slot"><span class="lz tag t-a">Accountable</span></span><span class="lz cat">↳ Budget &amp; headcount</span></span></div>
     <div class="wk p0" data-id="mx"><div class="num">02</div><div><div class="t">Make Merchant Experience fast and predictable on its commitments</div><div class="d">Goal: questionnaire questions finalized and distributed, one Google Doc per person, shared with the Tiger Team, by <b>end of day Tuesday, Oct 20</b>. Answers and the Jellyfish DevEx survey back by Friday, Oct 23; baseline dashboard with Andrey by the same day. Embed starts Monday, Oct 26 with Sprint 22. <a href="https://cos-product-tech-prth.vercel.app/focus/innovation-lab/merchant-experience/index.html">Plan</a>.</div></div><span class="chips"><span class="lz p0">🔴 P1</span><span class="slot"><span class="lz tag t-a">Accountable</span></span><span class="lz cat">↳ Delivery engine</span></span></div>
