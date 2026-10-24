@@ -53,6 +53,12 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ub.off .row{display:flex;flex-wrap:wrap;gap:8px}
 .ub.off .row .lz{font-size:11px;padding:4px 10px}
 .ub .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.ub.ticker{border-top:3px solid var(--orange);border-style:dashed solid solid;background:#FFFCF7}
+.ub.ticker ul.tk{list-style:none}
+.ub.ticker ul.tk li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:5px 0;border-top:1px dashed var(--border);font-size:12.75px;line-height:1.45;color:var(--text-mid)}
+.ub.ticker ul.tk li:first-child{border-top:none}
+.ub.ticker ul.tk li .d{font-family:var(--mono);font-size:10px;color:var(--orange);letter-spacing:.06em;padding-top:3px}
+.ub.ticker ul.tk li b{color:var(--dark-forest);font-weight:600}
 .ub .k b{color:var(--dark-forest);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13.5px;display:block;margin-top:2px}
 .ub ol{list-style:none;counter-reset:a}
 .ub li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;padding:7px 0;border-top:1px dashed var(--border);font-size:13px;line-height:1.45}
@@ -231,6 +237,12 @@ footer{border-top:1px solid var(--border);padding-top:14px;margin-top:8px}
     <div class="t"><b>Recommend, then act.</b> Every decision that stops work, moves a customer date, adds spend, changes a vendor agreement, or affects a person comes to the CTO with a recommendation attached.</div>
   </section>
 
+  <div class="ub ticker" style="margin-bottom:12px">
+    <div class="k">Ticker<b>Notes to turn into items</b></div>
+    <ul class="tk">
+      <li><span class="d">Oct 23</span><span><b>Dev.Pro.</b> Formally onboard as an approved vendor: MNDA, MSA. Set a Quality meeting with Dev.Pro, Shawn, and team.</span></li>
+    </ul>
+  </div>
   <div class="ub ask" style="margin-bottom:12px">
     <div class="k">Decisions needed</div>
     <ol>
