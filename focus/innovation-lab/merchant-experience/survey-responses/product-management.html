@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MerCap Survey Responses — Quality Automation Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
+  --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
+  --ok:#3F8A46; --ok-bg:#E9F5E9; --warn:#D45A00; --warn-bg:#FFF1E4; --risk:#C9402F; --risk-bg:#FBEAE7; --hold:#8A8F8C; --hold-bg:#ECEEEC;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+b{font-weight:600}
+a{color:var(--teal)}
+
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1080px;margin:0 auto;padding:34px 40px 30px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:28px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.3px;margin-bottom:10px}
+.doc-subtitle{font-size:14px;font-weight:300;color:rgba(231,229,170,.85);max-width:720px;line-height:1.6}
+.doc-subtitle b{color:#fff;font-weight:500}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+
+.doc-body{max-width:1080px;margin:0 auto;padding:22px 40px 56px}
+h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-bottom:3px solid var(--forest);margin:26px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
+.k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+
+/* role navigation: one page per role */
+.roles{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 14px}
+.rl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 13px;border-radius:20px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--dark-forest);font-size:12.5px;font-weight:500;line-height:1;transition:border-color .15s,background .15s}
+.rl b{font-weight:500}
+.rl i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 6px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+a.rl:hover{border-color:var(--teal);background:#F2FAF8}
+.rl.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff} .rl.on i{background:var(--turquoise);color:#01271A}
+.rl.soon{border-style:dashed;color:var(--text-muted);background:transparent} .rl.soon i{background:transparent;padding:0;color:var(--text-muted)}
+.roles .sep{width:1px;height:22px;background:var(--border);margin:0 4px}
+.rl.across{border-color:var(--orange);color:var(--warn)} .rl.across i{background:var(--warn-bg);color:var(--warn)} .rl.across.on{background:var(--orange);border-color:var(--orange);color:#1A1200} .rl.across.on i{background:#1A1200;color:#fff}
+/* respondents */
+.resp{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.readby{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:5px 10px;border-radius:20px;background:var(--turquoise);color:#01271A;font-weight:500}
+.readby small{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;font-weight:400}
+.who{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:4px 12px 4px 4px;font-size:12.5px}
+.av{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:500;color:#fff}
+.who i{font-style:normal;color:var(--text-muted);font-size:11px}
+.av.a{background:#1F7A5C} .av.m{background:#D45A00} .av.e{background:#4B56A8}
+.note{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fd{background:#fff;border:1px solid var(--border);border-top:3px solid var(--orange);border-radius:10px;padding:14px 15px 15px}
+.fd .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--orange);margin-bottom:6px}
+.fd h3{font-size:14px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:6px}
+.fd p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.fd .ev{margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--teal)}
+.fd.good{border-top-color:var(--ok)} .fd.good .n{color:var(--ok)}
+.fd.gap{border-top-color:var(--hold)} .fd.gap .n{color:var(--hold)}
+
+/* bars */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.q{font-size:13.5px;font-weight:600;color:var(--dark-forest);margin-bottom:2px}
+.qd{font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.bars{display:grid;grid-template-columns:1fr 150px 90px;gap:6px 14px;align-items:center}
+.bars .lab{font-size:12.5px;color:var(--text-mid);line-height:1.35}
+.bars .lab.hot{color:var(--dark-forest);font-weight:600}
+.bars .lab.zero{color:var(--text-muted)}
+.bars .bar{height:14px;background:var(--bg-soft);border-radius:3px;position:relative;overflow:hidden}
+.bars .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--orange);border-radius:3px}
+.bars .bar.ok i{background:var(--ok)}
+.bars .cnt{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--text-mid)}
+.bars .cnt b{min-width:14px;color:var(--dark-forest)}
+.chip{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:8.5px;color:#fff}
+.chip.a{background:#1F7A5C} .chip.m{background:#D45A00} .chip.e{background:#4B56A8}
+.bars .grp{grid-column:1 / -1;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding:8px 0 2px;border-top:1px dashed var(--border);margin-top:4px}
+.bars .grp:first-child{border-top:none;margin-top:0;padding-top:0}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+
+/* truth matrix */
+.mx{width:100%;border-collapse:collapse;font-size:12.5px}
+.mx th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);font-weight:500}
+.mx th.c,.mx td.c{text-align:center;width:52px}
+.mx td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle;line-height:1.35;color:var(--text-mid)}
+.mx tr:last-child td{border-bottom:none}
+.mx td.c span{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:#fff}
+.mx td.c span.y{background:var(--ok);border-color:var(--ok);position:relative}
+.mx td.c span.y::after{content:'✓';color:#fff;font-size:11px;position:absolute;inset:0;display:grid;place-items:center}
+.mx td.sc{font-family:var(--mono);font-size:11px;text-align:center;width:52px;color:var(--dark-forest);font-weight:500}
+.mx tr.none td{background:var(--risk-bg)} .mx tr.none td.sc{color:var(--risk)}
+.mx tr.all td{background:var(--ok-bg)}
+.mx td .tg{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.tg.gate{background:var(--warn-bg);color:var(--warn)}
+
+/* regression cycle */
+.cyc{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:6px}
+.cyc div{border:1px solid var(--border);border-radius:6px;padding:8px 6px;text-align:center;font-size:11px;color:var(--text-muted);background:#fff;min-height:64px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.cyc div b{font-family:var(--mono);font-size:16px;color:var(--text-muted);font-weight:500}
+.cyc div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest)} .cyc div.on b{color:var(--warn)}
+.cyc .d{display:flex;justify-content:center;gap:3px}
+
+/* AI heat */
+.ai{width:100%;border-collapse:separate;border-spacing:3px;font-size:12px}
+.ai th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:center;padding:4px 2px}
+.ai th:first-child{text-align:left}
+.ai td{padding:7px 8px;border-radius:5px;line-height:1.3}
+.ai td.row{color:var(--text-mid);background:transparent;padding-left:0}
+.ai td.v{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:#fff;width:112px}
+.v.not{background:#D9DED9;color:#4A5450} .v.exp{background:#B9D7CF;color:#113D30} .v.time{background:#6FB79A} .v.qual{background:#2F8E6E} .v.both{background:var(--forest)} .v.unc{background:#E9B98F;color:#5A2E00} .v.na{background:#F0EFEA;color:#8A8F8C}
+.ai td.sum{font-family:var(--mono);font-size:10.5px;color:var(--text-mid);width:150px}
+.ai td.sum b{color:var(--dark-forest);font-weight:500}
+.leg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:11px;color:var(--text-muted);margin-top:8px;align-items:center}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+
+/* verbatims */
+.vb{display:grid;grid-template-columns:1fr;gap:10px}
+.vq{background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:30px 1fr;gap:10px}
+.vq p{font-size:12.75px;line-height:1.55;color:var(--text-mid);white-space:pre-line}
+.vq .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.tag.t1{background:var(--warn-bg);border-color:#F3C9A6;color:var(--warn)}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.th{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.th .n{font-family:var(--mono);font-size:20px;color:var(--orange);font-weight:500;line-height:1}
+.th .n small{font-size:11px;color:var(--text-muted);margin-left:3px}
+.th h4{font-size:12.5px;color:var(--dark-forest);margin:6px 0 3px}
+.th p{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+
+
+/* probes: the first thing to read */
+h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17px}
+.probe{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pb{background:var(--dark-forest);color:#fff;border-radius:10px;padding:14px 15px 13px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pb::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--turquoise))}
+.pb .ph{display:flex;align-items:center;gap:8px}
+.pb .pn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pb .pt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.pb h4{font-size:14.5px;line-height:1.3;color:#fff}
+.pb p{font-size:12.25px;line-height:1.5;color:rgba(255,255,255,.78);flex:1}
+.pb .pf{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.pb .ol{display:flex;gap:5px;flex-wrap:wrap}
+.own{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 8px;border-radius:20px;color:#01271A;font-weight:500}
+.own.st{background:var(--turquoise)} .own.am{background:var(--pistachio)} .own.er{background:var(--orange);color:#1A1200} .own.fa{background:#9FE1B8} .own.ba{background:#FFB37A} .own.da{background:#D9C8F0}
+.pb .ms{display:flex;gap:5px;flex-wrap:wrap}
+.mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
+
+.av.j{background:#8A6D1C} .chip.j{background:#8A6D1C} .av.q{background:#003E29} .chip.q{background:#003E29} .av.r{background:#2F6FB3} .chip.r{background:#2F6FB3} .av.h{background:#7A3E9D} .chip.h{background:#7A3E9D} .av.x{background:#B3541E} .chip.x{background:#B3541E} .av.l{background:#2E8B74} .chip.l{background:#2E8B74} .av.n{background:#C2185B} .chip.n{background:#C2185B}
+.flag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid #F3C9A6}
+.mx.xr td{font-size:12.25px} .mx.xr td.sc{width:auto;min-width:72px;font-size:10.5px;line-height:1.3;text-align:center}
+.mx.xr td.sc.r{color:var(--risk)} .mx.xr td.sc.g{color:var(--ok)}
+.mx tr.agree td{background:var(--ok-bg)} .mx tr.split td{background:var(--warn-bg)}
+.mx th small{display:block;font-size:9px;letter-spacing:0;text-transform:none;color:var(--text-muted)}
+.opts div{font-size:12.25px;color:var(--text-muted);padding:8px 10px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.opts div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest);font-weight:500}
+.ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
+.ivnote b{color:var(--dark-forest)}
+
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
+.footer-brand strong{color:var(--dark-forest)}
+.footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
+
+@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:900px){
+  .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
+  .doc-body{padding:20px 16px 40px}
+  .findings,.two,.themes,.probe{grid-template-columns:1fr} 
+  .bars{grid-template-columns:1fr 100px 80px}
+  .cyc{grid-template-columns:repeat(3,1fr)}
+  .ai td.v{width:auto;font-size:9px}
+  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:720px}
+  .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
+}
+@media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="header-inner">
+    <div>
+      <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
+      <h1 class="doc-title">Product Management: what the PM told us</h1>
+      <p class="doc-subtitle">Survey responses, read three ways: <b>what people told us</b> here, <b>what we see</b> sitting with the team from Oct 26, and <b>what Jellyfish shows</b>. The gaps between the three are the diagnosis. One page per role.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Phase 2 starts Oct 26</span>
+      <span class="meta-badge badge-date">October 25, 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-body">
+
+  <nav class="roles">
+    <a class="rl" href="index.html"><b>Quality Automation Engineering</b><i>3/3</i></a>
+    <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
+    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <a class="rl" href="software-engineering.html"><b>Software Engineering</b><i>4/5</i></a>
+    <a class="rl on" href="product-management.html"><b>Product Management</b><i>1/2</i></a>
+    <span class="rl soon"><b>Product Design</b><i>soon</i></span>
+    <span class="sep"></span>
+    <a class="rl across" href="across-roles.html"><b>Across roles</b><i>10 people</i></a>
+  </nav>
+
+  <div class="resp">
+    <span class="who"><span class="av n">ED</span>Erin Dalessandro <i>Staff Product Manager</i></span>
+    <span class="who" style="opacity:.55"><span class="av" style="background:#B9C0BC">PJ</span>Preston Jackson <i>Associate PM · not yet responded</i></span>
+    <span class="note">1 of 2 responded · Oct 23</span><span class="readby"><small>Read by</small>Bart Piwowar</span>
+  </div>
+
+  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">three probes from one response · the seat that owns the hypothesis</span></h2>
+  <div class="probe">
+    <div class="pb"><div class="ph"><span class="pn">Probe 17</span><span class="pt">Passkey</span></div><h4>Trace Passkey across the three teams.</h4><p>Erin says no one coordinated Passkey across Passport, MXM, and MXC; multiple flows and Figma designs, one approved, separate PMs working from different ones. The TPM says an integrated plan exists. Find Passkey in that plan, then ask each team which flow they built to. Avni and Mamatha named Passkey as a source of rework; this is the same incident from the PM side.</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Sprint addition rate</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 18</span><span class="pt">the hypothesis</span></div><h4>Sit with Erin when the next commitment is written.</h4><p>She checked "none of these are consistently true," including the three statements her own role owns: the problem is understood, the commitment has a hypothesis, the KPI has a baseline and target. Watch one Sprint 22 commitment get written. Where does the hypothesis get lost, or was it never asked for?</p><div class="pf"><span class="ol"><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Future scope</span><span class="mt">Value half of speed to value</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 19</span><span class="pt">who sets the date</span></div><h4>Ask Erin how the last three dates were set.</h4><p>"We do not have a consistent approach" is her Q3 answer, and the two senior engineers said the same. Three recent initiatives: who proposed the date, what engineering said, what changed. Compare with Quan's and Josette's versions of the same three.</p><div class="pf"><span class="ol"><span class="own ba">Bart</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Sprint predictability</span><span class="mt">Commitments on date</span></span></div></div>
+  </div>
+
+  <h2>What stands out <span class="sub">five findings from one response · the seat that owns the problem, the hypothesis, and the KPI</span></h2>
+  <div class="findings">
+    <div class="fd gap">
+      <div class="n">01 · None of these</div>
+      <h3>The PM says none of the nine practices consistently hold. Including the three her role owns.</h3>
+      <p>Erin is the only respondent across five surveys to check "none of these are consistently true." Not a clear problem before committing, not a hypothesis, not a KPI baseline and target, not early risk assessment, not early collaboration, not dates that reflect engineering input, not a smaller first release, not a definition of ready, not a post-release review. The three outcome statements are the Staff PM's own accountabilities, and she says they don't happen.</p>
+      <div class="ev">Q2: 0/9 · the only "none" in 10 responses</div>
+    </div>
+    <div class="fd">
+      <div class="n">02 · Ten of ten</div>
+      <h3>She is the first person to name the missing outcome read as a delay, not just an absence.</h3>
+      <p>"We do not measure customer or business outcomes promptly after launch, delaying subsequent decisions" was one of her three picks. Every other respondent left that option alone while also saying the review doesn't happen. The PM sees the cost: decisions wait on evidence that is never collected. That makes the post-release gap ten of ten, with the owner of the KPI calling it a delay.</p>
+      <div class="ev">Q1: picked · Q2: 0/1 · across roles: 0/10 review the KPI after release</div>
+    </div>
+    <div class="fd">
+      <div class="n">03 · Passkey</div>
+      <h3>Multi-team work with no one coordinating it, and a direct ask for a coordinator.</h3>
+      <p>Passkey: the security team and the Keycloak team produced a concise requirements list, then three teams picked it up with Passport leading, and "this is where the process fell apart." Inconsistent flows and Figma designs, one approved, separate PMs each working from a different one, "no one person responsible for coordinating the work across teams." Her gap, from prior experience: a project manager who coordinates across teams and plans the final delivery. The TPM survey says an integrated plan with clear owners exists.</p>
+      <div class="ev">Q5 · Passkey also named by Avni and Mamatha as rework · probe 17</div>
+    </div>
+    <div class="fd">
+      <div class="n">04 · Dates</div>
+      <h3>No consistent way a date gets made, and engineering's open questions slow the work.</h3>
+      <p>Her Q3: "we do not have a consistent approach; it varies significantly by initiative," the same answer as the two most senior engineers. Her Q1 includes "engineering implementation, technical complexity, or unresolved technical questions slow progress," which is the PM's view of what Michael and Alex described as technical discovery happening after the work started.</p>
+      <div class="ev">Q3: no consistent approach (joins Alex and Ryan) · Q1: technical questions unresolved</div>
+    </div>
+    <div class="fd gap">
+      <div class="n">05 · AI</div>
+      <h3>The least AI-adopted seat, and the gaps are the PM's core work.</h3>
+      <p>Not using AI for customer and market research, prioritization and roadmap, or KPI and post-launch analysis. Unclear benefit on prototyping with Design and technical discovery with Engineering. Saves time only on problem framing and requirements, and on meetings and docs. Engineers are "faster and better" on four activities; the PM has zero positive beyond "saves time."</p>
+      <div class="ev">Q4: 3 not using · 2 unclear · 2 saves time · 0 better quality</div>
+    </div>
+  </div>
+
+  <h2>Where the time goes <span class="sub">Q1 · up to three picks · three were made</span></h2>
+  <div class="two">
+    <div class="card">
+      <div class="q">Biggest sources of delay between a business need and delivered value</div>
+      <div class="qd">Three picks from thirteen options.</div>
+      <div class="bars">
+        <div class="grp">Chosen</div>
+        <div class="lab hot">Requirements, acceptance criteria, or the definition of ready are incomplete when work is planned</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip n">E</span></div>
+        <div class="lab hot">Engineering implementation, technical complexity, or unresolved technical questions slow progress</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip n">E</span></div>
+        <div class="lab hot">We do not measure customer or business outcomes promptly after launch, delaying subsequent decisions</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip n">E</span></div>
+        <div class="grp">Not chosen</div>
+        <div class="lab zero">The customer problem or desired business outcome is unclear</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Customer or merchant research and validation happen too late</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Product, Design, Engineering, and QA do not collaborate early enough</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Delivery dates are committed before scope, feasibility, capacity, or dependencies are understood</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">New requests or changing priorities are added without removing existing work</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Initiatives are too large; no smaller, useful first release</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Code reviews, approvals, decisions, or dependencies on other teams create waiting</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Testing, QA, regression, defects, or rework delay delivery</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Test environments, test data, CI/CD, or release processes slow delivery</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Production incidents, support, or maintenance interrupt planned work</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+      </div>
+      <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the PM did not pick "the customer problem is unclear," the option QA and the director chose first. From her seat the problem is known; what is incomplete is the requirements that follow it and the technical questions under them. Nor did she pick dependencies or waiting on other teams, which every other seat did, even though Passkey, her own example, is a three-team coordination failure. She read it as a missing coordinator, not a dependency.</p>
+    </div>
+    <div class="card">
+      <div class="q">How delivery dates are typically established</div>
+      <div class="qd">Q3 · one answer from six, ordered strongest to weakest.</div>
+      <div class="opts">
+        <div>Product, Design, and Engineering align on the problem, scope, feasibility, capacity, and dependencies before agreeing on a date, and consider whether a smaller version could deliver value sooner.</div>
+        <div>The business proposes a target date, and the team assesses feasibility and negotiates scope or timing before committing.</div>
+        <div>Product proposes a date based on business priorities and past experience, with engineering and design validating afterward.</div>
+        <div>Business or leadership expectations usually determine the date before feasibility, capacity, and dependencies are assessed.</div>
+        <div>Dates are typically committed before scope, requirements, or delivery readiness are sufficiently clear.</div>
+        <div class="on"><span class="chip n">E</span>We do not have a consistent approach; it varies significantly by initiative.</div>
+      </div>
+      <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the bottom of the list, and the third person to choose it. Alex and Ryan said the same from engineering. The TPM, one step up, says the plan is integrated and explicit. Four descriptions of how a date gets made are now three "it varies," one "assessed but overrun," one "integrated."</p>
+    </div>
+  </div>
+
+  <h2>What is consistently true today <span class="sub">Q2 · one seat · nothing checked</span></h2>
+  <div class="card">
+    <table class="mx">
+      <thead><tr><th>Statement</th><th class="c">ED</th><th class="c">Score</th></tr></thead>
+      <tbody>
+        <tr class="none"><td>We understand the customer or business problem before committing to a solution <span class="tg gate">SE: 0/4</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>Every new commitment has a clear hypothesis for why the solution should improve a measurable outcome <span class="tg gate">PM owns this · TPM: 1/1</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>We establish the current KPI baseline, the target, and the rationale connecting solution to improvement <span class="tg gate">PM owns this</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>We assess value, usability, feasibility, and viability risks early enough to inform the commitment</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>Product, Design, Engineering, and QA collaborate early enough to shape the solution and identify risks <span class="tg gate">QA 1/3 · SE 1/4 · EM 0/1 · TPM 1/1</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>Delivery dates reflect engineering input, available capacity, current commitments, and dependencies</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>We identify a smaller, useful first release when it could deliver value sooner</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>Work meets a clear definition of ready before sprint planning <span class="tg gate">SE: 2/4</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="none"><td>After release, the team reviews the KPI, assesses the outcome, and decides what to do next <span class="tg gate">PM owns this · 0/10 across roles</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+        <tr class="all"><td>None of these are consistently true</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> this is the most important single answer in the five surveys. The product operating model Yi wants, and the future-scope section of the plan (every commitment states a hypothesis; the team owns its KPIs), runs through this seat. The person in it says none of it is in place today. That is not a criticism of Erin; it is the clearest statement anyone has made of where the system is. Bart's pairing with her in Sprint 24 is now the highest-leverage pairing on the plan.</p>
+  </div>
+
+  <h2>Where AI is landing <span class="sub">Q4 · one answer per activity · darker is better</span></h2>
+  <div class="card">
+    <table class="ai">
+      <thead><tr><th>Activity</th><th>ED</th><th style="text-align:left">Read</th></tr></thead>
+      <tbody>
+        <tr><td class="row">Problem framing and requirements</td><td class="v time">Saves time</td><td class="sum">In use · the one PM-specific win</td></tr>
+        <tr><td class="row">Meetings, docs, and knowledge retrieval</td><td class="v time">Saves time</td><td class="sum">In use</td></tr>
+        <tr><td class="row">Prototyping with Design</td><td class="v unc">Unclear benefit</td><td class="sum">Using it; not sure it helps · Danny's pairing with Kyle touches this</td></tr>
+        <tr><td class="row">Technical discovery with Engineering</td><td class="v unc">Unclear benefit</td><td class="sum">Using it; not sure it helps · the engineers are "faster and better" on the same activity</td></tr>
+        <tr><td class="row">Customer and market research</td><td class="v not">Not using</td><td class="sum">Not yet · the discovery half of the job</td></tr>
+        <tr><td class="row">Prioritization and roadmap</td><td class="v not">Not using</td><td class="sum">Not yet</td></tr>
+        <tr><td class="row">KPI and post-launch analysis</td><td class="v not">Not using</td><td class="sum">Not yet · and the KPI is not reviewed (finding 02)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> the engineers have already moved the bottleneck from syntax to system design. The PM seat hasn't moved yet: research, prioritization, and outcome analysis are untouched, and the two collaborative activities (prototyping with Design, discovery with Engineering) register as unclear. Bart's pairing should start with the three "not using" rows, because they are the discovery work the plan's value measures depend on.</p>
+  </div>
+
+  <h2>In their words <span class="sub">Q5 · the biggest avoidable delay, and the one change</span></h2>
+  <div class="vb">
+    <div class="vq"><span class="av n">ED</span><div><p>Adding Passkey support - this is an ongoing initiative that has not yet been delivered, but has taken much longer than necessary to get started. This project was initiated as a part of the 'Account Takeover' effort to combat bad actors gaining access to MXM/MXC/Passport user accounts. The security team led many conversations with Key Cloak team on how the passkey management process should work, and in the end delivered a detailed, concise list of requirements. This work was then to be picked up by the 3 separate teams to complete, with Passport leading the charge due to resource availability. This is where the process fell apart. There are multiple process flows and Figma designs that are inconsistent, and only one was ever approved. Separate product managers each working from these different flows resulting in inconsistent outcomes, causing extra work for all. No one person was responsible for coordinating the work across teams and driving the collective group towards a common solution following an agreed upon schedule.
+
+Every project I have been involved in where the development spans multiple teams has been a similar experience. The gap (based on my prior experience) is the lack of a project manager that is tasked with coordinating tasks and deliveries across teams and planning for the delivery of the final product.</p><div class="tags"><span class="tag t1">No cross-team coordinator</span><span class="tag t1">Inconsistent flows and designs</span><span class="tag">Passkey · Account Takeover</span><span class="tag">Same ticket QA named for rework</span><span class="tag">Proposed fix: a project manager across teams</span></div></div></div>
+  </div>
+  <div class="ivnote"><b>Two things to carry into Monday.</b> Erin's proposed fix is a role that already exists on paper, the TPM, whose own survey describes an integrated plan with clear owners. Either Passkey sat outside that coverage, or the plan and the three teams never met; probe 17 finds out which, and it is the single most concrete thing the surveys have handed us. And Preston has not responded; his is the second PM voice and the only Associate-level one.</div>
+
+  <footer>
+    <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
+    <div class="footer-conf">Confidential · Internal · Survey responses are shared within the Tiger Team only and synthesized without attribution outside it · October 2026</div>
+  </footer>
+
+</main>
+</body>
+</html>
