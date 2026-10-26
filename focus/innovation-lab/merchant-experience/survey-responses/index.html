@@ -177,7 +177,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   .bars{grid-template-columns:1fr 100px 80px}
   .cyc{grid-template-columns:repeat(3,1fr)}
   .ai td.v{width:auto;font-size:9px}
-  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:720px}
+  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:960px}
   .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
 }
 @media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
@@ -189,8 +189,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   <div class="header-inner">
     <div>
       <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
-      <h1 class="doc-title">Quality Automation Engineering: what the team told us</h1>
-      <p class="doc-subtitle">Survey responses, read three ways: <b>what people told us</b> here, <b>what we see</b> sitting with the team from Oct 26, and <b>what Jellyfish shows</b>. The gaps between the three are the diagnosis. One page per role.</p>
+      <h1 class="doc-title">Across roles: where the seats agree, and where they don't</h1>
+      <p class="doc-subtitle">Ten people in five seats so far. The same statements, asked of each role, laid side by side. <b>Green rows</b> are agreement, <b>orange rows</b> are the splits, and the splits are where Sprint 22 should look first.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
@@ -203,165 +203,52 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 <main class="doc-body">
 
   <nav class="roles">
-    <a class="rl on" href="index.html"><b>Quality Automation Engineering</b><i>3/3</i></a>
-    <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
-    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
-    <a class="rl" href="software-engineering.html"><b>Software Engineering</b><i>4/5</i></a>
+    <a class="rl across on" href="index.html"><b>Across roles</b><i>10 people</i></a>
+    <span class="sep"></span>
     <a class="rl" href="product-management.html"><b>Product Management</b><i>1/2</i></a>
     <span class="rl soon"><b>Product Design</b><i>soon</i></span>
-    <span class="sep"></span>
-    <a class="rl across" href="across-roles.html"><b>Across roles</b><i>10 people</i></a>
+    <a class="rl" href="software-engineering.html"><b>Software Engineering</b><i>4/5</i></a>
+    <a class="rl" href="quality-automation-engineering.html"><b>QA Engineering</b><i>3/3</i></a>
+    <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
+    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
   </nav>
   <div class="resp">
-    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>Manager, QA Engineering</i></span>
-    <span class="who"><span class="av a">AA</span>Avni A <i>QA Engineer</i></span>
-    <span class="who"><span class="av e">EG</span>Earnest Gibbs <i>QA Engineer</i></span>
-    <span class="note">3 of 3 responded · Oct 23–25</span><span class="readby"><small>Read by</small>Steve Daubert</span>
+    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>QA</i></span>
+    <span class="who"><span class="av a">AA</span>Avni A <i>QA</i></span>
+    <span class="who"><span class="av e">EG</span>Earnest Gibbs <i>QA</i></span>
+    <span class="who"><span class="av q">QO</span>Quan Ouyang <i>EM</i></span>
+    <span class="who"><span class="av j">JT</span>Josette Towles <i>TPM</i></span>
+    <span class="who"><span class="av x">AD</span>Alex Dlugokecki <i>SE</i></span>
+    <span class="who"><span class="av r">RP</span>Ryan Patch <i>SE</i></span>
+    <span class="who"><span class="av l">LS</span>Leonel Santiago <i>SE</i></span>
+    <span class="who"><span class="av h">MH</span>Michael Hodges <i>SE</i></span>
+    <span class="who"><span class="av n">ED</span>Erin Dalessandro <i>PM</i></span>
+    <span class="note">10 of 14 responses in · 5 of 6 surveys</span>
   </div>
 
-  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the survey is one of three reads · each probe names what to watch, who watches it, and which measure it touches</span></h2>
+  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the three probes the cross-role read points to first</span></h2>
   <div class="probe">
+    <div class="pb"><div class="ph"><span class="pn">Probe 07</span><span class="pt">requirements churn</span></div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
     <div class="pb"><div class="ph"><span class="pn">Probe 01</span><span class="pt">readiness</span></div><h4>Watch what arrives at sprint planning.</h4><p>For every story pulled into Sprint 22, note whether it has an expected outcome, acceptance criteria, and test scenarios at planning time. QA (3/3) and the director both say most won't. Count them.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own am">Amrita</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">PR pass rate</span></span></div></div>
     <div class="pb"><div class="ph"><span class="pn">Probe 02</span><span class="pt">dependencies</span></div><h4>Trace every cross-team wait in regression.</h4><p>Log each day regression waits on another team (ACH, PCE (Commerce API), or anyone else): what was blocked, who was asked, how long until unblocked. The survey options missed this theme, so it needs a hand count.</p><div class="pf"><span class="ol"><span class="own st">Steve</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">Regression share</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 03</span><span class="pt">the regression window</span></div><h4>Find the other five to eight days.</h4><p>Regression results take 2–5 days; the window is ten. Map the full two weeks day by day: execution, waiting on fixes, reruns, release prep, idle. Reconcile the manager's 4–5 days with the engineers' 2–3.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Regression share</span><span class="mt">Issue cycle time</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 04</span><span class="pt">test data</span></div><h4>Time one story's test-data setup end to end.</h4><p>Earnest's story took a week and a half. Pick one Sprint 22 story that needs non-trivial data and clock every step and every person touched. If it repeats, this is a Nov 20 change candidate and the first place to aim AI help.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own fa">Fabio</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">AI effect</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 05</span><span class="pt">outcomes</span></div><h4>Ask what happened to the last three things QA certified.</h4><p>Nobody sees a hypothesis or a post-release read. In the Sprint 22 retro, ask for the last three shipped items: what were they meant to move, and did it move? If no one can answer, finding 05 is confirmed from the team side too.</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Future scope</span><span class="mt">Value half of speed to value</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 06</span><span class="pt">the plan versus the ticket</span></div><h4>Put the integrated plan next to what reaches QA.</h4><p>The TPM says every commitment carries a hypothesis and that capacity and readiness are validated before dates. QA sees none of it. Take two Sprint 22 commitments, find them in the program plan, then follow them to the story and the test case. Where does the hypothesis stop traveling?</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own st">Steve</span></span><span class="ms"><span class="mt">Sprint predictability</span><span class="mt">Commitments on date</span></span></div></div>
   </div>
 
-
-  <h2>What stands out <span class="sub">six findings from three responses · small sample, read as signal to verify in Sprint 22, not as proof</span></h2>
-  <div class="findings">
-    <div class="fd">
-      <div class="n">01 · Unanimous</div>
-      <h3>The biggest delay is upstream of QA: nobody knows what "done" looks like when work arrives.</h3>
-      <p>All three picked "the customer or business problem and expected outcome are unclear before implementation and testing begin" as a top-three delay, and zero of three say requirements and acceptance criteria are consistently clear. Nobody picked regression length, automation coverage, or QA being involved too late.</p>
-      <div class="ev">Q1: 3/3 · Q2: 0/3 on clear requirements</div>
-    </div>
-    <div class="fd">
-      <div class="n">02 · Strongest verbatim theme</div>
-      <h3>Cross-team dependencies are costing whole regression days, and the survey didn't offer that as an option.</h3>
-      <p>Two of three wrote about the same incident unprompted: an unresolved ACH defect caused 100+ automation failures that masked real defects until Day 5 and delayed the Sandbox release; a PCE (Commerce API) dependency forced Embedded Payments Form (EPF) tests back to manual. "At least an additional regression day" each time.</p>
-      <div class="ev">Q5: 2/3 · not in the Q1 option list · add to Sprint 22 watch list</div>
-    </div>
-    <div class="fd">
-      <div class="n">03 · Rework</div>
-      <h3>Late-changing requirements create test effort on work that never ships.</h3>
-      <p>Passkey, Billing Address, and Unrecognized Device ID are named by two respondents as tickets where requirements or business decisions changed after testing started, producing rework and automation updates for changes that "may not proceed to production."</p>
-      <div class="ev">Q5: 2/3 · ties to finding 01</div>
-    </div>
-    <div class="fd good">
-      <div class="n">04 · Working</div>
-      <h3>The QA machinery itself gets good marks from the people inside it.</h3>
-      <p>Two of three say engineers test their own changes, critical workflows have automated coverage, and automated tests are fast and reliable. Regression results arrive in 2–5 business days, well inside the two-week regression window. The question for Sprint 22 is where the other five to eight days go.</p>
-      <div class="ev">Q2: 2/3 on four machinery statements · Q3: 2–3 days (2), 4–5 days (1)</div>
-    </div>
-    <div class="fd gap">
-      <div class="n">05 · Silent</div>
-      <h3>Nobody sees a hypothesis or a post-release read on whether the work worked.</h3>
-      <p>Zero of three say commitments carry a hypothesis with a KPI, baseline, and target, and zero say the team evaluates outcomes after release. QA can't tell whether what it certified mattered. This is the "value" half of speed to value, and it's absent in every response.</p>
-      <div class="ev">Q2: 0/3 on both outcome statements</div>
-    </div>
-    <div class="fd">
-      <div class="n">06 · AI</div>
-      <h3>AI is real for generating tests and nowhere else yet.</h3>
-      <p>All three get value from AI when generating and maintaining automated tests (two "saves time," one "faster and better"). Requirements analysis, debugging, production-defect analysis, and CI/CD are mostly "not using" or "unclear benefit." The 100% automation goal and the test-data problem are where AI help would land first.</p>
-      <div class="ev">Q4: 3/3 positive on test generation · 7 of 10 activities mostly unused</div>
-    </div>
-  </div>
-
-  <h2>Where the time goes <span class="sub">Q1 · up to three picks each · what they chose, and what nobody chose</span></h2>
-  <div class="two">
-    <div class="card">
-      <div class="q">Biggest sources of delay between a business need and delivered value</div>
-      <div class="qd">Chips show who picked it. Options nobody picked are as informative as the ones they did.</div>
-      <div class="bars">
-        <div class="grp">Chosen</div>
-        <div class="lab hot">The customer or business problem and expected outcome are unclear before implementation and testing begin</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>3</b><span class="chip m">M</span><span class="chip a">A</span><span class="chip e">E</span></div>
-        <div class="lab">Product, Design, Engineering, and QA do not collaborate early enough to identify risks and prevent rework</div><div class="bar"><i style="width:33%"></i></div><div class="cnt"><b>1</b><span class="chip a">A</span></div>
-        <div class="lab">Requirements, acceptance criteria, expected behavior, or test scenarios are incomplete when work reaches testing</div><div class="bar"><i style="width:33%"></i></div><div class="cnt"><b>1</b><span class="chip m">M</span></div>
-        <div class="lab">Test environments, test data, access, or infrastructure are difficult or slow to obtain</div><div class="bar"><i style="width:33%"></i></div><div class="cnt"><b>1</b><span class="chip e">E</span></div>
-        <div class="lab">Production defects, incidents, or regressions consume capacity that could deliver new value</div><div class="bar"><i style="width:33%"></i></div><div class="cnt"><b>1</b><span class="chip m">M</span></div>
-        <div class="grp">Not chosen by anyone</div>
-        <div class="lab zero">QA gets involved too late to influence requirements, testability, or test strategy</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Engineers do not consistently test their own changes</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Regression testing is too lengthy or broad</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Test automation coverage is insufficient, unreliable, or expensive to maintain</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Defects, flaky tests, or repeated failures create rework</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Code changes, builds, CI/CD, or release processes delay testing and deployment</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">Release decisions delayed by unclear criteria, incomplete evidence, or unresolved ownership</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-        <div class="lab zero">We lack timely feedback on whether shipped software improved the KPI</div><div class="bar"></div><div class="cnt"><b>0</b></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="q">How long a full regression cycle takes</div>
-      <div class="qd">Q3 · from the start of regression to results that support a release decision, including waiting, reruns, and investigation.</div>
-      <div class="cyc">
-        <div><b>0</b>&lt; 2 h</div><div><b>0</b>2–8 h</div><div><b>0</b>1 day</div>
-        <div class="on"><b>2</b>2–3 days<span class="d"><span class="chip a">A</span><span class="chip e">E</span></span></div>
-        <div class="on"><b>1</b>4–5 days<span class="d"><span class="chip m">M</span></span></div>
-        <div><b>0</b>1–2 wks</div><div><b>0</b>&gt; 2 wks</div><div><b>0</b>varies</div><div><b>0</b>not measured</div>
-      </div>
-      <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the team says regression produces a release decision in 2–5 business days. The release cycle reserves ten. Either the regression window is holding capacity it doesn't use, or the days are going to waiting on fixes and dependencies (finding 02). Jellyfish and the Sprint 22 trace will say which.</p>
-      <p style="font-size:12.25px;color:var(--text-mid);margin-top:8px;line-height:1.5"><b>Note the gap:</b> the manager sees 4–5 days; the engineers see 2–3. That's a two-day difference in what "regression" includes, worth asking about in week one.</p>
-    </div>
-  </div>
-
-  <h2>What is consistently true today <span class="sub">Q2 · each statement checked only if it holds in practice · green rows hold for everyone, red rows hold for no one</span></h2>
+  <h2>Where the roles agree, and where they don't <span class="sub">same question, different seats · grows as each survey comes in · the gaps are where Sprint 22 should look</span></h2>
   <div class="card">
-    <table class="mx">
-      <thead><tr><th>Statement</th><th class="c">MY</th><th class="c">AA</th><th class="c">EG</th><th class="c">Score</th></tr></thead>
+    <table class="mx xr">
+      <thead><tr><th>Statement</th><th class="c">QA<br><small>3 people</small></th><th class="c">Engineers<br><small>4 of 5</small></th><th class="c">EM<br><small>1 of 2</small></th><th class="c">PM<br><small>1 of 2</small></th><th class="c">TPM<br><small>1 person</small></th><th>Read</th></tr></thead>
       <tbody>
-        <tr><td>Engineers test their own changes; quality is owned throughout development, not left to QA at the end</td><td class="c"><span class="y"></span></td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="sc">2/3</td></tr>
-        <tr><td>Critical workflows and regression risks have appropriate automated test coverage</td><td class="c"><span class="y"></span></td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="sc">2/3</td></tr>
-        <tr><td>Automated tests provide fast, reliable feedback; flaky tests are actively addressed</td><td class="c"><span class="y"></span></td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="sc">2/3</td></tr>
-        <tr><td>QA is involved early enough to influence requirements, acceptance criteria, testability, and test strategy</td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="c"><span class="y"></span></td><td class="sc">2/3</td></tr>
-        <tr><td>Product, Design, Engineering, and QA collaborate early enough to identify value, usability, feasibility, and viability risks</td><td class="c"><span></span></td><td class="c"><span></span></td><td class="c"><span class="y"></span></td><td class="sc">1/3</td></tr>
-        <tr><td>Test environments, test data, and infrastructure are available reliably enough to avoid significant delays</td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="sc">1/3</td></tr>
-        <tr><td>Release decisions are based on clear quality criteria, test evidence, known defects, and explicit residual risk</td><td class="c"><span class="y"></span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="sc">1/3</td></tr>
-        <tr class="none"><td>Requirements and acceptance criteria are clear enough to establish expected behavior and test scenarios before implementation is complete <span class="tg gate">finding 01</span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="sc">0/3</td></tr>
-        <tr class="none"><td>Every new commitment has a hypothesis tied to a measurable KPI, with baseline, target, and rationale <span class="tg gate">finding 05</span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="sc">0/3</td></tr>
-        <tr class="none"><td>After release, the team evaluates customer, business, and quality signals to decide what to do next <span class="tg gate">finding 05</span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="c"><span></span></td><td class="sc">0/3</td></tr>
+        <tr class="agree"><td>Cross-team dependencies create delays</td><td class="sc">2/3 wrote it</td><td class="sc">2/4 picked · PCE in verbatims</td><td class="sc">wrote it</td><td class="sc">Passkey: three teams, no coordinator</td><td class="sc">1/1 picked it</td><td>Five seats. Three propose the same fix (alignment between teams before the work is assigned); the PM proposes a person to do it. PCE (Commerce API) and Passkey are the two named cases.</td></tr>
+        <tr class="agree"><td>The problem, outcome, or requirements are not clear when work starts</td><td class="sc">3/3 "problem unclear"</td><td class="sc">3/4 "requirements incomplete"</td><td class="sc">1/1 both</td><td class="sc">1/1 "requirements incomplete"</td><td class="sc r">0/1</td><td>Nine of nine people who receive or write the work say it is unclear at some step. The Technical Program Manager did not pick it.</td></tr>
+        <tr class="agree"><td>After release, the team reviews the relevant KPI and decides what to do next</td><td class="sc r">0/3</td><td class="sc r">0/4</td><td class="sc r">0/1</td><td class="sc r">0/1 · named it as a delay</td><td class="sc r">0/1</td><td>Ten of ten. The PM is the first to call the missing read a delay rather than an absence: decisions wait on evidence that is never collected.</td></tr>
+        <tr class="agree"><td>Engineers test their own changes; quality is owned throughout development</td><td class="sc g">2/3</td><td class="sc g">4/4</td><td class="sc">not asked</td><td class="sc">not asked</td><td class="sc">not asked</td><td>The strongest positive in the data. The two-week regression window is doing something other than catching engineers' mistakes.</td></tr>
+        <tr class="split"><td>Every commitment has a clear hypothesis with a KPI, baseline, target, and rationale</td><td class="sc r">0/3</td><td class="sc r">0/4</td><td class="sc r">0/1</td><td class="sc r">0/1 · the owner of it</td><td class="sc g">1/1</td><td>Nine to one, and the one "no" that matters most is the PM's: the seat that writes the hypothesis says there isn't one. The TPM's "yes" is almost certainly the program plan, which does not travel to the ticket.</td></tr>
+        <tr class="split"><td>Product, Design, Engineering, and QA align on scope, feasibility, dependencies, and risks before execution begins</td><td class="sc r">1/3</td><td class="sc r">1/4</td><td class="sc r">0/1</td><td class="sc r">0/1</td><td class="sc g">1/1</td><td>Two of nine downstream, one of one upstream.</td></tr>
+        <tr class="split"><td>Engineering shapes the date; capacity and readiness validated before commitment</td><td class="sc r">0/3 say requirements are clear</td><td class="sc r">1/4 input · 2/4 ready</td><td class="sc r">0/1 · 0/1</td><td class="sc r">0/1 · 0/1</td><td class="sc g">1/1</td><td>Two engineers and the TPM say readiness holds; everyone else says it doesn't. Probe 14 reads the definition of ready against three real stories.</td></tr>
+        <tr><td>Coordination model today</td><td class="sc">regression waits on other teams</td><td class="sc">2/4 "no consistent approach"</td><td class="sc">"assessed, then overrun by unplanned work"</td><td class="sc">"no consistent approach"</td><td class="sc">"integrated plan; risks early; trade-offs explicit"</td><td>Three "it varies" (the PM and the two most senior engineers), one "assessed but overrun," one "integrated." Optimism tracks distance from the ticket. Probe 10 watches who sets the date in Sprint 22 planning; probe 19 asks the PM about the last three.</td></tr>
       </tbody>
     </table>
-    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the manager checks seven of ten statements; the two engineers check two or three each. The things engineers can see from their desks (their own tests, coverage, flaky tests) hold up. The things that depend on other functions (clear requirements, early collaboration, a hypothesis, a post-release read) mostly don't. The team is confident in its own craft and unsure about everything handed to it.</p>
-  </div>
-
-  <h2>Where AI is landing <span class="sub">Q4 · one answer per activity per person · darker is better · orange is "using it, benefit unclear"</span></h2>
-  <div class="card">
-    <table class="ai">
-      <thead><tr><th>Activity</th><th>MY</th><th>AA</th><th>EG</th><th style="text-align:left">Read</th></tr></thead>
-      <tbody>
-        <tr><td class="row">Generating and maintaining automated tests</td><td class="v both">Faster and better</td><td class="v time">Saves time</td><td class="v time">Saves time</td><td class="sum"><b>3/3 positive</b> · the one place AI is already paying off</td></tr>
-        <tr><td class="row">Selecting regression coverage for a change</td><td class="v both">Faster and better</td><td class="v time">Saves time</td><td class="v not">Not using</td><td class="sum"><b>2/3 positive</b> · next to spread</td></tr>
-        <tr><td class="row">Test strategy, plans, and scenarios</td><td class="v not">Not using</td><td class="v qual">Better quality</td><td class="v time">Saves time</td><td class="sum"><b>2/3 positive</b> · manager not using</td></tr>
-        <tr><td class="row">Flaky tests and failure analysis</td><td class="v qual">Better quality</td><td class="v time">Saves time</td><td class="v unc">Unclear benefit</td><td class="sum"><b>2/3 positive</b> · mixed</td></tr>
-        <tr><td class="row">Docs, knowledge retrieval, and quality trends</td><td class="v exp">Exploring</td><td class="v time">Saves time</td><td class="v not">Not using</td><td class="sum">1/3 positive</td></tr>
-        <tr><td class="row">Test data, scenarios, and environments</td><td class="v not">Not using</td><td class="v time">Saves time</td><td class="v unc">Unclear benefit</td><td class="sum">1/3 positive · <b>the 1.5-week problem</b></td></tr>
-        <tr><td class="row">Debugging defects and regressions</td><td class="v not">Not using</td><td class="v qual">Better quality</td><td class="v not">Not using</td><td class="sum">1/3 positive</td></tr>
-        <tr><td class="row">Requirements and quality-risk analysis</td><td class="v not">Not using</td><td class="v not">Not using</td><td class="v unc">Unclear benefit</td><td class="sum"><b>0/3</b> · where finding 01 lives</td></tr>
-        <tr><td class="row">Production defects and incident analysis</td><td class="v not">Not using</td><td class="v unc">Unclear benefit</td><td class="v not">Not using</td><td class="sum">0/3</td></tr>
-        <tr><td class="row">CI/CD and release-readiness checks</td><td class="v na">Not applicable</td><td class="v unc">Unclear benefit</td><td class="v not">Not using</td><td class="sum">0/3 · not QA's to own</td></tr>
-      </tbody>
-    </table>
-    <div class="leg"><span><i style="background:var(--forest)"></i>Faster and better</span><span><i style="background:#2F8E6E"></i>Better quality</span><span><i style="background:#6FB79A"></i>Saves time</span><span><i style="background:#B9D7CF"></i>Exploring</span><span><i style="background:#D9DED9"></i>Not using</span><span><i style="background:#E9B98F"></i>Unclear benefit</span><span><i style="background:#F0EFEA"></i>Not applicable</span></div>
-    <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> adoption is concentrated in the code-shaped work (writing and selecting tests) and absent from the judgment-shaped work (requirements, risk, incidents). Avni uses AI across eight of ten activities; the manager across four; Earnest across two with half of them "unclear benefit." Pairing with Steve in Sprint 24 should start from what Avni already does and aim it at test data and requirements analysis, the two activities the verbatims say cost the most time.</p>
-  </div>
-
-  <h2>In their words <span class="sub">Q5 · the biggest avoidable delay, and the one change that would have helped · themes first, then the full responses</span></h2>
-  <div class="themes">
-    <div class="th"><div class="n">2<small>of 3</small></div><h4>Cross-team dependencies</h4><p>ACH defect masked real failures for five days; PCE (Commerce API) dependency broke EPF automation. Each costs a regression day or more.</p></div>
-    <div class="th"><div class="n">2<small>of 3</small></div><h4>Requirements that change after testing starts</h4><p>Passkey, Billing Address, Unrecognized Device ID. Rework and automation updates for changes that may never ship.</p></div>
-    <div class="th"><div class="n">1<small>of 3</small></div><h4>Test data and environments</h4><p>A week and a half to find and load data for one story, across multiple developers; an undocumented data location became an I1.</p></div>
-    <div class="th"><div class="n">1<small>of 3</small></div><h4>Regression eats the sprint</h4><p>Any regression delay pulls QA onto the release and off sprint work. The two compete for the same people.</p></div>
-  </div>
-  <div class="vb">
-    <div class="vq"><span class="av m">MY</span><div><p>Cross-team dependencies were the biggest source of avoidable delay in our recent regression. An unresolved ACH payment defect, with delayed support from the ACH team, caused over 100 automation failures. That noise masked genuine product defects until Day 5 and delayed the Sandbox release. Last few regressions there were some defects introduced by other teams where we had to wait till the defect fix and run the automation and review results (at least cause an additional regression day).
-A similar dependency on the PCE (Commerce API) team left Embedded Payments Form (EPF) automation failing, with no visibility into defect status, forcing manual execution. EPF manual test execution do not need much time but just want to bring this up as we are trying to achieve 100% automation.
-Unclear or late-changing requirements (Passkey and Billing Address) added rework and effort on changes that may not reach production. These risks could have been identified by providing clear Acceptance Criteria.
-One last thing I want to bring up is any delays in regression will consume significant QA time and the focus is mostly concentrated on release delivery and this impacts the sprint work.</p><div class="tags"><span class="tag t1">Cross-team dependencies</span><span class="tag t1">Requirements churn</span><span class="tag">Regression eats the sprint</span><span class="tag">100% automation goal</span></div></div></div>
-    <div class="vq"><span class="av a">AA</span><div><p>Cross-team dependencies have been a major challenge for QA, particularly during ACH failures that caused numerous automation regression failures and delayed the Sandbox release because timely support from the ACH team was unavailable. We have also faced delays due to unclear or changing requirements and late business decisions, such as with Billing Address, Passkey, and Unrecognized Device ID tickets, sometimes resulting in rework or testing effort on changes that may not proceed to production. These risks could be addressed earlier by aligning QA, development, dependent teams, and business stakeholders on requirements, dependencies, priorities, and release readiness before implementation and automation updates begin. This would help us focus our efforts on confirmed priorities, reduce avoidable rework, and deliver value sooner without compromising quality.</p><div class="tags"><span class="tag t1">Cross-team dependencies</span><span class="tag t1">Requirements churn</span><span class="tag">Proposed fix: align before implementation</span></div></div></div>
-    <div class="vq"><span class="av e">EG</span><div><p>When testing my story around angular to react changes for the reports I spend basically a week and a half tracking down data or how to put data into the qa environment. It also took multiple developers and even after all that there was one an i1 for the data now showing up in a location that was not on the ticket so I did not know to check this as well.</p><div class="tags"><span class="tag t1">Test data and environments</span><span class="tag">Escaped defect (I1)</span><span class="tag">Undocumented behavior</span></div></div></div>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> ten people across five seats, with Andrew, Ramya, Preston, and Kyle still to answer. The pattern is consistent enough to name on day one: the person coordinating the work describes a well-run system; the director, the PM, and the eight people receiving the work describe unclear requirements, no hypothesis, discovery done mid-flight, and waiting on other teams; the PM, who owns the hypothesis, says none of the nine practices hold. Both can be true if the plan does not travel to the ticket. That gap is what Probe 07 is for.</p>
   </div>
 
 
