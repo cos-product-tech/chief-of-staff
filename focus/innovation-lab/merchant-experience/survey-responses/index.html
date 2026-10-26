@@ -165,6 +165,20 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
 .ivnote b{color:var(--dark-forest)}
 
+/* cross-role heat table */
+.hmt{width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px}
+.hmt th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:center;padding:2px 4px 6px}
+.hmt th small{display:block;font-size:9px;letter-spacing:0;text-transform:none}
+.hmt th.st,.hmt th.so{text-align:left}
+.hmt td{padding:0 4px;vertical-align:middle}
+.hmt td.st{width:26%;padding:4px 10px 4px 0;line-height:1.3;color:var(--dark-forest)} .hmt td.st b{font-weight:600} .hmt td.st small{display:block;font-size:11px;color:var(--text-muted);font-weight:400;margin-top:1px}
+.hmt td.so{width:26%;padding-left:12px;font-size:12px;color:var(--text-mid);line-height:1.4}
+.hmt td.hm{width:9%;text-align:center}
+.hmt .t{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;border-radius:6px;font-family:var(--mono);font-size:12px;font-weight:500;padding:4px 4px;line-height:1.1}
+.hmt .t small{font-family:var(--sans);font-size:9.5px;font-weight:400;margin-top:3px;line-height:1.2;opacity:.9}
+.hmt .t.g{background:var(--ok);color:#fff} .hmt .t.r{background:var(--risk);color:#fff} .hmt .t.a{background:#E9B98F;color:#5A2E00} .hmt .t.n{background:#E8E8E3;color:var(--text-muted)}
+@media (max-width:900px){ .card:has(.hmt){overflow-x:auto} .hmt{min-width:900px} }
+
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
@@ -213,16 +227,16 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
   </nav>
   <div class="resp">
-    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>QA</i></span>
+    <span class="who"><span class="av x">AD</span>Alex Dlugokecki <i>SE</i></span>
     <span class="who"><span class="av a">AA</span>Avni A <i>QA</i></span>
     <span class="who"><span class="av e">EG</span>Earnest Gibbs <i>QA</i></span>
-    <span class="who"><span class="av q">QO</span>Quan Ouyang <i>EM</i></span>
-    <span class="who"><span class="av j">JT</span>Josette Towles <i>TPM</i></span>
-    <span class="who"><span class="av x">AD</span>Alex Dlugokecki <i>SE</i></span>
-    <span class="who"><span class="av r">RP</span>Ryan Patch <i>SE</i></span>
-    <span class="who"><span class="av l">LS</span>Leonel Santiago <i>SE</i></span>
-    <span class="who"><span class="av h">MH</span>Michael Hodges <i>SE</i></span>
     <span class="who"><span class="av n">ED</span>Erin Dalessandro <i>PM</i></span>
+    <span class="who"><span class="av j">JT</span>Josette Towles <i>TPM</i></span>
+    <span class="who"><span class="av l">LS</span>Leonel Santiago <i>SE</i></span>
+    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>QA</i></span>
+    <span class="who"><span class="av h">MH</span>Michael Hodges <i>SE</i></span>
+    <span class="who"><span class="av q">QO</span>Quan Ouyang <i>EM</i></span>
+    <span class="who"><span class="av r">RP</span>Ryan Patch <i>SE</i></span>
     <span class="note">10 of 14 responses in · 5 of 6 surveys</span>
   </div>
 
@@ -267,22 +281,23 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div class="pb"><div class="ph"><span class="pn">Probe 10</span><span class="pt">engineering input</span></div><h4>Watch who sets the date in planning.</h4><p>Quan says engineering doesn't shape dates before commitments are made. In Sprint 22 planning, note who proposes each date, whether engineering pushes back, and what happens when it does.</p><div class="pf"><span class="ol"><span class="own am">Amrita</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Sprint predictability</span></span></div></div>
   </div>
 
-  <h2>Where the roles agree, and where they don't <span class="sub">same question, different seats · grows as each survey comes in · the gaps are where Sprint 22 should look</span></h2>
+  <h2>Where the roles agree, and where they don't <span class="sub">same statement, five seats, ordered from the ticket outward · green holds, red doesn't, amber partly · read the TPM column top to bottom</span></h2>
   <div class="card">
-    <table class="mx xr">
-      <thead><tr><th>Statement</th><th class="c">QA<br><small>3 people</small></th><th class="c">Engineers<br><small>4 of 5</small></th><th class="c">EM<br><small>1 of 2</small></th><th class="c">PM<br><small>1 of 2</small></th><th class="c">TPM<br><small>1 person</small></th><th>Read</th></tr></thead>
+    <table class="hmt">
+      <thead><tr><th class="st">Does this hold today?</th><th>Engineers<small>4 of 5</small></th><th>QA<small>3 of 3</small></th><th>PM<small>1 of 2</small></th><th>EM<small>1 of 2</small></th><th>TPM<small>1 of 1</small></th><th class="so">So what</th></tr></thead>
       <tbody>
-        <tr class="agree"><td>Cross-team dependencies create delays</td><td class="sc">2/3 wrote it</td><td class="sc">2/4 picked · PCE in verbatims</td><td class="sc">wrote it</td><td class="sc">Passkey: three teams, no coordinator</td><td class="sc">1/1 picked it</td><td>Five seats. Three propose the same fix (alignment between teams before the work is assigned); the PM proposes a person to do it. PCE (Commerce API) and Passkey are the two named cases.</td></tr>
-        <tr class="agree"><td>The problem, outcome, or requirements are not clear when work starts</td><td class="sc">3/3 "problem unclear"</td><td class="sc">3/4 "requirements incomplete"</td><td class="sc">1/1 both</td><td class="sc">1/1 "requirements incomplete"</td><td class="sc r">0/1</td><td>Nine of nine people who receive or write the work say it is unclear at some step. The Technical Program Manager did not pick it.</td></tr>
-        <tr class="agree"><td>After release, the team reviews the relevant KPI and decides what to do next</td><td class="sc r">0/3</td><td class="sc r">0/4</td><td class="sc r">0/1</td><td class="sc r">0/1 · named it as a delay</td><td class="sc r">0/1</td><td>Ten of ten. The PM is the first to call the missing read a delay rather than an absence: decisions wait on evidence that is never collected.</td></tr>
-        <tr class="agree"><td>Engineers test their own changes; quality is owned throughout development</td><td class="sc g">2/3</td><td class="sc g">4/4</td><td class="sc">not asked</td><td class="sc">not asked</td><td class="sc">not asked</td><td>The strongest positive in the data. The two-week regression window is doing something other than catching engineers' mistakes.</td></tr>
-        <tr class="split"><td>Every commitment has a clear hypothesis with a KPI, baseline, target, and rationale</td><td class="sc r">0/3</td><td class="sc r">0/4</td><td class="sc r">0/1</td><td class="sc r">0/1 · the owner of it</td><td class="sc g">1/1</td><td>Nine to one, and the one "no" that matters most is the PM's: the seat that writes the hypothesis says there isn't one. The TPM's "yes" is almost certainly the program plan, which does not travel to the ticket.</td></tr>
-        <tr class="split"><td>Product, Design, Engineering, and QA align on scope, feasibility, dependencies, and risks before execution begins</td><td class="sc r">1/3</td><td class="sc r">1/4</td><td class="sc r">0/1</td><td class="sc r">0/1</td><td class="sc g">1/1</td><td>Two of nine downstream, one of one upstream.</td></tr>
-        <tr class="split"><td>Engineering shapes the date; capacity and readiness validated before commitment</td><td class="sc r">0/3 say requirements are clear</td><td class="sc r">1/4 input · 2/4 ready</td><td class="sc r">0/1 · 0/1</td><td class="sc r">0/1 · 0/1</td><td class="sc g">1/1</td><td>Two engineers and the TPM say readiness holds; everyone else says it doesn't. Probe 14 reads the definition of ready against three real stories.</td></tr>
-        <tr><td>Coordination model today</td><td class="sc">regression waits on other teams</td><td class="sc">2/4 "no consistent approach"</td><td class="sc">"assessed, then overrun by unplanned work"</td><td class="sc">"no consistent approach"</td><td class="sc">"integrated plan; risks early; trade-offs explicit"</td><td>Three "it varies" (the PM and the two most senior engineers), one "assessed but overrun," one "integrated." Optimism tracks distance from the ticket. Probe 10 watches who sets the date in Sprint 22 planning; probe 19 asks the PM about the last three.</td></tr>
+      <tr><td class="st"><b>Work is clear when it starts</b><small>the problem, outcome, or requirements are understood before engineering begins</small></td><td class="hm"><span class="t r">0/4<small>requirements incomplete 3/4</small></span></td><td class="hm"><span class="t r">0/3<small>problem unclear 3/3</small></span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t g">1/1</span></td><td class="so">Nine say no. The Technical Program Manager says yes.</td></tr>
+      <tr><td class="st"><b>Commitments carry a hypothesis</b><small>a KPI with a baseline, a target, and a reason the work should move it</small></td><td class="hm"><span class="t r">0/4</span></td><td class="hm"><span class="t r">0/3</span></td><td class="hm"><span class="t r">0/1<small>the owner of it</small></span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t g">1/1</span></td><td class="so">Nine to one. The PM, who writes the hypothesis, says there isn't one.</td></tr>
+      <tr><td class="st"><b>Functions align before execution</b><small>Product, Design, Engineering, and QA agree scope, feasibility, dependencies, and risks first</small></td><td class="hm"><span class="t a">1/4</span></td><td class="hm"><span class="t a">1/3</span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t g">1/1</span></td><td class="so">Alignment is real at the program level and felt by two of nine downstream.</td></tr>
+      <tr><td class="st"><b>Engineering shapes the date</b><small>capacity and readiness validated before a date is committed</small></td><td class="hm"><span class="t a">1/4<small>definition of ready 2/4</small></span></td><td class="hm"><span class="t r">0/3<small>requirements clear 0/3</small></span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t g">1/1</span></td><td class="so">Capacity is known (EM 1/1) and not used to set dates (EM 0/1).</td></tr>
+      <tr><td class="st"><b>Cross-team dependencies don't cost time</b></td><td class="hm"><span class="t r">2/4<small>PCE in verbatims</small></span></td><td class="hm"><span class="t r">2/3<small>ACH, PCE in verbatims</small></span></td><td class="hm"><span class="t r">1/1<small>Passkey</small></span></td><td class="hm"><span class="t r">1/1<small>wrote it</small></span></td><td class="hm"><span class="t r">1/1<small>her one pick</small></span></td><td class="so">Every seat named it. Three proposed the same fix: align the teams before the work is assigned.</td></tr>
+      <tr><td class="st"><b>Outcomes are reviewed after release</b><small>the team reads the KPI it set out to move and decides what to do next</small></td><td class="hm"><span class="t r">0/4</span></td><td class="hm"><span class="t r">0/3</span></td><td class="hm"><span class="t r">0/1<small>named it as a delay</small></span></td><td class="hm"><span class="t r">0/1</span></td><td class="hm"><span class="t r">0/1</span></td><td class="so">Ten of ten. The value half of speed to value is unmeasured in every seat.</td></tr>
+      <tr><td class="st"><b>Engineers own their quality</b><small>engineers test their own changes; quality is not left to QA at the end</small></td><td class="hm"><span class="t g">4/4</span></td><td class="hm"><span class="t g">2/3</span></td><td class="hm"><span class="t n">·<small>not asked</small></span></td><td class="hm"><span class="t n">·<small>not asked</small></span></td><td class="hm"><span class="t n">·<small>not asked</small></span></td><td class="so">The strongest positive in the data.</td></tr>
+      <tr><td class="st"><b>How a date gets made</b><small>the model each seat chose, strongest to weakest</small></td><td class="hm"><span class="t r">varies<small>2 of 4 "no consistent approach"</small></span></td><td class="hm"><span class="t n">·<small>not asked</small></span></td><td class="hm"><span class="t r">varies<small>"no consistent approach"</small></span></td><td class="hm"><span class="t a">overrun<small>"assessed, then overrun by unplanned work"</small></span></td><td class="hm"><span class="t g">integrated<small>"risks early; trade-offs explicit"</small></span></td><td class="so">Optimism tracks distance from the ticket.</td></tr>
       </tbody>
     </table>
-    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> ten people across five seats, with Andrew, Ramya, Preston, and Kyle still to answer. The pattern is consistent enough to name on day one: the person coordinating the work describes a well-run system; the director, the PM, and the eight people receiving the work describe unclear requirements, no hypothesis, discovery done mid-flight, and waiting on other teams; the PM, who owns the hypothesis, says none of the nine practices hold. Both can be true if the plan does not travel to the ticket. That gap is what probe 06 is for.</p>
+    <div class="leg"><span><i style="background:var(--ok)"></i>holds</span><span><i style="background:#E9B98F"></i>partly</span><span><i style="background:var(--risk)"></i>doesn't hold</span><span><i style="background:#E8E8E3"></i>not asked</span></div>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> every column but one is red from top to bottom, except the row about engineers' own craft. The TPM column is green on the four statements about planning and red on the two about dependencies and outcomes. The person coordinating the work describes a well-run system; the nine people receiving it describe unclear requirements, no hypothesis, discovery done mid-flight, and waiting on other teams. Both can be true if the plan does not travel to the ticket. That gap is what probe 06 is for. Andrew, Ramya, Preston, and Kyle still to answer.</p>
   </div>
 
 
