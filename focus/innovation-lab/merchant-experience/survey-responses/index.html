@@ -130,18 +130,29 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .th h4{font-size:12.5px;color:var(--dark-forest);margin:6px 0 3px}
 .th p{font-size:11.5px;color:var(--text-muted);line-height:1.4}
 
-/* probes */
-.probe{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.pb{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 14px}
-.pb .k{margin-bottom:4px}
-.pb h4{font-size:13px;color:var(--dark-forest);margin-bottom:4px}
-.pb p{font-size:12.25px;color:var(--text-mid);line-height:1.5}
-.pb .m{margin-top:6px;font-family:var(--mono);font-size:10.5px;color:var(--teal)}
+
+/* probes: the first thing to read */
+h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17px}
+.probe{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pb{background:var(--dark-forest);color:#fff;border-radius:10px;padding:14px 15px 13px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pb::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--turquoise))}
+.pb .ph{display:flex;align-items:center;gap:8px}
+.pb .pn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pb .pt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.pb h4{font-size:14.5px;line-height:1.3;color:#fff}
+.pb p{font-size:12.25px;line-height:1.5;color:rgba(255,255,255,.78);flex:1}
+.pb .pf{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.pb .ol{display:flex;gap:5px;flex-wrap:wrap}
+.own{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 8px;border-radius:20px;color:#01271A;font-weight:500}
+.own.st{background:var(--turquoise)} .own.am{background:var(--pistachio)} .own.er{background:var(--orange);color:#1A1200} .own.fa{background:#9FE1B8} .own.ba{background:#FFB37A}
+.pb .ms{display:flex;gap:5px;flex-wrap:wrap}
+.mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
 
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
 
+@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:900px){
   .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
   .doc-body{padding:20px 16px 40px}
@@ -164,7 +175,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
-      <span class="meta-badge badge-status">⚡ Phase 1 · Prep</span>
+      <span class="meta-badge badge-status">⚡ Phase 2 starts Oct 26</span>
       <span class="meta-badge badge-date">October 25, 2026 · Eric Normant</span>
     </div>
   </div>
@@ -188,6 +199,16 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <span class="note">3 of 3 responded · Oct 23–25 · read by Steve Daubert</span>
   </div>
 
+  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the survey is one of three reads · each probe names what to watch, who watches it, and which measure it touches</span></h2>
+  <div class="probe">
+    <div class="pb"><div class="ph"><span class="pn">Probe 01</span><span class="pt">readiness</span></div><h4>Watch what arrives at sprint planning.</h4><p>For every story pulled into Sprint 22, note whether it has an expected outcome, acceptance criteria, and test scenarios at planning time. Finding 01 says most won't. Count them.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own am">Amrita</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">PR pass rate</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 02</span><span class="pt">dependencies</span></div><h4>Trace every cross-team wait in regression.</h4><p>Log each day regression waits on another team (ACH, PCE (Commerce API), or anyone else): what was blocked, who was asked, how long until unblocked. The survey options missed this theme, so it needs a hand count.</p><div class="pf"><span class="ol"><span class="own st">Steve</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">Regression share</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 03</span><span class="pt">the regression window</span></div><h4>Find the other five to eight days.</h4><p>Regression results take 2–5 days; the window is ten. Map the full two weeks day by day: execution, waiting on fixes, reruns, release prep, idle. Reconcile the manager's 4–5 days with the engineers' 2–3.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Regression share</span><span class="mt">Issue cycle time</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 04</span><span class="pt">test data</span></div><h4>Time one story's test-data setup end to end.</h4><p>Earnest's story took a week and a half. Pick one Sprint 22 story that needs non-trivial data and clock every step and every person touched. If it repeats, this is a Nov 20 change candidate and the first place to aim AI help.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own fa">Fabio</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">AI effect</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 05</span><span class="pt">outcomes</span></div><h4>Ask what happened to the last three things QA certified.</h4><p>Nobody sees a hypothesis or a post-release read. In the Sprint 22 retro, ask for the last three shipped items: what were they meant to move, and did it move? If no one can answer, finding 05 is confirmed from the team side too.</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Future scope</span><span class="mt">Value half of speed to value</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 06</span><span class="pt">requirements churn</span></div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
+  </div>
+
   <h2>What stands out <span class="sub">six findings from three responses · small sample, read as signal to verify in Sprint 22, not as proof</span></h2>
   <div class="findings">
     <div class="fd">
@@ -199,7 +220,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div class="fd">
       <div class="n">02 · Strongest verbatim theme</div>
       <h3>Cross-team dependencies are costing whole regression days, and the survey didn't offer that as an option.</h3>
-      <p>Two of three wrote about the same incident unprompted: an unresolved ACH defect caused 100+ automation failures that masked real defects until Day 5 and delayed the Sandbox release; a Pace dependency forced EPF tests back to manual. "At least an additional regression day" each time.</p>
+      <p>Two of three wrote about the same incident unprompted: an unresolved ACH defect caused 100+ automation failures that masked real defects until Day 5 and delayed the Sandbox release; a PCE (Commerce API) dependency forced Embedded Payments Form (EPF) tests back to manual. "At least an additional regression day" each time.</p>
       <div class="ev">Q5: 2/3 · not in the Q1 option list · add to Sprint 22 watch list</div>
     </div>
     <div class="fd">
@@ -308,29 +329,20 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 
   <h2>In their words <span class="sub">Q5 · the biggest avoidable delay, and the one change that would have helped · themes first, then the full responses</span></h2>
   <div class="themes">
-    <div class="th"><div class="n">2<small>of 3</small></div><h4>Cross-team dependencies</h4><p>ACH defect masked real failures for five days; Pace dependency broke EPF automation. Each costs a regression day or more.</p></div>
+    <div class="th"><div class="n">2<small>of 3</small></div><h4>Cross-team dependencies</h4><p>ACH defect masked real failures for five days; PCE (Commerce API) dependency broke EPF automation. Each costs a regression day or more.</p></div>
     <div class="th"><div class="n">2<small>of 3</small></div><h4>Requirements that change after testing starts</h4><p>Passkey, Billing Address, Unrecognized Device ID. Rework and automation updates for changes that may never ship.</p></div>
     <div class="th"><div class="n">1<small>of 3</small></div><h4>Test data and environments</h4><p>A week and a half to find and load data for one story, across multiple developers; an undocumented data location became an I1.</p></div>
     <div class="th"><div class="n">1<small>of 3</small></div><h4>Regression eats the sprint</h4><p>Any regression delay pulls QA onto the release and off sprint work. The two compete for the same people.</p></div>
   </div>
   <div class="vb">
     <div class="vq"><span class="av m">MY</span><div><p>Cross-team dependencies were the biggest source of avoidable delay in our recent regression. An unresolved ACH payment defect, with delayed support from the ACH team, caused over 100 automation failures. That noise masked genuine product defects until Day 5 and delayed the Sandbox release. Last few regressions there were some defects introduced by other teams where we had to wait till the defect fix and run the automation and review results (at least cause an additional regression day).
-A similar dependency on the Pace team left EPF automation failing, with no visibility into defect status, forcing manual execution. EPF manual test execution do not need much time but just want to bring this up as we are trying to achieve 100% automation.
+A similar dependency on the PCE (Commerce API) team left Embedded Payments Form (EPF) automation failing, with no visibility into defect status, forcing manual execution. EPF manual test execution do not need much time but just want to bring this up as we are trying to achieve 100% automation.
 Unclear or late-changing requirements (Passkey and Billing Address) added rework and effort on changes that may not reach production. These risks could have been identified by providing clear Acceptance Criteria.
 One last thing I want to bring up is any delays in regression will consume significant QA time and the focus is mostly concentrated on release delivery and this impacts the sprint work.</p><div class="tags"><span class="tag t1">Cross-team dependencies</span><span class="tag t1">Requirements churn</span><span class="tag">Regression eats the sprint</span><span class="tag">100% automation goal</span></div></div></div>
     <div class="vq"><span class="av a">AA</span><div><p>Cross-team dependencies have been a major challenge for QA, particularly during ACH failures that caused numerous automation regression failures and delayed the Sandbox release because timely support from the ACH team was unavailable. We have also faced delays due to unclear or changing requirements and late business decisions, such as with Billing Address, Passkey, and Unrecognized Device ID tickets, sometimes resulting in rework or testing effort on changes that may not proceed to production. These risks could be addressed earlier by aligning QA, development, dependent teams, and business stakeholders on requirements, dependencies, priorities, and release readiness before implementation and automation updates begin. This would help us focus our efforts on confirmed priorities, reduce avoidable rework, and deliver value sooner without compromising quality.</p><div class="tags"><span class="tag t1">Cross-team dependencies</span><span class="tag t1">Requirements churn</span><span class="tag">Proposed fix: align before implementation</span></div></div></div>
     <div class="vq"><span class="av e">EG</span><div><p>When testing my story around angular to react changes for the reports I spend basically a week and a half tracking down data or how to put data into the qa environment. It also took multiple developers and even after all that there was one an i1 for the data now showing up in a location that was not on the ticket so I did not know to check this as well.</p><div class="tags"><span class="tag t1">Test data and environments</span><span class="tag">Escaped defect (I1)</span><span class="tag">Undocumented behavior</span></div></div></div>
   </div>
 
-  <h2>What to verify in Sprint 22 <span class="sub">the survey is one of three reads · each probe names what to watch, who watches it, and which measure it touches</span></h2>
-  <div class="probe">
-    <div class="pb"><div class="k">Probe 01 · readiness</div><h4>Watch what arrives at sprint planning.</h4><p>For every story pulled into Sprint 22, note whether it has an expected outcome, acceptance criteria, and test scenarios at planning time. Finding 01 says most won't. Count them.</p><div class="m">Steve, Amrita · sprint addition rate · PR pass rate</div></div>
-    <div class="pb"><div class="k">Probe 02 · dependencies</div><h4>Trace every cross-team wait in regression.</h4><p>Log each day regression waits on another team (ACH, Pace, or anyone else): what was blocked, who was asked, how long until unblocked. This is the theme the survey options missed, so it needs a hand count.</p><div class="m">Steve · issue cycle time · regression share</div></div>
-    <div class="pb"><div class="k">Probe 03 · the regression window</div><h4>Find the other five to eight days.</h4><p>Regression results take 2–5 days; the window is ten. Map the full two weeks day by day: execution, waiting on fixes, reruns, release prep, idle. Reconcile the manager's 4–5 days with the engineers' 2–3.</p><div class="m">Steve, Eric · regression share · Jellyfish cycle time</div></div>
-    <div class="pb"><div class="k">Probe 04 · test data</div><h4>Time one story's test-data setup end to end.</h4><p>Earnest's story took a week and a half. Pick one Sprint 22 story that needs non-trivial data and clock every step and every person touched. If it repeats, this is a Nov 20 change candidate and the first place to aim AI help.</p><div class="m">Steve, Fabio · issue cycle time · AI effect</div></div>
-    <div class="pb"><div class="k">Probe 05 · outcomes</div><h4>Ask what happened to the last three things QA certified.</h4><p>Nobody sees a hypothesis or a post-release read. In the Sprint 22 retro, ask for the last three shipped items: what were they meant to move, and did it move? If no one can answer, that's finding 05 confirmed from the team side too.</p><div class="m">Eric, Bart · future scope · value half of speed to value</div></div>
-    <div class="pb"><div class="k">Probe 06 · requirements churn</div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="m">Steve, Bart · sprint addition rate · escaped defects</div></div>
-  </div>
 
   <footer>
     <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
