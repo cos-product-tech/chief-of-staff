@@ -165,6 +165,35 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
 .ivnote b{color:var(--dark-forest)}
 
+.rl.live{border-color:var(--teal);color:var(--teal)} .rl.live i{background:#E3F3EF;color:var(--teal)} .rl.live.on{background:var(--teal);border-color:var(--teal);color:#fff} .rl.live.on i{background:#fff;color:var(--teal)}
+/* field notes: heard and observed */
+.fn{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.fn .fh b{font-size:14px;color:var(--dark-forest)}
+.fn .fh .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.fn .fh .ppl{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+.fn .fb{padding:6px 16px 12px}
+.ob{display:grid;grid-template-columns:1fr 240px;gap:14px;padding:12px 0;border-top:1px dashed var(--border)}
+.ob:first-child{border-top:none}
+.ob h4{font-size:13.5px;color:var(--dark-forest);margin-bottom:4px}
+.ob p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.ob .side{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ob .side .k{margin-bottom:0}
+.ob .side .mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.ob .side a.pr{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid #F3C9A6;background:var(--warn-bg);padding:2px 8px;border-radius:4px}
+.ob .side .own{margin-right:0}
+.cap{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.cap th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:left;padding:4px 8px;border-bottom:1px solid var(--border)}
+.cap td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text-mid)}
+.cap tr:last-child td{border-bottom:none}
+.cap .bar{height:8px;background:var(--bg-soft);border-radius:4px;position:relative;overflow:hidden;min-width:140px}
+.cap .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}
+.cap .bar i.over{background:linear-gradient(90deg,var(--ok) 0,#E9B98F 55%,var(--risk) 100%)}
+.cap .pct{font-family:var(--mono);font-size:11px;font-weight:500}
+.cap .pct.over{color:var(--risk)} .cap .pct.warn{color:var(--warn)} .cap .pct.ok{color:var(--ok)}
+.cap .pto{font-family:var(--mono);font-size:9.5px;color:var(--warn);margin-left:6px}
+@media (max-width:900px){ .ob{grid-template-columns:1fr} }
+
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
@@ -211,6 +240,9 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <a class="rl" href="quality-automation-engineering.html"><b>QA Engineering</b><i>3/3</i></a>
     <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
     <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <span class="sep"></span>
+    <a class="rl live" href="heard.html"><b>Heard in person</b><i>1 conversation</i></a>
+    <a class="rl live" href="observed.html"><b>Observed</b><i>1 ritual</i></a>
   </nav>
 
   <div class="resp">
@@ -342,16 +374,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> the engineers have already moved the bottleneck from syntax to system design. The PM seat hasn't moved yet: research, prioritization, and outcome analysis are untouched by either PM, and the two collaborative activities (prototyping with Design, discovery with Engineering) are unclear for one and unused by the other. Bart's pairing should start with the three "not using" rows, because they are the discovery work the plan's value measures depend on.</p>
   </div>
 
-  <h2>What we heard in person <span class="sub">Eric and Bart with Erin · Friday, October 23 · thirty minutes · the survey, said out loud</span></h2>
-  <div class="card">
-    <div class="bars" style="grid-template-columns:1fr">
-      <div class="lab"><b>"Crap in, crap out."</b> Erin's own framing: development may look slow, but the bigger problem is what the team is given. Her hardest cases are initiatives that span teams, where a request arrives as "go do this" with no context. International address support came from PCE that way; the team and Alex put in the time, and two I1s followed.</div>
-      <div class="lab"><b>The team has never had a principal engineer.</b> Alex is MerCap's principal, and Erin wasn't sure what that role is versus Andrew's as team lead. Eric's expectation, stated in the room: the principal's first job is discovery, and Alex and Kyle should be in every discovery conversation. Setting that expectation with the whole team is Eric's action.</div>
-      <div class="lab"><b>Nobody knows who to escalate to, or who owns what.</b> For incoming cross-team requests the answer is Purush (engineering) and Hareet (product). Erin asked whether there is a list of who owns which products, including Priority Capital. There isn't one yet; "Who leads what" is it.</div>
-      <div class="lab"><b>The TPMs are absent from MerCap's daily work.</b> Erin sees no interaction from program management on her initiatives and has asked Josette for a RACI before asking her team to do anything. This is the survey split in one sentence: the TPM describes an integrated plan; the PM it is meant to serve has not experienced it. Bart's rule for the RACI: project managers accelerate product decisions and never make them.</div>
-      <div class="lab"><b>"We deliver the MVP and never go further."</b> What engineers say when asked to ship a smaller first release. Bart's answer is the plan's future scope: judge every release on whether it moved a customer outcome, not on the label. Erin asked for case studies on recent work and how it could have gone better; that is the pairing format for Sprint 24.</div>
-    </div>
-  </div>
+  <div class="ivnote" style="border-left-color:var(--teal)"><b>Heard in person.</b> Eric and Bart met Erin on Friday, October 23. Six points, each tagged to a probe, are on the <a href="heard.html">Heard in person</a> page: the problem is what the team is given, the team has never had a principal engineer, nobody knows who owns which product, the TPMs are absent from MerCap's daily work, and "we deliver the MVP and never go further."</div>
 
   <h2>In their words <span class="sub">Q5 · the biggest avoidable delay, and the one change</span></h2>
   <div class="vb">

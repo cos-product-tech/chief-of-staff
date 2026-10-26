@@ -179,6 +179,35 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .hmt .t.g{background:var(--ok);color:#fff} .hmt .t.r{background:var(--risk);color:#fff} .hmt .t.a{background:#E9B98F;color:#5A2E00} .hmt .t.n{background:#E8E8E3;color:var(--text-muted)}
 @media (max-width:900px){ .card:has(.hmt){overflow-x:auto} .hmt{min-width:900px} }
 
+.rl.live{border-color:var(--teal);color:var(--teal)} .rl.live i{background:#E3F3EF;color:var(--teal)} .rl.live.on{background:var(--teal);border-color:var(--teal);color:#fff} .rl.live.on i{background:#fff;color:var(--teal)}
+/* field notes: heard and observed */
+.fn{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.fn .fh b{font-size:14px;color:var(--dark-forest)}
+.fn .fh .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.fn .fh .ppl{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+.fn .fb{padding:6px 16px 12px}
+.ob{display:grid;grid-template-columns:1fr 240px;gap:14px;padding:12px 0;border-top:1px dashed var(--border)}
+.ob:first-child{border-top:none}
+.ob h4{font-size:13.5px;color:var(--dark-forest);margin-bottom:4px}
+.ob p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.ob .side{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ob .side .k{margin-bottom:0}
+.ob .side .mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.ob .side a.pr{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid #F3C9A6;background:var(--warn-bg);padding:2px 8px;border-radius:4px}
+.ob .side .own{margin-right:0}
+.cap{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.cap th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:left;padding:4px 8px;border-bottom:1px solid var(--border)}
+.cap td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text-mid)}
+.cap tr:last-child td{border-bottom:none}
+.cap .bar{height:8px;background:var(--bg-soft);border-radius:4px;position:relative;overflow:hidden;min-width:140px}
+.cap .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}
+.cap .bar i.over{background:linear-gradient(90deg,var(--ok) 0,#E9B98F 55%,var(--risk) 100%)}
+.cap .pct{font-family:var(--mono);font-size:11px;font-weight:500}
+.cap .pct.over{color:var(--risk)} .cap .pct.warn{color:var(--warn)} .cap .pct.ok{color:var(--ok)}
+.cap .pto{font-family:var(--mono);font-size:9.5px;color:var(--warn);margin-left:6px}
+@media (max-width:900px){ .ob{grid-template-columns:1fr} }
+
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
@@ -204,7 +233,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div>
       <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
       <h1 class="doc-title">Across roles: where the seats agree, and where they don't</h1>
-      <p class="doc-subtitle">Twelve people in five seats so far. The same statements, asked of each role, laid side by side. <b>Green rows</b> are agreement, <b>orange rows</b> are the splits, and the splits are where Sprint 22 should look first.</p>
+      <p class="doc-subtitle">Twelve people in five seats so far, one conversation, one ritual observed. The same statements, asked of each role, laid side by side; what we heard and saw is on its own pages. <b>Green rows</b> are agreement, <b>orange rows</b> are the splits, and the splits are where Sprint 22 should look first.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
@@ -225,6 +254,9 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <a class="rl" href="quality-automation-engineering.html"><b>QA Engineering</b><i>3/3</i></a>
     <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
     <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <span class="sep"></span>
+    <a class="rl live" href="heard.html"><b>Heard in person</b><i>1 conversation</i></a>
+    <a class="rl live" href="observed.html"><b>Observed</b><i>1 ritual</i></a>
   </nav>
   <div class="resp">
     <span class="who"><span class="av x">AD</span>Alex Dlugokecki <i>SE</i></span>
