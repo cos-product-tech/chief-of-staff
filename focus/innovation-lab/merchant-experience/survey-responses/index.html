@@ -226,11 +226,45 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <span class="note">10 of 14 responses in · 5 of 6 surveys</span>
   </div>
 
-  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the three probes the cross-role read points to first</span></h2>
+  <h2>What ten people told us <span class="sub">five findings across five seats · small numbers, consistent direction · read as the brief for Sprint 22</span></h2>
+  <div class="findings">
+    <div class="fd">
+      <div class="n">01 · Nine of nine</div>
+      <h3>Work arrives unclear.</h3>
+      <p>Everyone who receives or writes the work says so: an unclear problem (QA, director), incomplete requirements (engineers, PM), or no definition of ready. The Technical Program Manager, who plans the work, did not pick it.</p>
+      <div class="ev">QA 3/3 · engineers 3/4 · EM 1/1 · PM 1/1 · TPM 0/1</div>
+    </div>
+    <div class="fd">
+      <div class="n">02 · Every seat</div>
+      <h3>Cross-team dependencies cost real time, and three people proposed the same fix.</h3>
+      <p>PCE (Commerce API) and Passkey are the named cases: a library that fit neither stack, a widget not yet deployed, three teams on three design flows. Quan, Avni, and Alex each propose aligning the teams before the work is assigned. The PM proposes a person to do it.</p>
+      <div class="ev">named by all five seats · the one theme the survey options under-asked</div>
+    </div>
+    <div class="fd gap">
+      <div class="n">03 · Ten of ten</div>
+      <h3>Nobody reviews the outcome after release.</h3>
+      <p>No seat says the KPI is reviewed after shipping. The product manager, who owns the hypothesis and the KPI, checked "none of these are consistently true," and was the first to call the missing review a delay: decisions wait on evidence that is never collected.</p>
+      <div class="ev">0/10 · the value half of speed to value is unmeasured</div>
+    </div>
+    <div class="fd good">
+      <div class="n">04 · The craft is fine</div>
+      <h3>Engineers own their quality, and AI has already moved their bottleneck.</h3>
+      <p>Four of four engineers and two of three QA say engineers test their own work. Engineers are "faster and better" with AI on writing and testing code. In one engineer's words: AI made writing the code fast; what's slow now is working out how the pieces fit together, and that happens after the work has started.</p>
+      <div class="ev">quality ownership 6/7 · AI positive on 4 of 10 engineering activities, 4/4</div>
+    </div>
+    <div class="fd">
+      <div class="n">05 · The gap between seats</div>
+      <h3>The TPM describes an integrated plan with a hypothesis on every commitment. The nine people downstream say the opposite.</h3>
+      <p>Both can be true if the plan does not travel to the ticket. How a date gets made is described four ways, and the description gets more optimistic with every step away from the ticket. This is the first thing to look at on Monday.</p>
+      <div class="ev">hypothesis: TPM 1/1 · everyone else 0/9 · probe 06</div>
+    </div>
+  </div>
+
+  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the three probes the cross-role read points to first · each role's page has its own</span></h2>
   <div class="probe">
-    <div class="pb"><div class="ph"><span class="pn">Probe 07</span><span class="pt">requirements churn</span></div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 01</span><span class="pt">readiness</span></div><h4>Watch what arrives at sprint planning.</h4><p>For every story pulled into Sprint 22, note whether it has an expected outcome, acceptance criteria, and test scenarios at planning time. QA (3/3) and the director both say most won't. Count them.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own am">Amrita</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">PR pass rate</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 02</span><span class="pt">dependencies</span></div><h4>Trace every cross-team wait in regression.</h4><p>Log each day regression waits on another team (ACH, PCE (Commerce API), or anyone else): what was blocked, who was asked, how long until unblocked. The survey options missed this theme, so it needs a hand count.</p><div class="pf"><span class="ol"><span class="own st">Steve</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">Regression share</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 06</span><span class="pt">the plan versus the ticket</span></div><h4>Put the integrated plan next to what reaches QA.</h4><p>The TPM says every commitment carries a hypothesis and that capacity and readiness are validated before dates. QA sees none of it. Take two Sprint 22 commitments, find them in the program plan, then follow them to the story and the test case. Where does the hypothesis stop traveling?</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own st">Steve</span></span><span class="ms"><span class="mt">Sprint predictability</span><span class="mt">Commitments on date</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 17</span><span class="pt">Passkey</span></div><h4>Trace Passkey across the three teams.</h4><p>Erin says no one coordinated Passkey across Passport, MXM, and MXC; multiple flows and Figma designs, one approved, separate PMs working from different ones. The TPM says an integrated plan exists. Find Passkey in that plan, then ask each team which flow they built to. Avni and Mamatha named Passkey as a source of rework; this is the same incident from the PM side.</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Sprint addition rate</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 10</span><span class="pt">engineering input</span></div><h4>Watch who sets the date in planning.</h4><p>Quan says engineering doesn't shape dates before commitments are made. In Sprint 22 planning, note who proposes each date, whether engineering pushes back, and what happens when it does.</p><div class="pf"><span class="ol"><span class="own am">Amrita</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Sprint predictability</span></span></div></div>
   </div>
 
   <h2>Where the roles agree, and where they don't <span class="sub">same question, different seats · grows as each survey comes in · the gaps are where Sprint 22 should look</span></h2>
@@ -248,9 +282,20 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
         <tr><td>Coordination model today</td><td class="sc">regression waits on other teams</td><td class="sc">2/4 "no consistent approach"</td><td class="sc">"assessed, then overrun by unplanned work"</td><td class="sc">"no consistent approach"</td><td class="sc">"integrated plan; risks early; trade-offs explicit"</td><td>Three "it varies" (the PM and the two most senior engineers), one "assessed but overrun," one "integrated." Optimism tracks distance from the ticket. Probe 10 watches who sets the date in Sprint 22 planning; probe 19 asks the PM about the last three.</td></tr>
       </tbody>
     </table>
-    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> ten people across five seats, with Andrew, Ramya, Preston, and Kyle still to answer. The pattern is consistent enough to name on day one: the person coordinating the work describes a well-run system; the director, the PM, and the eight people receiving the work describe unclear requirements, no hypothesis, discovery done mid-flight, and waiting on other teams; the PM, who owns the hypothesis, says none of the nine practices hold. Both can be true if the plan does not travel to the ticket. That gap is what Probe 07 is for.</p>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> ten people across five seats, with Andrew, Ramya, Preston, and Kyle still to answer. The pattern is consistent enough to name on day one: the person coordinating the work describes a well-run system; the director, the PM, and the eight people receiving the work describe unclear requirements, no hypothesis, discovery done mid-flight, and waiting on other teams; the PM, who owns the hypothesis, says none of the nine practices hold. Both can be true if the plan does not travel to the ticket. That gap is what probe 06 is for.</p>
   </div>
 
+
+  <h2>Early candidates for the Nov 20 list <span class="sub">what the surveys point to · to be tested against Sprint 22 and the Jellyfish baseline, not decided</span></h2>
+  <div class="card">
+    <div class="bars" style="grid-template-columns:1fr">
+      <div class="lab"><b>A kickoff rule for cross-team work.</b> No initiative that touches another team starts until the involved teams have agreed the requirement and each team's responsibility. The fix three people proposed; the Passkey and PCE cases are the test.</div>
+      <div class="lab"><b>A definition of ready that carries the hypothesis.</b> Problem, expected outcome, KPI with baseline and target, acceptance criteria, and the technical questions answered, before a story enters sprint planning. Probes 01 and 14 show how far today's definition is from that.</div>
+      <div class="lab"><b>Design time before coding.</b> A short technical design step for anything with cross-team or architectural dependencies, so discovery stops happening mid-ticket. The engineers' ask; the AI-native PDLC's natural home.</div>
+      <div class="lab"><b>Feature flags in the Checkout API.</b> Statsig is POC'd; two customer-impacting I1s trace to its absence. Small, concrete, and already scoped by Alex.</div>
+      <div class="lab"><b>An outcome review after every release.</b> The team reads the KPI it set out to move and decides what to do next. Ten of ten say it doesn't happen; it is the plan's future scope, and the PM's seat is where it starts.</div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
