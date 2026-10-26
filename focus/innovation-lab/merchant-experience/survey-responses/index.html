@@ -148,6 +148,19 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .pb .ms{display:flex;gap:5px;flex-wrap:wrap}
 .mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
 
+.tabs button{cursor:pointer;font:inherit}
+.panel{display:none} .panel.on{display:block}
+.av.j{background:#8A6D1C} .chip.j{background:#8A6D1C}
+.flag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid #F3C9A6}
+.mx.xr td{font-size:12.25px} .mx.xr td.sc{width:auto;min-width:72px;font-size:10.5px;line-height:1.3;text-align:center}
+.mx.xr td.sc.r{color:var(--risk)} .mx.xr td.sc.g{color:var(--ok)}
+.mx tr.agree td{background:var(--ok-bg)} .mx tr.split td{background:var(--warn-bg)}
+.mx th small{display:block;font-size:9px;letter-spacing:0;text-transform:none;color:var(--text-muted)}
+.opts div{font-size:12.25px;color:var(--text-muted);padding:8px 10px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.opts div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest);font-weight:500}
+.ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
+.ivnote b{color:var(--dark-forest)}
+
 footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
@@ -160,6 +173,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   .bars{grid-template-columns:1fr 100px 80px}
   .cyc{grid-template-columns:repeat(3,1fr)}
   .ai td.v{width:auto;font-size:9px}
+  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:720px}
+  .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
 }
 @media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
 </style>
@@ -171,7 +186,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div>
       <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
       <h1 class="doc-title">What the MerCap team is telling us</h1>
-      <p class="doc-subtitle">Survey responses, read three ways: <b>what people told us</b> here, <b>what we see</b> sitting with the team from Oct 26, and <b>what Jellyfish shows</b>. The gaps between the three are the diagnosis. One survey per role; this page shows one role at a time.</p>
+      <p class="doc-subtitle">Survey responses, read three ways: <b>what people told us</b> here, <b>what we see</b> sitting with the team from Oct 26, and <b>what Jellyfish shows</b>. The gaps between the three are the diagnosis. One survey per role; pick a role below. Two of six are in.</p>
     </div>
     <div class="header-meta">
       <span class="meta-badge badge-internal">Internal · Confidential</span>
@@ -183,20 +198,13 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 
 <main class="doc-body">
 
-  <div class="tabs">
-    <span class="tab on">Quality Automation Engineering</span>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-role="qa">Quality Automation Engineering</button>
+    <button class="tab" data-role="tpm">Technical Program Management</button>
     <span class="tab soon">Product Management · soon</span>
     <span class="tab soon">Product Design · soon</span>
     <span class="tab soon">Software Engineering · soon</span>
     <span class="tab soon">Engineering Management · soon</span>
-    <span class="tab soon">Technical Program Management · soon</span>
-  </div>
-
-  <div class="resp">
-    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>Manager, QA Engineering</i></span>
-    <span class="who"><span class="av a">AA</span>Avni A <i>QA Engineer</i></span>
-    <span class="who"><span class="av e">EG</span>Earnest Gibbs <i>QA Engineer</i></span>
-    <span class="note">3 of 3 responded · Oct 23–25 · read by Steve Daubert</span>
   </div>
 
   <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">the survey is one of three reads · each probe names what to watch, who watches it, and which measure it touches</span></h2>
@@ -206,7 +214,33 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div class="pb"><div class="ph"><span class="pn">Probe 03</span><span class="pt">the regression window</span></div><h4>Find the other five to eight days.</h4><p>Regression results take 2–5 days; the window is ten. Map the full two weeks day by day: execution, waiting on fixes, reruns, release prep, idle. Reconcile the manager's 4–5 days with the engineers' 2–3.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Regression share</span><span class="mt">Issue cycle time</span></span></div></div>
     <div class="pb"><div class="ph"><span class="pn">Probe 04</span><span class="pt">test data</span></div><h4>Time one story's test-data setup end to end.</h4><p>Earnest's story took a week and a half. Pick one Sprint 22 story that needs non-trivial data and clock every step and every person touched. If it repeats, this is a Nov 20 change candidate and the first place to aim AI help.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own fa">Fabio</span></span><span class="ms"><span class="mt">Issue cycle time</span><span class="mt">AI effect</span></span></div></div>
     <div class="pb"><div class="ph"><span class="pn">Probe 05</span><span class="pt">outcomes</span></div><h4>Ask what happened to the last three things QA certified.</h4><p>Nobody sees a hypothesis or a post-release read. In the Sprint 22 retro, ask for the last three shipped items: what were they meant to move, and did it move? If no one can answer, finding 05 is confirmed from the team side too.</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Future scope</span><span class="mt">Value half of speed to value</span></span></div></div>
-    <div class="pb"><div class="ph"><span class="pn">Probe 06</span><span class="pt">requirements churn</span></div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 06</span><span class="pt">the plan versus the ticket</span></div><h4>Put the integrated plan next to what reaches QA.</h4><p>The TPM says every commitment carries a hypothesis and that capacity and readiness are validated before dates. QA sees none of it. Take two Sprint 22 commitments, find them in the program plan, then follow them to the story and the test case. Where does the hypothesis stop traveling?</p><div class="pf"><span class="ol"><span class="own er">Eric</span><span class="own st">Steve</span></span><span class="ms"><span class="mt">Sprint predictability</span><span class="mt">Commitments on date</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 07</span><span class="pt">requirements churn</span></div><h4>Count changes to a story after testing starts.</h4><p>For each story that reaches QA in Sprint 22, note whether its requirements, scope, or business decision changed afterward, and whether the change shipped. Passkey and Billing Address are the pattern to look for.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
+  </div>
+
+  <h2>Where the roles agree, and where they don't <span class="sub">same question, different seats · grows as each survey comes in · the gaps are where Sprint 22 should look</span></h2>
+  <div class="card">
+    <table class="mx xr">
+      <thead><tr><th>Statement</th><th class="c">QA<br><small>3 people</small></th><th class="c">TPM<br><small>1 person</small></th><th>Read</th></tr></thead>
+      <tbody>
+        <tr class="agree"><td>Cross-team dependencies, external systems, or shared resources create delays</td><td class="sc">2/3 wrote it</td><td class="sc">1/1 picked it</td><td>The one thing every seat agrees on. Josette's single Q1 pick; two of three QA verbatims. It is not in the QA question's option list, which makes the agreement stronger.</td></tr>
+        <tr class="agree"><td>After release, the team reviews the relevant KPI and decides what to do next</td><td class="sc r">0/3</td><td class="sc r">0/1</td><td>The only practice nobody in either seat says holds. The value half of speed to value is unmeasured from every angle.</td></tr>
+        <tr class="split"><td>Every commitment has a clear hypothesis with a KPI, baseline, target, and rationale</td><td class="sc r">0/3</td><td class="sc g">1/1</td><td>The TPM sees a hypothesis on every commitment. None of the three QA engineers see one. Either it exists in the plan and never reaches the ticket, or the two seats mean different things by it.</td></tr>
+        <tr class="split"><td>Product, Design, Engineering, and QA align on scope, feasibility, dependencies, and risks before execution begins</td><td class="sc r">1/3</td><td class="sc g">1/1</td><td>Alignment happens at the program level and is felt by one of three in QA. Finding 01 on the QA tab (unclear outcome, 3/3) is the same gap from the other side.</td></tr>
+        <tr class="split"><td>Capacity, dependencies, and readiness are validated before dates are committed</td><td class="sc r">0/3 say requirements are clear</td><td class="sc g">1/1</td><td>Validated upstream, not visible downstream. Probe 01 (what arrives at sprint planning) will show which is true at the story level.</td></tr>
+        <tr><td>Coordination model today</td><td class="sc">regression waits on other teams, 1+ day at a time</td><td class="sc">"shared, integrated plan; risks surfaced early; trade-offs explicit"</td><td>The TPM chose the strongest of six options to describe how coordination works. QA's lived experience of the same initiatives is waiting on ACH and PCE. Both can be true: the plan is integrated and the dependencies still slip.</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>How to read this:</b> this is one TPM against three QA engineers, so treat the split rows as a hypothesis, not a verdict. The pattern is still worth naming on day one: the person coordinating the work describes a well-run system, and the people receiving the work describe unclear outcomes and waiting. That gap is the most useful thing the surveys have produced so far, and it is exactly what sitting with the team for Sprint 22 is for.</p>
+  </div>
+
+
+  <div class="panel on" data-role="qa">
+  <div class="resp">
+    <span class="who"><span class="av m">MY</span>Mamatha Yella <i>Manager, QA Engineering</i></span>
+    <span class="who"><span class="av a">AA</span>Avni A <i>QA Engineer</i></span>
+    <span class="who"><span class="av e">EG</span>Earnest Gibbs <i>QA Engineer</i></span>
+    <span class="note">3 of 3 responded · Oct 23–25 · read by Steve Daubert</span>
   </div>
 
   <h2>What stands out <span class="sub">six findings from three responses · small sample, read as signal to verify in Sprint 22, not as proof</span></h2>
@@ -344,11 +378,138 @@ One last thing I want to bring up is any delays in regression will consume signi
   </div>
 
 
+  </div>
+
+  <div class="panel" data-role="tpm">
+  <div class="resp">
+    <span class="who"><span class="av j">JT</span>Josette Towles <i>Senior Technical Program Manager</i></span>
+    <span class="note">1 of 1 responded · Oct 23 · read by Eric Normant</span>
+    <span class="flag">Q5 answered with one line · 15-minute follow-up needed</span>
+  </div>
+
+  <h2>What stands out <span class="sub">four findings from one response · a single seat, read as that person's view of the system</span></h2>
+  <div class="findings">
+    <div class="fd">
+      <div class="n">01 · One pick</div>
+      <h3>The only delay named is cross-team dependencies.</h3>
+      <p>Offered twelve sources of delay and up to three picks, Josette picked one: cross-team dependencies, external systems, or shared resources. Nothing about unclear problems, late alignment, capacity, readiness, or testing. From the program seat, the plan is sound and the dependencies are what break it.</p>
+      <div class="ev">Q1: 1 of 12 options · matches QA's loudest verbatim theme</div>
+    </div>
+    <div class="fd good">
+      <div class="n">02 · Eight of nine</div>
+      <h3>From the program seat, almost every planning practice holds.</h3>
+      <p>Hypothesis on every commitment, early cross-functional alignment, an integrated plan to the point of usable value, capacity validated before dates, documented risks and owners, explicit trade-offs when work changes, forecasts adjusted against actuals. Eight of nine statements checked. QA checked two or three.</p>
+      <div class="ev">Q2: 8/9 · compare the QA tab's 0/3 on hypothesis and on clear requirements</div>
+    </div>
+    <div class="fd gap">
+      <div class="n">03 · The one unchecked</div>
+      <h3>Nobody, including the TPM, reviews the KPI after release.</h3>
+      <p>The single statement Josette left unchecked is the same one all three QA engineers left unchecked: after release, the team reviews the relevant KPI and decides what to do next. The plan runs to the release date and stops.</p>
+      <div class="ev">Q2: 0/1 · QA: 0/3 · the one unanimous gap across both surveys</div>
+    </div>
+    <div class="fd">
+      <div class="n">04 · AI</div>
+      <h3>AI is already working in the program seat, mostly on the paperwork.</h3>
+      <p>Faster and better for status, meeting notes, decisions, actions, and documentation; better quality for risk tracking, Jira and Jellyfish analysis, and KPI monitoring; saves time on release readiness. Still exploring on forecasting, dependencies and critical path, and scope trade-offs, which are the judgment calls at the center of the role.</p>
+      <div class="ev">Q4: 6 of 9 activities positive · 3 exploring · 0 not using</div>
+    </div>
+  </div>
+
+  <h2>Where the time goes <span class="sub">Q1 · up to three picks · one was made</span></h2>
+  <div class="two">
+    <div class="card">
+      <div class="q">Biggest sources of delay between a business need and delivered value</div>
+      <div class="qd">One pick from twelve options. The eleven not chosen describe the planning system itself, and Josette left all of them alone.</div>
+      <div class="bars">
+        <div class="grp">Chosen</div>
+        <div class="lab hot">Cross-team dependencies, external systems, or shared resources create delays</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip j">J</span></div>
+        <div class="grp">Not chosen</div>
+        <div class="lab zero">The problem, expected business outcome, or success criteria are not clear enough before planning begins</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Product, Design, Engineering, and QA align too late on scope, feasibility, and risks</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Delivery plans are committed before capacity, dependencies, and critical path are understood</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Decisions, approvals, or escalations take too long</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Teams have conflicting priorities; new work is added without explicit trade-offs</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Work is not sufficiently ready when execution begins</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Testing, regression, integration, or release readiness delays delivery</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Progress reporting takes time but does not surface actionable risks</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Initiatives are too large; smaller useful increments are missed</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">Teams lack visibility into progress, risks, or the expected date</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+        <div class="lab zero">We do not evaluate outcomes after release quickly enough</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q">How delivery is coordinated across teams</div>
+      <div class="qd">Q3 · one answer from six, ordered strongest to weakest.</div>
+      <div class="opts">
+        <div class="on"><span class="chip j">J</span>We maintain a shared, integrated plan with clear owners, dependencies, critical-path activities, decision dates, capacity assumptions, and measurable delivery outcomes. Risks are surfaced early, and trade-offs are made explicitly.</div>
+        <div>We have a shared plan and clear owners, but dependencies or risks sometimes emerge late and require significant replanning.</div>
+        <div>Each team manages its own plan, and the TPM consolidates progress and escalates issues when teams become blocked.</div>
+        <div>Plans focus primarily on milestones and target dates, with limited visibility into dependencies, capacity, or readiness.</div>
+        <div>Delivery risks and cross-team conflicts are typically addressed after they threaten a commitment.</div>
+        <div>We do not have a consistent approach; coordination varies significantly across initiatives.</div>
+      </div>
+      <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the strongest option on the list, and the one that is hardest to square with her own Q1 pick. If dependencies are surfaced early and trade-offs are explicit, dependency delays should be the exception. Worth asking in the follow-up: which initiative was she thinking of for each answer?</p>
+    </div>
+  </div>
+
+  <h2>What is consistently true today <span class="sub">Q2 · one seat · the unchecked row is the finding</span></h2>
+  <div class="card">
+    <table class="mx">
+      <thead><tr><th>Statement</th><th class="c">JT</th><th class="c">Score</th></tr></thead>
+      <tbody>
+        <tr class="all"><td>Every commitment has a clear hypothesis explaining why it should improve a KPI, with baseline, target, and rationale <span class="tg gate">QA: 0/3</span></td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>The team understands the customer problem and assesses value, usability, feasibility, and viability early enough to inform commitments</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>Product, Design, Engineering, and QA align on scope, responsibilities, dependencies, and risks before execution begins <span class="tg gate">QA: 1/3</span></td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>An integrated delivery plan connects milestones and dependencies to the point when usable value reaches the customer</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>Capacity, critical-path activities, external dependencies, and readiness are validated before dates are committed</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>Risks, decisions, owners, and deadlines are documented, with clear escalation paths when blocked</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>New work or changing priorities triggers explicit trade-offs and updates to the delivery plan</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="all"><td>We regularly compare actual progress against the plan and adjust forecasts when assumptions change</td><td class="c"><span class="y"></span></td><td class="sc">1/1</td></tr>
+        <tr class="none"><td>The team reviews the relevant KPI after release and decides what to do next <span class="tg gate">QA: 0/3</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Where AI is landing <span class="sub">Q4 · one answer per activity · darker is better</span></h2>
+  <div class="card">
+    <table class="ai">
+      <thead><tr><th>Activity</th><th>JT</th><th style="text-align:left">Read</th></tr></thead>
+      <tbody>
+        <tr><td class="row">Status, meeting notes, decisions, and actions</td><td class="v both">Faster and better</td><td class="sum"><b>In use</b> · the coordination paperwork</td></tr>
+        <tr><td class="row">Documentation and knowledge retrieval</td><td class="v both">Faster and better</td><td class="sum"><b>In use</b></td></tr>
+        <tr><td class="row">Risk, issue, assumption, and dependency tracking</td><td class="v qual">Better quality</td><td class="sum"><b>In use</b> · the RAID log</td></tr>
+        <tr><td class="row">Analyzing Jira and Jellyfish delivery data</td><td class="v qual">Better quality</td><td class="sum"><b>In use</b> · a partner for the Phase 2 baseline</td></tr>
+        <tr><td class="row">KPI monitoring and post-launch analysis</td><td class="v qual">Better quality</td><td class="sum">In use, yet Q2 says the KPI is not reviewed after release. Ask which KPIs.</td></tr>
+        <tr><td class="row">Release readiness and launch coordination</td><td class="v time">Saves time</td><td class="sum">In use</td></tr>
+        <tr><td class="row">Integrated planning and delivery forecasting</td><td class="v exp">Exploring</td><td class="sum">Not yet · the judgment work</td></tr>
+        <tr><td class="row">Dependencies, critical path, and schedule conflicts</td><td class="v exp">Exploring</td><td class="sum">Not yet · and dependencies are her one named delay</td></tr>
+        <tr><td class="row">Scope changes, capacity, and trade-offs</td><td class="v exp">Exploring</td><td class="sum">Not yet</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> the most AI-forward respondent so far: nothing marked "not using" or "unclear benefit." The three "exploring" rows are the ones where AI would touch the delay she named. Dependency and critical-path analysis is a natural pairing target for Eric in Sprint 24.</p>
+  </div>
+
+  <h2>In their words <span class="sub">Q5 · one line, and a follow-up to schedule</span></h2>
+  <div class="vb">
+    <div class="vq"><span class="av j">JT</span><div><p>Cross-team dependencies, external systems, or shared resources create delays.</p><div class="tags"><span class="tag t1">Cross-team dependencies</span><span class="tag">Verbatim is the Q1 option text · no example given</span></div></div></div>
+  </div>
+  <div class="ivnote"><b>Follow-up for Eric, 15 minutes.</b> Which initiative was the dependency delay on, which team, and how many days did it cost? Which commitment has a written hypothesis with a baseline and target, so we can see what "hypothesis" means in the program seat? And where does the integrated plan live, so Probe 01 can check what reaches sprint planning against it?</div>
+  </div>
+
   <footer>
     <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
     <div class="footer-conf">Confidential · Internal · Survey responses are shared within the Tiger Team only and synthesized without attribution outside it · October 2026</div>
   </footer>
 
 </main>
+
+<script>
+document.querySelectorAll('#tabs button[data-role]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.dataset.role===b.dataset.role));
+  try{localStorage.setItem('mx-survey-tab',b.dataset.role)}catch(e){}
+}));
+try{const r=localStorage.getItem('mx-survey-tab'); const b=r&&document.querySelector('#tabs button[data-role="'+r+'"]'); if(b) b.click();}catch(e){}
+</script>
 </body>
 </html>
