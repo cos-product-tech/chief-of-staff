@@ -39,17 +39,19 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 
 /* role navigation: one page per role */
-.roles{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 18px}
-.rl{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--dark-forest);min-height:58px;transition:border-color .15s,transform .15s}
-.rl b{font-size:12.5px;font-weight:600;line-height:1.25}
-.rl i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--text-muted)}
-a.rl:hover{border-color:var(--teal);transform:translateY(-1px)}
-.rl.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff} .rl.on i{color:var(--turquoise)}
-.rl.soon{border-style:dashed;color:var(--text-muted);background:transparent} .rl.soon b{font-weight:500}
-.rl.across{border-color:#F3C9A6;background:var(--warn-bg)} .rl.across i{color:var(--warn)} .rl.across.on{background:var(--orange);border-color:var(--orange);color:#1A1200} .rl.across.on i{color:#1A1200}
-
-/* respondents strip */
-.resp{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.roles{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 14px}
+.rl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 13px;border-radius:20px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--dark-forest);font-size:12.5px;font-weight:500;line-height:1;transition:border-color .15s,background .15s}
+.rl b{font-weight:500}
+.rl i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 6px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+a.rl:hover{border-color:var(--teal);background:#F2FAF8}
+.rl.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff} .rl.on i{background:var(--turquoise);color:#01271A}
+.rl.soon{border-style:dashed;color:var(--text-muted);background:transparent} .rl.soon i{background:transparent;padding:0;color:var(--text-muted)}
+.roles .sep{width:1px;height:22px;background:var(--border);margin:0 4px}
+.rl.across{border-color:var(--orange);color:var(--warn)} .rl.across i{background:var(--warn-bg);color:var(--warn)} .rl.across.on{background:var(--orange);border-color:var(--orange);color:#1A1200} .rl.across.on i{background:#1A1200;color:#fff}
+/* respondents */
+.resp{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.readby{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:5px 10px;border-radius:20px;background:var(--turquoise);color:#01271A;font-weight:500}
+.readby small{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;font-weight:400}
 .who{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:4px 12px 4px 4px;font-size:12.5px}
 .av{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:500;color:#fff}
 .who i{font-style:normal;color:var(--text-muted);font-size:11px}
@@ -167,11 +169,11 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 .footer-brand strong{color:var(--dark-forest)}
 .footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
 
-@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} .roles{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:900px){
   .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
   .doc-body{padding:20px 16px 40px}
-  .findings,.two,.themes,.probe{grid-template-columns:1fr} .roles{grid-template-columns:1fr 1fr}
+  .findings,.two,.themes,.probe{grid-template-columns:1fr} 
   .bars{grid-template-columns:1fr 100px 80px}
   .cyc{grid-template-columns:repeat(3,1fr)}
   .ai td.v{width:auto;font-size:9px}
@@ -201,14 +203,21 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 <main class="doc-body">
 
   <nav class="roles">
-    <a class="rl" href="index.html"><b>Quality Automation Engineering</b><i>3 of 3 in</i></a>
-    <a class="rl on" href="engineering-management.html"><b>Engineering Management</b><i>1 of 2 in</i></a>
-    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1 of 1 in</i></a>
-    <span class="rl soon"><b>Product Management</b><i>not yet in</i></span>
-    <span class="rl soon"><b>Product Design</b><i>not yet in</i></span>
-    <span class="rl soon"><b>Software Engineering</b><i>not yet in</i></span>
-    <a class="rl across" href="across-roles.html"><b>Across roles</b><i>where seats agree and disagree</i></a>
+    <a class="rl" href="index.html"><b>Quality Automation Engineering</b><i>3/3</i></a>
+    <a class="rl on" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
+    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <span class="rl soon"><b>Product Management</b><i>soon</i></span>
+    <span class="rl soon"><b>Product Design</b><i>soon</i></span>
+    <span class="rl soon"><b>Software Engineering</b><i>soon</i></span>
+    <span class="sep"></span>
+    <a class="rl across" href="across-roles.html"><b>Across roles</b><i>5 people</i></a>
   </nav>
+  <div class="resp">
+    <span class="who"><span class="av q">QO</span>Quan Ouyang <i>Director, Engineering</i></span>
+    <span class="who" style="opacity:.55"><span class="av" style="background:#B9C0BC">AF</span>Andrew Ferrer <i>Team Lead · not yet responded</i></span>
+    <span class="note">1 of 2 responded · Oct 23</span><span class="readby"><small>Read by</small>Eric Normant</span>
+  </div>
+
   <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">three probes from the director's answers · Andrew's response will add or change them</span></h2>
   <div class="probe">
     <div class="pb"><div class="ph"><span class="pn">Probe 08</span><span class="pt">intake</span></div><h4>Watch what enters Sprint 22 after planning closes.</h4><p>Quan says forecasts break on unplanned work and changing priorities. Log every item added mid-sprint: where it came from, who asked, what was traded out (if anything). Jellyfish says 263%; this puts names and sources on it.</p><div class="pf"><span class="ol"><span class="own st">Steve</span><span class="own am">Amrita</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Sprint predictability</span></span></div></div>
@@ -216,11 +225,6 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div class="pb"><div class="ph"><span class="pn">Probe 10</span><span class="pt">engineering input</span></div><h4>Watch who sets the date in planning.</h4><p>Quan says engineering doesn't shape dates before commitments are made. In Sprint 22 planning, note who proposes each date, whether engineering pushes back, and what happens when it does.</p><div class="pf"><span class="ol"><span class="own am">Amrita</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Sprint predictability</span></span></div></div>
   </div>
 
-  <div class="resp">
-    <span class="who"><span class="av q">QO</span>Quan Ouyang <i>Director, Engineering</i></span>
-    <span class="who" style="opacity:.55"><span class="av" style="background:#B9C0BC">AF</span>Andrew Ferrer <i>Team Lead · not yet responded</i></span>
-    <span class="note">1 of 2 responded · Oct 23 · read by Eric Normant</span>
-  </div>
 
   <h2>What stands out <span class="sub">four findings from one response · the director's view of his own system</span></h2>
   <div class="findings">
