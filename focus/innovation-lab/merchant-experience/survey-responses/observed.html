@@ -168,7 +168,16 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .rl.live{border-color:var(--teal);color:var(--teal)} .rl.live i{background:#E3F3EF;color:var(--teal)} .rl.live.on{background:var(--teal);border-color:var(--teal);color:#fff} .rl.live.on i{background:#fff;color:var(--teal)}
 /* field notes: heard and observed */
 .fn{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
-.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.fn .fh:hover{background:#ECEFEC} .fn .fh:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.fn .chev{font-size:12px;color:var(--text-muted);transition:transform .15s;width:12px;display:inline-block}
+.fn.closed .chev{transform:rotate(-90deg)} .fn.closed .fh{border-bottom:none} .fn.closed .fb{display:none}
+.fn.flash .fh{background:var(--warn-bg)}
+.toc{display:flex;flex-direction:column;gap:6px;margin:0 0 16px}
+.toc a{display:grid;grid-template-columns:1fr auto auto auto;gap:14px;align-items:center;padding:8px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--dark-forest);font-size:13px}
+.toc a:hover{border-color:var(--teal);background:#F2FAF8}
+.toc a b{font-weight:600} .toc a span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)} .toc a i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+@media (max-width:600px){ .toc a{grid-template-columns:1fr auto} .toc a span:nth-of-type(2),.toc a i{display:none} }
 .fn .fh b{font-size:14px;color:var(--dark-forest)}
 .fn .fh .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
 .fn .fh .own{font-size:9.5px}
@@ -249,8 +258,14 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 
   <h2>Rituals observed <span class="sub">3 rituals · Oct 26–27 · newest first · each observation names the probe it feeds, who follows up, and the measure it touches</span></h2>
 
-  <div class="fn">
-    <div class="fh"><b>Sprint 21 retro</b><span class="meta">Tuesday, October 27, 2026 · 12:30 ET · 26 minutes · EPMO retro tool</span><span class="ppl"><span class="own er">Eric</span><span class="own to">Tony</span></span></div>
+  <nav class="toc" aria-label="Rituals">
+    <a href="#retro-oct-27"><b>Sprint 21 retro</b><span>Tue, Oct 27</span><span>12:30 PM ET</span><i>7 observations</i></a>
+    <a href="#pre-grooming-oct-27"><b>Pre-grooming</b><span>Tue, Oct 27</span><span>11:00 AM ET</span><i>7 observations</i></a>
+    <a href="#planning-oct-26"><b>Sprint 22 planning</b><span>Mon, Oct 26</span><span>11:00 AM ET</span><i>12 observations</i></a>
+  </nav>
+
+  <div class="fn" id="retro-oct-27">
+    <div class="fh" role="button" tabindex="0" aria-expanded="true"><span class="chev">▾</span><b>Sprint 21 retro</b><span class="meta">Tuesday, October 27, 2026 · 12:30 ET · 26 minutes · EPMO retro tool</span><span class="ppl"><span class="own er">Eric</span><span class="own to">Tony</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>Six people spoke. Seven did not.</h4><p>Erin, Preston, Mamatha, Avni, Michael, and Earnest carried the retro. Ryan, Ramya, Stephanie, Kyle, and Josette said nothing; Leonel and Alex were out. The board: one went-well card, two didn't-go-well, two improvements, five actions. All five actions were typed by Erin; four assign Product, one assigns Mamatha, none assign an engineer.</p></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="engineering-management.html">Probe 10</a><a class="pr" href="product-management.html">Probe 19</a></div><div class="row"><span class="own er">Eric</span></div><div class="row"><span class="mt">Commitments on date</span></div></div></div>
       <div class="ob"><div><h4>QA says stories were never groomed. Product believed they were.</h4><p>Avni's improvement card asked for tickets to be clarified in grooming before planning. Preston: "I feel like we do this on some level." Mamatha and Avni: specific Sprint 22 stories, including Andrew's technical ones, were read for the first time while being estimated on Monday. Erin conceded the ready-checklist practice had lapsed and handed it to Preston. Same two hours, two different experiences, noticed only in the retro.</p></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="software-engineering.html">Probe 14</a><a class="pr" href="quality-automation-engineering.html">Probe 01</a></div><div class="row"><span class="own er">Eric</span><span class="own am">Amrita</span></div><div class="row"><span class="mt">Sprint predictability</span><span class="mt">Issue cycle time</span></div></div></div>
@@ -262,8 +277,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     </div>
   </div>
 
-  <div class="fn">
-    <div class="fh"><b>Pre-grooming</b><span class="meta">Tuesday, October 27, 2026 · 11:00 ET · 47 minutes · Erin and Preston; Andrew out</span><span class="ppl"><span class="own er">Eric</span><span class="own to">Tony</span></span></div>
+  <div class="fn closed" id="pre-grooming-oct-27">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Pre-grooming</b><span class="meta">Tuesday, October 27, 2026 · 11:00 ET · 47 minutes · Erin and Preston; Andrew out</span><span class="ppl"><span class="own er">Eric</span><span class="own to">Tony</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>The roadmap is inherited, and other people fill it.</h4><p>Erin works off the roadmap in place when she started. Since then: DMS reconciliation ("this has to be done"), then Trey's security red-flag list, then Purush's ACH.com sandbox item, then the business pulling open batch management up. Erin: "we're spending a lot of effort doing things that other folks feel need to be done." Preston: "not having control over our destiny has been a recurring theme since I was in QA"; asks arrive "without any research, without any understanding of how this would help everybody." No organizational goal (attrition, adoption) drives the list.</p></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="product-management.html">Probe 18</a><a class="pr" href="product-management.html">Probe 19</a></div><div class="row"><span class="own ba">Bart</span><span class="own er">Eric</span></div><div class="row"><span class="mt">Commitments on date</span></div></div></div>
       <div class="ob"><div><h4>Nobody knows how merchants experience the product.</h4><p>Asked directly: no customer contact, no session review, no known reason for attrition. Customer Support ran a survey the team hasn't seen. NPS exists for partners, not merchants. FullStory is live in MXM but PCI and PII masking leaves "blocks of color"; prod and non-prod share one instance, so the session quota runs out before month-end. Google Analytics: Erin requested access by ticket, nothing back. KPIs come from the weekly FullStory email. Business intelligence dashboards: "not aware of any." MXM is "the face to the merchant" and is not used for it.</p></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="product-management.html">Probe 18</a><a class="pr" href="product-management.html">Probe 17</a></div><div class="row"><span class="own da">Danny</span><span class="own er">Eric</span></div><div class="row"><span class="mt">Issues resolved</span></div></div></div>
@@ -275,8 +290,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     </div>
   </div>
 
-  <div class="fn">
-    <div class="fh"><b>Sprint 22 planning</b><span class="meta">Monday, October 26, 2026 · 2 hours · paused, finished offline by Erin</span><span class="ppl"><span class="own er">Eric</span><span class="own st">Steve</span></span></div>
+  <div class="fn closed" id="planning-oct-26">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Sprint 22 planning</b><span class="meta">Monday, October 26, 2026 · 2 hours · paused, finished offline by Erin</span><span class="ppl"><span class="own er">Eric</span><span class="own st">Steve</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>Planning did not reference capacity. At all.</h4><p>No capacity number was mentioned before or during planning. The team planned, and the result is everyone overbooked except Michael. Two people are over 200% while on PTO (Leonel back October 31; Avni out October 30 to November 3). Stephanie Chou, new from Corvia Pay, has no system access yet and was set to 20% and then skipped. The director's survey said capacity is known (1/1) and not used to set commitments (0/1); this is that, live, in the first hour. Erin's own summary at the end of the session: the team is at or over capacity, with only Michael having bandwidth.</p><table class="cap"><thead><tr><th>Person</th><th>Planned / capacity</th><th></th></tr></thead><tbody><tr><td><b>Leonel Santiago</b> <span style="color:var(--text-muted)">Developer</span><span class=pto>40% PTO</span></td><td class="pct over">14/5 · 280%</td><td><div class="bar"><i class="over" style="width:100%"></i></div></td></tr><tr><td><b>Michael Hodges</b> <span style="color:var(--text-muted)">Developer</span></td><td class="pct ok">3/8 · 38%</td><td><div class="bar"><i class="" style="width:38%"></i></div></td></tr><tr><td><b>Ramya S.</b> <span style="color:var(--text-muted)">Developer</span></td><td class="pct warn">7/8 · 88%</td><td><div class="bar"><i class="" style="width:88%"></i></div></td></tr><tr><td><b>Ryan Patch</b> <span style="color:var(--text-muted)">Developer</span></td><td class="pct over">11/8 · 138%</td><td><div class="bar"><i class="over" style="width:100%"></i></div></td></tr><tr><td><b>Avni A</b> <span style="color:var(--text-muted)">QA</span><span class=pto>30% PTO</span></td><td class="pct over">13/6 · 217%</td><td><div class="bar"><i class="over" style="width:100%"></i></div></td></tr><tr><td><b>Earnest Gibbs</b> <span style="color:var(--text-muted)">QA</span></td><td class="pct over">9/8 · 112%</td><td><div class="bar"><i class="over" style="width:100%"></i></div></td></tr></tbody></table></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="engineering-management.html">Probe 10</a><a class="pr" href="engineering-management.html">Probe 08</a></div><div class="row"><span class="own er">Eric</span><span class="own am">Amrita</span></div><div class="row"><span class="mt">Sprint predictability</span><span class="mt">Sprint addition rate</span></div></div></div>
       <div class="ob"><div><h4>Fifteen issues carried over, and planned last.</h4><p>The team is carrying fifteen issues from Sprint 21. They were added at the end of planning, after new work had been pulled in, and even though the team members were already fully booked, the booking kept going. Carry-over should be the first line of planning, not the last. One more question to answer: why is Michael the only person with headroom? If it is because he is a frontend-only engineer, that matters, because Stephanie Chou, just hired onto the team from Corvia Pay, is also frontend-only.</p></div><div class="side"><div class="k">Feeds</div><div class="row"><a class="pr" href="engineering-management.html">Probe 08</a><a class="pr" href="software-engineering.html">Probe 14</a></div><div class="row"><span class="own er">Eric</span><span class="own st">Steve</span></div><div class="row"><span class="mt">Sprint predictability</span><span class="mt">Issue cycle time</span></div></div></div>
@@ -301,5 +316,25 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   </footer>
 
 </main>
+
+<script>
+(function(){
+  var cards=document.querySelectorAll('.fn');
+  function setOpen(c,open){c.classList.toggle('closed',!open);c.querySelector('.fh').setAttribute('aria-expanded',open?'true':'false');}
+  cards.forEach(function(c){
+    var h=c.querySelector('.fh');
+    function toggle(e){ if(e.target.closest('a')) return; setOpen(c,c.classList.contains('closed')); }
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e);} });
+  });
+  function openHash(){
+    var id=location.hash.slice(1); if(!id) return;
+    var c=document.getElementById(id); if(!c||!c.classList.contains('fn')) return;
+    setOpen(c,true); c.scrollIntoView({behavior:'smooth',block:'start'});
+    c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200);
+  }
+  window.addEventListener('hashchange',openHash); openHash();
+})();
+</script>
 </body>
 </html>
