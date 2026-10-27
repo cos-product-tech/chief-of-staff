@@ -173,7 +173,18 @@ h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17
 .fn .chev{font-size:12px;color:var(--text-muted);transition:transform .15s;width:12px;display:inline-block}
 .fn.closed .chev{transform:rotate(-90deg)} .fn.closed .fh{border-bottom:none} .fn.closed .fb{display:none}
 .fn.flash .fh{background:var(--warn-bg)}
-.toc{display:flex;flex-direction:column;gap:6px;margin:0 0 18px}
+.toc{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}
+.hm{padding:8px 12px 10px}
+.heat{width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px}
+.heat thead th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:center;padding:4px 6px;vertical-align:bottom}
+.heat thead th:first-child{text-align:left} .heat thead th small{display:block;font-size:9px;letter-spacing:0;text-transform:none;color:var(--text-muted);font-weight:400}
+.heat tbody th{text-align:left;font-weight:400;padding:4px 10px 4px 0;line-height:1.3} .heat tbody th b{display:block;color:var(--dark-forest);font-weight:600} .heat tbody th small{display:block;font-size:11px;color:var(--text-muted)}
+.heat td{text-align:center;width:88px;padding:0 3px}
+.ht{display:inline-grid;place-items:center;width:100%;height:30px;border-radius:6px;font-family:var(--mono);font-size:11.5px;font-weight:500;text-decoration:none;transition:transform .12s,box-shadow .12s}
+a.ht:hover{transform:translateY(-1px);box-shadow:0 2px 6px rgba(1,39,26,.18)}
+.ht.h0{background:var(--bg-soft)} .ht.h1{background:#D6EBE4;color:#113D30} .ht.h2{background:#6FB79A;color:#fff} .ht.h3{background:var(--forest);color:#fff}
+.heat td.tot{font-family:var(--mono);font-size:11.5px;color:var(--dark-forest);font-weight:500;width:56px}
+@media (max-width:700px){ .heat tbody th small{display:none} .heat td{width:52px} .heat td.tot{width:36px} .hm{overflow-x:auto} }
 .toc a{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:14px;align-items:center;padding:9px 14px 9px 12px;background:#fff;border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:8px;text-decoration:none;color:var(--teal);font-size:13px;transition:background .15s,border-color .15s,transform .15s}
 .toc a:hover,.toc a:focus-visible{background:#F2FAF8;border-color:var(--teal);outline:none;transform:translateX(2px)}
 .toc a:hover b{text-decoration:underline;text-underline-offset:3px}
@@ -261,15 +272,29 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <a class="rl live on" href="observed.html"><b>Observed</b><i>3 rituals</i></a>
   </nav>
 
-  <h2>Rituals observed <span class="sub">3 rituals · Oct 26–27 · newest first · each observation names the probe it feeds, who follows up, and the measure it touches</span></h2>
+  <h2>Rituals observed <span class="sub">3 rituals · Oct 26–27 · jump to one, or read the heat map first</span></h2>
 
-  <div class="k">Jump to a ritual · click to open and scroll</div>
+  <div class="k">Jump to a ritual · opens it and scrolls</div>
   <nav class="toc" aria-label="Rituals">
     <a href="#retro-oct-27"><em>01</em><b>Sprint 21 retro</b><span>Tue, Oct 27</span><span>12:30 PM ET</span><i>7 observations</i><u>→</u></a>
     <a href="#pre-grooming-oct-27"><em>02</em><b>Pre-grooming</b><span>Tue, Oct 27</span><span>11:00 AM ET</span><i>7 observations</i><u>→</u></a>
     <a href="#planning-oct-26"><em>03</em><b>Sprint 22 planning</b><span>Mon, Oct 26</span><span>11:00 AM ET</span><i>12 observations</i><u>→</u></a>
   </nav>
 
+  <h2>Where the heat is <span class="sub">26 observations · 9 themes · count per ritual · click a tile to open that ritual</span></h2>
+  <div class="card hm"><table class="heat"><thead><tr><th>Theme</th><th>Planning<small>Mon, Oct 26</small></th><th>Pre-grooming<small>Tue, Oct 27</small></th><th>Retro<small>Tue, Oct 27</small></th><th>Total</th></tr></thead><tbody>
+<tr><th scope="row"><b>Work arrives unready</b><small>Ungroomed stories, missing points and QA tasks, a Definition of Ready nobody uses</small></th><td><a class="ht h3" href="#planning-oct-26" title="Open Planning">3</a></td><td><a class="ht h1" href="#pre-grooming-oct-27" title="Open Pre-grooming">1</a></td><td><a class="ht h3" href="#retro-oct-27" title="Open Retro">3</a></td><td class="tot">7</td></tr>
+<tr><th scope="row"><b>Capacity is not planned</b><small>No capacity number, carry-over last, PTO ignored, Sprint 23 overwritten</small></th><td><a class="ht h2" href="#planning-oct-26" title="Open Planning">2</a></td><td><a class="ht h1" href="#pre-grooming-oct-27" title="Open Pre-grooming">1</a></td><td><span class="ht h0" aria-label="0"></span></td><td class="tot">3</td></tr>
+<tr><th scope="row"><b>Passkey has no decision owner</b><small>Flow changed mid-sprint between QA, Keycloak, and Design</small></th><td><a class="ht h2" href="#planning-oct-26" title="Open Planning">2</a></td><td><span class="ht h0" aria-label="0"></span></td><td><a class="ht h1" href="#retro-oct-27" title="Open Retro">1</a></td><td class="tot">3</td></tr>
+<tr><th scope="row"><b>No feature flags, unstable environments</b><small>All-or-nothing releases, QA/UAT parity, automation churn</small></th><td><a class="ht h1" href="#planning-oct-26" title="Open Planning">1</a></td><td><a class="ht h1" href="#pre-grooming-oct-27" title="Open Pre-grooming">1</a></td><td><a class="ht h1" href="#retro-oct-27" title="Open Retro">1</a></td><td class="tot">3</td></tr>
+<tr><th scope="row"><b>One PM carries everything</b><small>Planning finished alone; all retro actions on Product</small></th><td><a class="ht h1" href="#planning-oct-26" title="Open Planning">1</a></td><td><span class="ht h0" aria-label="0"></span></td><td><a class="ht h2" href="#retro-oct-27" title="Open Retro">2</a></td><td class="tot">3</td></tr>
+<tr><th scope="row"><b>Cross-team dependencies</b><small>Keycloak, PCE, cloud support, Andrew, Alex, Leonel</small></th><td><a class="ht h2" href="#planning-oct-26" title="Open Planning">2</a></td><td><span class="ht h0" aria-label="0"></span></td><td><span class="ht h0" aria-label="0"></span></td><td class="tot">2</td></tr>
+<tr><th scope="row"><b>Estimates hedge uncertainty</b><small>Higher number "to be conservative"; 8 points per FTE from the PMO</small></th><td><a class="ht h1" href="#planning-oct-26" title="Open Planning">1</a></td><td><a class="ht h1" href="#pre-grooming-oct-27" title="Open Pre-grooming">1</a></td><td><span class="ht h0" aria-label="0"></span></td><td class="tot">2</td></tr>
+<tr><th scope="row"><b>No product strategy, no customer signal</b><small>Inherited roadmap, stakeholders add items, no session or NPS data</small></th><td><span class="ht h0" aria-label="0"></span></td><td><a class="ht h2" href="#pre-grooming-oct-27" title="Open Pre-grooming">2</a></td><td><span class="ht h0" aria-label="0"></span></td><td class="tot">2</td></tr>
+<tr><th scope="row"><b>MXM regression absorbs other teams</b><small>Any team commits; ACH breaks the run every release</small></th><td><span class="ht h0" aria-label="0"></span></td><td><a class="ht h1" href="#pre-grooming-oct-27" title="Open Pre-grooming">1</a></td><td><span class="ht h0" aria-label="0"></span></td><td class="tot">1</td></tr>
+</tbody></table></div>
+
+  <h2>The rituals <span class="sub">newest first · each observation names the probe it feeds, who follows up, and the measure it touches</span></h2>
   <div class="fn closed" id="retro-oct-27">
     <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Sprint 21 retro</b><span class="meta">Tuesday, October 27, 2026 · 12:30 ET · 26 minutes · EPMO retro tool</span></div>
     <div class="fb">
@@ -341,6 +366,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200);
   }
   window.addEventListener('hashchange',openHash); openHash();
+  document.querySelectorAll('.toc a, a.ht').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); var c=document.getElementById(a.getAttribute('href').slice(1)); if(!c) return; setOpen(c,true); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200); history.replaceState(null,'',location.pathname); }); });
 })();
 </script>
 </body>
