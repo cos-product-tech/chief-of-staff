@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MerCap Survey Responses — Product Design</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
+  --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
+  --ok:#3F8A46; --ok-bg:#E9F5E9; --warn:#D45A00; --warn-bg:#FFF1E4; --risk:#C9402F; --risk-bg:#FBEAE7; --hold:#8A8F8C; --hold-bg:#ECEEEC;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+b{font-weight:600}
+a{color:var(--teal)}
+
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1080px;margin:0 auto;padding:34px 40px 30px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:28px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.3px;margin-bottom:10px}
+.doc-subtitle{font-size:14px;font-weight:300;color:rgba(231,229,170,.85);max-width:720px;line-height:1.6}
+.doc-subtitle b{color:#fff;font-weight:500}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+
+.doc-body{max-width:1080px;margin:0 auto;padding:22px 40px 56px}
+h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-bottom:3px solid var(--forest);margin:26px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
+.k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+
+/* role navigation: one page per role */
+.roles{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 14px}
+.rl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 13px;border-radius:20px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--dark-forest);font-size:12.5px;font-weight:500;line-height:1;transition:border-color .15s,background .15s}
+.rl b{font-weight:500}
+.rl i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 6px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+a.rl:hover{border-color:var(--teal);background:#F2FAF8}
+.rl.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff} .rl.on i{background:var(--turquoise);color:#01271A}
+.rl.soon{border-style:dashed;color:var(--text-muted);background:transparent} .rl.soon i{background:transparent;padding:0;color:var(--text-muted)}
+.roles .sep{width:1px;height:22px;background:var(--border);margin:0 4px}
+.rl.across{border-color:var(--orange);color:var(--warn)} .rl.across i{background:var(--warn-bg);color:var(--warn)} .rl.across.on{background:var(--orange);border-color:var(--orange);color:#1A1200} .rl.across.on i{background:#1A1200;color:#fff}
+/* respondents */
+.resp{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.readby{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:5px 10px;border-radius:20px;background:var(--turquoise);color:#01271A;font-weight:500}
+.readby small{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;font-weight:400}
+.who{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:4px 12px 4px 4px;font-size:12.5px}
+.av{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:500;color:#fff}
+.who i{font-style:normal;color:var(--text-muted);font-size:11px}
+.av.k{background:#1B7F8C} .chip.k{background:#1B7F8C} .av.a{background:#1F7A5C} .av.m{background:#D45A00} .av.e{background:#4B56A8}
+.note{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fd{background:#fff;border:1px solid var(--border);border-top:3px solid var(--orange);border-radius:10px;padding:14px 15px 15px}
+.fd .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--orange);margin-bottom:6px}
+.fd h3{font-size:14px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:6px}
+.fd p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.fd .ev{margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--teal)}
+.fd.good{border-top-color:var(--ok)} .fd.good .n{color:var(--ok)}
+.fd.gap{border-top-color:var(--hold)} .fd.gap .n{color:var(--hold)}
+
+/* bars */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.q{font-size:13.5px;font-weight:600;color:var(--dark-forest);margin-bottom:2px}
+.qd{font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.bars{display:grid;grid-template-columns:1fr 150px 90px;gap:6px 14px;align-items:center}
+.bars .lab{font-size:12.5px;color:var(--text-mid);line-height:1.35}
+.bars .lab.hot{color:var(--dark-forest);font-weight:600}
+.bars .lab.zero{color:var(--text-muted)}
+.bars .bar{height:14px;background:var(--bg-soft);border-radius:3px;position:relative;overflow:hidden}
+.bars .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--orange);border-radius:3px}
+.bars .bar.ok i{background:var(--ok)}
+.bars .cnt{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--text-mid)}
+.bars .cnt b{min-width:14px;color:var(--dark-forest)}
+.chip{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:8.5px;color:#fff}
+.chip.a{background:#1F7A5C} .chip.m{background:#D45A00} .chip.e{background:#4B56A8}
+.bars .grp{grid-column:1 / -1;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding:8px 0 2px;border-top:1px dashed var(--border);margin-top:4px}
+.bars .grp:first-child{border-top:none;margin-top:0;padding-top:0}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+
+/* truth matrix */
+.mx{width:100%;border-collapse:collapse;font-size:12.5px}
+.mx th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);font-weight:500}
+.mx th.c,.mx td.c{text-align:center;width:52px}
+.mx td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle;line-height:1.35;color:var(--text-mid)}
+.mx tr:last-child td{border-bottom:none}
+.mx td.c span{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:#fff}
+.mx td.c span.y{background:var(--ok);border-color:var(--ok);position:relative}
+.mx td.c span.y::after{content:'✓';color:#fff;font-size:11px;position:absolute;inset:0;display:grid;place-items:center}
+.mx td.sc{font-family:var(--mono);font-size:11px;text-align:center;width:52px;color:var(--dark-forest);font-weight:500}
+.mx tr.none td{background:var(--risk-bg)} .mx tr.none td.sc{color:var(--risk)}
+.mx tr.all td{background:var(--ok-bg)}
+.mx td .tg{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.tg.gate{background:var(--warn-bg);color:var(--warn)}
+
+/* regression cycle */
+.cyc{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:6px}
+.cyc div{border:1px solid var(--border);border-radius:6px;padding:8px 6px;text-align:center;font-size:11px;color:var(--text-muted);background:#fff;min-height:64px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.cyc div b{font-family:var(--mono);font-size:16px;color:var(--text-muted);font-weight:500}
+.cyc div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest)} .cyc div.on b{color:var(--warn)}
+.cyc .d{display:flex;justify-content:center;gap:3px}
+
+/* AI heat */
+.ai{width:100%;border-collapse:separate;border-spacing:3px;font-size:12px}
+.ai th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:center;padding:4px 2px}
+.ai th:first-child{text-align:left}
+.ai td{padding:7px 8px;border-radius:5px;line-height:1.3}
+.ai td.row{color:var(--text-mid);background:transparent;padding-left:0}
+.ai td.v{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:#fff;width:112px}
+.v.not{background:#D9DED9;color:#4A5450} .v.exp{background:#B9D7CF;color:#113D30} .v.time{background:#6FB79A} .v.qual{background:#2F8E6E} .v.both{background:var(--forest)} .v.unc{background:#E9B98F;color:#5A2E00} .v.na{background:#F0EFEA;color:#8A8F8C}
+.ai td.sum{font-family:var(--mono);font-size:10.5px;color:var(--text-mid);width:150px}
+.ai td.sum b{color:var(--dark-forest);font-weight:500}
+.leg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:11px;color:var(--text-muted);margin-top:8px;align-items:center}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+
+/* verbatims */
+.vb{display:grid;grid-template-columns:1fr;gap:10px}
+.vq{background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:30px 1fr;gap:10px}
+.vq p{font-size:12.75px;line-height:1.55;color:var(--text-mid);white-space:pre-line}
+.vq .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.tag.t1{background:var(--warn-bg);border-color:#F3C9A6;color:var(--warn)}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.th{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.th .n{font-family:var(--mono);font-size:20px;color:var(--orange);font-weight:500;line-height:1}
+.th .n small{font-size:11px;color:var(--text-muted);margin-left:3px}
+.th h4{font-size:12.5px;color:var(--dark-forest);margin:6px 0 3px}
+.th p{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+
+
+/* probes: the first thing to read */
+h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17px}
+.probe{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pb{background:var(--dark-forest);color:#fff;border-radius:10px;padding:14px 15px 13px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pb::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--turquoise))}
+.pb .ph{display:flex;align-items:center;gap:8px}
+.pb .pn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pb .pt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.pb h4{font-size:14.5px;line-height:1.3;color:#fff}
+.pb p{font-size:12.25px;line-height:1.5;color:rgba(255,255,255,.78);flex:1}
+.pb .pf{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.pb .ol{display:flex;gap:5px;flex-wrap:wrap}
+.own{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 8px;border-radius:20px;color:#01271A;font-weight:500}
+.own.st{background:var(--turquoise)} .own.am{background:var(--pistachio)} .own.er{background:var(--orange);color:#1A1200} .own.fa{background:#9FE1B8} .own.ba{background:#FFB37A} .own.da{background:#D9C8F0}
+.pb .ms{display:flex;gap:5px;flex-wrap:wrap}
+.mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
+
+.av.j{background:#8A6D1C} .chip.j{background:#8A6D1C} .av.q{background:#003E29} .chip.q{background:#003E29} .av.r{background:#2F6FB3} .chip.r{background:#2F6FB3} .av.h{background:#7A3E9D} .chip.h{background:#7A3E9D} .av.x{background:#B3541E} .chip.x{background:#B3541E} .av.l{background:#2E8B74} .chip.l{background:#2E8B74} .av.y{background:#A0522D} .chip.y{background:#A0522D} .av.p{background:#5C6BC0} .chip.p{background:#5C6BC0} .av.n{background:#C2185B} .chip.n{background:#C2185B}
+.flag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid #F3C9A6}
+.mx.xr td{font-size:12.25px} .mx.xr td.sc{width:auto;min-width:72px;font-size:10.5px;line-height:1.3;text-align:center}
+.mx.xr td.sc.r{color:var(--risk)} .mx.xr td.sc.g{color:var(--ok)}
+.mx tr.agree td{background:var(--ok-bg)} .mx tr.split td{background:var(--warn-bg)}
+.mx th small{display:block;font-size:9px;letter-spacing:0;text-transform:none;color:var(--text-muted)}
+.opts div{font-size:12.25px;color:var(--text-muted);padding:8px 10px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.opts div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest);font-weight:500}
+.ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
+.ivnote b{color:var(--dark-forest)}
+
+.rl.live{border-color:var(--teal);color:var(--teal)} .rl.live i{background:#E3F3EF;color:var(--teal)} .rl.live.on{background:var(--teal);border-color:var(--teal);color:#fff} .rl.live.on i{background:#fff;color:var(--teal)}
+/* field notes: heard and observed */
+.fn{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.fn .fh b{font-size:14px;color:var(--dark-forest)}
+.fn .fh .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.fn .fh .ppl{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+.fn .fb{padding:6px 16px 12px}
+.ob{display:grid;grid-template-columns:1fr 240px;gap:14px;padding:12px 0;border-top:1px dashed var(--border)}
+.ob:first-child{border-top:none}
+.ob h4{font-size:13.5px;color:var(--dark-forest);margin-bottom:4px}
+.ob p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.ob .side{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ob .side .k{margin-bottom:0}
+.ob .side .mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.ob .side a.pr{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid #F3C9A6;background:var(--warn-bg);padding:2px 8px;border-radius:4px}
+.ob .side .own{margin-right:0}
+.cap{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.cap th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:left;padding:4px 8px;border-bottom:1px solid var(--border)}
+.cap td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text-mid)}
+.cap tr:last-child td{border-bottom:none}
+.cap .bar{height:8px;background:var(--bg-soft);border-radius:4px;position:relative;overflow:hidden;min-width:140px}
+.cap .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}
+.cap .bar i.over{background:linear-gradient(90deg,var(--ok) 0,#E9B98F 55%,var(--risk) 100%)}
+.cap .pct{font-family:var(--mono);font-size:11px;font-weight:500}
+.cap .pct.over{color:var(--risk)} .cap .pct.warn{color:var(--warn)} .cap .pct.ok{color:var(--ok)}
+.cap .pto{font-family:var(--mono);font-size:9.5px;color:var(--warn);margin-left:6px}
+@media (max-width:900px){ .ob{grid-template-columns:1fr} }
+
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
+.footer-brand strong{color:var(--dark-forest)}
+.footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
+
+@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:900px){
+  .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
+  .doc-body{padding:20px 16px 40px}
+  .findings,.two,.themes,.probe{grid-template-columns:1fr} 
+  .bars{grid-template-columns:1fr 100px 80px}
+  .cyc{grid-template-columns:repeat(3,1fr)}
+  .ai td.v{width:auto;font-size:9px}
+  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:720px}
+  .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
+}
+@media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="header-inner">
+    <div>
+      <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
+      <h1 class="doc-title">Product Design: what the designer told us</h1>
+      <p class="doc-subtitle">Survey responses, read three ways: <b>what people told us</b> here, <b>what we see</b> sitting with the team from Oct 26, and <b>what Jellyfish shows</b>. The gaps between the three are the diagnosis. One page per role.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Phase 2 · Sprint 22 · from Oct 26</span>
+      <span class="meta-badge badge-date">October 27, 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-body">
+
+  <nav class="roles">
+    <a class="rl across" href="index.html"><b>Across roles</b><i>13 people</i></a>
+    <span class="sep"></span>
+    <a class="rl" href="product-management.html"><b>Product Management</b><i>2/2</i></a>
+    <a class="rl on" href="product-design.html"><b>Product Design</b><i>1/1</i></a>
+    <a class="rl" href="software-engineering.html"><b>Software Engineering</b><i>5/5</i></a>
+    <a class="rl" href="quality-automation-engineering.html"><b>QA Engineering</b><i>3/3</i></a>
+    <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
+    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <span class="sep"></span>
+    <a class="rl live" href="heard.html"><b>Heard in person</b><i>1 conversation</i></a>
+    <a class="rl live" href="observed.html"><b>Observed</b><i>3 rituals</i></a>
+  </nav>
+  <div class="resp">
+    <span class="who"><span class="av k">KM</span>Kyle Miller <i>Product Designer</i></span>
+    <span class="note">1 of 1 responded · Oct 27</span><span class="readby"><small>Read by</small>Danny Lopez · Eric Normant</span>
+    <span class="flag">Confirmed Oct 27: Product, Design, and Engineering leads do no discovery together</span>
+  </div>
+
+  <h2 class="start">Start here: what to verify in Sprint 22 <span class="sub">three probes from one response and one calendar</span></h2>
+  <div class="probe">
+    <div class="pb"><div class="ph"><span class="pn">Probe 20</span><span class="pt">where design enters</span></div><h4>Trace when the designer first hears about the work.</h4><p>Kyle says design involvement "varies significantly depending on the initiative or stakeholders." Take Card on File and Priority Capital, both due to start discovery now, and date-stamp the moment Kyle first saw each. Compare with the date the sprint was committed.</p><div class="pf"><span class="ol"><span class="own da">Danny</span><span class="own er">Eric</span></span><span class="ms"><span class="mt">Commitments on date</span><span class="mt">Issue cycle time</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 21</span><span class="pt">the invite</span></div><h4>Put Kyle on the invites, then put the trio to work.</h4><p>He has the shared MerCap calendar but is not a named invitee on planning, standup, pre-grooming, grooming, or retro, and the design team's 12:30 ET standup overlaps. Name him on the invites and move one of the two meetings this week. Then stand up a weekly hour with Erin, Kyle, and Alex on one initiative, Card on File, and see whether the problem, the users, and the feasibility questions get answered before a story is written.</p><div class="pf"><span class="ol"><span class="own da">Danny</span><span class="own ba">Bart</span></span><span class="ms"><span class="mt">Sprint addition rate</span><span class="mt">Escaped defects</span></span></div></div>
+    <div class="pb"><div class="ph"><span class="pn">Probe 22</span><span class="pt">Passkey, one flow</span></div><h4>Name the owner of the end-to-end Passkey experience.</h4><p>Kyle's proposed fix is the same one the retro and planning surfaced: one agreed end-to-end flow with clear ownership and decision points between Keycloak's login and setup and the management experience our products own. Find out who can decide, and write the boundary down before the next Passkey story is groomed.</p><div class="pf"><span class="ol"><span class="own ba">Bart</span><span class="own da">Danny</span></span><span class="ms"><span class="mt">Escaped defects</span><span class="mt">Commitments on date</span></span></div></div>
+  </div>
+
+  <h2>What stands out <span class="sub">five findings from one response · the seat that should be in discovery, describing its absence</span></h2>
+  <div class="findings">
+    <div class="fd">
+      <div class="n">01 · Three picks, all upstream</div>
+      <h3>Every delay he named happens before design starts.</h3>
+      <p>The problem and outcome are unclear; requirements, acceptance criteria, specs, or readiness are incomplete when work is planned; dates are committed before the solution, design scope, capacity, feasibility, or dependencies are understood. Nothing about handoffs, prototyping, QA, or incidents. From the design seat, the work is late before it arrives.</p>
+      <div class="ev">Q1: 3 of 13 options · the same three themes as the PMs and QA</div>
+    </div>
+    <div class="fd gap">
+      <div class="n">02 · Zero of ten</div>
+      <h3>None of the discovery practices are consistently true.</h3>
+      <p>Ten statements describing discovery done well: understanding the problem first, a hypothesis, a baseline and target, early validation with merchants, feasibility and viability weighed before the solution is fixed, design involved early, a smaller first release, clear specs to engineering, an outcome review. Kyle checked none. So did both product managers.</p>
+      <div class="ev">Q2: 0/10 · PM: "none of these" 2/2 · the three discovery seats agree there is no discovery</div>
+    </div>
+    <div class="fd">
+      <div class="n">03 · The weakest option</div>
+      <h3>When design joins depends on who is asking.</h3>
+      <p>Offered six descriptions from "design is involved during discovery, before the solution and date are committed" down to "involvement varies significantly depending on the initiative or stakeholders," Kyle chose the last. Read with the calendar: he sees the ceremonies on the shared MerCap calendar but is not a named invitee, and his design standup overlaps at 12:30 ET. He was out Monday and reached Tuesday's pre-grooming only at the end. He confirmed in person that Product, Design, and Engineering leads do no discovery together.</p>
+      <div class="ev">Q3: option 6 of 6 · confirmed with Kyle, Oct 27</div>
+    </div>
+    <div class="fd">
+      <div class="n">04 · AI</div>
+      <h3>AI is saving time on production, and absent from discovery.</h3>
+      <p>Saves time on wireframing and prototyping, specs and handoffs, and documentation. Exploring on research, problem framing, the design system, and feasibility conversations. Not using on usability testing and post-launch analysis, the two activities that need users and outcomes the team doesn't have access to.</p>
+      <div class="ev">Q4: 3 saves time · 4 exploring · 2 not using · 0 unclear benefit</div>
+    </div>
+    <div class="fd">
+      <div class="n">05 · Passkey, again</div>
+      <h3>Design was working while the boundaries were still being decided.</h3>
+      <p>Setup, fallback options, and management permissions were still open questions "while design was underway." The avoidable delay was the boundary between Keycloak's login and setup and the management experience owned by our products. His fix: agree one end-to-end flow with ownership and decision points at scoping. Planning saw the SMS gap; the retro heard Michael describe the back-and-forth; Kyle names the cause.</p>
+      <div class="ev">Q5 · the fourth seat to name Passkey · Probe 22</div>
+    </div>
+  </div>
+
+  <h2>Where the time goes <span class="sub">Q1 · up to three picks · three were made</span></h2>
+  <div class="two">
+    <div class="card">
+      <div class="q">Biggest sources of delay between a business need and delivered value</div>
+      <div class="qd">Three picks from thirteen options. All three sit before design work begins; the ten left alone are the ones a designer could be blamed for.</div>
+      <div class="bars">
+<div class="grp">Chosen</div>
+<div class="lab hot">The customer or user problem and desired business outcome are unclear</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip k">K</span></div>
+<div class="lab hot">Requirements, acceptance criteria, design specifications, or the definition of ready are incomplete when work is planned</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip k">K</span></div>
+<div class="lab hot">Delivery dates are committed before the solution, design scope, capacity, technical feasibility, or dependencies are sufficiently understood</div><div class="bar"><i style="width:100%"></i></div><div class="cnt"><b>1</b><span class="chip k">K</span></div>
+<div class="grp">Not chosen</div>
+<div class="lab zero">Customer or merchant research and validation happen too late</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Product, Design, Engineering, and Quality Engineering do not collaborate early enough</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">New requests or changing priorities are added without removing existing work</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Initiatives are too large, and we do not identify a smaller, useful first release</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Design exploration, prototyping, or validation takes longer than necessary or starts too late</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Code reviews, approvals, decisions, or dependencies on other teams create waiting</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Testing, QA, regression, defects, or rework delay delivery</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Design-to-engineering handoffs, unclear interaction states, or missing design-system guidance slow implementation</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">Production incidents, support, maintenance, or technical constraints regularly interrupt planned work</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+<div class="lab zero">We do not measure customer or business outcomes promptly after launch, delaying subsequent decisions</div><div class="bar"></div><div class="cnt"><b>0</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q">When Product Design gets involved</div>
+      <div class="qd">Q3 · one answer from six, ordered earliest to latest.</div>
+      <div class="opts">
+        <div>Design is involved during discovery, before the solution and delivery date are committed, helping establish user needs, validate assumptions, assess risks, and shape scope.</div>
+        <div>Design joins after the initial problem is identified but early enough to validate the solution, inform scope, and influence delivery expectations before a commitment is made.</div>
+        <div>Design typically joins after a target date has been proposed but before the solution and scope are finalized.</div>
+        <div>Design usually receives an agreed scope and delivery date, then creates the designs needed for engineering implementation.</div>
+        <div>Design often becomes involved after engineering has started, resulting in clarifications, design changes, or rework.</div>
+        <div class="on"><span class="chip k">K</span>Design involvement varies significantly depending on the initiative or stakeholders.</div>
+      </div>
+      <p style="font-size:12.25px;color:var(--text-mid);margin-top:12px;line-height:1.5"><b>Read:</b> the one option that describes no process at all. The five above it are a ladder from discovery to rework; "varies" means the team is on a different rung each time, decided by whoever brings design in. He is not a named invitee on the ceremonies, so the default rung is the bottom one.</p>
+    </div>
+  </div>
+
+  <h2>What is consistently true today <span class="sub">Q2 · one seat · every row unchecked</span></h2>
+  <div class="card">
+    <table class="mx">
+      <thead><tr><th>Statement</th><th class="c">KM</th><th class="c">Score</th></tr></thead>
+      <tbody>
+<tr class="none"><td>We understand the customer or user problem before committing to a solution <span class="tg gate">PM: 0/2 · QA: 0/3</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>Every new commitment has a clear hypothesis explaining why the solution should improve a measurable outcome <span class="tg gate">PM: 0/2</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>We establish the KPI baseline, the target, and the rationale connecting the solution to the improvement</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>We validate usability and customer value with users or merchants early enough to inform design decisions</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>We consider technical feasibility and business viability alongside user needs before the solution is finalized</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>Product, Design, Engineering, and QA collaborate early enough to shape the solution and identify risks before commitments</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>Design is involved early enough to influence the proposed solution, scope, and delivery expectations</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>We identify a smaller, useful first release when it could deliver value sooner</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>Engineering receives clear design specifications, interaction states, reusable components, and context before implementation</td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+<tr class="none"><td>After release, the team reviews the relevant KPI, assesses whether the expected outcome occurred, and decides what to do next <span class="tg gate">every seat: 0</span></td><td class="c"><span></span></td><td class="sc">0/1</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> this is the discovery checklist, and the designer scores it zero. The PMs scored it zero. The one seat that scores it high is the program seat, which plans the work rather than discovering it.</p>
+  </div>
+
+  <h2>Where AI is landing <span class="sub">Q4 · one answer per activity · darker is better</span></h2>
+  <div class="card">
+    <table class="ai">
+      <thead><tr><th>Activity</th><th>KM</th><th style="text-align:left">Read</th></tr></thead>
+      <tbody>
+<tr><td class="row">Customer and usability research</td><td class="v exp">Exploring</td><td class="sum">Not yet · the discovery work</td></tr>
+<tr><td class="row">Problem framing and journey mapping</td><td class="v exp">Exploring</td><td class="sum">Not yet</td></tr>
+<tr><td class="row">Wireframing and prototyping</td><td class="v time">Saves time</td><td class="sum"><b>In use</b> · production</td></tr>
+<tr><td class="row">Design system and accessibility</td><td class="v exp">Exploring</td><td class="sum">Not yet</td></tr>
+<tr><td class="row">Specs, states, and handoffs</td><td class="v time">Saves time</td><td class="sum"><b>In use</b> · production</td></tr>
+<tr><td class="row">Feasibility and scope with Product and Engineering</td><td class="v exp">Exploring</td><td class="sum">Not yet · the trio conversation</td></tr>
+<tr><td class="row">Usability testing and design feedback</td><td class="v not">Not using</td><td class="sum">Not started · and no users to test with</td></tr>
+<tr><td class="row">Post-launch behavior and KPI analysis</td><td class="v not">Not using</td><td class="sum">Not started · nothing is reviewed after release</td></tr>
+<tr><td class="row">Docs, meetings, and knowledge retrieval</td><td class="v time">Saves time</td><td class="sum"><b>In use</b></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12.25px;color:var(--text-mid);margin-top:10px;line-height:1.5"><b>Read:</b> the pattern is the diagnosis. AI helps where Kyle already works (production artifacts) and is "exploring" or "not using" everywhere discovery would happen. Usability testing and post-launch analysis aren't AI gaps; they're access gaps. Danny's pairing target: research and problem framing on Card on File, with real merchants.</p>
+  </div>
+
+  <h2>In their words <span class="sub">Q5 · one initiative, named precisely</span></h2>
+  <div class="vb">
+    <div class="vq"><span class="av k">KM</span><div><p>During the passkey rollout across MXM and MXC, we were still resolving questions about setup, fallback options, and management permissions while design was underway. The biggest avoidable delay was clarifying the boundaries between Keycloak's login and setup experience and the management experience owned by our products. We could have addressed this during initial scoping by agreeing on one end-to-end flow with clear ownership and decision points, reducing back-and-forth and helping us deliver sooner.</p><div class="tags"><span class="tag t1">Passkey · Keycloak</span><span class="tag">Ownership boundary</span><span class="tag">Fix: one flow, one owner, at scoping</span></div></div></div>
+  </div>
+  <div class="ivnote"><b>Read with the Observed page.</b> Kyle is the fourth seat to name Passkey, and the first to say what would have fixed it. The planning session found SMS in the acceptance criteria and nowhere else; the retro heard the flow change mid-sprint between QA, Keycloak, and Design; Erin said nobody knows who the decision maker is. The designer's answer is the same as the chief of staff's: name the owner of the end-to-end experience before the next story is groomed.</div>
+  <footer>
+    <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
+    <div class="footer-conf">Confidential · Internal · Survey responses are shared within the Tiger Team only and synthesized without attribution outside it · October 2026</div>
+  </footer>
+
+</main>
+</body>
+</html>
