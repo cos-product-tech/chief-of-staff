@@ -31,8 +31,16 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .st{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
 .st .n{font-family:var(--mono);font-size:22px;color:var(--orange);font-weight:500;line-height:1}
 .st p{font-size:11.5px;color:var(--text-muted);margin-top:4px;line-height:1.35}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.mod{background:#fff;border:1px solid var(--border);border-top:3px solid var(--forest);border-radius:10px;padding:12px 14px 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+.grid.cols .col{display:flex;flex-direction:column;gap:14px}
+.layer{margin-top:28px;padding:16px 16px 4px;border-radius:12px;border:1px solid var(--border)}
+.layer h2{margin:0 0 14px;border-bottom-width:2px}
+.layer.l1{background:#FFF7F0;border-color:#F6D9C0} .layer.l1 h2{color:#B84E0A;border-bottom-color:var(--orange)}
+.layer.l2{background:#EEF9F8;border-color:#BEE6E3} .layer.l2 h2{color:#0B6B55;border-bottom-color:var(--teal)}
+.layer.l3{background:#F0F6F2;border-color:#CFE1D6} .layer.l3 h2{color:var(--forest);border-bottom-color:var(--forest)}
+.layer.l4{background:#F5F2FB;border-color:#DCD3EE} .layer.l4 h2{color:#5A3FA0;border-bottom-color:#7C5CBF}
+.layer .grid{margin-bottom:14px}
+.mod{background:#fff;border:1px solid var(--border);border-top:3px solid var(--forest);border-radius:10px;padding:12px 14px 12px;box-shadow:0 1px 2px rgba(1,39,26,.04)}
 .mod .th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
 .mod .th b{font-size:14px;font-weight:600;color:var(--dark-forest);line-height:1.3}
 .mod .th .n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-muted);white-space:nowrap}
@@ -82,28 +90,37 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <div class="mod"><div class="th"><b>Sergii Drygalo</b><span class="n">Senior SDET</span></div><p class="role">Money Movement · Card Processing.</p></div>
   </div>
   <div class="stats">
-    <div class="st"><div class="n">19</div><p>teams across four layers</p></div>
+    <div class="st"><div class="n">17</div><p>teams across four layers</p></div>
     <div class="st"><div class="n">12</div><p>QA Engineering Managers</p></div>
     <div class="st"><div class="n">56</div><p>QA engineers</p></div>
-    <div class="st"><div class="n">7</div><p>teams with no QA Engineering Manager</p></div>
-    <div class="st"><div class="n">3</div><p>teams with no QA at all</p></div>
+    <div class="st"><div class="n">5</div><p>teams with no QA Engineering Manager</p></div>
+    <div class="st"><div class="n">1</div><p>team with no QA at all</p></div>
   </div>
-<h2 style="border-bottom-color:var(--orange)">Surfaces &amp; Applications <span class="sub">7 teams · 29 QA seats</span></h2>
-<div class="grid">
-<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Payables</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Soumya Vineeth</li></ul><div class="k">QA</div><ul><li class="">Aryan Sharma</li><li class="">Sakshi Garg</li><li class="">Pearl Sharma</li><li class="">Shantanu Rauthan</li></ul></div>
-<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Priority Field Desk</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+<div class="layer l1">
+<h2 style="border-bottom-color:var(--orange)">Surfaces &amp; Applications <span class="sub">5 teams · 29 QA seats</span></h2>
+<div class="grid cols">
+<div class="col">
 <div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Merchant Experience</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mamatha Reddy Yella</li></ul><div class="k">QA</div><ul><li class="">Earnest Gibbs</li><li class="">Avni</li><li class="">Shreshtha Sharma</li><li class="">Balamurugan Rajendran <i class="sd">Senior SDET</i></li></ul></div>
 <div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Acquiring Stability</b><span class="n">2 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Alexandr Khorsov</li><li class="">Kseniia Serpukhova</li></ul></div>
-<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>MXPOS</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+</div>
+<div class="col">
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Payables</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Soumya Vineeth</li></ul><div class="k">QA</div><ul><li class="">Aryan Sharma</li><li class="">Sakshi Garg</li><li class="">Pearl Sharma</li><li class="">Shantanu Rauthan</li></ul></div>
 <div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Banking &amp; Treasury</b><span class="n">5 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mukul Lamba <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Ayushi Chaudhary</li><li class="">Rishabh Tripathi</li><li class="">Momi Barman</li><li class="">Sunil Sharma</li><li class="">Ayush Guleria</li></ul></div>
+</div>
+<div class="col">
 <div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Debt Resolution</b><span class="n">10 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mikky Das</li></ul><div class="k">QA</div><ul><li class="">Ashish Jaswal</li><li class="">Milan Sharma</li><li class="">Pushpit Batra</li><li class="">Shriya Khurmi</li><li class="">Mayank Sharma</li><li class="">Lakshmana Rao</li><li class="">Vikas Vijay Kumar Jadhav</li><li class="">Rishabh Choudhary</li><li class="">Sourabh Sharma</li><li class="">Ashish Kumar</li></ul></div>
 </div>
+</div>
+</div>
+<div class="layer l2">
 <h2 style="border-bottom-color:var(--teal)">Commerce API <span class="sub">3 teams · 10 QA seats</span></h2>
 <div class="grid">
 <div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>PCE API &amp; DevEx</b><span class="n">5 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Aditi Bhardwaj <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Aditi Bhardwaj <em>50%</em> <i class="sh" title="shared across areas">shared</i></li><li class="">Nikhil Thakur <em>50%</em> <i class="sh" title="shared across areas">shared</i> <i class="rs">resigned</i></li><li class="">Abraham Alberto Estrella Cisneros</li><li class="">Kinjal Jain</li><li class="">Harshpreet Kaur</li></ul></div>
 <div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>Commerce Command Center (C3) · Financial Institutions</b><span class="n">3 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mukul Lamba <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Shelka Aggarwal</li><li class="">Stephen Daubert <em>50%</em> <i class="sd">Staff SDET</i> <i class="sh" title="shared across areas">shared</i></li><li class="">Gourav Singla</li></ul></div>
 <div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>Commerce Command Center (C3) · Automotive</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
 </div>
+</div>
+<div class="layer l3">
 <h2 style="border-bottom-color:var(--forest)">Commerce Core <span class="sub">7 teams · 24 QA seats</span></h2>
 <div class="grid">
 <div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Entity Boarding &amp; Partner Exp.</b><span class="n">1 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Anzhelika M Cubbon</li></ul></div>
@@ -114,12 +131,14 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
 <div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Money Movement · Routing &amp; Optimisation</b><span class="n">2 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Riya Aggarwal</li><li class="">Navreet Kaur Natt</li></ul></div>
 <div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Billing &amp; Revenue Mgmt</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Sahil Malhotra</li></ul><div class="k">QA</div><ul><li class="">Saundarya Anand</li><li class="">Sreerekha CV</li><li class="">Yash Jain</li><li class="">Poonam Rani</li></ul></div>
 </div>
+</div>
+<div class="layer l4">
 <h2 style="border-bottom-color:#7C5CBF">Bedrock Layer <span class="sub">2 teams · 6 QA seats</span></h2>
 <div class="grid">
 <div class="mod" style="border-top-color:#7C5CBF"><div class="th"><b>Innovation Lab</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Stephen Daubert <em>50%</em> <i class="sd">Staff SDET</i> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
 <div class="mod" style="border-top-color:#7C5CBF"><div class="th"><b>Data</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Kusum Rajput</li></ul><div class="k">QA</div><ul><li class="">Anjali Sharma</li><li class="">Khushboo Jain</li><li class="">Raghav Aneja</li><li class="">Vikash Tomar</li></ul></div>
 </div>
-
+</div>
   <footer><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant<br>Confidential · Internal · October 2026</footer>
 </main>
 </body>
