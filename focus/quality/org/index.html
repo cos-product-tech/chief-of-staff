@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quality Engineering — Org by Team</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--dark-forest:#01271A;--forest:#003E29;--orange:#FE6D12;--pistachio:#E7E5AA;--turquoise:#75D1D0;--teal:#008573;--off-white:#F7F6F2;--bg-soft:#F3F5F3;--text-dark:#16201C;--text-mid:#444;--text-muted:#6B756F;--border:#E2E0D8;--risk:#C9402F;--risk-bg:#FBEAE7;--warn:#D45A00;--warn-bg:#FFF1E4;
+--sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+a{color:var(--teal)}
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1080px;margin:0 auto;padding:34px 40px 30px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:28px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.3px;margin-bottom:10px}
+.doc-subtitle{font-size:14px;font-weight:300;color:rgba(231,229,170,.85);max-width:720px;line-height:1.6} .doc-subtitle a{color:var(--turquoise)}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+.doc-body{max-width:1080px;margin:0 auto;padding:22px 40px 56px}
+h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-bottom:3px solid var(--forest);margin:26px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:4px}
+.st{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.st .n{font-family:var(--mono);font-size:22px;color:var(--orange);font-weight:500;line-height:1}
+.st p{font-size:11.5px;color:var(--text-muted);margin-top:4px;line-height:1.35}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mod{background:#fff;border:1px solid var(--border);border-top:3px solid var(--forest);border-radius:10px;padding:12px 14px 12px}
+.mod .th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.mod .th b{font-size:14px;font-weight:600;color:var(--dark-forest);line-height:1.3}
+.mod .th .n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--text-muted);white-space:nowrap}
+.mod .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:8px 0 3px}
+.mod ul{list-style:none}
+.mod li{font-size:12.75px;color:var(--text-mid);padding:3px 0;border-top:1px dashed var(--border);line-height:1.4}
+.mod li:first-child{border-top:none}
+.mod li.ld{color:var(--dark-forest);font-weight:500}
+.mod li.none{color:var(--risk);font-style:italic}
+.mod li em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--warn);margin-left:4px}
+.mod li i{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.mod li i.sh{background:var(--bg-soft);color:var(--text-muted);border:1px solid var(--border)}
+.mod li i.rs{background:var(--risk-bg);color:var(--risk)}
+.note{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:14px;line-height:1.5} .note b{color:var(--dark-forest)}
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)} footer strong{color:var(--dark-forest)}
+@media (max-width:900px){.header-inner{flex-direction:column;padding:28px 16px 24px}.header-meta{display:none}.doc-body{padding:20px 16px 40px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media print{body{background:#fff}.doc-header,.mod{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="header-inner">
+    <div>
+      <div class="doc-eyebrow">Office of the CTO · Quality Engineering</div>
+      <h1 class="doc-title">Quality Engineering by team</h1>
+      <p class="doc-subtitle">Every team's QA Engineering Manager and QA engineers, as proposed in <a href="https://epmosdlc.vercel.app/public/resource-allocation-v2">Resource Allocation v2</a>. One module per team, grouped by layer. Percentages show allocation where a person is split; <b style="color:#fff;font-weight:500">shared</b> marks people on more than one team.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Proposal · Draft</span>
+      <span class="meta-badge badge-date">October 28, 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+<main class="doc-body">
+  <div class="stats">
+    <div class="st"><div class="n">20</div><p>teams across four layers</p></div>
+    <div class="st"><div class="n">13</div><p>QA Engineering Managers</p></div>
+    <div class="st"><div class="n">57</div><p>QA engineers</p></div>
+    <div class="st"><div class="n">7</div><p>teams with no QA Engineering Manager</p></div>
+    <div class="st"><div class="n">3</div><p>teams with no QA at all</p></div>
+  </div>
+<h2 style="border-bottom-color:var(--orange)">Surfaces &amp; Applications <span class="sub">7 teams · 29 QA seats</span></h2>
+<div class="grid">
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Payables</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Soumya Vineeth</li></ul><div class="k">QA</div><ul><li class="">Aryan Sharma</li><li class="">Sakshi Garg</li><li class="">Pearl Sharma</li><li class="">Shantanu Rauthan</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Priority Field Desk</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Merchant Experience</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mamatha Reddy Yella</li></ul><div class="k">QA</div><ul><li class="">Earnest Gibbs</li><li class="">Avni</li><li class="">Shreshtha Sharma</li><li class="">Balamurugan Rajendran</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Acquiring Stability</b><span class="n">2 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Alexandr Khorsov</li><li class="">Kseniia Serpukhova</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>MXPOS</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Banking &amp; Treasury</b><span class="n">5 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mukul Lamba <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Ayushi Chaudhary</li><li class="">Rishabh Tripathi</li><li class="">Momi Barman</li><li class="">Sunil Sharma</li><li class="">Ayush Guleria</li></ul></div>
+<div class="mod" style="border-top-color:var(--orange)"><div class="th"><b>Debt Resolution</b><span class="n">10 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mikky Das</li></ul><div class="k">QA</div><ul><li class="">Ashish Jaswal</li><li class="">Milan Sharma</li><li class="">Pushpit Batra</li><li class="">Shriya Khurmi</li><li class="">Mayank Sharma</li><li class="">Lakshmana Rao</li><li class="">Vikas Vijay Kumar Jadhav</li><li class="">Rishabh Choudhary</li><li class="">Sourabh Sharma</li><li class="">Ashish Kumar</li></ul></div>
+</div>
+<h2 style="border-bottom-color:var(--teal)">Commerce API <span class="sub">3 teams · 10 QA seats</span></h2>
+<div class="grid">
+<div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>PCE API &amp; DevEx</b><span class="n">5 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Aditi Bhardwaj <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Aditi Bhardwaj <em>50%</em> <i class="sh" title="shared across areas">shared</i></li><li class="">Nikhil Thakur <em>50%</em> <i class="sh" title="shared across areas">shared</i> <i class="rs">resigned</i></li><li class="">Abraham Alberto Estrella Cisneros</li><li class="">Kinjal Jain</li><li class="">Harshpreet Kaur</li></ul></div>
+<div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>Commerce Command Center (C3) · Financial Institutions</b><span class="n">3 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Mukul Lamba <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="">Shelka Aggarwal</li><li class="">Stephen Timothy Daubert <em>50%</em> <i class="sh" title="shared across areas">shared</i></li><li class="">Gourav Singla</li></ul></div>
+<div class="mod" style="border-top-color:var(--teal)"><div class="th"><b>Commerce Command Center (C3) · Automotive</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+</div>
+<h2 style="border-bottom-color:var(--forest)">Commerce Core <span class="sub">7 teams · 24 QA seats</span></h2>
+<div class="grid">
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Entity Boarding &amp; Partner Exp.</b><span class="n">1 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Anzhelika M Cubbon</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Fraud &amp; Risk Governance</b><span class="n">5 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Nidhi Chopra</li></ul><div class="k">QA</div><ul><li class="">Gantsetseg Keane</li><li class="">Bhavya Gupta</li><li class="">Nidhin NP</li><li class="">Vishu Bagri</li><li class="">Simran Kaur</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Money Movement · Card Processing</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Tatsiana Dziachenka</li><li class="ld">Nikhil Thakur <em>50%</em> <i class="sh" title="shared across areas">shared</i> <i class="rs">resigned</i></li></ul><div class="k">QA</div><ul><li class="">Sergii Drygalo</li><li class="">Sahil Goyal</li><li class="">Vishal</li><li class="">Keshav Bhatia</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Money Movement · A2A</b><span class="n">2 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Gaganjot Singh</li></ul><div class="k">QA</div><ul><li class="">Pooja Dhiman</li><li class="">Sanya</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Money Movement · Issuance &amp; Ledgering</b><span class="n">1 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Dhanisha Chawla</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Money Movement · Routing &amp; Optimisation</b><span class="n">2 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="none">No QA Engineering Manager</li></ul><div class="k">QA</div><ul><li class="">Riya Aggarwal</li><li class="">Navreet Kaur Natt</li></ul></div>
+<div class="mod" style="border-top-color:var(--forest)"><div class="th"><b>Billing &amp; Revenue Mgmt</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Sahil Malhotra</li></ul><div class="k">QA</div><ul><li class="">Saundarya Anand</li><li class="">Sreerekha CV</li><li class="">Yash Jain</li><li class="">Poonam Rani</li></ul></div>
+</div>
+<h2 style="border-bottom-color:#7C5CBF">Bedrock Layer <span class="sub">3 teams · 8 QA seats</span></h2>
+<div class="grid">
+<div class="mod" style="border-top-color:#7C5CBF"><div class="th"><b>Platform Engineering</b><span class="n">1 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Pooja Kumari <em>25%</em></li></ul><div class="k">QA</div><ul><li class="">Sumit Kumar</li></ul></div>
+<div class="mod" style="border-top-color:#7C5CBF"><div class="th"><b>Innovation Lab</b><span class="n">0 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Stephen Timothy Daubert <em>50%</em> <i class="sh" title="shared across areas">shared</i></li></ul><div class="k">QA</div><ul><li class="none">No QA engineers</li></ul></div>
+<div class="mod" style="border-top-color:#7C5CBF"><div class="th"><b>Data</b><span class="n">4 QA</span></div><div class="k">QA Engineering Management</div><ul><li class="ld">Kusum Rajput</li></ul><div class="k">QA</div><ul><li class="">Anjali Sharma</li><li class="">Khushboo Jain</li><li class="">Raghav Aneja</li><li class="">Vikash Tomar</li></ul></div>
+</div>
+
+  <div class="note"><b>Read.</b> Priority Field Desk, Acquiring Stability, MXPOS, Commerce Command Center (C3) · Automotive, Entity Boarding &amp; Partner Exp., Money Movement · Issuance &amp; Ledgering, Money Movement · Routing &amp; Optimisation have no QA Engineering Manager; Priority Field Desk, MXPOS, Commerce Command Center (C3) · Automotive have no QA at all. Mukul Lamba, Aditi Bhardwaj, Stephen Daubert, and Nikhil Thakur are split across teams, and Nikhil has resigned, which leaves PCE API &amp; DevEx and Money Movement · Card Processing each down half a person. Source is a draft proposal, not the live allocation.</div>
+  <footer><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant<br>Confidential · Internal · October 2026</footer>
+</main>
+</body>
+</html>
