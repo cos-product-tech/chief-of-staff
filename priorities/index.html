@@ -79,11 +79,14 @@ h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
 .ub.ticker ul.tk li:first-child{border-top:none}
 .ub.ticker ul.tk li .d{font-family:var(--mono);font-size:10px;color:#D81B77;letter-spacing:.06em;padding-top:3px}
 .ub.ticker ul.tk li b{color:var(--dark-forest);font-weight:600}
-.ub.ticker .grp.tkg{padding:12px 0 2px;font-size:9.5px}
-.ub.ticker .grp.tkg:first-of-type{padding-top:2px}
-.ub.ticker .grp.tkg::after{background:rgba(216,27,119,.25)}
-.ub.ticker .grp.tkg.p0{color:var(--p0)} .ub.ticker .grp.tkg.p1{color:var(--p1)} .ub.ticker .grp.tkg.p2{color:var(--p2)} .ub.ticker .grp.tkg.p3{color:var(--p3)} .ub.ticker .grp.tkg.bl{color:var(--bl)}
-.ub.ticker .tk-empty{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--text-muted);opacity:.7;padding:4px 0 2px;margin:0}
+.ub.ticker .tks{border-left:3px solid var(--c);border-radius:0 8px 8px 0;padding:6px 12px 8px;margin:8px 0 0;background:color-mix(in srgb,var(--c) 6%,#fff)}
+.ub.ticker .tks:first-of-type{margin-top:0}
+.ub.ticker .tks.p0{--c:var(--p0)} .ub.ticker .tks.p1{--c:var(--p1)} .ub.ticker .tks.p2{--c:var(--p2)} .ub.ticker .tks.p3{--c:var(--p3)} .ub.ticker .tks.bl{--c:var(--bl)}
+.ub.ticker .grp.tkg{padding:2px 0 4px;font-size:9.5px;color:var(--c)}
+.ub.ticker .grp.tkg::after{background:color-mix(in srgb,var(--c) 35%,transparent)}
+.ub.ticker .tks ul.tk li{border-top-color:color-mix(in srgb,var(--c) 30%,transparent)}
+.ub.ticker .tk-empty{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--text-muted);opacity:.7;padding:2px 0 0;margin:0}
+.ub.ticker ul.tk li .tr{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--c);opacity:.85;margin-top:3px}
 .ub .k b{color:var(--dark-forest);font-weight:600;letter-spacing:0;text-transform:none;font-family:var(--sans);font-size:13.5px;display:block;margin-top:2px}
 .ub ol{list-style:none;counter-reset:a}
 .ub li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;padding:7px 0;border-top:1px dashed var(--border);font-size:13px;line-height:1.45}
@@ -336,33 +339,43 @@ h2.cx[aria-expanded="false"]{margin-bottom:14px}
   <div class="ub ticker" style="margin-bottom:12px">
     <div class="k cx" data-sec="tickernotes-to-turn-into-items" tabindex="0" role="button" aria-expanded="true"><span class="chev">▾</span>Ticker</div>
     <div class="secbody" data-sec="tickernotes-to-turn-into-items">
-    <div class="grp tkg p0">P1 · Critical</div>
-    <ul class="tk">
-      <li><span><b>Tony:</b> leverage him now in a Director of Engineering Effectiveness capacity; from Nov 2 he carries the MerCap rituals for the Tiger Team. Whether he moves into the role is still to be decided with Yi, who is meeting Bill Theroux about Engineering Enablement.</span></li>
-      <li><span><b>9+3 and FY27 headcount forecast:</b> not happy with where I left it; it needs more work before it goes further.</span></li>
-      <li><span><b>Reconcile against the hiring plan:</b> the two Revelo requests in the <a href="https://mail.google.com/mail/?authuser=eric.normant@prth.com#all/thread-a:r4625191782041590464">Senior Snowflake Data Engineer thread</a>; the people Matthew Erwin may bring over; a backfill for Nikhil Thakur; a Manager, Engineering backfill for Andrew Ferrer; a Senior Software Engineer backfill for Heather Johnson in Banking &amp; Treasury (HR-415631); the Aziro SOW #5 spend ($64K, fixed price); Suresh's monthly rate under the SOW #4 amendment; the Waterloo co-op intern (about $8,000 USD, Winter 2027); and the IDC out-of-cycle raises (~$105K), against the 9+3 and FY27 plan.</span></li>
-      <li><span><b>Opex, due Friday, Nov 6:</b> 2027 non-headcount inputs to Derek (Input tab: Same / Reduction / Addition per vendor).</span></li>
-    </ul>
-    <div class="grp tkg p1">P2 · High</div>
-    <ul class="tk">
-      <li><span><b>IDC retention (~$105K, 20 people):</b> asked Yi Nov 1 whether to fund P0 and P1 (~$76K, 13 people) now and move P2 and P3 to the annual cycle, or fund all four. On his answer, take the budget impact to Finance.</span></li>
-      <li><span><b>Tina's interviews:</b> align Rahul, Purush, Simran, and Shawn on the plan so her interviews with Steve, Mamatha, Tatsiana, Mukul, and Mikky get scheduled as soon as possible. Once aligned, Shawn briefs the five on the coming centralization of Quality &amp; Release before they meet her.</span></li>
-      <li><span><b>Banking &amp; Treasury backfill (Heather Johnson):</b> <a href="https://prioritycommerce.atlassian.net/servicedesk/customer/portal/6/HR-415631">HR-415631</a> is with Mike and Yi for budget approval as of Nov 2; nudge if it sits, then Reggie starts the search.</span></li>
-      <li><span><b>Aziro SOW #5 (Pay with Priority, $64K):</b> edits sent to Karthick Oct 29; sign only the clean version. Still mine: confirm funding, name the SDN enrollment and Oracle partner-agreement owners by Nov 2, decide on Phase 3.</span></li>
-      <li><span><b>SnapTech MSA:</b> Yi added thirteen deal-breakers Nov 2; Shymeka is rewriting it as a standard MSA, narrowed to a binding SES-only agreement on our terms. Yi talks to Matt first (Nov 2–3); attorney call Thu or Fri after PowerCon; Matt's plans and sizing due Fri Nov 6. Aziro is the fallback. Nothing billable until signed.</span></li>
-      <li><span><b>Aziro SOW #4 amendment (Suresh, US-based):</b> watch for Karthick's announcement email and reply with formal approval; execute the amendment when it arrives; confirm his monthly rate is funded.</span></li>
-      <li><span><b>Paul:</b> sent him the confirmed structure Nov 1 (reports to me, I own his review with Sandeep's input; Delivery Manager for Card Processing, matrixed to Sandeep; Colm as Principal). Waiting on his yes to finalize the Director move and AIP with HR.</span></li>
-      <li><span><b>Who leads what / Who owns what:</b> align with Yi on what we publish, then publish.</span></li>
-      <li><span><b>Waterloo co-op:</b> Yi approved. Tell Bart, Alex, and Quan, name the manager of record, and get Jonathan his offer.</span></li>
-      <li><span><b>Yi:</b> check where POSiLabs and FreedomPay stand.</span></li>
-      <li><span><b>Dev.Pro:</b> Legal has the MSA and SOW since Oct 27; asked them Nov 1 to keep me posted this week and flag redlines. Nothing should wait on paperwork at the Nov 6 meetup.</span></li>
-    </ul>
-    <div class="grp tkg p2">P3 · Medium</div>
-    <p class="tk-empty">Nothing on the ticker</p>
-    <div class="grp tkg p3">P4 · Low</div>
-    <p class="tk-empty">Nothing on the ticker</p>
-    <div class="grp tkg bl">Backlog</div>
-    <p class="tk-empty">Nothing on the ticker</p>
+    <section class="tks p0">
+      <div class="grp tkg p0">P1 · Critical</div>
+      <ul class="tk">
+      <li><span><b>9+3 and FY27 headcount forecast:</b> not happy with where I left it; it needs more work before it goes further.<i class="tr">→ 01 · Forecasting &amp; budgeting</i></span></li>
+      <li><span><b>Reconcile against the hiring plan:</b> the two Revelo requests in the <a href="https://mail.google.com/mail/?authuser=eric.normant@prth.com#all/thread-a:r4625191782041590464">Senior Snowflake Data Engineer thread</a>; the people Matthew Erwin may bring over; a backfill for Nikhil Thakur; a Manager, Engineering backfill for Andrew Ferrer; a Senior Software Engineer backfill for Heather Johnson in Banking &amp; Treasury (HR-415631); the Aziro SOW #5 spend ($64K, fixed price); Suresh's monthly rate under the SOW #4 amendment; the Waterloo co-op intern (about $8,000 USD, Winter 2027); and the IDC out-of-cycle raises (~$105K), against the 9+3 and FY27 plan.<i class="tr">→ 01 · Forecasting &amp; budgeting</i></span></li>
+      <li><span><b>Opex, due Friday, Nov 6:</b> 2027 non-headcount inputs to Derek (Input tab: Same / Reduction / Addition per vendor).<i class="tr">→ 01 · Forecasting &amp; budgeting</i></span></li>
+      </ul>
+    </section>
+    <section class="tks p1">
+      <div class="grp tkg p1">P2 · High</div>
+      <ul class="tk">
+      <li><span><b>Tony:</b> leverage him now in a Director of Engineering Effectiveness capacity; from Nov 2 he carries the MerCap rituals for the Tiger Team. Whether he moves into the role is still to be decided with Yi, who is meeting Bill Theroux about Engineering Enablement.<i class="tr">→ 03 · People management</i></span></li>
+      <li><span><b>IDC retention (~$105K, 20 people):</b> asked Yi Nov 1 whether to fund P0 and P1 (~$76K, 13 people) now and move P2 and P3 to the annual cycle, or fund all four. On his answer, take the budget impact to Finance.<i class="tr">→ 03 · People management</i></span></li>
+      <li><span><b>Tina's interviews:</b> align Rahul, Purush, Simran, and Shawn on the plan so her interviews with Steve, Mamatha, Tatsiana, Mukul, and Mikky get scheduled as soon as possible. Once aligned, Shawn briefs the five on the coming centralization of Quality &amp; Release before they meet her.<i class="tr">→ 04 · Talent acquisition</i></span></li>
+      <li><span><b>Banking &amp; Treasury backfill (Heather Johnson):</b> <a href="https://prioritycommerce.atlassian.net/servicedesk/customer/portal/6/HR-415631">HR-415631</a> is with Mike and Yi for budget approval as of Nov 2; nudge if it sits, then Reggie starts the search.<i class="tr">→ 04 · Talent acquisition</i></span></li>
+      <li><span><b>Aziro SOW #5 (Pay with Priority, $64K):</b> edits sent to Karthick Oct 29; sign only the clean version. Still mine: confirm funding, name the SDN enrollment and Oracle partner-agreement owners by Nov 2, decide on Phase 3.<i class="tr">→ 05 · Vendors &amp; partners</i></span></li>
+      <li><span><b>SnapTech MSA:</b> Yi added thirteen deal-breakers Nov 2; Shymeka is rewriting it as a standard MSA, narrowed to a binding SES-only agreement on our terms. Yi talks to Matt first (Nov 2–3); attorney call Thu or Fri after PowerCon; Matt's plans and sizing due Fri Nov 6. Aziro is the fallback. Nothing billable until signed.<i class="tr">→ 05 · Vendors &amp; partners</i></span></li>
+      <li><span><b>Aziro SOW #4 amendment (Suresh, US-based):</b> watch for Karthick's announcement email and reply with formal approval; execute the amendment when it arrives; confirm his monthly rate is funded.<i class="tr">→ 05 · Vendors &amp; partners</i></span></li>
+      <li><span><b>Paul:</b> sent him the confirmed structure Nov 1 (reports to me, I own his review with Sandeep's input; Delivery Manager for Card Processing, matrixed to Sandeep; Colm as Principal). Waiting on his yes to finalize the Director move and AIP with HR.<i class="tr">→ 03 · People management</i></span></li>
+      <li><span><b>Who leads what / Who owns what:</b> align with Yi on what we publish, then publish.<i class="tr">→ 03 · People management</i></span></li>
+      <li><span><b>Waterloo co-op:</b> Yi approved. Tell Bart, Alex, and Quan, name the manager of record, and get Jonathan his offer.<i class="tr">→ 04 · Talent acquisition</i></span></li>
+      <li><span><b>Yi:</b> check where POSiLabs and FreedomPay stand.<i class="tr">→ 05 · Vendors &amp; partners</i></span></li>
+      <li><span><b>Dev.Pro:</b> Legal has the MSA and SOW since Oct 27; asked them Nov 1 to keep me posted this week and flag redlines. Nothing should wait on paperwork at the Nov 6 meetup.<i class="tr">→ 05 · Vendors &amp; partners</i></span></li>
+      </ul>
+    </section>
+    <section class="tks p2">
+      <div class="grp tkg p2">P3 · Medium</div>
+      <p class="tk-empty">Nothing on the ticker</p>
+    </section>
+    <section class="tks p3">
+      <div class="grp tkg p3">P4 · Low</div>
+      <p class="tk-empty">Nothing on the ticker</p>
+    </section>
+    <section class="tks bl">
+      <div class="grp tkg bl">Backlog</div>
+      <p class="tk-empty">Nothing on the ticker</p>
+    </section>
     </div>
   </div>
   <div class="ub ask" style="margin-bottom:12px">
