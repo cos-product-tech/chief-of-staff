@@ -210,6 +210,36 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
 }
 @media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+/* collapsible cards + table of contents (matches observed.html) */
+.fn .fh:hover{background:#ECEFEC}
+.fn .fh:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.fn .chev{font-size:12px;color:var(--text-muted);transition:transform .15s;width:12px;display:inline-block}
+.fn.closed .chev{transform:rotate(-90deg)}
+.fn.closed .fh{border-bottom:none}
+.fn.closed .fb{display:none}
+.fn.flash .fh{background:var(--warn-bg)}
+.toc{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}
+.toc-none{display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;padding:9px 14px 9px 12px;border:1px dashed #E0A89F;border-left:3px solid var(--risk);border-radius:8px;color:var(--risk);font-size:13px}
+.toc-none em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.toc-none b{font-weight:600}
+.toc-none span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--risk);opacity:.8}
+.toc-none{grid-template-columns:auto 1fr auto}
+.toc-none span:last-child{display:none}
+.toc a{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:14px;align-items:center;padding:9px 14px 9px 12px;background:#fff;border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:8px;text-decoration:none;color:var(--teal);font-size:13px;transition:background .15s,border-color .15s,transform .15s}
+.toc a:hover,.toc a:focus-visible{background:#F2FAF8;border-color:var(--teal);outline:none;transform:translateX(2px)}
+.toc a:hover b{text-decoration:underline;text-underline-offset:3px}
+.toc a em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--text-muted)}
+.toc a b{font-weight:600}
+.toc a span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.toc a i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+.toc a u{text-decoration:none;font-size:15px;line-height:1;color:var(--teal);opacity:.55;transition:opacity .15s,transform .15s}
+.toc a:hover u{opacity:1;transform:translateX(3px)}
+.toc a.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff}
+.toc a.on em,.toc a.on span{color:rgba(255,255,255,.6)}
+.toc a.on i{background:rgba(255,255,255,.12);color:#fff}
+.toc a.on u{color:var(--turquoise);opacity:1}
+.toc a span:nth-of-type(2),.toc a i{display:none}
 </style>
 </head>
 <body>
@@ -245,10 +275,20 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     <a class="rl live" href="observed.html"><b>Observed</b><i>4 rituals</i></a>
   </nav>
 
-  <h2>Conversations <span class="sub">one card per conversation · each point tagged with the probe it feeds and who follows up</span></h2>
+  <h2>Conversations <span class="sub">4 conversations · Oct 23 – Nov 4 · jump to one</span></h2>
 
-  <div class="fn">
-    <div class="fh"><b>Software Engineering: Alex Dlugokecki, Michael Hodges, Leonel Santiago, Ryan Patch</b><span class="meta">Wednesday, November 4, 2026 · 64 minutes · in person · hosted and facilitated by Amrita, with Steve, Tony, and Eric · Ramya and Bart not present</span><span class="ppl"><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own to">Tony</span><span class="own er">Eric</span></span></div>
+  <div class="k">Jump to a conversation · opens it and scrolls</div>
+  <nav class="toc" aria-label="Conversations">
+    <a href="#se-nov-4"><em>01</em><b>Software Engineering</b><span>Wed, Nov 4</span><span>in person</span><i>10 points</i><u>→</u></a>
+    <a href="#kyle-nov-3"><em>02</em><b>Kyle Miller</b><span>Tue, Nov 3</span><span>held by Danny</span><i>6 points</i><u>→</u></a>
+    <a href="#rai-lilly-oct-28"><em>03</em><b>Raimundo Puche and Lilly Vakili</b><span>Wed, Oct 28</span><span>held by Bart</span><i>2 points</i><u>→</u></a>
+    <a href="#erin-oct-23"><em>04</em><b>Erin Dalessandro</b><span>Fri, Oct 23</span><span>30 min · video</span><i>6 points</i><u>→</u></a>
+  </nav>
+
+  <h2>The conversations <span class="sub">newest first · each point tagged with the probe it feeds and who follows up</span></h2>
+
+  <div class="fn closed" id="se-nov-4">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Software Engineering: Alex Dlugokecki, Michael Hodges, Leonel Santiago, Ryan Patch</b><span class="meta">Wednesday, November 4, 2026 · 64 minutes · in person · hosted and facilitated by Amrita, with Steve, Tony, and Eric · Ramya and Bart not present</span><span class="ppl"><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own to">Tony</span><span class="own er">Eric</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>Work arrives sideways, with the date already set.</h4><p>Alex called the intake a grab bag: requests come in without urgency, without a reason this team owns them, and depending on who asked. Leonel: there is a roadmap, but priorities and milestone dates are fixed before tickets reach engineering, so the team designs requirements and architecture backwards from a date that often ignores work already in flight. Michael: a deal can stop everything for one small change, under a tight deadline, and the shortcut becomes tech debt that slows the team later. Address validation is the worked example: an external library brought in to save time took three or four rounds and was pulled from production. All three said it has improved recently with pre-refinement. <b>Our read:</b> the team is not missing a roadmap, it is missing a say in the date. This is the same gap Kyle described from the design seat.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="product-management.html">Probe 19</a><a class="pr" href="engineering-management.html">Probe 10</a><a class="pr" href="software-engineering.html">Probe 13</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own er">Eric</span><span class="own am">Amrita</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Commitments on date</span><span class="mt">Sprint addition rate</span></div></div></div>
       <div class="ob"><div><h4>Tickets say what, rarely why.</h4><p>Michael has been asked by product managers to help write acceptance criteria during refinement, which he called backwards, and every hour in that meeting is an hour not developing. Alex, refining the old backlog: most tickets state what to build but not why, what value it adds, or what waiting costs, which makes prioritizing them close to impossible. Nobody knows of a documentation standard: who writes it, whether it is part of the ticket, how it is checked. Alex said pre-task tickets are mostly well written; the drift happens after, when the build changes and the documents don't. Amrita's example of a change log that stopped a harmful library upgrade shows what that history is worth. <b>Our read:</b> this is the backlog finding from Ray and Lilly seen from the engineer's seat. A ticket without a why cannot be ranked, so the newest request wins.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="software-engineering.html">Probe 14</a><a class="pr" href="quality-automation-engineering.html">Probe 07</a><a class="pr" href="product-management.html">Probe 18</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own ba">Bart</span><span class="own am">Amrita</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Sprint predictability</span><span class="mt">Issue cycle time</span></div></div></div>
@@ -263,8 +303,8 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     </div>
   </div>
 
-  <div class="fn">
-    <div class="fh"><b>Kyle Miller</b><span class="meta">Senior Product Designer · Tuesday, November 3, 2026 · conversation held by Danny Lopez</span><span class="ppl"><span class="own da">Danny</span><span class="own er">Eric</span><span class="own ba">Bart</span></span></div>
+  <div class="fn closed" id="kyle-nov-3">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Kyle Miller</b><span class="meta">Senior Product Designer · Tuesday, November 3, 2026 · conversation held by Danny Lopez</span><span class="ppl"><span class="own da">Danny</span><span class="own er">Eric</span><span class="own ba">Bart</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>Work reaches him because someone mentions it, not because there is a path.</h4><p>Usually Jason at a kickoff, or Erin bringing it up directly, while the requirements are still being worked out. Kyle then opens his own DSGN ticket to track it. If nobody mentions it, the work either sits or goes out without design.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="product-design.html">Probe 20</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own da">Danny</span><span class="own er">Eric</span><span class="own ba">Bart</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Issue cycle time</span><span class="mt">Commitments on date</span></div></div></div>
       <div class="ob"><div><h4>Priority Capital moved only when he went to Erin himself, and Card on File has not reached him at all.</h4><p>Jason gave him a heads-up on Priority Capital months ago, then nothing happened. It started moving again when Kyle went to Erin and set up a meeting with GTM himself. Card on File still hasn't come to him from anyone on the team.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="product-design.html">Probe 20</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own er">Eric</span><span class="own ba">Bart</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Commitments on date</span></div></div></div>
@@ -275,16 +315,16 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
     </div>
   </div>
 
-  <div class="fn">
-    <div class="fh"><b>Raimundo Puche and Lilly Vakili</b><span class="meta">Ninja and Director, Technical Program Management · EPMO · Wednesday, October 28, 2026 · conversation held by Bart</span><span class="ppl"><span class="own ba">Bart</span></span></div>
+  <div class="fn closed" id="rai-lilly-oct-28">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Raimundo Puche and Lilly Vakili</b><span class="meta">Ninja and Director, Technical Program Management · EPMO · Wednesday, October 28, 2026 · conversation held by Bart</span><span class="ppl"><span class="own ba">Bart</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>The MerCap Jira backlog is past the point where it can be groomed.</h4><p>Ray showed Jira statistics on the backlog: more than 200 tickets, many of them over a year old. At that size, grooming means wading through years of stale tickets to find the few that are real, so sprint planning inherits whatever is on top. It explains observations elsewhere on these pages: work arrives unready, stories go into the sprint unestimated, and spare capacity has nothing ready to pull. The age of the tickets is the part to fix first, because a ticket that is over a year old and was never prioritized is evidence that no one has decided it matters.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="software-engineering.html">Probe 14</a><a class="pr" href="technical-program-management.html">Probe 11</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own ba">Bart</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Sprint addition rate</span><span class="mt">Sprint predictability</span></div></div></div>
       <div class="ob"><div><h4>Next step: a Jira hygiene working session with Erin.</h4><p>Bart proposes it when the team is ready, with a goal of making sprint planning and grooming more effective. To make it count, bring three things: a rule for what is stale (for example, untouched for a year gets closed or re-justified by its owner), a short list of what stays on the roadmap, and a ready-next queue of two or three estimated stories in sprint order. Success looks like a backlog small enough to read in one sitting, and a drop in unestimated or unready stories entering Sprint 23.</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="software-engineering.html">Probe 14</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own ba">Bart</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Sprint predictability</span><span class="mt">Issue cycle time</span></div></div></div>
     </div>
   </div>
 
-  <div class="fn">
-    <div class="fh"><b>Erin Dalessandro</b><span class="meta">Staff Product Manager · Friday, October 23, 2026 · 30 minutes · video</span><span class="ppl"><span class="own er">Eric</span><span class="own ba">Bart</span></span></div>
+  <div class="fn closed" id="erin-oct-23">
+    <div class="fh" role="button" tabindex="0" aria-expanded="false"><span class="chev">▾</span><b>Erin Dalessandro</b><span class="meta">Staff Product Manager · Friday, October 23, 2026 · 30 minutes · video</span><span class="ppl"><span class="own er">Eric</span><span class="own ba">Bart</span></span></div>
     <div class="fb">
       <div class="ob"><div><h4>"Crap in, crap out."</h4><p>Development may look slow, but the bigger problem is what the team is given. Her hardest cases are initiatives that span teams, where a request arrives as "go do this" with no context. International address support came from PCE that way; the team and Alex put in the time, and two I1s followed. "A lot of ways we're not giving the team enough."</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="quality-automation-engineering.html">Probe 01</a><a class="pr" href="software-engineering.html">Probe 16</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own ba">Bart</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">Escaped defects</span><span class="mt">Sprint addition rate</span></div></div></div>
       <div class="ob"><div><h4>The team has never had a principal engineer.</h4><p>Alex is MerCap's principal; Erin wasn't sure what that role is versus Andrew's as team lead, and asked whether the team has had one before (it hasn't). Eric's expectation, stated in the room: the principal's first job is discovery, and Alex and Kyle should be in every discovery conversation. Erin's read-back: "we need to lean on Alex more."</p></div><div class="side"><div class="k">Feeds</div><div style="display:flex;gap:5px;flex-wrap:wrap"><a class="pr" href="software-engineering.html">Probe 13</a></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="own er">Eric</span></div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="mt">PR pass rate</span><span class="mt">Issue cycle time</span></div></div></div>
@@ -303,5 +343,26 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-
   </footer>
 
 </main>
+<script>
+(function(){
+  var cards=document.querySelectorAll('.fn');
+  function setOpen(c,open){c.classList.toggle('closed',!open);c.querySelector('.fh').setAttribute('aria-expanded',open?'true':'false');var t=document.querySelector('.toc a[href="#'+c.id+'"]'); if(t) t.classList.toggle('on',open);}
+  cards.forEach(function(c){setOpen(c,!c.classList.contains('closed'));});
+  cards.forEach(function(c){
+    var h=c.querySelector('.fh');
+    function toggle(e){ if(e.target.closest('a')) return; setOpen(c,c.classList.contains('closed')); }
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e);} });
+  });
+  function openHash(){
+    var id=location.hash.slice(1); if(!id) return;
+    var c=document.getElementById(id); if(!c||!c.classList.contains('fn')) return;
+    setOpen(c,true); c.scrollIntoView({behavior:'smooth',block:'start'});
+    c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200);
+  }
+  window.addEventListener('hashchange',openHash); openHash();
+  document.querySelectorAll('.toc a, a.ht').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); var c=document.getElementById(a.getAttribute('href').slice(1)); if(!c) return; setOpen(c,true); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200); history.replaceState(null,'',location.pathname); }); });
+})();
+</script>
 </body>
 </html>
