@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MerCap Recommendations — what we bring to the team</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark-forest:#01271A; --forest:#003E29; --orange:#FE6D12; --pistachio:#E7E5AA; --turquoise:#75D1D0; --teal:#008573;
+  --white:#FFF; --off-white:#F7F6F2; --bg-soft:#F3F5F3; --text-dark:#16201C; --text-mid:#444; --text-muted:#6B756F; --border:#E2E0D8;
+  --ok:#3F8A46; --ok-bg:#E9F5E9; --warn:#D45A00; --warn-bg:#FFF1E4; --risk:#C9402F; --risk-bg:#FBEAE7; --hold:#8A8F8C; --hold-bg:#ECEEEC;
+  --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--off-white);color:var(--text-dark);font-size:14px;line-height:1.5}
+b{font-weight:600}
+a{color:var(--teal)}
+
+.doc-header{background:var(--dark-forest);position:relative;overflow:hidden}
+.doc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 0%,var(--turquoise) 60%,transparent 100%)}
+.header-inner{max-width:1080px;margin:0 auto;padding:34px 40px 30px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.doc-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--turquoise);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.doc-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--turquoise)}
+.doc-title{font-size:28px;font-weight:700;color:#fff;line-height:1.15;letter-spacing:-.3px;margin-bottom:10px}
+.doc-subtitle{font-size:14px;font-weight:300;color:rgba(231,229,170,.85);max-width:720px;line-height:1.6}
+.doc-subtitle b{color:#fff;font-weight:500}
+.header-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;padding-top:4px}
+.meta-badge{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:4px;white-space:nowrap}
+.badge-internal{background:rgba(255,255,255,.07);color:var(--pistachio);border:1px solid rgba(231,229,170,.2)}
+.badge-status{background:rgba(254,109,18,.15);color:var(--orange);border:1px solid rgba(254,109,18,.3)}
+.badge-date{color:rgba(255,255,255,.35);padding:5px 0}
+
+.doc-body{max-width:1080px;margin:0 auto;padding:22px 40px 56px}
+h2{font-size:16px;font-weight:700;color:var(--forest);padding-bottom:6px;border-bottom:3px solid var(--forest);margin:26px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 .sub{font-size:12px;font-weight:400;color:var(--text-muted)}
+.k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+
+/* role navigation: one page per role */
+.roles{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 14px}
+.rl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 13px;border-radius:20px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--dark-forest);font-size:12.5px;font-weight:500;line-height:1;transition:border-color .15s,background .15s}
+.rl b{font-weight:500}
+.rl i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 6px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+a.rl:hover{border-color:var(--teal);background:#F2FAF8}
+.rl.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff} .rl.on i{background:var(--turquoise);color:#01271A}
+.rl.soon{border-style:dashed;color:var(--text-muted);background:transparent} .rl.soon i{background:transparent;padding:0;color:var(--text-muted)}
+.roles .sep{width:1px;height:22px;background:var(--border);margin:0 4px}
+.rl.across{border-color:var(--orange);color:var(--warn)} .rl.across i{background:var(--warn-bg);color:var(--warn)} .rl.across.on{background:var(--orange);border-color:var(--orange);color:#1A1200} .rl.across.on i{background:#1A1200;color:#fff}
+/* respondents */
+.resp{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.readby{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:5px 10px;border-radius:20px;background:var(--turquoise);color:#01271A;font-weight:500}
+.readby small{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;font-weight:400}
+.who{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:4px 12px 4px 4px;font-size:12.5px}
+.av{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:500;color:#fff}
+.who i{font-style:normal;color:var(--text-muted);font-size:11px}
+.av.a{background:#1F7A5C} .av.m{background:#D45A00} .av.e{background:#4B56A8}
+.note{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+
+/* findings */
+.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fd{background:#fff;border:1px solid var(--border);border-top:3px solid var(--orange);border-radius:10px;padding:14px 15px 15px}
+.fd .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--orange);margin-bottom:6px}
+.fd h3{font-size:14px;font-weight:700;color:var(--dark-forest);line-height:1.3;margin-bottom:6px}
+.fd p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.fd .ev{margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--teal)}
+.fd.good{border-top-color:var(--ok)} .fd.good .n{color:var(--ok)}
+.fd.gap{border-top-color:var(--hold)} .fd.gap .n{color:var(--hold)}
+
+/* bars */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.q{font-size:13.5px;font-weight:600;color:var(--dark-forest);margin-bottom:2px}
+.qd{font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.bars{display:grid;grid-template-columns:1fr 150px 90px;gap:6px 14px;align-items:center}
+.bars .lab{font-size:12.5px;color:var(--text-mid);line-height:1.35}
+.bars .lab.hot{color:var(--dark-forest);font-weight:600}
+.bars .lab.zero{color:var(--text-muted)}
+.bars .bar{height:14px;background:var(--bg-soft);border-radius:3px;position:relative;overflow:hidden}
+.bars .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--orange);border-radius:3px}
+.bars .bar.ok i{background:var(--ok)}
+.bars .cnt{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--text-mid)}
+.bars .cnt b{min-width:14px;color:var(--dark-forest)}
+.chip{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--mono);font-size:8.5px;color:#fff}
+.chip.a{background:#1F7A5C} .chip.m{background:#D45A00} .chip.e{background:#4B56A8}
+.bars .grp{grid-column:1 / -1;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);padding:8px 0 2px;border-top:1px dashed var(--border);margin-top:4px}
+.bars .grp:first-child{border-top:none;margin-top:0;padding-top:0}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+
+/* truth matrix */
+.mx{width:100%;border-collapse:collapse;font-size:12.5px}
+.mx th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);font-weight:500}
+.mx th.c,.mx td.c{text-align:center;width:52px}
+.mx td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle;line-height:1.35;color:var(--text-mid)}
+.mx tr:last-child td{border-bottom:none}
+.mx td.c span{display:inline-block;width:18px;height:18px;border-radius:4px;border:1px solid var(--border);background:#fff}
+.mx td.c span.y{background:var(--ok);border-color:var(--ok);position:relative}
+.mx td.c span.y::after{content:'✓';color:#fff;font-size:11px;position:absolute;inset:0;display:grid;place-items:center}
+.mx td.sc{font-family:var(--mono);font-size:11px;text-align:center;width:52px;color:var(--dark-forest);font-weight:500}
+.mx tr.none td{background:var(--risk-bg)} .mx tr.none td.sc{color:var(--risk)}
+.mx tr.all td{background:var(--ok-bg)}
+.mx td .tg{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:1px}
+.tg.gate{background:var(--warn-bg);color:var(--warn)}
+
+/* regression cycle */
+.cyc{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:6px}
+.cyc div{border:1px solid var(--border);border-radius:6px;padding:8px 6px;text-align:center;font-size:11px;color:var(--text-muted);background:#fff;min-height:64px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.cyc div b{font-family:var(--mono);font-size:16px;color:var(--text-muted);font-weight:500}
+.cyc div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest)} .cyc div.on b{color:var(--warn)}
+.cyc .d{display:flex;justify-content:center;gap:3px}
+
+/* AI heat */
+.ai{width:100%;border-collapse:separate;border-spacing:3px;font-size:12px}
+.ai th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:center;padding:4px 2px}
+.ai th:first-child{text-align:left}
+.ai td{padding:7px 8px;border-radius:5px;line-height:1.3}
+.ai td.row{color:var(--text-mid);background:transparent;padding-left:0}
+.ai td.v{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:#fff;width:112px}
+.v.not{background:#D9DED9;color:#4A5450} .v.exp{background:#B9D7CF;color:#113D30} .v.time{background:#6FB79A} .v.qual{background:#2F8E6E} .v.both{background:var(--forest)} .v.unc{background:#E9B98F;color:#5A2E00} .v.na{background:#F0EFEA;color:#8A8F8C}
+.ai td.sum{font-family:var(--mono);font-size:10.5px;color:var(--text-mid);width:150px}
+.ai td.sum b{color:var(--dark-forest);font-weight:500}
+.leg{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:11px;color:var(--text-muted);margin-top:8px;align-items:center}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+
+/* verbatims */
+.vb{display:grid;grid-template-columns:1fr;gap:10px}
+.vq{background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:30px 1fr;gap:10px}
+.vq p{font-size:12.75px;line-height:1.55;color:var(--text-mid);white-space:pre-line}
+.vq .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.tag.t1{background:var(--warn-bg);border-color:#F3C9A6;color:var(--warn)}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.th{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.th .n{font-family:var(--mono);font-size:20px;color:var(--orange);font-weight:500;line-height:1}
+.th .n small{font-size:11px;color:var(--text-muted);margin-left:3px}
+.th h4{font-size:12.5px;color:var(--dark-forest);margin:6px 0 3px}
+.th p{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+
+
+/* probes: the first thing to read */
+h2.start{border-bottom-color:var(--orange);color:var(--dark-forest);font-size:17px}
+.probe{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pb{background:var(--dark-forest);color:#fff;border-radius:10px;padding:14px 15px 13px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pb::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--turquoise))}
+.pb .ph{display:flex;align-items:center;gap:8px}
+.pb .pn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.pb .pt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.pb h4{font-size:14.5px;line-height:1.3;color:#fff}
+.pb p{font-size:12.25px;line-height:1.5;color:rgba(255,255,255,.78);flex:1}
+.pb .pf{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.pb .ol{display:flex;gap:5px;flex-wrap:wrap}
+.own{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 8px;border-radius:20px;color:#01271A;font-weight:500}
+.own.st{background:var(--turquoise)}.own.to{background:#D9DED9;color:#16201C} .own.am{background:var(--pistachio)} .own.er{background:var(--orange);color:#1A1200} .own.fa{background:#9FE1B8} .own.ba{background:#FFB37A} .own.da{background:#D9C8F0}
+.pb .ms{display:flex;gap:5px;flex-wrap:wrap}
+.mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
+
+.av.j{background:#8A6D1C} .chip.j{background:#8A6D1C} .av.q{background:#003E29} .chip.q{background:#003E29} .av.r{background:#2F6FB3} .chip.r{background:#2F6FB3} .av.h{background:#7A3E9D} .chip.h{background:#7A3E9D} .av.x{background:#B3541E} .chip.x{background:#B3541E} .av.l{background:#2E8B74} .chip.l{background:#2E8B74} .av.y{background:#A0522D} .chip.y{background:#A0522D} .av.p{background:#5C6BC0} .chip.p{background:#5C6BC0} .av.n{background:#C2185B} .chip.n{background:#C2185B}
+.flag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--warn-bg);color:var(--warn);border:1px solid #F3C9A6}
+.mx.xr td{font-size:12.25px} .mx.xr td.sc{width:auto;min-width:72px;font-size:10.5px;line-height:1.3;text-align:center}
+.mx.xr td.sc.r{color:var(--risk)} .mx.xr td.sc.g{color:var(--ok)}
+.mx tr.agree td{background:var(--ok-bg)} .mx tr.split td{background:var(--warn-bg)}
+.mx th small{display:block;font-size:9px;letter-spacing:0;text-transform:none;color:var(--text-muted)}
+.opts div{font-size:12.25px;color:var(--text-muted);padding:8px 10px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;line-height:1.4;display:flex;gap:8px;align-items:flex-start}
+.opts div.on{background:var(--warn-bg);border-color:#F3C9A6;color:var(--dark-forest);font-weight:500}
+.ivnote{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12.75px;color:var(--text-mid);margin-top:12px;line-height:1.5}
+.ivnote b{color:var(--dark-forest)}
+
+.rl.live{border-color:var(--teal);color:var(--teal)} .rl.live i{background:#E3F3EF;color:var(--teal)} .rl.live.on{background:var(--teal);border-color:var(--teal);color:#fff} .rl.live.on i{background:#fff;color:var(--teal)}
+/* field notes: heard and observed */
+.fn{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.fn .fh{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--border)}
+.fn .fh b{font-size:14px;color:var(--dark-forest)}
+.fn .fh .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.fn .fh .ppl{display:flex;gap:5px;flex-wrap:wrap;margin-left:auto}
+.fn .fb{padding:6px 16px 12px}
+.ob{display:grid;grid-template-columns:1fr 240px;gap:14px;padding:12px 0;border-top:1px dashed var(--border)}
+.ob:first-child{border-top:none}
+.ob h4{font-size:13.5px;color:var(--dark-forest);margin-bottom:4px}
+.ob p{font-size:12.5px;line-height:1.5;color:var(--text-mid)}
+.ob .side{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ob .side .k{margin-bottom:0}
+.ob .side .mt{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-mid)}
+.ob .side a.pr{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid #F3C9A6;background:var(--warn-bg);padding:2px 8px;border-radius:4px}
+.ob .side .own{margin-right:0}
+.cap{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.cap th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;text-align:left;padding:4px 8px;border-bottom:1px solid var(--border)}
+.cap td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text-mid)}
+.cap tr:last-child td{border-bottom:none}
+.cap .bar{height:8px;background:var(--bg-soft);border-radius:4px;position:relative;overflow:hidden;min-width:140px}
+.cap .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}
+.cap .bar i.over{background:linear-gradient(90deg,var(--ok) 0,#E9B98F 55%,var(--risk) 100%)}
+.cap .pct{font-family:var(--mono);font-size:11px;font-weight:500}
+.cap .pct.over{color:var(--risk)} .cap .pct.warn{color:var(--warn)} .cap .pct.ok{color:var(--ok)}
+.cap .pto{font-family:var(--mono);font-size:9.5px;color:var(--warn);margin-left:6px}
+@media (max-width:900px){ .ob{grid-template-columns:1fr} }
+
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
+.footer-brand strong{color:var(--dark-forest)}
+.footer-conf{font-size:11.5px;color:var(--text-muted);margin-top:4px}
+
+@media (max-width:1000px){ .probe{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:900px){
+  .header-inner{flex-direction:column;padding:28px 16px 24px} .header-meta{display:none}
+  .doc-body{padding:20px 16px 40px}
+  .findings,.two,.themes,.probe{grid-template-columns:1fr} 
+  .bars{grid-template-columns:1fr 100px 80px}
+  .cyc{grid-template-columns:repeat(3,1fr)}
+  .ai td.v{width:auto;font-size:9px}
+  .card:has(.mx.xr){overflow-x:auto} .mx.xr{min-width:720px}
+  .card:has(.ai){overflow-x:auto} .ai{min-width:560px}
+}
+@media print{ body{background:#fff} .doc-header,.card,.fd,.vq,.pb,.th,.v{-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+/* collapsible cards + table of contents (matches observed.html) */
+.fn .fh:hover{background:#ECEFEC}
+.fn .fh:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.fn .chev{font-size:12px;color:var(--text-muted);transition:transform .15s;width:12px;display:inline-block}
+.fn.closed .chev{transform:rotate(-90deg)}
+.fn.closed .fh{border-bottom:none}
+.fn.closed .fb{display:none}
+.fn.flash .fh{background:var(--warn-bg)}
+.toc{display:flex;flex-direction:column;gap:6px;margin:0 0 6px}
+.toc-none{display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;padding:9px 14px 9px 12px;border:1px dashed #E0A89F;border-left:3px solid var(--risk);border-radius:8px;color:var(--risk);font-size:13px}
+.toc-none em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.toc-none b{font-weight:600}
+.toc-none span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--risk);opacity:.8}
+.toc-none{grid-template-columns:auto 1fr auto}
+.toc-none span:last-child{display:none}
+.toc a{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:14px;align-items:center;padding:9px 14px 9px 12px;background:#fff;border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:8px;text-decoration:none;color:var(--teal);font-size:13px;transition:background .15s,border-color .15s,transform .15s}
+.toc a:hover,.toc a:focus-visible{background:#F2FAF8;border-color:var(--teal);outline:none;transform:translateX(2px)}
+.toc a:hover b{text-decoration:underline;text-underline-offset:3px}
+.toc a em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--text-muted)}
+.toc a b{font-weight:600}
+.toc a span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted)}
+.toc a i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border-radius:10px;background:var(--bg-soft);color:var(--text-muted)}
+.toc a u{text-decoration:none;font-size:15px;line-height:1;color:var(--teal);opacity:.55;transition:opacity .15s,transform .15s}
+.toc a:hover u{opacity:1;transform:translateX(3px)}
+.toc a.on{background:var(--dark-forest);border-color:var(--dark-forest);color:#fff}
+.toc a.on em,.toc a.on span{color:rgba(255,255,255,.6)}
+.toc a.on i{background:rgba(255,255,255,.12);color:#fff}
+.toc a.on u{color:var(--turquoise);opacity:1}
+.toc a span:nth-of-type(2),.toc a i{display:none}
+
+/* recommendations page */
+.rl.rec{border-color:var(--orange);color:var(--orange)}.rl.rec i{background:var(--warn-bg);color:var(--orange)}.rl.rec.on{background:var(--orange);border-color:var(--orange);color:#fff}.rl.rec.on i{background:#fff;color:var(--orange)}
+.lead{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;margin:4px 0 18px}
+.lead .card p{font-size:13px;color:var(--text-mid);line-height:1.55}
+.lead .card p+p{margin-top:8px}
+.stat{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
+.stat div{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.stat div b{display:block;font-family:var(--sans);font-size:26px;font-weight:700;color:var(--dark-forest);letter-spacing:0;line-height:1.1;text-transform:none}
+.stat div.o b{color:var(--orange)}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 18px}
+.tile{display:flex;flex-direction:column;gap:5px;padding:12px 12px 10px;background:var(--dark-forest);color:#fff;border-radius:10px;text-decoration:none;border-bottom:3px solid var(--orange);transition:transform .15s,box-shadow .15s;position:relative;min-height:112px}
+.tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(1,39,26,.18)}
+.tile em{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--orange)}
+.tile b{font-size:13px;line-height:1.3;font-weight:600}
+.tile span{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;color:var(--turquoise);margin-top:auto}
+.tile u{position:absolute;right:11px;bottom:8px;text-decoration:none;color:rgba(255,255,255,.45);font-size:15px}
+.tile:hover u{color:var(--turquoise)}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:18px}
+.tw{padding:12px 14px 12px;border-left:1px solid var(--border);border-top:4px solid var(--teal);position:relative}
+.tw:first-child{border-left:none}
+.tw.now{border-top-color:var(--pistachio)}.tw.pair{border-top-color:var(--orange)}.tw.run{border-top-color:var(--teal)}.tw.beyond{border-top-color:var(--hold)}
+.tw .tk{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-forest);font-weight:500}
+.tw .td{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--text-muted);margin:2px 0 8px}
+.tw .tn{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.tw .tn a{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:3px 7px;border-radius:5px;background:var(--bg-soft);color:var(--dark-forest);text-decoration:none;border:1px solid var(--border)}
+.tw .tn a:hover{background:var(--dark-forest);color:#fff;border-color:var(--dark-forest)}
+.tw p{font-size:12px;color:var(--text-mid);line-height:1.45}
+.cov{width:100%;border-collapse:collapse;font-size:12.5px}
+.cov th{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:6px 4px;border-bottom:1px solid var(--border);font-weight:500;vertical-align:bottom}
+.cov th small{display:block;font-size:9px;letter-spacing:.03em;color:var(--teal);text-transform:none;margin-top:2px}
+.cov th[scope=row]{text-align:left;text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:12.5px;color:var(--dark-forest);font-weight:600}
+.cov th[scope=row] a{color:inherit;text-decoration:none}
+.cov th[scope=row] a:hover{color:var(--teal)}
+.cov th[scope=row] em{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--orange);margin-right:8px}
+.cov td{text-align:center;padding:7px 4px;border-bottom:1px solid var(--border);color:var(--border);font-size:11px}
+.cov td.y{color:var(--teal);font-size:14px}
+.cov tr:last-child td,.cov tr:last-child th{border-bottom:none}
+.pre{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--risk-bg);border:1px solid #E7B3AB;border-left:4px solid var(--risk);border-radius:10px;padding:12px 16px;margin:0 0 18px}
+.pre .pn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--risk);font-weight:500;white-space:nowrap}
+.pre .pn b{display:block;font-size:22px;font-family:var(--sans);letter-spacing:0;line-height:1}
+.pre h3{font-size:14px;color:var(--dark-forest);margin-bottom:3px}
+.pre p{font-size:12.5px;color:var(--text-mid);line-height:1.5}
+.pre .who{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.ctl{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:11px}
+.ctl button{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:#fff;color:var(--teal);cursor:pointer}
+.ctl button:hover{border-color:var(--teal);background:#F2FAF8}
+.rc{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;transition:box-shadow .15s}
+.rc.above{border-left:5px solid var(--orange)}
+.rc.below{border-left:5px solid var(--border)}
+.rc.flash{box-shadow:0 0 0 3px rgba(254,109,18,.35)}
+.rh{display:grid;grid-template-columns:auto 1fr auto;gap:16px;padding:14px 16px 12px;cursor:pointer;user-select:none;align-items:start}
+.rh:hover{background:#FBFBF9}
+.rh:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.rn{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--orange);line-height:1;padding-top:2px;letter-spacing:-.02em}
+.rc.below .rn{color:var(--text-muted);font-size:16px;padding-top:4px}
+.rt h3{font-size:16px;color:var(--dark-forest);line-height:1.3;margin-bottom:4px}
+.rc.below .rt h3{font-size:14px}
+.rt .line{font-size:13px;color:var(--text-mid);line-height:1.5;margin-bottom:8px}
+.rc.below .rt .line{font-size:12.5px;margin-bottom:6px}
+.rt .row{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.rt .row .k{margin:0 4px 0 0}
+.ms{display:inline-flex;flex-direction:column;padding:3px 8px;border-radius:5px;background:var(--bg-soft);border:1px solid var(--border);line-height:1.2}
+.ms b{font-size:10.5px;color:var(--dark-forest);font-weight:600}
+.ms i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--teal)}
+.win{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;padding:3px 8px;border-radius:4px;border:1px solid var(--border);color:var(--text-mid);background:#fff}
+.win.now{border-color:#CFCB7A;background:#F6F5DF}.win.pair{border-color:#F3C9A6;background:var(--warn-bg);color:var(--warn)}.win.run{border-color:#9ED6CF;background:#E3F3EF;color:var(--teal)}.win.beyond{background:var(--hold-bg);color:var(--hold)}
+.own.tm{background:#fff;border:1px solid var(--border);color:var(--text-mid)}
+.rx{display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-top:4px;min-width:90px}
+.rx .chev{font-size:12px;color:var(--text-muted);transition:transform .15s;display:inline-block}
+.rc.closed .rx .chev{transform:rotate(-90deg)}
+.rx .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-align:right}
+.rb{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;padding:4px 16px 16px 16px;border-top:1px dashed var(--border);margin:0 0 0 0}
+.rc.closed .rb{display:none}
+.rb .col{padding-top:12px}
+.rb p{font-size:12.75px;color:var(--text-mid);line-height:1.55}
+.rb p.first{background:var(--warn-bg);border-left:3px solid var(--orange);padding:8px 10px;border-radius:0 6px 6px 0;color:var(--text-dark)}
+.rb p.watch{color:var(--text-muted)}
+.ev{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.ev li{display:grid;grid-template-columns:150px 1fr;gap:10px;font-size:12.5px;line-height:1.45;color:var(--text-mid)}
+.ev li a{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;padding-top:3px}
+.ev li a:hover{text-decoration:underline;text-underline-offset:3px}
+.theline{display:flex;align-items:center;gap:14px;margin:26px 0 16px}
+.theline::before,.theline::after{content:"";flex:1;border-top:2px dashed var(--orange)}
+.theline span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:500;text-align:center;line-height:1.5}
+.theline span small{display:block;font-size:9.5px;letter-spacing:.06em;text-transform:none;color:var(--text-muted)}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.why div{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.why div b{display:block;font-size:13px;color:var(--dark-forest);margin-bottom:4px}
+.why div p{font-size:12.25px;color:var(--text-mid);line-height:1.5}
+@media (max-width:1000px){.tiles{grid-template-columns:repeat(2,1fr)}.tl{grid-template-columns:1fr 1fr}.tw:nth-child(3){border-left:none}.tw:nth-child(n+3){border-top-width:4px}.lead{grid-template-columns:1fr}.why{grid-template-columns:1fr}}
+@media (max-width:760px){.tiles{grid-template-columns:1fr}.tl{grid-template-columns:1fr}.tw{border-left:none}.rh{grid-template-columns:auto 1fr}.rx{grid-column:1 / -1;flex-direction:row;align-items:center;gap:8px}.rb{grid-template-columns:1fr}.ev li{grid-template-columns:1fr}.pre{grid-template-columns:auto 1fr}.pre .who{grid-column:1 / -1;justify-content:flex-start}}
+@media print{.rc.closed .rb{display:grid}.ctl{display:none}.tile,.pb{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="header-inner">
+    <div>
+      <div class="doc-eyebrow">Office of the CTO · MerCap Tiger Team · Discovery surveys</div>
+      <h1 class="doc-title">Recommendations</h1>
+      <p class="doc-subtitle">What the three reads add up to. Thirteen surveys, four conversations, and four rituals, ranked into the changes that speed up the delivery of value, in order of precedence. <b>Five sit above the line.</b> Everything below it is sequenced, not dropped. To be chosen with the team on Nov 20, paired on in Sprint 24, and read against the Jellyfish baseline through Feb 16.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge badge-internal">Internal · Confidential</span>
+      <span class="meta-badge badge-status">⚡ Phase 2 · decide by Nov 20</span>
+      <span class="meta-badge badge-date">November 6, 2026 · Eric Normant</span>
+    </div>
+  </div>
+</header>
+
+<main class="doc-body">
+
+  <nav class="roles">
+    <a class="rl across" href="index.html"><b>Across roles</b><i>13 people</i></a>
+    <span class="sep"></span>
+    <a class="rl" href="product-management.html"><b>Product Management</b><i>2/2</i></a>
+    <a class="rl" href="product-design.html"><b>Product Design</b><i>1/1</i></a>
+    <a class="rl" href="software-engineering.html"><b>Software Engineering</b><i>5/5</i></a>
+    <a class="rl" href="quality-automation-engineering.html"><b>QA Engineering</b><i>3/3</i></a>
+    <a class="rl" href="engineering-management.html"><b>Engineering Management</b><i>1/2</i></a>
+    <a class="rl" href="technical-program-management.html"><b>Technical Program Management</b><i>1/1</i></a>
+    <span class="sep"></span>
+    <a class="rl live" href="heard.html"><b>Heard in person</b><i>4 conversations</i></a>
+    <a class="rl live" href="observed.html"><b>Observed</b><i>4 rituals</i></a>
+    <a class="rl rec on" href="recommendations.html"><b>Recommendations</b><i>5 above the line</i></a>
+  </nav>
+
+  <h2>The line <span class="sub">five changes, one Sprint 24 to try them, four sprints to measure them · click a tile to open it</span></h2>
+
+  <div class="lead">
+    <div class="card">
+      <p>The team is not short on craft. Engineers own their quality, AI has already made the coding fast, and the team's own retro fixes are small and specific. What is slow is everything around the code: work arrives without a why, the sprint is planned without a capacity number, cross-team decisions have no owner, releases are all-or-nothing, and nobody reads whether a release did anything.</p>
+      <p>So the five above the line are about the intake and the plan, not the engineers. They are ordered by which number they move first, whether they fit a two-week pairing sprint, and whether the team can own them without a decision from outside. Each one depends on the one before it.</p>
+      <div class="stat"><div><b>5</b>above the line</div><div class="o"><b>8</b>below, sequenced</div><div><b>1</b>prerequisite, this week</div><div><b>263%</b>sprint addition rate today</div><div><b>18.8%</b>sprint predictability</div></div>
+    </div>
+    <div class="card">
+      <div class="k">What each one moves · Jellyfish today → 75th percentile</div>
+      <table class="cov"><thead><tr><th></th><th>Addition rate<small>263% → 3.8%</small></th><th>Predictability<small>18.8% → 72%</small></th><th>Cycle time<small>5.82 → 2.92 d</small></th><th>Issues resolved<small>1.23 → 2.07</small></th><th>Guardrails<small>defects hold</small></th><th>Value<small>per release</small></th></tr></thead><tbody><tr><th scope="row"><a href="#ready"><em>01</em>Nothing enters the sprint unready</a></th><td class="y">●</td><td class="y">●</td><td class="y">●</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><th scope="row"><a href="#capacity"><em>02</em>Plan against real capacity</a></th><td class="y">●</td><td class="y">●</td><td class=""></td><td class="y">●</td><td class=""></td><td class=""></td></tr><tr><th scope="row"><a href="#discovery"><em>03</em>Discovery before the date</a></th><td class="y">●</td><td class=""></td><td class="y">●</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><th scope="row"><a href="#ship"><em>04</em>Ship smaller and safer</a></th><td class=""></td><td class="y">●</td><td class="y">●</td><td class=""></td><td class="y">●</td><td class=""></td></tr><tr><th scope="row"><a href="#outcome"><em>05</em>Read the outcome</a></th><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="y">●</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="tiles">
+<a class="tile" href="#ready"><em>01</em><b>Nothing enters the sprint unready</b><span>Sprint predictability</span><u>→</u></a>
+<a class="tile" href="#capacity"><em>02</em><b>Plan against real capacity, then protect it</b><span>Sprint addition rate</span><u>→</u></a>
+<a class="tile" href="#discovery"><em>03</em><b>Discovery before the date</b><span>Issue cycle time</span><u>→</u></a>
+<a class="tile" href="#ship"><em>04</em><b>Ship smaller and safer</b><span>Escaped defects · MTTR</span><u>→</u></a>
+<a class="tile" href="#outcome"><em>05</em><b>Read the outcome after every release</b><span>Not in Jellyfish</span><u>→</u></a>
+  </div>
+
+  <div class="k">Where each lands · the plan's four windows</div>
+  <div class="tl">
+  <div class="tw now"><div class="tk">Now · Sprint 23</div><div class="td">Nov 9–20 · decide with the team on Nov 20</div><div class="tn"><a href="#prereq">P</a><a href="#ready">01</a><a href="#discovery">03</a><a href="#board">07</a><a href="#ai">10</a></div><p>Backlog hygiene, the first two kickoffs, the board, the first AI session. The five are chosen with the team on Nov 20.</p></div>
+  <div class="tw pair"><div class="tk">Pair · Sprint 24</div><div class="td">Nov 23 – Dec 4 · Thanksgiving inside it</div><div class="tn"><a href="#ready">01</a><a href="#capacity">02</a><a href="#discovery">03</a><a href="#ship">04</a><a href="#outcome">05</a><a href="#testdata">06</a></div><p>The five, tried on real work through pairing. Capacity sheet in planning on Nov 23; first outcome read on the Nov 22 release.</p></div>
+  <div class="tw run"><div class="tk">Run · Sprints 25, 26, 1, 2</div><div class="td">Dec 7 – Feb 16 · checkpoint after every sprint</div><div class="tn"><a href="#ready">01</a><a href="#capacity">02</a><a href="#discovery">03</a><a href="#ship">04</a><a href="#outcome">05</a><a href="#regression">08</a><a href="#access">09</a></div><p>Four development sprints against the baseline. Expect the Sprint 25 dip; continue unless it persists through 26. Feb 16: decide together.</p></div>
+  <div class="tw beyond"><div class="tk">Beyond · escalate</div><div class="td">decisions before Feb 16, delivery after</div><div class="tn"><a href="#pm">11</a><a href="#env">12</a><a href="#dip">13</a></div><p>Not dropped, sequenced. Each needs a decision outside the team: Devika and Hareet, Yi, the Engineering Operating System.</p></div>
+</div>
+
+  <h2 id="prereq">Before anything else <span class="sub">not a recommendation · a risk that closes this week or the rest does not start</span></h2>
+  <div class="pre">
+    <div class="pn">Prereq<b>P</b></div>
+    <div>
+      <h3>Andrew's knowledge has to be in two heads by Monday.</h3>
+      <p>Andrew's last day is today, Nov 6. The team could not groom the next sprint or point Embedded Payments Form without him, and engineers find code owners by asking Quan or Andrew. Alex covers as Principal; the second named backup is still open, and "Who owns what" still needs a product owner for Priority Capital. Close it in Sprint 23, before the five are chosen. <a href="observed.html#standups-oct-28-30">Observed</a> · <a href="heard.html#se-nov-4">Heard</a></p>
+    </div>
+    <div class="who"><span class="own er">Eric</span><span class="own tm">Quan · Alex</span></div>
+  </div>
+
+  <h2>Above the line <span class="sub">01 to 05 · in order of precedence · each card opens to the evidence, the pairing, and the first move</span><span class="ctl"><button type="button" data-all="open">Expand all</button><button type="button" data-all="close">Collapse all</button></span></h2>
+
+  <article class="rc above closed" id="ready">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">01</div>
+      <div class="rt">
+        <h3>Nothing enters the sprint unready.</h3>
+        <p class="line">A story is ready when it carries the why (problem, outcome, KPI), acceptance criteria, an estimate, its QA task, its test-data need, and the design, with any other team named. Planning plans; it no longer grooms.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span><span class="ms"><b>Sprint addition rate</b><i>263% → ≤ 3.8%</i></span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win now">Now · Sprint 23 · Nov 9–20</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own ba">Bart</span><span class="own st">Steve</span><span class="own fa">Fabio</span><span class="own to">Tony</span><span class="own tm">Erin · Alex · Kyle · Josette</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="index.html">Surveys · finding 01</a><span>Every seat says work arrives unclear: QA 3/3, engineers 4/5, PM 2/2, design 1/1. The TPM, who plans it, is the one exception.</span></li><li><a href="observed.html#planning-oct-26">Observed · heat map</a><span>"Work arrives unready" is the largest theme: 9 of 32 observations. Grooming did not happen before planning, so planning did the grooming. Two words never came up: test data, and ready.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>QA says stories were never groomed; product believed they were. The Definition of Ready exists, and the team is afraid of it.</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Four refinement meetings a week, and still nothing is ready.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Tickets say what, rarely why. Product managers have asked engineers to write the acceptance criteria.</span></li><li><a href="heard.html#rai-lilly-oct-28">Heard · Ray and Lilly</a><span>More than 200 backlog tickets, many over a year old. At that size grooming cannot find the real ones, so the newest request wins.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Bart with Erin on the gate itself, one screen, nothing optional. Alex and Kyle read every story before refinement, so complexity and design are known before the estimate. Steve with QA on the QA task and the test-data line. Fabio with the engineers on the technical questions a story must answer. Tony with Josette so the hypothesis in the program plan reaches the ticket, which is where it stops today (finding 05).</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Nov 9–20, before pairing: Bart and Erin run the Jira hygiene session. Anything untouched for a year is closed or re-justified by its owner, and a ready-next queue of two or three estimated stories sits in sprint order so spare capacity pulls instead of waiting. Then write the two Sprint 24 commitments to the gate and use them as the template.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">The gate turning into a form. If a field is not used in planning, drop it. And it only holds if 02 holds: a ready story that is added mid-sprint is still an addition.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc above closed" id="capacity">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">02</div>
+      <div class="rt">
+        <h3>Plan against real capacity, then protect it.</h3>
+        <p class="line">Every sprint starts with a number per person: PTO out, a regression allowance in, carry-over planned first, dev-done work not counted. After commitment nothing is added unless something equal comes out, with a named approver and a log.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Sprint addition rate</b><i>263% → ≤ 3.8%</i></span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span><span class="ms"><b>Issues resolved</b><i>1.23 / FTE / wk → ≥ 2.07</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own am">Amrita</span><span class="own er">Eric</span><span class="own to">Tony</span><span class="own tm">Quan · Erin · Josette</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="observed.html#planning-oct-26">Observed · planning</a><span>Planning did not reference capacity at all. Four of six were planned over 100%, two over 200% while on PTO. Fifteen issues carried over, and were planned last.</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Eight points per person per sprint came from the PMO, not the team. Sprint 23 was planned before Sprint 22 started, and Sprint 22 overwrote it.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Ramya ran out of work while her board held five stories in QA. A month-old dev-done story was counted as capacity; a 3-point story took 19.5 hours.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Work arrives sideways with the date already set. Regression costs a day or two most sprints, half the sprint at its worst.</span></li><li><a href="engineering-management.html">Surveys · EM</a><span>Engineering does not shape dates before commitments are made (Quan, probe 10).</span></li><li><a href="../index.html">Jellyfish</a><span>Sprint addition rate is 263% against a 75th-percentile target of 3.8%. It is the worst number on the board, and the one this changes first.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Amrita with the team on a one-page capacity sheet built inside planning, using actual velocity from Jellyfish instead of eight points. Eric with Quan and Alex on the addition rule and who can say yes. Tony with Josette so the program plan and the sprint plan are one plan, with one set of dates.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Build the Sprint 24 capacity sheet in the planning meeting on Nov 23, in front of the team, and open the additions log the same day. Carry-over goes in first. Anything dev-done comes out.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">The rule being used to say no to the business. The answer is "yes, and this comes out," decided by Erin with Quan the same day, not by the team in standup. Expect the Sprint 25 dip the plan already allows for.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc above closed" id="discovery">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">03</div>
+      <div class="rt">
+        <h3>Discovery before the date: the trio in the room, and cross-team work aligned before it is assigned.</h3>
+        <p class="line">Any new request gets a kickoff with Erin, Alex, and Kyle before a date exists. Anything that touches another team starts only when the teams have agreed the requirement and each one's responsibility. Every decision that spans teams has a named owner.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Sprint addition rate</b><i>263% → ≤ 3.8%</i></span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span><span class="ms"><b>Commitments on date</b><i>plan measure → improve</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win now">Now · Sprint 23 · Nov 9–20</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own er">Eric</span><span class="own fa">Fabio</span><span class="own tm">Erin · Alex · Kyle</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="index.html">Surveys · finding 02</a><span>Thirteen of thirteen named cross-team dependencies, and three people (Quan, Avni, Alex) proposed the same fix: align the teams before the work is assigned.</span></li><li><a href="index.html">Surveys · finding 04</a><span>AI made writing the code fast. What is slow now is working out how the pieces fit together, and that happens after the work has started.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro and planning</a><span>Passkey: three teams, three flows, one approved; it changed under the team mid-sprint and nobody owns the decision.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Design is brought in after the requirements are written, 49 to 113 days after the business item.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>Work reaches him because someone mentions it. He finds out about screen changes after the fact. What he wants is the kickoff, before tickets exist.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>"Crap in, crap out." The team has never had a principal engineer; the role has to be set, not assumed.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Address validation: an external library nobody had assessed took three or four rounds and was pulled from production.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Bart with Erin on the kickoff: one hour, one page, who owns what, and whether the work is ready to be dated. Danny with Kyle so design is in the first conversation, not the last. Eric with Quan and Alex on the principal's first job being discovery. Fabio with the engineers on a short technical design step for anything with cross-team or architectural dependencies, so discovery stops happening mid-ticket.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Run the kickoff on the next two requests that arrive, whichever they are, before Nov 20, with the other team's PM at the table. Name the Passkey decision owner this week.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">The kickoff becoming a meeting series. It ends with a decision: who owns it, which teams are in, and whether it can be dated. If it cannot, it is not on the roadmap yet.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc above closed" id="ship">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">04</div>
+      <div class="rt">
+        <h3>Ship smaller and safer: feature flags, and tests that block the build.</h3>
+        <p class="line">Feature flags on the Checkout API and Passkey, so work merges dark and releases stop being all-or-nothing. Failing unit tests fail the build wherever coverage exists, starting with MXM. Payment links (MSG) gets a coverage plan.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Escaped defects · MTTR</b><i>guardrail → hold or improve</i></span><span class="ms"><b>PR pass rate</b><i>88.2% → 100%</i></span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own fa">Fabio</span><span class="own st">Steve</span><span class="own am">Amrita</span><span class="own tm">Alex · Leonel · Michael</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="index.html">Surveys · candidates</a><span>Statsig is POC'd and the Checkout API work is scoped by Alex. Two customer-impacting I1s trace to the absence of flags.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>No feature flags makes Passkey all-or-nothing, and automation pays for it.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>MXM fails tests locally and still builds in TeamCity. MSG has no unit tests and generates the triage. Leonel's rule: where coverage exists, untested code does not merge.</span></li><li><a href="index.html">Surveys · finding 04</a><span>Engineers own their quality (6/8) and already use AI to write and realign tests. This gives that ownership teeth.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Fabio with each engineer: one flagged Passkey path, then the test gate on MXM. Steve with QA on what a flagged release means for regression scope, which is where 08 starts. Amrita runs the coverage report once Leonel and Michael list the repositories, and MSG gets a plan, not a rewrite.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Week one of Sprint 24: turn the gate on for MXM, quarantine and ticket what it catches, and flag one Passkey path behind Statsig.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">The gate blocking the sprint on old failures. It applies to new code; old failures get a ticket and a date. And flags need an owner to turn them off, or they become the next DIP.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc above closed" id="outcome">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">05</div>
+      <div class="rt">
+        <h3>Read the outcome after every release.</h3>
+        <p class="line">Thirty minutes after each release, starting with Nov 22, the team reads the KPI it set out to move and decides: more, done, or stop. The number comes from the ready gate (01), so there is always one to read.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Not in Jellyfish</b><i>value → read per release</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own er">Eric</span><span class="own tm">Erin · Kyle</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="index.html">Surveys · finding 03</a><span>Zero of twelve downstream say the KPI is reviewed after shipping. The three discovery seats checked "none of these are consistently true."</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The missing review is a delay: decisions wait on evidence that is never collected. "We deliver the MVP and never go further."</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Nobody knows how merchants experience the product.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>He is already talking to Kim about regular merchant feedback sessions. The customer contact the team said it does not have is coming from the designer, unprompted.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Bart with Erin on the read: one number, against the target written when the story was ready, and one decision. Danny with Kyle on the merchant sessions that supply the qualitative half. Eric brings the Jellyfish checkpoint into the same half hour, so delivery and value are read together.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">The Nov 22 release gets the first read in the Sprint 24 pairing week. If no story in it carries a KPI, that is the finding, and 01 starts there.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">The review becoming a demo. It is not a showcase; it is a decision. This one does not move a Jellyfish number, and it is on the list because it is what makes the other four about value instead of throughput.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="theline"><span>The line<small>above: what we bring to the team on Nov 20 · below: sequenced, not dropped</small></span></div>
+
+  <h2>Below the line <span class="sub">06 to 13 · ordered by when they can start · three need a decision outside the team</span></h2>
+
+  <article class="rc below closed" id="testdata">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">06</div>
+      <div class="rt">
+        <h3>Reliable test data in lower environments.</h3>
+        <p class="line">QA and UAT carry the data a story needs before it starts, so a week is not lost finding it.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span><span class="ms"><b>Escaped defects · MTTR</b><i>guardrail → hold or improve</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win pair">Pair · Sprint 24 · Nov 23–Dec 4</span><span class="k" style="margin-left:8px">Who</span><span class="own st">Steve</span><span class="own am">Amrita</span><span class="own tm">QA</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="index.html">Surveys · candidates</a><span>Earnest lost a week and a half to it. Preston says it is "still a problem" a year after the DMS report.</span></li><li><a href="observed.html#planning-oct-26">Observed · planning</a><span>"Test data" never came up in planning.</span></li><li><a href="quality-automation-engineering.html">Surveys · QA</a><span>Probe 04 times one story end to end. If it repeats, this moves above the line and is the first place to aim AI help.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Steve with each QA engineer, on the stories 01 gates: the test-data line becomes a request that is filled before the sprint, not during it.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Run probe 04 on one Sprint 23 story and time it. The number decides whether this is Sprint 24 work.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Solving it per story forever. If probe 04 repeats, the fix is a data set, not a ticket.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="board">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">07</div>
+      <div class="rt">
+        <h3>Standup and the board show who is on what.</h3>
+        <p class="line">One view, the same for everyone: who holds which ticket, what is blocked, and who is free.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win now">Now · Sprint 23 · Nov 9–20</span><span class="k" style="margin-left:8px">Who</span><span class="own am">Amrita</span><span class="own to">Tony</span><span class="own tm">Quan</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Standup does not show who is working on which ticket. Nothing was assigned to Ramya after she said she had capacity, and her board still shows nothing.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Not a pairing change. Amrita set up the standup view already; Tony checks it is used from Sprint 23.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Open the view in Monday's standup and run the meeting from it.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Treating it as a tool choice. It is a habit: the board is the meeting.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="regression">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">08</div>
+      <div class="rt">
+        <h3>Right-size regression.</h3>
+        <p class="line">Regression scoped by what changed, with the automation that should pass passing, so MerCap stops absorbing every team's MXM changes and ACH stops breaking the run.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own st">Steve</span><span class="own tm">QA · Quan</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>MerCap regresses everyone's MXM changes, and ACH breaks the run every release. Release decisions live in a ticket, not on the story.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>QA cannot tell new bugs from old ones regression happens to surface. Login fails in UAT with no related change. Developer-to-QA handoff calls exist because the ticket does not say what changed.</span></li><li><a href="observed.html#planning-oct-26">Observed · planning</a><span>The React migration still has not started, and automation that should pass does not.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Steve with QA from Sprint 25, once 01 puts the change note on the story and 04 makes releases smaller.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">List what ACH breaks, every release, and fix the top one before Dec 20.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Shrinking regression before 04 lands. Smaller releases first, then smaller regression.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="access">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">09</div>
+      <div class="rt">
+        <h3>Self-service access and provisioning.</h3>
+        <p class="line">Repositories, non-production secrets, and new-hire access without a ticket and a chase.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own am">Amrita</span><span class="own ba">Bart</span><span class="own tm">Purush</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Repo access takes forever: one approver, 2,200 repos, and Purush's access template exists for new hires.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Secrets, networking, and cloud operations go through TSD requests that need follow-ups. Finished work sits two weeks waiting on a step the team cannot do itself.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Amrita has repositories self-service now; non-production secrets, documented, are next. Bart owns the access template for anyone joining MerCap.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Give the team the secrets path for non-production in Sprint 25 and measure the wait before and after.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Opening production. Non-production only, documented, and audited.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="ai">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">10</div>
+      <div class="rt">
+        <h3>AI working sessions and a standard toolset.</h3>
+        <p class="line">A recurring session where engineers watch each other use the tools on real work, and a converged set of tools instead of a new model each day.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>PR cycle time</b><i>0.81 d → ≤ 0.06 d</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win now">Now · Sprint 23 · Nov 9–20</span><span class="win run">Run · Sprints 25–2 · Dec 7–Feb 16</span><span class="k" style="margin-left:8px">Who</span><span class="own am">Amrita</span><span class="own tm">Michael · Alex</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Michael asked for it; Ryan noted nothing is on the calendar; Amrita has added the team to the AI guild. Alex wants convergence on tooling and AI used to keep design documents current.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Amrita owns it; it runs alongside the pairing, not inside it.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">First session before Thanksgiving, on a MerCap story.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">A lecture. It is people showing their own workflow on their own code.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="pm">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">11</div>
+      <div class="rt">
+        <h3>A second product manager for MerCap.</h3>
+        <p class="line">Nothing above the line works if Erin is the only person who can do it.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span><span class="ms"><b>Sprint addition rate</b><i>263% → ≤ 3.8%</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win beyond">Beyond Feb 16 · escalate</span><span class="k" style="margin-left:8px">Who</span><span class="own er">Eric</span><span class="own tm">Devika · Hareet</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>"This team definitely needs more than one product manager." Planning was finished alone overnight; every retro action landed on Product.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The TPMs are absent from MerCap's daily work; Erin has asked Josette for a RACI. Nobody knows who to escalate to or who owns which product.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Not a pairing change. An organizational decision for Devika and Hareet, informed by what 01 to 05 show about the PM seat's load by the Dec 18 checkpoint.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Raise it with Devika before the Feb 16 decision, with the load data from Sprints 24 and 25.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Hiring to the current process. Fix 01 and 03 first, then size the seat.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="env">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">12</div>
+      <div class="rt">
+        <h3>An integration environment, then a local stack for MXC.</h3>
+        <p class="line">Somewhere to test that is not QA, so engineers stop deploying blind into the environment regression is using.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Escaped defects · MTTR</b><i>guardrail → hold or improve</i></span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win beyond">Beyond Feb 16 · escalate</span><span class="k" style="margin-left:8px">Who</span><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own er">Eric</span><span class="own tm">Yi · Purush</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>MXC cannot run locally and there is no integration environment; engineers deploy to QA to test anything. Alex: a need, not an ask, and agentic development cannot work without it.</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · heat map</a><span>Unstable environments and QA/UAT parity appear in three rituals.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Too big for the window and the root of the testing, collision, and hotfix problems. Amrita, Steve, and Eric write the case with what it unlocks and take it to Yi.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">A one-page case to Yi before Dec 18, with cost and the first platform to cover.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Waiting for it. 04 and 06 are what the team can do now; this is what the organization does next.</p>
+      </div>
+    </div>
+  </article>
+  <article class="rc below closed" id="dip">
+    <header class="rh" role="button" tabindex="0" aria-expanded="false">
+      <div class="rn">13</div>
+      <div class="rt">
+        <h3>Retire the DIP document; move toward continuous deployment.</h3>
+        <p class="line">From a crowdsourced deployment document and thirty people on a call, to a release that does not need a month.</p>
+        <div class="row"><span class="k">Moves</span><span class="ms"><b>Issue cycle time</b><i>5.82 d → ≤ 2.92 d</i></span><span class="ms"><b>Sprint predictability</b><i>18.8% → ≥ 72%</i></span></div>
+        <div class="row"><span class="k">When</span><span class="win beyond">Beyond Feb 16 · escalate</span><span class="k" style="margin-left:8px">Who</span><span class="own er">Eric</span><span class="own tm">Purush · Quan</span></div>
+      </div>
+      <div class="rx"><span class="chev">▾</span><span class="lbl">why · how · first move</span></div>
+    </header>
+    <div class="rb">
+      <div class="col">
+        <div class="k">Why this, and why here</div>
+        <ul class="ev"><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Upwards of a month from development to production. Every team edits the DIP by hand; hotfixes mean backporting and cherry-picking; Alex needed an exemption from Quan to edit a locked DIP.</span></li></ul>
+      </div>
+      <div class="col">
+        <div class="k">How we pair in Sprint 24</div>
+        <p>Cross-team and the longest. It depends on 04 (flags), 12 (environments), and a release process owned outside MerCap.</p>
+        <div class="k" style="margin-top:10px">First move</div>
+        <p class="first">Name the owner outside MerCap in Q1 and put it on the Engineering Operating System roadmap.</p>
+        <div class="k" style="margin-top:10px">Watch for</div>
+        <p class="watch">Trying to fix it from inside one team. MerCap can decouple itself; it cannot retire the DIP alone.</p>
+      </div>
+    </div>
+  </article>
+
+  <h2>Why this order <span class="sub">the three tests every item was read against</span></h2>
+  <div class="why">
+    <div><b>Which number does it move first?</b><p>Sprint addition rate (263%) and predictability (18.8%) are the worst on the board and the most sensitive to intake and planning. 01 and 02 aim at them directly. Cycle time (5.82 days) follows once work stops being discovered mid-ticket and stops waiting in QA.</p></div>
+    <div><b>Does it fit the window?</b><p>Sprint 24 is two weeks with Thanksgiving inside it, then four sprints across the holidays. Anything above the line has to be tried in pairing and visible in Jellyfish by Feb 16. Environments, the DIP, and a second PM cannot; they are escalated, not dropped.</p></div>
+    <div><b>Can the team own it?</b><p>The five need Erin, Alex, Kyle, Quan, and the engineers, with the Tiger Team pairing. Nothing above the line waits on a budget, a vendor, or an org decision. The plan said three or four changes; the fifth is on the list because it costs thirty minutes and it is the only one about value rather than throughput.</p></div>
+  </div>
+
+  <div class="ivnote"><b>How this page changes.</b> The order is a proposal until Nov 20, when the team chooses with us. Probe 04 can move 06 above the line; the Dec 18 checkpoint can move anything. Each card links to the survey, conversation, or ritual it came from, so the argument can be checked, not just read.</div>
+
+  <footer>
+    <div class="footer-brand"><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
+    <div class="footer-conf">Confidential · Internal · Survey responses are shared within the Tiger Team only and synthesized without attribution outside it · November 2026</div>
+  </footer>
+
+</main>
+<script>
+(function(){
+  var cards=document.querySelectorAll('.rc');
+  function setOpen(c,open){c.classList.toggle('closed',!open);c.querySelector('.rh').setAttribute('aria-expanded',open?'true':'false');}
+  cards.forEach(function(c){
+    var h=c.querySelector('.rh');
+    function toggle(e){ if(e.target.closest('a')) return; setOpen(c,c.classList.contains('closed')); }
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(e);} });
+  });
+  document.querySelectorAll('.ctl button').forEach(function(b){ b.addEventListener('click',function(){ var o=b.getAttribute('data-all')==='open'; cards.forEach(function(c){setOpen(c,o);}); }); });
+  function go(id){ var c=document.getElementById(id); if(!c) return; if(c.classList.contains('rc')) setOpen(c,true); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash')},1200); }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); go(a.getAttribute('href').slice(1)); history.replaceState(null,'',location.pathname); }); });
+  if(location.hash) go(location.hash.slice(1));
+  window.addEventListener('hashchange',function(){ go(location.hash.slice(1)); });
+})();
+</script>
+</body>
+</html>
