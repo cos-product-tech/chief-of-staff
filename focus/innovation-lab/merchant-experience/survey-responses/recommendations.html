@@ -85,6 +85,7 @@ h2{font-size:34px;line-height:1.12;font-weight:600;letter-spacing:-.02em;color:v
 .who{display:flex;gap:5px;flex-wrap:wrap}
 .own{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:3px 9px;border-radius:20px;color:#01271A;font-weight:500}
 .own.st{background:var(--turq)}.own.to{background:#DCE1DD}.own.am{background:var(--pist)}.own.er{background:var(--orange);color:#1A1200}.own.fa{background:#A7E3BE}.own.ba{background:#FFBE8C}.own.da{background:#DDD0F2}
+.own.cr{background:#C9E4F5}
 .own.tm{background:transparent;border:1px solid var(--line);color:var(--ink2)}
 .chev{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);position:relative;margin-top:6px;transition:transform .2s,background .2s}
 .chev::before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-right:1.5px solid var(--forest);border-bottom:1.5px solid var(--forest);transform:translate(-50%,-70%) rotate(45deg)}
@@ -171,7 +172,7 @@ footer strong{color:var(--ink2);font-weight:600}
     <div class="eyebrow">Office of the CTO · MerCap Tiger Team · Recommendations</div>
     <h1>Rebuild the factory, <em>not just the motor.</em></h1>
     <p class="lede"><b style="color:#fff;font-weight:500">The code got faster. The factory didn't.</b> Thirteen surveys, many conversations and rituals, and a sprint predictability of 18.8% say the same thing: work arrives unclear, plans change mid-sprint, and the path to production is long. These are the changes we bring to the team, ordered by what moves first, and redesigned around agents instead of bolted onto the old process.</p>
-    <div class="meta"><span>Updated <b>Nov 15, 2026</b></span><span>Team decides <b>Nov 20</b></span><span>Pairing <b>Nov 23 – Dec 4</b></span><span>Read against baseline <b>to Feb 16</b></span></div>
+    <div class="meta"><span>Updated <b>Nov 15, 2026</b></span><span>Team decides <b>Nov 20</b></span><span>Prepare in Sprint 24 <b>Nov 23 – Dec 4</b></span><span>Operate from Sprint 25 <b>Dec 7</b></span><span>Read against baseline <b>to Feb 16</b></span></div>
   </div>
 </header>
 
@@ -232,13 +233,13 @@ footer strong{color:var(--ink2);font-weight:600}
     <div class="prin">
       <div><span class="pn">I</span><h3>Wire the building first.</h3><p>Unit drive needs power at every machine. Here that's an environment to test in, a pipeline that enforces its checks, and a path to production shorter than a month. Without them, agents have nowhere to run.</p><a class="go" href="#wiring">The wiring →</a></div>
       <div><span class="pn">II</span><h3>Move people to the gates.</h3><p>Agents draft the spec, the code, the tests, the review brief. People approve the spec, the architecture, and the merge, against clear pass and send-back criteria. Gates nobody fails get automated.</p><a class="go" href="#ready">02 and 04 →</a></div>
-      <div><span class="pn">III</span><h3>Measure what reaches customers.</h3><p>We keep the measures we baselined in Q3: cycle time and throughput first, predictability and scope change behind them, the PR loop behind those, and defect guardrails that must hold while we go faster. We add two that show whether the redesign is working: rework at each gate and cost per shipped change. We read them every sprint and act on them every week.</p><a class="go" href="#measures">How we'll know →</a></div>
+      <div><span class="pn">III</span><h3>Measure what reaches customers.</h3><p>We keep the measures we baselined in Q3: cycle time and throughput first, predictability and scope change behind them, the PR loop behind those, and defect guardrails that must hold while we go faster. We add two that show whether the redesign is working: rework at each gate and cost per shipped change. We read them at every sprint checkpoint and act on them every development sprint.</p><a class="go" href="#measures">How we'll know →</a></div>
     </div>
   </section>
 
   <section class="s" id="above">
     <div class="head-row">
-      <div><div class="kicker">Above the line</div><h2>Five changes, in order of precedence.</h2><p class="sub">Each one fits the Sprint 24 pairing window and the team can own it without a decision from outside. Each one depends on the one before it.</p></div>
+      <div><div class="kicker">Above the line</div><h2>Five changes, in order of precedence.</h2><p class="sub">Sprint 24 is for getting ready, through pairing; the team starts operating this way in Sprint 25. The team can own each one without a decision from outside, and each one depends on the one before it.</p></div>
       <button class="toggle" type="button" data-all="five">Open all</button>
     </div>
     <div class="five">
@@ -247,8 +248,8 @@ footer strong{color:var(--ink2);font-weight:600}
         <span class="rn">01</span>
         <span class="rt">
           <span class="rtt">Discovery before the date.</span>
-          <span class="rl1">Erin, Alex, and Kyle every week; a pool of merchants we can talk to; cross-team work agreed before it is assigned.</span>
-          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now →</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own tm">Erin · Kyle · Alex</span></span></span>
+          <span class="rl1">Product, design, engineering, and quality every week; a small pool of merchants we can talk to; cross-team work agreed before it is assigned.</span>
+          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now → operating in Sprint 25</span><span class="who"><span class="own ba">Bart</span><span class="own cr">Craig</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own tm">Erin · Kyle · Alex · Mamatha</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
@@ -256,12 +257,12 @@ footer strong{color:var(--ink2);font-weight:600}
         <div class="cols">
           <div>
             <h4>Why this</h4><p>Engineers told us what is slow is working out how the pieces fit together, and that happens after the work has started. Design arrives 49 to 113 days late, Passkey changed under the team mid-sprint, and nobody has met a merchant. Agents can draft and prototype; only discovery decides what is worth building.</p>
-            <h4>How we pair in Sprint 24</h4><p>Bart with Erin on the weekly session and the cross-team kickoff. Danny with Kyle so design is in the first conversation. Amrita with Alex on making discovery the principal's first job, and on the feasibility of each idea before it is dated. Craig on merchant access.</p>
+            <h4>How we pair in Sprint 24, to operate in Sprint 25</h4><p>Bart with Erin on the weekly session and the cross-team kickoff. Danny with Kyle so design is in the first conversation. Amrita with Alex on making discovery the principal's first job, and on the feasibility of each idea before it is dated. Steve with Mamatha so quality is in the room from the start. Craig on merchant access.</p>
           </div>
           <div>
-            <h4>First move</h4><p class="first">Before Nov 20: the weekly discovery hour on Erin, Alex, and Kyle's calendars, and the first one run on the next request. Start the friendly-merchant list: three to five merchants who agree to talk to us. Name the Passkey decision owner.</p>
+            <h4>First move</h4><p class="first">Before Nov 26: the weekly discovery hour on Erin, Kyle, Alex, and Mamatha's calendars, and the first one run on the next request. Craig starts the friendly-merchant list: three merchants who agree to talk to us, with the goal that they become happy, referenceable customers.</p>
             <h4>Watch for</h4><p>The session becoming a status meeting. It ends with a decision: build, learn more, or drop.</p>
-            <h4>Moves</h4><p class="ms">Sprint addition rate · Issue cycle time · Commitments on date</p>
+            <h4>Moves</h4><p class="ms">Sprint addition rate · Issue cycle time · Commitments shipped on date (G5)</p>
           </div>
         </div>
         <details class="evd"><summary>Evidence · 8 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: a mandatory weekly discovery session of at least an hour; a small pool of friendly, referenceable merchants because partners guard direct access.</span></li><li><a href="index.html">Surveys · finding 02</a><span>Thirteen of thirteen named cross-team dependencies, and three people (Quan, Avni, Alex) proposed the same fix: align the teams before the work is assigned.</span></li><li><a href="index.html">Surveys · finding 04</a><span>AI made writing the code fast. What is slow now is working out how the pieces fit together, and that happens after the work has started.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro and planning</a><span>Passkey: three teams, three flows, one approved; it changed under the team mid-sprint and nobody owns the decision.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Design is brought in after the requirements are written, 49 to 113 days after the business item.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>Work reaches him because someone mentions it. He finds out about screen changes after the fact. What he wants is the kickoff, before tickets exist.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>"Crap in, crap out." The team has never had a principal engineer; the role has to be set, not assumed.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Address validation: an external library nobody had assessed took three or four rounds and was pulled from production.</span></li></ul></details>
@@ -272,19 +273,19 @@ footer strong{color:var(--ink2);font-weight:600}
         <span class="rn">02</span>
         <span class="rt">
           <span class="rtt">A spec gate before anything is built.</span>
-          <span class="rl1">An agent drafts each story; a person approves it or sends it back. Nothing unready enters a sprint.</span>
-          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now → Sprint 24</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own tm">Erin · Kyle · Alex</span></span></span>
+          <span class="rl1">Every story meets the definition of ready, or it doesn't enter a sprint. An agent drafts it; people approve it or send it back.</span>
+          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Sprint 24 prep → operating in Sprint 25</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own fa">Fabio</span><span class="own st">Steve</span><span class="own tm">Alex · Leonel · Michael · Ramya · Ryan · Stephanie · Mamatha · Avni · Earnest</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
       <div class="rb" id="b-ready" hidden>
         <div class="cols">
           <div>
-            <h4>Why this</h4><p>Every seat says work arrives unclear, and "work arrives unready" is the largest theme we observed. The fix is not another grooming meeting. It is a gate with clear pass and rework criteria: problem, outcome and KPI, acceptance criteria, the technical questions answered, design signed off end to end, test data named, other teams named. An agent drafts that from the request; a person spends their attention approving it, not writing it.</p>
-            <h4>How we pair in Sprint 24</h4><p>Amrita runs the Innovation Lab tools on the Sprint 24 candidates to draft and check the stories. Danny confirms design sign-off on each. Bart and Erin own the gate itself and its pass criteria. Fabio pairs with engineers on the technical questions a story must answer.</p>
+            <h4>Why this</h4><p>Every seat says work arrives unclear, and "work arrives unready" is the largest theme we observed. The fix is not another grooming meeting. It is a gate with clear pass and send-back criteria: problem, outcome and KPI, acceptance criteria, the technical questions answered, design signed off end to end, test data named, other teams named. An agent drafts that from the request; people spend their attention approving it, not writing it.</p>
+            <h4>How we pair in Sprint 24, to operate in Sprint 25</h4><p>Bart, with Erin, runs the PM agent flow to draft and check the stories. Danny and Kyle confirm design sign-off on each. Amrita and Alex confirm technical feasibility. Bart and Erin own the gate itself and its pass criteria. Fabio pairs with engineers, and Steve with quality engineers, on the technical questions a story must answer.</p>
           </div>
           <div>
-            <h4>First move</h4><p class="first">Nov 16–20: Bart and Erin run the Jira hygiene session (close or re-justify anything untouched for a year; leave a ready-next queue of two or three stories). Then put the two Sprint 24 commitments through the gate and keep them as the template.</p>
+            <h4>First move</h4><p class="first">Nov 23 – Dec 4: Bart and Erin run the Jira hygiene session (close or re-justify anything untouched for a year; leave a ready-next queue of two or three stories). Then put the two or three Sprint 25 commitments through the gate and keep them as the template.</p>
             <h4>Watch for</h4><p>The gate turning into a form people fill in by hand. If a field is not used to decide, drop it. Track how often stories are sent back; a gate nobody fails is a rubber stamp.</p>
             <h4>Moves</h4><p class="ms">Sprint addition rate · Sprint predictability · Rework rate per gate (new)</p>
           </div>
@@ -298,7 +299,7 @@ footer strong{color:var(--ink2);font-weight:600}
         <span class="rt">
           <span class="rtt">Sprints plan the work. They don't pace it.</span>
           <span class="rl1">A real capacity number per person, carry-over first, and nothing added after commitment unless something equal comes out.</span>
-          <span class="rm"><span class="pill moving">In motion · Nov 13</span><span class="when">Sprint 24 →</span><span class="who"><span class="own am">Amrita</span><span class="own er">Eric</span><span class="own to">Tony</span><span class="own tm">Quan · Erin</span></span></span>
+          <span class="rm"><span class="pill moving">In motion · Nov 13</span><span class="when">Sprint 24 → operating in Sprint 25</span><span class="who"><span class="own ba">Bart</span><span class="own er">Eric</span><span class="own to">Tony</span><span class="own tm">Erin · Quan</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
@@ -306,10 +307,10 @@ footer strong{color:var(--ink2);font-weight:600}
         <div class="cols">
           <div>
             <h4>Why this</h4><p>Sprint addition rate is 263%: the plan is rewritten two and a half times every sprint, which is the likeliest reason predictability sits at 18.8%. Planning has used no capacity number, carry-over goes in last, and dev-done work was counted as capacity. Use the sprint for prioritization and commitment; let work flow at its own pace inside it.</p>
-            <h4>How we pair in Sprint 24</h4><p>Amrita builds the capacity sheet with the team in planning, from actual Jellyfish throughput instead of eight points a head. Eric agrees with Quan the few Jellyfish signals Quan manages on; Tony turns that into the management plan for the pairing sprint.</p>
+            <h4>How we pair in Sprint 24, to operate in Sprint 25</h4><p>Eric partners with Quan on the few Jellyfish signals Quan manages on.</p>
           </div>
           <div>
-            <h4>First move</h4><p class="first">Nov 23, in the Sprint 24 planning meeting: build the capacity sheet in front of the team and open the additions log. Carry-over first. Dev-done out. PCI remediation gets its own explicit line.</p>
+            <h4>First move</h4><p class="first">Nov 23, in the Sprint 24 planning meeting: make sure nobody is booked over 100% of capacity. Carry-over first.</p>
             <h4>Watch for</h4><p>The rule being used to say no to the business. The answer is "yes, and this comes out," decided by Erin with Quan the same day.</p>
             <h4>Moves</h4><p class="ms">Sprint addition rate · Sprint predictability · Issues resolved</p>
           </div>
@@ -322,49 +323,49 @@ footer strong{color:var(--ink2);font-weight:600}
         <span class="rn">04</span>
         <span class="rt">
           <span class="rtt">Let the pipeline be the reviewer of first resort.</span>
-          <span class="rl1">A standard merge checklist enforced in CI, failing tests that block the build, and feature flags so releases stop being all-or-nothing.</span>
-          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Sprint 24 →</span><span class="who"><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own fa">Fabio</span><span class="own tm">Alex · Leonel · Michael</span></span></span>
+          <span class="rl1">For MXM: a standard merge checklist enforced in CI, failing tests that block the build, and feature flags so releases stop being all-or-nothing.</span>
+          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Sprint 24 prep → operating in Sprint 25</span><span class="who"><span class="own am">Amrita</span><span class="own fa">Fabio</span><span class="own st">Steve</span><span class="own tm">Alex · Leonel · Michael · Ramya · Ryan · Stephanie · Mamatha · Avni · Earnest</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
       <div class="rb" id="b-ship" hidden>
         <div class="cols">
           <div>
-            <h4>Why this</h4><p>Disabled and failing PR checks are ignored, MXM builds with failing tests, MXC tests have authors but no owners, and code that lands after regression starts the loop again. Humans should not be the gate that a machine can run. Automate the checks (required checks, unit tests, PCI checks, end-to-end) so people review what matters.</p>
-            <h4>How we pair in Sprint 24</h4><p>Amrita drives the CI/CD standard for MerCap; she and Steve learn from Tram how the Plastiq team runs it and copy it. Fabio pairs day to day with engineers on the first flagged Passkey path and the MXM gate.</p>
+            <h4>Why this</h4><p>On MXM, disabled and failing PR checks are ignored, the build passes with failing tests, and code that lands after regression starts the loop again. People should not be the gate that a machine can run. Automate the checks (required checks, unit tests, PCI checks, end-to-end) so people review what matters.</p>
+            <h4>How we pair in Sprint 24, to operate in Sprint 25</h4><p>Amrita drives the CI/CD standard for MXM; she and Steve learn from Tram how the Plastiq team runs it and copy it. Fabio pairs day to day with engineers on the MXM gate and the first flagged Passkey path.</p>
           </div>
           <div>
-            <h4>First move</h4><p class="first">Before Sprint 24: Amrita and Steve sit with Tram and write the MerCap checklist from the Plastiq workflow. Week one: turn it on for MXM, quarantine and ticket what it catches, flag one Passkey path behind Statsig.</p>
+            <h4>First move</h4><p class="first">Before Sprint 25: Amrita and Steve sit with Tram and write the MXM checklist from the Plastiq workflow. Week one of Sprint 25: turn it on for MXM, quarantine and ticket what it catches, flag one Passkey path behind Statsig.</p>
             <h4>Watch for</h4><p>The gate blocking the sprint on old failures. It applies to new code; old failures get a ticket and a date. Flags need an owner to turn them off.</p>
-            <h4>Moves</h4><p class="ms">PR pass rate · PR cycle time · Escaped defects</p>
+            <h4>Moves</h4><p class="ms">PR pass rate · PR cycle time · Escaped defects (G4)</p>
           </div>
         </div>
-        <details class="evd"><summary>Evidence · 6 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: a standardized CI/CD merge checklist with required checks and unit tests; consult Tram on the Plastiq workflow.</span></li><li><a href="heard.html#qa-nov-9">Heard · QA, Nov 9</a><span>MXC tests have authors but no owners; shift left depends on who is on the team; MXM has four versions of the same skill.</span></li><li><a href="index.html">Surveys · candidates</a><span>Statsig is POC'd and the Checkout API work is scoped by Alex. Two customer-impacting I1s trace to the absence of flags.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>No feature flags makes Passkey all-or-nothing, and automation pays for it.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>MXM fails tests locally and still builds in TeamCity. MSG has no unit tests and generates the triage. Leonel's rule: where coverage exists, untested code does not merge.</span></li><li><a href="index.html">Surveys · finding 04</a><span>Engineers own their quality (6/8) and already use AI to write and realign tests. This gives that ownership teeth.</span></li></ul></details>
+        <details class="evd"><summary>Evidence · 6 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: a standardized CI/CD merge checklist with required checks and unit tests; consult Tram on the Plastiq workflow.</span></li><li><a href="heard.html#qa-nov-9">Heard · QA, Nov 9</a><span>On MXM, shift left depends on who is on the team, and the framework has four versions of the same skill.</span></li><li><a href="index.html">Surveys · candidates</a><span>Statsig is POC'd and the Checkout API work is scoped by Alex. Two customer-impacting I1s trace to the absence of flags.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>No feature flags makes Passkey all-or-nothing, and automation pays for it.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>MXM fails tests locally and still builds in TeamCity. MSG has no unit tests and generates the triage. Leonel's rule: where coverage exists, untested code does not merge.</span></li><li><a href="index.html">Surveys · finding 04</a><span>Engineers own their quality (6/8) and already use AI to write and realign tests. This gives that ownership teeth.</span></li></ul></details>
       </div>
     </article>
     <article class="rc" id="outcome">
       <button class="rh" type="button" aria-expanded="false" aria-controls="b-outcome">
         <span class="rn">05</span>
         <span class="rt">
-          <span class="rtt">Close the loop every week.</span>
-          <span class="rl1">Read the outcome after each release, and fix the process every week from what failed at each gate.</span>
-          <span class="rm"><span class="pill proposed">Proposed</span><span class="when">Sprint 24 →</span><span class="who"><span class="own ba">Bart</span><span class="own er">Eric</span><span class="own da">Danny</span><span class="own tm">Erin · Kyle</span></span></span>
+          <span class="rtt">Close the loop every two weeks.</span>
+          <span class="rl1">Read the outcome after each release, and fix the process every development sprint from what was sent back at each gate.</span>
+          <span class="rm"><span class="pill proposed">Proposed</span><span class="when">Sprint 24 → operating in Sprint 25</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own st">Steve</span><span class="own tm">Erin · Kyle · Alex · Mamatha</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
       <div class="rb" id="b-outcome" hidden>
         <div class="cols">
           <div>
-            <h4>Why this</h4><p>Nobody reviews the outcome after release; zero of twelve said it happens. And nothing feeds what we learn back into how we work. The factory lesson is that the gains come from the learning loop: after every run, capture cost, gate outcomes, and root causes, and change the template, prompt, or test that caused them.</p>
-            <h4>How we pair in Sprint 24</h4><p>Bart with Erin on a 30-minute outcome read after each release: one KPI, one decision. Eric runs a weekly process loop at the Jellyfish checkpoint: what was sent back at which gate, and what changed as a result. Danny with Kyle on the merchant conversations that give the read its qualitative half.</p>
+            <h4>Why this</h4><p>Nobody reviews the outcome after release; zero of twelve said it happens. And nothing feeds what we learn back into how we work. The factory lesson is that the gains come from the learning loop: after every development sprint, capture gate outcomes and root causes, and change the template, prompt, or test that caused them.</p>
+            <h4>How we pair in Sprint 24, to operate in Sprint 25</h4><p>Bart with Erin on a 30-minute outcome read after each release: one KPI, one decision. Bart with Erin measure what was sent back at which gate, and what changed as a result. Danny with Kyle on the merchant conversations that give the read its qualitative half. Eric runs a bi-weekly process loop with Quan in Jellyfish.</p>
           </div>
           <div>
-            <h4>First move</h4><p class="first">The Nov 22 release gets the first outcome read in pairing week. The first weekly process loop runs Friday of Sprint 24, using the pilot lane's gate data.</p>
-            <h4>Watch for</h4><p>Either loop becoming a demo. Each ends in a change: to the backlog, or to a gate, template, or test.</p>
+            <h4>First move</h4><p class="first">The Nov 22 release gets the first outcome read in pairing week.</p>
+            <h4>Watch for</h4><p>Each loop ends in a change: to the backlog, or to a gate, template, or test.</p>
             <h4>Moves</h4><p class="ms">Commitments shipped on date (G5) · Rework rate per gate (new)</p>
           </div>
         </div>
-        <details class="evd"><summary>Evidence · 5 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1J2mMvOqYT7IAh4rqvSIpfKtAquG7yEKzTcS5sxBtsmQ/edit" target="_blank" rel="noopener">Rebuild the PDLC factory</a><span>Build the learning loop as a first-class stage; measure learning-loop velocity from failure pattern to deployed fix.</span></li><li><a href="index.html">Surveys · finding 03</a><span>Zero of twelve downstream say the KPI is reviewed after shipping. The three discovery seats checked "none of these are consistently true."</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The missing review is a delay: decisions wait on evidence that is never collected. "We deliver the MVP and never go further."</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Nobody knows how merchants experience the product.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>He is already talking to Kim about regular merchant feedback sessions. The customer contact the team said it does not have is coming from the designer, unprompted.</span></li></ul></details>
+        <details class="evd"><summary>Evidence · 5 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1J2mMvOqYT7IAh4rqvSIpfKtAquG7yEKzTcS5sxBtsmQ/edit" target="_blank" rel="noopener">Rebuild the PDLC factory</a><span>Build the learning loop as a first-class stage, and shorten the time from a failure pattern to a deployed fix.</span></li><li><a href="index.html">Surveys · finding 03</a><span>Zero of twelve downstream say the KPI is reviewed after shipping. The three discovery seats checked "none of these are consistently true."</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The missing review is a delay: decisions wait on evidence that is never collected. "We deliver the MVP and never go further."</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Nobody knows how merchants experience the product.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>He is already talking to Kim about regular merchant feedback sessions. The customer contact the team said it does not have is coming from the designer, unprompted.</span></li></ul></details>
       </div>
     </article>
     </div>
@@ -372,16 +373,16 @@ footer strong{color:var(--ink2);font-weight:600}
 
   <section class="s" id="pilot">
     <div class="kicker">The pilot</div>
-    <h2>One unit-drive lane in Sprint 24.</h2>
+    <h2>One unit-drive lane, starting in Sprint 25.</h2>
     <div class="pilot">
       <span class="tag">Proposed · decide with the team Nov 20</span>
       <h3>Run the MXM Dependabot and pen test remediation through an agent chain, end to end.</h3>
-      <p class="pl">The work is well specified, high volume, and on the PCI audit's critical path to Dec 31, and Bhavesh's MXC approach is a starting point. That makes it the right first lane: real work, clear gates, and a fair comparison with doing it the old way.</p>
+      <p class="pl">The work is well specified, high volume, and on the PCI audit's critical path to Dec 31, and Bhavesh's MXC approach is a starting point. That makes it the right first lane: real work, clear gates, and a fair comparison with doing it the old way. We set it up in Sprint 24 and run it in Sprint 25, inside the Dec 31 deadline.</p>
       <div class="flow" aria-label="Pilot flow"><span class="st">Finding</span><span class="ar"></span><span class="st">Spec agent</span><span class="gate">Spec gate</span><span class="st">Fix + tests agent</span><span class="gate">Arch gate</span><span class="st">Review brief agent</span><span class="gate">Merge gate</span><span class="ar"></span><span class="st">Release</span></div>
       <div class="pgrid">
         <div><h4>Who</h4><p>Alex owns the lane, starting from Bhavesh's MXC approach. Amrita brings the Innovation Lab tooling. Fabio pairs day to day. Steve owns the QA gate.</p></div>
         <div><h4>We measure</h4><ul><li>Hours from finding to merged fix</li><li>Minutes of human attention per fix</li><li>Rework rate at each gate</li><li>Cost per shipped fix</li><li>Escaped defects after the gates</li></ul><p style="margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.55)">These feed the two new plan measures: rework rate per gate and cost per shipped change.</p></div>
-        <div><h4>We compare</h4><p>The same class of fix done the current way, in the same sprint. If the lane wins, it becomes the template for the next kind of work: unit-test backfill for payment links, then the report data loader.</p></div>
+        <div><h4>We compare</h4><p>The same class of fix done the current way, in the same sprint (Sprint 25). If the lane wins, it becomes the template for the next kind of work: unit-test backfill for payment links, then the report data loader.</p></div>
       </div>
       <div class="pfoot"><span>Honest limit: merged isn't shipped. Until the wiring changes, a fix still waits for the release train.</span><span><a href="#wiring">See the wiring →</a></span></div>
     </div>
