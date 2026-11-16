@@ -142,6 +142,9 @@ h2{font-size:34px;line-height:1.12;font-weight:600;letter-spacing:-.02em;color:v
 .mtab td:first-child{color:var(--forest);font-weight:600;width:34%}
 .mtab td.v{font-family:var(--mono);font-size:13px;color:var(--ink);white-space:nowrap}
 .mtab tr.new td:first-child::after{content:"new";font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);border:1px solid #F5CDA8;background:var(--warn-bg);padding:1px 7px;border-radius:20px;margin-left:10px;font-weight:500}
+.mtab tr.tier td{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);padding:26px 0 8px;border-bottom:1px solid var(--line);font-weight:500}
+.mtab tr.tier td:first-child{color:var(--orange);font-weight:500;width:auto}
+.mtab tr.new td:first-child::after{content:'new'}
 .mnote{font-size:13.5px;color:var(--mute);margin-top:18px}
 /* close */
 .close{margin:96px 0 0;padding:44px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -228,8 +231,8 @@ footer strong{color:var(--ink2);font-weight:600}
     <h2>Three rules for everything on this page.</h2>
     <div class="prin">
       <div><span class="pn">I</span><h3>Wire the building first.</h3><p>Unit drive needs power at every machine. Here that's an environment to test in, a pipeline that enforces its checks, and a path to production shorter than a month. Without them, agents have nowhere to run.</p><a class="go" href="#wiring">The wiring →</a></div>
-      <div><span class="pn">II</span><h3>Move people to the gates.</h3><p>Agents draft the spec, the code, the tests, the review brief. People approve the spec, the architecture, and the merge, against clear pass and send-back criteria. Gates nobody fails get automated.</p><a class="go" href="#ready">01 and 04 →</a></div>
-      <div><span class="pn">III</span><h3>Measure the building, not the motor.</h3><p>Not effort, points, or licenses. Time from request to customer, rework at each gate, cost per shipped change, and how fast a fix for a recurring failure lands. Then improve it every week.</p><a class="go" href="#measures">The measures →</a></div>
+      <div><span class="pn">II</span><h3>Move people to the gates.</h3><p>Agents draft the spec, the code, the tests, the review brief. People approve the spec, the architecture, and the merge, against clear pass and send-back criteria. Gates nobody fails get automated.</p><a class="go" href="#ready">02 and 04 →</a></div>
+      <div><span class="pn">III</span><h3>Measure what reaches customers.</h3><p>We keep the measures we baselined in Q3: cycle time and throughput first, predictability and scope change behind them, the PR loop behind those, and defect guardrails that must hold while we go faster. We add two that show whether the redesign is working: rework at each gate and cost per shipped change. We read them every sprint and act on them every week.</p><a class="go" href="#measures">How we'll know →</a></div>
     </div>
   </section>
 
@@ -239,13 +242,38 @@ footer strong{color:var(--ink2);font-weight:600}
       <button class="toggle" type="button" data-all="five">Open all</button>
     </div>
     <div class="five">
+    <article class="rc" id="discovery">
+      <button class="rh" type="button" aria-expanded="false" aria-controls="b-discovery">
+        <span class="rn">01</span>
+        <span class="rt">
+          <span class="rtt">Discovery before the date.</span>
+          <span class="rl1">Erin, Alex, and Kyle every week; a pool of merchants we can talk to; cross-team work agreed before it is assigned.</span>
+          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now →</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own tm">Erin · Kyle · Alex</span></span></span>
+        </span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+      <div class="rb" id="b-discovery" hidden>
+        <div class="cols">
+          <div>
+            <h4>Why this</h4><p>Engineers told us what is slow is working out how the pieces fit together, and that happens after the work has started. Design arrives 49 to 113 days late, Passkey changed under the team mid-sprint, and nobody has met a merchant. Agents can draft and prototype; only discovery decides what is worth building.</p>
+            <h4>How we pair in Sprint 24</h4><p>Bart with Erin on the weekly session and the cross-team kickoff. Danny with Kyle so design is in the first conversation. Amrita with Alex on making discovery the principal's first job, and on the feasibility of each idea before it is dated. Craig on merchant access.</p>
+          </div>
+          <div>
+            <h4>First move</h4><p class="first">Before Nov 20: the weekly discovery hour on Erin, Alex, and Kyle's calendars, and the first one run on the next request. Start the friendly-merchant list: three to five merchants who agree to talk to us. Name the Passkey decision owner.</p>
+            <h4>Watch for</h4><p>The session becoming a status meeting. It ends with a decision: build, learn more, or drop.</p>
+            <h4>Moves</h4><p class="ms">Sprint addition rate · Issue cycle time · Commitments on date</p>
+          </div>
+        </div>
+        <details class="evd"><summary>Evidence · 8 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: a mandatory weekly discovery session of at least an hour; a small pool of friendly, referenceable merchants because partners guard direct access.</span></li><li><a href="index.html">Surveys · finding 02</a><span>Thirteen of thirteen named cross-team dependencies, and three people (Quan, Avni, Alex) proposed the same fix: align the teams before the work is assigned.</span></li><li><a href="index.html">Surveys · finding 04</a><span>AI made writing the code fast. What is slow now is working out how the pieces fit together, and that happens after the work has started.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro and planning</a><span>Passkey: three teams, three flows, one approved; it changed under the team mid-sprint and nobody owns the decision.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Design is brought in after the requirements are written, 49 to 113 days after the business item.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>Work reaches him because someone mentions it. He finds out about screen changes after the fact. What he wants is the kickoff, before tickets exist.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>"Crap in, crap out." The team has never had a principal engineer; the role has to be set, not assumed.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Address validation: an external library nobody had assessed took three or four rounds and was pulled from production.</span></li></ul></details>
+      </div>
+    </article>
     <article class="rc" id="ready">
       <button class="rh" type="button" aria-expanded="false" aria-controls="b-ready">
-        <span class="rn">01</span>
+        <span class="rn">02</span>
         <span class="rt">
           <span class="rtt">A spec gate before anything is built.</span>
           <span class="rl1">An agent drafts each story; a person approves it or sends it back. Nothing unready enters a sprint.</span>
-          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now → Sprint 24</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own tm">Erin · Alex · Kyle</span></span></span>
+          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now → Sprint 24</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own am">Amrita</span><span class="own tm">Erin · Kyle · Alex</span></span></span>
         </span>
         <span class="chev" aria-hidden="true"></span>
       </button>
@@ -258,7 +286,7 @@ footer strong{color:var(--ink2);font-weight:600}
           <div>
             <h4>First move</h4><p class="first">Nov 16–20: Bart and Erin run the Jira hygiene session (close or re-justify anything untouched for a year; leave a ready-next queue of two or three stories). Then put the two Sprint 24 commitments through the gate and keep them as the template.</p>
             <h4>Watch for</h4><p>The gate turning into a form people fill in by hand. If a field is not used to decide, drop it. Track how often stories are sent back; a gate nobody fails is a rubber stamp.</p>
-            <h4>Moves</h4><p class="ms">Sprint addition rate · Sprint predictability · Rework rate at the gate</p>
+            <h4>Moves</h4><p class="ms">Sprint addition rate · Sprint predictability · Rework rate per gate (new)</p>
           </div>
         </div>
         <details class="evd"><summary>Evidence · 7 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: no story enters a sprint without meeting the definition of ready, including end-to-end design approval; Innovation Lab tools review stories and capacity before refinement.</span></li><li><a href="index.html">Surveys · finding 01</a><span>Every seat says work arrives unclear: QA 3/3, engineers 4/5, PM 2/2, design 1/1. The TPM, who plans it, is the one exception.</span></li><li><a href="observed.html#planning-oct-26">Observed · heat map</a><span>"Work arrives unready" is the largest theme: 9 of 32 observations. Grooming did not happen before planning, so planning did the grooming. Two words never came up: test data, and ready.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>QA says stories were never groomed; product believed they were. The Definition of Ready exists, and the team is afraid of it.</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Four refinement meetings a week, and still nothing is ready.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Tickets say what, rarely why. Product managers have asked engineers to write the acceptance criteria.</span></li><li><a href="heard.html#rai-lilly-oct-28">Heard · Ray and Lilly</a><span>More than 200 backlog tickets, many over a year old. At that size grooming cannot find the real ones, so the newest request wins.</span></li></ul></details>
@@ -266,7 +294,7 @@ footer strong{color:var(--ink2);font-weight:600}
     </article>
     <article class="rc" id="capacity">
       <button class="rh" type="button" aria-expanded="false" aria-controls="b-capacity">
-        <span class="rn">02</span>
+        <span class="rn">03</span>
         <span class="rt">
           <span class="rtt">Sprints plan the work. They don't pace it.</span>
           <span class="rl1">A real capacity number per person, carry-over first, and nothing added after commitment unless something equal comes out.</span>
@@ -287,31 +315,6 @@ footer strong{color:var(--ink2);font-weight:600}
           </div>
         </div>
         <details class="evd"><summary>Evidence · 8 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Eric sets management metrics with Quan in Jellyfish; Tony builds the management strategy from Eric's data.</span></li><li><a href="observed.html#retro-nov-10">Observed · retro Nov 10</a><span>PCI work landed after planning and undid the plan; grooming moved a day.</span></li><li><a href="observed.html#planning-oct-26">Observed · planning</a><span>Planning did not reference capacity at all. Four of six were planned over 100%, two over 200% while on PTO. Fifteen issues carried over, and were planned last.</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Eight points per person per sprint came from the PMO, not the team. Sprint 23 was planned before Sprint 22 started, and Sprint 22 overwrote it.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Ramya ran out of work while her board held five stories in QA. A month-old dev-done story was counted as capacity; a 3-point story took 19.5 hours.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Work arrives sideways with the date already set. Regression costs a day or two most sprints, half the sprint at its worst.</span></li><li><a href="engineering-management.html">Surveys · EM</a><span>Engineering does not shape dates before commitments are made (Quan, probe 10).</span></li><li><a href="../index.html">Jellyfish</a><span>Sprint addition rate is 263% against a 75th-percentile target of 3.8%. It is the worst number on the board, and the one this changes first.</span></li></ul></details>
-      </div>
-    </article>
-    <article class="rc" id="discovery">
-      <button class="rh" type="button" aria-expanded="false" aria-controls="b-discovery">
-        <span class="rn">03</span>
-        <span class="rt">
-          <span class="rtt">Discovery before the date.</span>
-          <span class="rl1">Erin, Alex, and Kyle every week; a pool of merchants we can talk to; cross-team work agreed before it is assigned.</span>
-          <span class="rm"><span class="pill agreed">Agreed · Tiger Team, Nov 13</span><span class="when">Now →</span><span class="who"><span class="own ba">Bart</span><span class="own da">Danny</span><span class="own er">Eric</span><span class="own tm">Erin · Alex · Kyle</span></span></span>
-        </span>
-        <span class="chev" aria-hidden="true"></span>
-      </button>
-      <div class="rb" id="b-discovery" hidden>
-        <div class="cols">
-          <div>
-            <h4>Why this</h4><p>Engineers told us what is slow is working out how the pieces fit together, and that happens after the work has started. Design arrives 49 to 113 days late, Passkey changed under the team mid-sprint, and nobody has met a merchant. Agents can draft and prototype; only discovery decides what is worth building.</p>
-            <h4>How we pair in Sprint 24</h4><p>Bart with Erin on the weekly session and the cross-team kickoff. Danny with Kyle so design is in the first conversation. Eric with Quan and Alex on the principal's first job being discovery. Craig on merchant access.</p>
-          </div>
-          <div>
-            <h4>First move</h4><p class="first">Before Nov 20: the weekly discovery hour on Erin, Alex, and Kyle's calendars, and the first one run on the next request. Start the friendly-merchant list: three to five merchants who agree to talk to us. Name the Passkey decision owner.</p>
-            <h4>Watch for</h4><p>The session becoming a status meeting. It ends with a decision: build, learn more, or drop.</p>
-            <h4>Moves</h4><p class="ms">Sprint addition rate · Issue cycle time · Commitments on date</p>
-          </div>
-        </div>
-        <details class="evd"><summary>Evidence · 8 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1K5ss-VibFXqYcW-XKSzy45gFFUtmeaubE1iMlglmKxo/edit" target="_blank" rel="noopener">Tiger Team · Nov 13</a><span>Aligned: a mandatory weekly discovery session of at least an hour; a small pool of friendly, referenceable merchants because partners guard direct access.</span></li><li><a href="index.html">Surveys · finding 02</a><span>Thirteen of thirteen named cross-team dependencies, and three people (Quan, Avni, Alex) proposed the same fix: align the teams before the work is assigned.</span></li><li><a href="index.html">Surveys · finding 04</a><span>AI made writing the code fast. What is slow now is working out how the pieces fit together, and that happens after the work has started.</span></li><li><a href="observed.html#retro-oct-27">Observed · retro and planning</a><span>Passkey: three teams, three flows, one approved; it changed under the team mid-sprint and nobody owns the decision.</span></li><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Design is brought in after the requirements are written, 49 to 113 days after the business item.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>Work reaches him because someone mentions it. He finds out about screen changes after the fact. What he wants is the kickoff, before tickets exist.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>"Crap in, crap out." The team has never had a principal engineer; the role has to be set, not assumed.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Address validation: an external library nobody had assessed took three or four rounds and was pulled from production.</span></li></ul></details>
       </div>
     </article>
     <article class="rc" id="ship">
@@ -358,7 +361,7 @@ footer strong{color:var(--ink2);font-weight:600}
           <div>
             <h4>First move</h4><p class="first">The Nov 22 release gets the first outcome read in pairing week. The first weekly process loop runs Friday of Sprint 24, using the pilot lane's gate data.</p>
             <h4>Watch for</h4><p>Either loop becoming a demo. Each ends in a change: to the backlog, or to a gate, template, or test.</p>
-            <h4>Moves</h4><p class="ms">Value per release · Rework rate per gate · Learning-loop velocity</p>
+            <h4>Moves</h4><p class="ms">Commitments shipped on date (G5) · Rework rate per gate (new)</p>
           </div>
         </div>
         <details class="evd"><summary>Evidence · 5 sources</summary><ul class="ev"><li><a href="https://docs.google.com/document/d/1J2mMvOqYT7IAh4rqvSIpfKtAquG7yEKzTcS5sxBtsmQ/edit" target="_blank" rel="noopener">Rebuild the PDLC factory</a><span>Build the learning loop as a first-class stage; measure learning-loop velocity from failure pattern to deployed fix.</span></li><li><a href="index.html">Surveys · finding 03</a><span>Zero of twelve downstream say the KPI is reviewed after shipping. The three discovery seats checked "none of these are consistently true."</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The missing review is a delay: decisions wait on evidence that is never collected. "We deliver the MVP and never go further."</span></li><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>Nobody knows how merchants experience the product.</span></li><li><a href="heard.html#kyle-nov-3">Heard · Kyle</a><span>He is already talking to Kim about regular merchant feedback sessions. The customer contact the team said it does not have is coming from the designer, unprompted.</span></li></ul></details>
@@ -377,7 +380,7 @@ footer strong{color:var(--ink2);font-weight:600}
       <div class="flow" aria-label="Pilot flow"><span class="st">Finding</span><span class="ar"></span><span class="st">Spec agent</span><span class="gate">Spec gate</span><span class="st">Fix + tests agent</span><span class="gate">Arch gate</span><span class="st">Review brief agent</span><span class="gate">Merge gate</span><span class="ar"></span><span class="st">Release</span></div>
       <div class="pgrid">
         <div><h4>Who</h4><p>Alex owns the lane, starting from Bhavesh's MXC approach. Amrita brings the Innovation Lab tooling. Fabio pairs day to day. Steve owns the QA gate.</p></div>
-        <div><h4>We measure</h4><ul><li>Hours from finding to merged fix</li><li>Minutes of human attention per fix</li><li>Rework rate at each gate</li><li>Cost per shipped fix</li><li>Escaped defects after the gates</li></ul></div>
+        <div><h4>We measure</h4><ul><li>Hours from finding to merged fix</li><li>Minutes of human attention per fix</li><li>Rework rate at each gate</li><li>Cost per shipped fix</li><li>Escaped defects after the gates</li></ul><p style="margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.55)">These feed the two new plan measures: rework rate per gate and cost per shipped change.</p></div>
         <div><h4>We compare</h4><p>The same class of fix done the current way, in the same sprint. If the lane wins, it becomes the template for the next kind of work: unit-test backfill for payment links, then the report data loader.</p></div>
       </div>
       <div class="pfoot"><span>Honest limit: merged isn't shipped. Until the wiring changes, a fix still waits for the release train.</span><span><a href="#wiring">See the wiring →</a></span></div>
@@ -406,26 +409,39 @@ footer strong{color:var(--ink2);font-weight:600}
       <li class="sm" id="regression"><button type="button" class="smh" aria-expanded="false"><span class="sn">08</span><span class="st2"><b>Right-size regression.</b><span>Scope by what changed; fix what ACH breaks every release; ship MXM separately from MXC as the rule.</span></span><span class="sw">Steve</span><span class="chev" aria-hidden="true"></span></button><div class="smb" hidden><ul class="ev"><li><a href="observed.html#pre-grooming-oct-27">Observed · pre-grooming</a><span>MerCap regresses everyone's MXM changes, and ACH breaks the run every release. Release decisions live in a ticket, not on the story.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>QA cannot tell new bugs from old ones regression happens to surface. Login fails in UAT with no related change. Developer-to-QA handoff calls exist because the ticket does not say what changed.</span></li><li><a href="observed.html#planning-oct-26">Observed · planning</a><span>The React migration still has not started, and automation that should pass does not.</span></li></ul></div></li>
       <li class="sm" id="access"><button type="button" class="smh" aria-expanded="false"><span class="sn">09</span><span class="st2"><b>Self-service access, and infra tickets with an SLA.</b><span>Non-production secrets and repos without a ticket and a chase; IRG office hours known to every team.</span></span><span class="sw">Amrita · Bart</span><span class="chev" aria-hidden="true"></span></button><div class="smb" hidden><ul class="ev"><li><a href="observed.html#standups-oct-28-30">Observed · standups</a><span>Repo access takes forever: one approver, 2,200 repos, and Purush's access template exists for new hires.</span></li><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Secrets, networking, and cloud operations go through TSD requests that need follow-ups. Finished work sits two weeks waiting on a step the team cannot do itself.</span></li></ul></div></li>
       <li class="sm" id="ai"><button type="button" class="smh" aria-expanded="false"><span class="sn">10</span><span class="st2"><b>AI working sessions and a standard toolset.</b><span>Engineers watch each other work with the tools; one skill per framework instead of four.</span></span><span class="sw">Amrita</span><span class="chev" aria-hidden="true"></span></button><div class="smb" hidden><ul class="ev"><li><a href="heard.html#se-nov-4">Heard · engineers</a><span>Michael asked for it; Ryan noted nothing is on the calendar; Amrita has added the team to the AI guild. Alex wants convergence on tooling and AI used to keep design documents current.</span></li></ul></div></li>
-      <li class="sm" id="pm"><button type="button" class="smh" aria-expanded="false"><span class="sn">11</span><span class="st2"><b>A second product manager for MerCap.</b><span>An organizational decision, sized after 01 and 03 show the real load on the PM seat.</span></span><span class="sw">Devika · Hareet</span><span class="chev" aria-hidden="true"></span></button><div class="smb" hidden><ul class="ev"><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>"This team definitely needs more than one product manager." Planning was finished alone overnight; every retro action landed on Product.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The TPMs are absent from MerCap's daily work; Erin has asked Josette for a RACI. Nobody knows who to escalate to or who owns which product.</span></li></ul></div></li>
+      <li class="sm" id="pm"><button type="button" class="smh" aria-expanded="false"><span class="sn">11</span><span class="st2"><b>A second product manager for MerCap.</b><span>An organizational decision, sized after 01 and 02 show the real load on the PM seat.</span></span><span class="sw">Devika · Hareet</span><span class="chev" aria-hidden="true"></span></button><div class="smb" hidden><ul class="ev"><li><a href="observed.html#retro-oct-27">Observed · retro</a><span>"This team definitely needs more than one product manager." Planning was finished alone overnight; every retro action landed on Product.</span></li><li><a href="heard.html#erin-oct-23">Heard · Erin</a><span>The TPMs are absent from MerCap's daily work; Erin has asked Josette for a RACI. Nobody knows who to escalate to or who owns which product.</span></li></ul></div></li>
     </ul>
   </section>
 
   <section class="s" id="measures">
-    <div class="kicker">How we'll know</div>
-    <h2>Measure the building, not the motor.</h2>
-    <p class="sub">We keep the Jellyfish baseline the plan already tracks, and add two building-level measures the factory lens calls for. The plan page explains why each one matters.</p>
+    <div class="kicker">The measures</div>
+    <h2>How we'll know.</h2>
+    <p class="sub">The measures we baselined in Q3, read at every sprint checkpoint, plus two that tell us whether the redesign is working.</p>
     <table class="mtab">
-      <thead><tr><th>Measure</th><th>Today</th><th>Feb 16 target</th><th>Why it matters here</th></tr></thead>
+      <thead><tr><th>Measure</th><th>Q3</th><th>Feb 16 target</th><th>Why it matters</th></tr></thead>
       <tbody>
-        <tr><td>Issue cycle time</td><td class="v">5.82 days</td><td class="v">≤ 2.92 days</td><td>Speed to value, measured to resolution, not to merged PR, so the release train stays visible.</td></tr>
-        <tr><td>Sprint addition rate</td><td class="v">263%</td><td class="v">≤ 3.8%</td><td>The plan is rewritten 2.5 times a sprint. The likeliest reason predictability is low.</td></tr>
-        <tr><td>Sprint predictability</td><td class="v">18.8%</td><td class="v">≥ 72%</td><td>Whether the business can trust our dates.</td></tr>
-        <tr><td>Issues resolved / FTE / week</td><td class="v">1.23</td><td class="v">≥ 2.07</td><td>Throughput, so cycle time can't improve by doing less.</td></tr>
+        <tr class="tier"><td colspan="4">Primary · the two we move together</td></tr>
+        <tr><td>01 · Issue cycle time</td><td class="v">5.82 days</td><td class="v">≤ 2.92 days</td><td>Our clearest read on speed to value, measured from In Progress to resolution. Halving it means customers get work in half the time.</td></tr>
+        <tr><td>02 · Issues resolved / FTE / wk</td><td class="v">1.23</td><td class="v">≥ 2.07</td><td>The throughput counterweight, so cycle time can’t improve just by doing less. Per FTE keeps team size from skewing it.</td></tr>
+        <tr class="tier"><td colspan="4">Secondary · what makes the primaries move</td></tr>
+        <tr><td>03 · Sprint predictability</td><td class="v">18.8%</td><td class="v">≥ 72%</td><td>The most direct proxy for our outcome: did we deliver what we committed to? It’s what lets the business trust our dates.</td></tr>
+        <tr><td>04 · Sprint addition rate</td><td class="v">263.1%</td><td class="v">≤ 3.8%</td><td>Work added after the sprint starts. At 263% the plan is rewritten 2.5x every sprint, the likeliest reason predictability sits at 18.8%.</td></tr>
+        <tr class="tier"><td colspan="4">Tertiary · the engineering loop behind them</td></tr>
+        <tr><td>05 · PR cycle time</td><td class="v">0.81 days</td><td class="v">≤ 0.06 days</td><td>PR opened to merged. The inner loop of issue cycle time: an issue can’t close until its code merges.</td></tr>
+        <tr><td>06 · PR pass rate</td><td class="v">88.2%</td><td class="v">100%</td><td>Reviewed PRs approved on the first pass. Every failed pass is a rework loop that inflates 05.</td></tr>
+        <tr><td>07 · PRs without comments</td><td class="v">15 / week</td><td class="v">0</td><td>Keeps PR cycle time honest. Faster reviews only count if real review is still happening.</td></tr>
+        <tr class="tier"><td colspan="4">Guardrails · must hold or improve while we go faster</td></tr>
+        <tr><td>G1 · Defects opened</td><td class="v">0.2 / FTE / wk</td><td class="v">0</td><td>Speed that creates more bugs isn’t speed.</td></tr>
+        <tr><td>G2 · Defects closed</td><td class="v">0.08 / FTE / wk</td><td class="v">≥ 0.27 / FTE / wk</td><td>Bugs get fixed, not parked, while we take on more.</td></tr>
+        <tr><td>G3 · Defects MTTR</td><td class="v">33 days</td><td class="v">≤ 4.25 days</td><td>How long bugs stay open. Slow fixes hurt customers and leak back into sprints as unplanned work, which feeds 04.</td></tr>
+        <tr><td>G4 · Escaped defects (I1)</td><td class="v">4</td><td class="v">0</td><td>Customer-impacting escapes. Zero is the bar.</td></tr>
+        <tr><td>G5 · Commitments shipped on date</td><td class="v">in flight</td><td class="v">100%</td><td>What the business sees: did we ship what we promised, when we promised it.</td></tr>
+        <tr class="tier"><td colspan="4">New · is the redesign working</td></tr>
         <tr class="new"><td>Rework rate per gate</td><td class="v">pilot</td><td class="v">trend down</td><td>How often the spec, architecture, and merge gates send work back. Low means automate the gate; high means fix what feeds it.</td></tr>
-        <tr class="new"><td>Cost per shipped change</td><td class="v">pilot</td><td class="v">trend down</td><td>AI tooling plus human review time per change. AI spend is about $179K a month with no line or cap; this is how we know it pays.</td></tr>
+        <tr class="new"><td>Cost per shipped change</td><td class="v">pilot</td><td class="v">trend down</td><td>AI tooling plus human review time per change. AI spend is about $179K a month; this is how we show it pays.</td></tr>
       </tbody>
     </table>
-    <p class="mnote">Full set, with guardrails and the reasoning behind each: <a href="../index.html#how-we-will-know">How we will know, on the plan page →</a></p>
+    <p class="mnote">Targets are the 75th percentile of comparable companies in Jellyfish. For every measure we also read the effect of AI: whether it moved the number up, down, or not at all. <a href="../index.html#how-we-will-know">The plan page →</a></p>
   </section>
 
   <div class="close">
