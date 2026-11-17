@@ -127,7 +127,11 @@ button{font:inherit;color:inherit}
 .det .acts{display:flex;gap:16px;margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
 .det .acts a{color:var(--teal);text-decoration:none}
 /* toast & pending */
-.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--forest);color:#fff;padding:12px 14px 12px 18px;border-radius:12px;font-size:13.5px;display:flex;gap:16px;align-items:center;box-shadow:0 12px 32px -8px rgba(1,39,26,.4);transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
+.syncbar{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--ok);border-radius:12px;padding:10px 10px 10px 16px;box-shadow:0 12px 32px -10px rgba(1,39,26,.35);font-size:13.5px;color:var(--forest)}
+.syncbar b{font-weight:600}
+.syncbar .lnk{all:unset;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+@media (max-width:720px){.syncbar{left:16px;right:16px;bottom:16px;justify-content:space-between}}
+.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--forest);color:#fff;padding:12px 14px 12px 18px;border-radius:12px;font-size:13.5px;display:flex;gap:16px;align-items:center;box-shadow:0 12px 32px -8px rgba(1,39,26,.4);transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast button{all:unset;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--turq);padding:4px 6px}
 .sync{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ok);border-radius:14px;padding:18px 20px;margin-bottom:28px}
@@ -266,6 +270,7 @@ footer strong{color:var(--ink2);font-weight:600}
     <div>Confidential · Internal</div>
   </footer>
 </main>
+<div class="syncbar hide" id="syncbar" role="region" aria-label="Pending done items"><span><b id="sb-n"></b> marked done in this browser</span><button class="lnk" type="button" id="sb-view">Review</button><button class="btn" type="button" id="sb-copy">Copy for Claude</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><button type="button" id="toast-u">Undo</button></div>
 
 <script>
@@ -285,6 +290,8 @@ const CHEV='<svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>';
 const KEY='cos-dash-done-v2';
 let marked={}; try{marked=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(marked))}catch(e){}};
+// once Claude has moved an item to Done in the data, forget the local tick
+Object.keys(marked).forEach(id=>{const x=ITEMS.find(i=>i.id===id);if(!x||x.state==='done')delete marked[id];});save();
 const T0=new Date(); T0.setHours(0,0,0,0);
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const dOf=s=>new Date(s+'T00:00:00');
@@ -391,7 +398,10 @@ function renderDecisions(){
   document.getElementById('dec').innerHTML=DECISIONS.filter(d=>dWho==='All'||d.who===dWho).map(d=>'<li><span class="dt">'+fmt(d.date)+'</span><span>'+d.t+(d.who?'<span class="who">'+d.who+'</span>':'')+(d.item&&ITEMS.some(x=>x.id===d.item&&x.state!=='done'&&!marked[x.id])?'<a class="ref" href="#i-'+d.item+'" data-go="'+d.item+'">↗ item</a>':'')+'</span></li>').join('');
 }
 
-function renderAll(){renderKPIs();renderCockpit();renderTicker();renderPriorities();renderRisks();renderDone();renderDecisions();}
+function renderSyncbar(){const n=Object.keys(marked).length;document.getElementById('syncbar').classList.toggle('hide',!n);document.getElementById('sb-n').textContent=n;}
+function copySync(){const pend=Object.keys(marked).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);if(!pend.length)return;const txt='Dashboard sync. Move these to Done:\n'+pend.map(x=>'- '+x.id+' ('+lead(x)+'), done '+marked[x.id].at).join('\n');const ok=()=>toast('Copied. Paste it to Claude to make it permanent.',null);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,()=>fallbackCopy(txt,ok));}else fallbackCopy(txt,ok);}
+function fallbackCopy(txt,ok){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok();}catch(e){prompt('Copy this and paste it to Claude:',txt);}ta.remove();}
+function renderAll(){renderSyncbar();renderKPIs();renderCockpit();renderTicker();renderPriorities();renderRisks();renderDone();renderDecisions();}
 
 function show(v){
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.v===v));
@@ -436,7 +446,9 @@ document.addEventListener('click',e=>{
   const pr=t.closest('[data-prio]'); if(pr){e.preventDefault();pf=pr.dataset.prio;filt='all';q='';document.getElementById('q').value='';document.querySelectorAll('#filters .chipf').forEach(c=>c.setAttribute('aria-pressed',c.dataset.f==='all'));show('focus');renderTicker();document.getElementById('filters').scrollIntoView({behavior:'smooth',block:'start'});return}
   if(t.id==='more-wait'){document.querySelectorAll('#p-wait .extra').forEach(n=>n.classList.toggle('hide'));t.textContent=t.textContent.startsWith('Show')?'Show fewer':'Show all';return}
   if(t.id==='toast-u'){if(lastUndo)lastUndo();document.getElementById('toast').classList.remove('show');return}
-  if(t.id==='copy-sync'){
+  if(t.id==='sb-copy'){copySync();return}
+  if(t.id==='sb-view'){show('done');history.replaceState(null,'','#done');window.scrollTo({top:0,behavior:'smooth'});return}
+  if(t.id==='copy-sync'){copySync();return;
     const pend=Object.keys(marked).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);
     const txt='Dashboard sync. Move these to Done:\n'+pend.map(x=>'- '+x.id+' ('+lead(x)+'), done '+marked[x.id].at).join('\n');
     navigator.clipboard&&navigator.clipboard.writeText(txt); toast('Copied. Paste it to Claude to make it permanent.',null); return}
