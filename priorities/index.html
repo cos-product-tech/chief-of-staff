@@ -111,6 +111,7 @@ button{font:inherit;color:inherit}
 .tk a{color:var(--teal)}
 .meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:8px}
 .st{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;font-weight:500}
+.st.auto{background:#E6F4F1;color:var(--teal);font-weight:500}
 .st.decide{background:#FCE9E6;color:var(--p0)}.st.do{background:var(--ok-bg);color:var(--ok)}.st.wait{background:var(--watch-bg);color:var(--watch)}.st.hold{background:#EEF0EE;color:var(--mute)}
 .mt{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.02em}
 .mt.who{color:var(--ink2)}
@@ -392,10 +393,11 @@ function rowHTML(x){
   const pr=PRI[x.focus]?'<span class="mt">'+PRI[x.focus][0]+' · '+PRI[x.focus][2]+'</span>':'';
   const ch=x.chip?'<span class="mt who">'+x.chip+'</span>':'';
   const du=x.due?'<span class="mt due '+dueCls(x.due)+'">Due '+dueTxt(x.due)+'</span>':'';
+  const au=(x.auto&&(T0-new Date(x.auto))/864e5<=7)?'<span class="st auto" title="Changed automatically by the CoS sweep. Trash it if it is wrong.">'+(x.auto_new?'Added':'Updated')+' by sweep · '+new Date(x.auto).toLocaleDateString('en-US',{month:'short',day:'numeric'})+'</span>':'';
   const fl=x.flag?'<span class="flag">'+x.flag+'</span>':'';
   const tk=x.tk||('<b>'+x.title+'</b>');
   const src=x.src?'<a href="'+x.src+'" target="_blank" rel="noopener">Source ↗</a>':'';
-  return '<div class="row" id="i-'+x.id+'" data-id="'+x.id+'"><div class="rh"><button class="chk" type="button" aria-label="Mark done" title="Mark done">'+CHECK+'</button><div class="body"><div class="tk">'+fl+(fl?' ':'')+tk+'</div><div class="meta">'+st+pr+ch+du+'</div></div><div class="ra"><button class="trs" type="button" aria-label="Move to Trash" title="Move to Trash: not relevant">'+TRASH+'</button><button class="exp" type="button" aria-expanded="false" aria-label="Details">'+CHEV+'</button></div></div><div class="det">'+(x.d?'<div class="d">'+x.d+'</div>':'')+'<div class="acts">'+src+'<a href="#" data-copy="'+x.id+'">Copy link</a></div></div></div>';
+  return '<div class="row" id="i-'+x.id+'" data-id="'+x.id+'"><div class="rh"><button class="chk" type="button" aria-label="Mark done" title="Mark done">'+CHECK+'</button><div class="body"><div class="tk">'+fl+(fl?' ':'')+tk+'</div><div class="meta">'+st+au+pr+ch+du+'</div></div><div class="ra"><button class="trs" type="button" aria-label="Move to Trash" title="Move to Trash: not relevant">'+TRASH+'</button><button class="exp" type="button" aria-expanded="false" aria-label="Details">'+CHEV+'</button></div></div><div class="det">'+(x.d?'<div class="d">'+x.d+'</div>':'')+'<div class="acts">'+src+'<a href="#" data-copy="'+x.id+'">Copy link</a></div></div></div>';
 }
 
 function renderTicker(){
