@@ -199,7 +199,75 @@ footer strong{color:var(--ink2);font-weight:600}
 @media (max-width:1000px){.cock{grid-template-columns:1fr}.risks,.prio{grid-template-columns:1fr}.kpis{gap:20px}}
 @media (max-width:720px){.kpis{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi{text-align:left}.kpi span{font-size:9px;letter-spacing:.06em;display:block;line-height:1.3;margin-top:4px}.principle .wrap{font-size:12.5px}.wrap{padding:0 16px}.top h1{font-size:26px}.kpi b{font-size:24px}.search input{width:100%}.search{flex:1 1 100%}.tabs{overflow-x:auto;max-width:100%}
  .rh{grid-template-columns:34px 1fr auto;padding:14px 12px 12px 8px}.det{padding:0 14px 16px 50px}.dec li{grid-template-columns:1fr;gap:2px}}
-@media print{.nav,.chk,.exp,.toast{display:none}.view{display:block!important}.det{display:block}}
+
+/* ===== design pass ===== */
+:root{--sans:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--shadow:0 1px 2px rgba(1,39,26,.04),0 10px 28px -16px rgba(1,39,26,.16);--line:#E7E4DB;--line2:#F0EEE8;--paper:#F6F5F0}
+html{text-rendering:optimizeLegibility}
+body{font-size:15px;font-feature-settings:"kern","liga","tnum" 0;letter-spacing:-.003em}
+::selection{background:#FFE3CC;color:var(--forest)}
+.top .wrap{padding-top:48px;padding-bottom:40px}
+.top h1{font-size:40px;font-weight:600;letter-spacing:-.028em}
+.top .date{font-size:16px}
+.kpis{gap:0}
+.kpi{padding:0 26px;border-left:1px solid rgba(255,255,255,.12)}
+.kpi:first-child{border-left:none}
+.kpi b{font-size:34px;font-weight:300;font-feature-settings:"tnum"}
+.kpi span{letter-spacing:.1em}
+.principle{font-size:13.5px}
+.nav .wrap{padding-top:14px;padding-bottom:14px}
+.panel,.rows,.wk,.dec,.risk,.pc,.sync,.card{box-shadow:var(--shadow);border-color:var(--line)}
+.panel{border-radius:18px;padding:22px 22px 14px}
+.panel h3 em{font-size:28px}
+.sech h2{font-size:24px;letter-spacing:-.02em}
+.tierh b{font-size:10px;letter-spacing:.16em}
+.rows{border-radius:16px}
+.row{transition:background .18s}
+.row:hover{background:#FCFBF8}
+.rh{grid-template-columns:40px 1fr auto;padding:17px 18px 15px 14px}
+.tk{font-size:15px;line-height:1.55}
+.meta{gap:6px 14px;margin-top:9px}
+.mt{font-family:var(--sans);font-size:12.5px;letter-spacing:0}
+.mt.who{font-weight:500}
+.st{font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;font-weight:600;padding:3px 9px;border-radius:20px}
+.ra{display:flex;gap:2px;align-items:flex-start}
+.trs{all:unset;cursor:pointer;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--mute);opacity:0;transition:opacity .15s,background .15s,color .15s}
+.trs svg{width:15px;height:15px}
+.row:hover .trs,.trs:focus-visible{opacity:1}
+.trs:hover{background:#FCE9E6;color:var(--p0)}
+.trs:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+@media (hover:none){.trs{opacity:.7}}
+.row.trashing{background:#FDF1EF}
+.exp{width:28px;height:28px}
+.det{padding:0 26px 20px 68px}
+.det .d{font-size:14px;line-height:1.7}
+.pl a{font-size:14px}
+.pl .dd{font-family:var(--sans);font-size:11.5px;font-weight:500}
+.per a{font-size:13.5px}
+.chipf{font-size:13px;padding:7px 14px}
+.dec li{font-size:14.5px}
+.tr-l{list-style:none}
+.tr-l.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tr-i{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:14px 20px;border-top:1px solid var(--line2)}
+.tr-i:first-child{border-top:none}
+.tr-i b{display:block;font-size:14.5px;font-weight:500;color:var(--ink2)}
+.tr-i span{font-size:12.5px;color:var(--mute)}
+.tr-m{display:flex;gap:16px;align-items:center;white-space:nowrap}
+.tr-m time{font-size:12.5px;color:var(--mute);font-feature-settings:"tnum"}
+.tr-m button{all:unset;cursor:pointer;font-size:12.5px;font-weight:500;color:var(--teal)}
+.sync.tr{border-left-color:var(--p0)}
+.sync ul.tr-l li{padding:12px 0}
+.syncbar{font-size:14px;border-radius:14px}
+.syncbar .sb-s{color:var(--mute);font-weight:400}
+.toast{border-radius:14px}
+@media (max-width:720px){
+ .top .wrap{padding-top:32px;padding-bottom:28px}.top h1{font-size:28px}
+ .kpi{padding:0 10px}.kpi:first-child{padding-left:0}.kpi b{font-size:24px}
+ .principle .wrap > span:first-child{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+ .rh{grid-template-columns:34px 1fr auto;padding:15px 12px 13px 8px}.det{padding:0 14px 18px 50px}
+ .tr-i{flex-direction:column;align-items:flex-start;gap:6px}
+}
+
+@media print{.nav,.chk,.exp,.trs,.toast,.syncbar{display:none}.view{display:block!important}.det{display:block}}
 </style>
 </head>
 <body>
@@ -222,6 +290,7 @@ footer strong{color:var(--ink2);font-weight:600}
     <button class="tab" role="tab" data-v="risks" aria-selected="false">Risks <i id="n-risks"></i></button>
     <button class="tab" role="tab" data-v="done" aria-selected="false">Done <i id="n-done"></i></button>
     <button class="tab" role="tab" data-v="decisions" aria-selected="false">Decisions <i id="n-dec"></i></button>
+    <button class="tab" role="tab" data-v="trash" aria-selected="false">Trash <i id="n-trash"></i></button>
   </div>
   <label class="search"><svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg><input id="q" type="search" placeholder="Search items, people, tickets" aria-label="Search"></label>
 </div></nav>
@@ -265,12 +334,14 @@ footer strong{color:var(--ink2);font-weight:600}
     <ul class="dec" id="dec"></ul>
   </section>
 
+  <section class="view" id="v-trash" role="tabpanel"><div id="trash"></div></section>
+
   <footer>
     <div><strong>Priority Technology Holdings</strong> · Chief of Staff, Office of the CTO · Eric Normant</div>
     <div>Confidential · Internal</div>
   </footer>
 </main>
-<div class="syncbar hide" id="syncbar" role="region" aria-label="Pending done items"><span><b id="sb-n"></b> marked done in this browser</span><button class="lnk" type="button" id="sb-view">Review</button><button class="btn" type="button" id="sb-copy">Copy for Claude</button></div>
+<div class="syncbar hide" id="syncbar" role="region" aria-label="Pending done items"><span><b id="sb-n"></b> <span class="sb-s">in this browser</span></span><button class="lnk" type="button" id="sb-view">Review</button><button class="btn" type="button" id="sb-copy">Copy for Claude</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-t"></span><button type="button" id="toast-u">Undo</button></div>
 
 <script>
@@ -287,21 +358,28 @@ const TIERS=[['p0','P1 · Critical'],['p1','P2 · High'],['p2','P3 · Medium'],[
 const SNAME={decide:'Decide',do:'Do',wait:'Watch'};
 const CHECK='<svg viewBox="0 0 12 12" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg>';
 const CHEV='<svg viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg>';
+const TRASH='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h11M6 4V2.8c0-.4.3-.8.8-.8h2.4c.5 0 .8.4.8.8V4M4 4l.7 9.1c0 .5.5.9 1 .9h4.6c.5 0 1-.4 1-.9L12 4M6.6 7v4.5M9.4 7v4.5"/></svg>';
 const KEY='cos-dash-done-v2';
 let marked={}; try{marked=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(marked))}catch(e){}};
 // once Claude has moved an item to Done in the data, forget the local tick
-Object.keys(marked).forEach(id=>{const x=ITEMS.find(i=>i.id===id);if(!x||x.state==='done')delete marked[id];});save();
+Object.keys(marked).forEach(id=>{const x=ITEMS.find(i=>i.id===id);if(!x||x.state==='done'||x.state==='trash')delete marked[id];});save();
+const TKEY='cos-dash-trash-v1';
+let trashed={}; try{trashed=JSON.parse(localStorage.getItem(TKEY)||'{}')}catch(e){}
+const saveT=()=>{try{localStorage.setItem(TKEY,JSON.stringify(trashed))}catch(e){}};
+Object.keys(trashed).forEach(id=>{const x=ITEMS.find(i=>i.id===id);if(!x||x.state==='trash')delete trashed[id];});saveT();
+const isOpen=x=>x.state!=='done'&&x.state!=='trash'&&!marked[x.id]&&!trashed[x.id];
 const T0=new Date(); T0.setHours(0,0,0,0);
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const dOf=s=>new Date(s+'T00:00:00');
 const days=s=>Math.round((dOf(s)-T0)/864e5);
 const fmt=s=>dOf(s).toLocaleDateString('en-US',{month:'short',day:'numeric'});
 const fmtL=s=>dOf(s).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+const stamp=t=>{const d=new Date(t);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' · '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})};
 const friday=d=>{const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()+((5-x.getDay()+7)%7));return iso(x)};
 const strip=h=>{const t=document.createElement('div');t.innerHTML=h||'';return t.textContent};
-const lead=x=>{const m=/<b>(.*?)<\/b>/.exec(x.tk||'');return strip(m?m[1]:x.title).replace(/[:·]\s*$/,'')};
-const live=()=>ITEMS.filter(x=>x.state!=='done'&&!marked[x.id]);
+const lead=x=>{const m=/<b>(.*?)<\/b>/.exec(x.tk||'');return strip(m?m[1]:x.title).replace(/[:·,;]\s*$/,'')};
+const live=()=>ITEMS.filter(isOpen);
 const tierOf=x=>PRI[x.focus]?PRI[x.focus][1]:'bl';
 const numOf=x=>PRI[x.focus]?PRI[x.focus][0]:'99';
 let filt='all', q='', pf=null;
@@ -317,7 +395,7 @@ function rowHTML(x){
   const fl=x.flag?'<span class="flag">'+x.flag+'</span>':'';
   const tk=x.tk||('<b>'+x.title+'</b>');
   const src=x.src?'<a href="'+x.src+'" target="_blank" rel="noopener">Source ↗</a>':'';
-  return '<div class="row" id="i-'+x.id+'" data-id="'+x.id+'"><div class="rh"><button class="chk" type="button" aria-label="Mark done" title="Mark done">'+CHECK+'</button><div class="body"><div class="tk">'+fl+(fl?' ':'')+tk+'</div><div class="meta">'+st+pr+ch+du+'</div></div><button class="exp" type="button" aria-expanded="false" aria-label="Details">'+CHEV+'</button></div><div class="det">'+(x.d?'<div class="d">'+x.d+'</div>':'')+'<div class="acts">'+src+'<a href="#" data-copy="'+x.id+'">Copy link</a></div></div></div>';
+  return '<div class="row" id="i-'+x.id+'" data-id="'+x.id+'"><div class="rh"><button class="chk" type="button" aria-label="Mark done" title="Mark done">'+CHECK+'</button><div class="body"><div class="tk">'+fl+(fl?' ':'')+tk+'</div><div class="meta">'+st+pr+ch+du+'</div></div><div class="ra"><button class="trs" type="button" aria-label="Move to Trash" title="Move to Trash: not relevant">'+TRASH+'</button><button class="exp" type="button" aria-expanded="false" aria-label="Details">'+CHEV+'</button></div></div><div class="det">'+(x.d?'<div class="d">'+x.d+'</div>':'')+'<div class="acts">'+src+'<a href="#" data-copy="'+x.id+'">Copy link</a></div></div></div>';
 }
 
 function renderTicker(){
@@ -363,6 +441,7 @@ function renderKPIs(){
   document.getElementById('n-risks').textContent=RISKS.length;
   document.getElementById('n-done').textContent=ITEMS.filter(x=>x.state==='done').length+Object.keys(marked).length;
   document.getElementById('n-dec').textContent=DECISIONS.length;
+  document.getElementById('n-trash').textContent=ITEMS.filter(x=>x.state==='trash').length+Object.keys(trashed).length;
 }
 
 function renderPriorities(){
@@ -375,7 +454,7 @@ function renderPriorities(){
 }
 
 function renderRisks(){
-  document.getElementById('risks').innerHTML=RISKS.map(r=>'<article class="risk"><h3>'+r.t+'</h3>'+(r.d?'<p>'+r.d+'</p>':'')+'<div class="rm"><span>'+r.owner+'</span><span>since '+fmt(r.since)+' · as of '+fmt(r.asof)+'</span>'+(r.item&&ITEMS.some(x=>x.id===r.item&&x.state!=='done')?'<a href="#i-'+r.item+'" data-go="'+r.item+'">Open item →</a>':'')+'</div></article>').join('');
+  document.getElementById('risks').innerHTML=RISKS.map(r=>'<article class="risk"><h3>'+r.t+'</h3>'+(r.d?'<p>'+r.d+'</p>':'')+'<div class="rm"><span>'+r.owner+'</span><span>since '+fmt(r.since)+' · as of '+fmt(r.asof)+'</span>'+(r.item&&ITEMS.some(x=>x.id===r.item&&isOpen(x))?'<a href="#i-'+r.item+'" data-go="'+r.item+'">Open item →</a>':'')+'</div></article>').join('');
 }
 
 function renderDone(){
@@ -391,17 +470,28 @@ function renderDone(){
   }).join('');
 }
 
+function renderTrash(){
+  const pend=Object.keys(trashed).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean).sort((a,b)=>trashed[b.id].at.localeCompare(trashed[a.id].at));
+  const perm=ITEMS.filter(x=>x.state==='trash').sort((a,b)=>(b.trashed||'').localeCompare(a.trashed||''));
+  const row=(x,at,local)=>'<li class="tr-i"><div><b>'+strip(x.tk?lead(x):x.title)+'</b><span>'+(PRI[x.focus]?PRI[x.focus][0]+' · '+PRI[x.focus][2]:'')+'</span></div><div class="tr-m"><time>'+(at?stamp(at):'—')+'</time>'+(local?'<button type="button" data-restore="'+x.id+'">Restore</button>':'')+'</div></li>';
+  let h='';
+  if(pend.length)h+='<div class="sync tr"><h3><span>Trashed in this browser · '+pend.length+'</span><button class="btn" type="button" id="copy-sync2">Copy for Claude</button></h3><p>Hidden for you here. Paste the note to Claude to remove them for good and keep the sweep from bringing them back.</p><ul class="tr-l">'+pend.map(x=>row(x,trashed[x.id].at,true)).join('')+'</ul></div>';
+  h+='<div class="sech"><h2>Trash</h2><span class="hint">Removed as irrelevant or incorrect, newest first</span></div>';
+  h+=perm.length?'<ul class="tr-l card">'+perm.map(x=>row(x,x.trashed,false)).join('')+'</ul>':'<p class="empty">Nothing in the trash yet. Use the trash icon on any item to remove it.</p>';
+  document.getElementById('trash').innerHTML=h;
+}
+
 let dWho='All';
 function renderDecisions(){
   const whos=['All',...new Set(DECISIONS.map(d=>d.who).filter(Boolean))];
   document.getElementById('dfilt').innerHTML=whos.map(w=>'<button class="chipf" type="button" data-who="'+w+'" aria-pressed="'+(w===dWho)+'">'+w+' <i>'+(w==='All'?DECISIONS.length:DECISIONS.filter(d=>d.who===w).length)+'</i></button>').join('');
-  document.getElementById('dec').innerHTML=DECISIONS.filter(d=>dWho==='All'||d.who===dWho).map(d=>'<li><span class="dt">'+fmt(d.date)+'</span><span>'+d.t+(d.who?'<span class="who">'+d.who+'</span>':'')+(d.item&&ITEMS.some(x=>x.id===d.item&&x.state!=='done'&&!marked[x.id])?'<a class="ref" href="#i-'+d.item+'" data-go="'+d.item+'">↗ item</a>':'')+'</span></li>').join('');
+  document.getElementById('dec').innerHTML=DECISIONS.filter(d=>dWho==='All'||d.who===dWho).map(d=>'<li><span class="dt">'+fmt(d.date)+'</span><span>'+d.t+(d.who?'<span class="who">'+d.who+'</span>':'')+(d.item&&ITEMS.some(x=>x.id===d.item&&isOpen(x))?'<a class="ref" href="#i-'+d.item+'" data-go="'+d.item+'">↗ item</a>':'')+'</span></li>').join('');
 }
 
-function renderSyncbar(){const n=Object.keys(marked).length;document.getElementById('syncbar').classList.toggle('hide',!n);document.getElementById('sb-n').textContent=n;}
-function copySync(){const pend=Object.keys(marked).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);if(!pend.length)return;const txt='Dashboard sync. Move these to Done:\n'+pend.map(x=>'- '+x.id+' ('+lead(x)+'), done '+marked[x.id].at).join('\n');const ok=()=>toast('Copied. Paste it to Claude to make it permanent.',null);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,()=>fallbackCopy(txt,ok));}else fallbackCopy(txt,ok);}
+function renderSyncbar(){const d=Object.keys(marked).length,t=Object.keys(trashed).length,n=d+t;document.getElementById('syncbar').classList.toggle('hide',!n);document.getElementById('sb-n').textContent=[d?d+' done':'',t?t+' trashed':''].filter(Boolean).join(' · ');}
+function copySync(){const pend=Object.keys(marked).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);const tp=Object.keys(trashed).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);if(!pend.length&&!tp.length)return;let txt='Dashboard sync.';if(pend.length)txt+='\nMove these to Done:\n'+pend.map(x=>'- '+x.id+' ('+lead(x)+'), done '+marked[x.id].at).join('\n');if(tp.length)txt+='\nMove these to Trash:\n'+tp.map(x=>'- '+x.id+' ('+lead(x)+'), trashed '+trashed[x.id].at).join('\n');const ok=()=>toast('Copied. Paste it to Claude to make it permanent.',null);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,()=>fallbackCopy(txt,ok));}else fallbackCopy(txt,ok);}
 function fallbackCopy(txt,ok){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok();}catch(e){prompt('Copy this and paste it to Claude:',txt);}ta.remove();}
-function renderAll(){renderSyncbar();renderKPIs();renderCockpit();renderTicker();renderPriorities();renderRisks();renderDone();renderDecisions();}
+function renderAll(){renderSyncbar();renderTrash();renderKPIs();renderCockpit();renderTicker();renderPriorities();renderRisks();renderDone();renderDecisions();}
 
 function show(v){
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.v===v));
@@ -422,6 +512,12 @@ function toast(msg,undo){
   document.getElementById('toast-t').textContent=msg; lastUndo=undo;
   const t=document.getElementById('toast'); t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),5000);
 }
+function markTrash(id){
+  const r=document.getElementById('i-'+id); const x=ITEMS.find(i=>i.id===id);
+  if(r){r.classList.add('trashing');setTimeout(()=>r.classList.add('leaving'),120);}
+  setTimeout(()=>{trashed[id]={at:new Date().toISOString()};saveT();renderAll();},460);
+  toast('Moved to Trash: '+(x?lead(x):id),()=>{delete trashed[id];saveT();renderAll();});
+}
 function markDone(id){
   const r=document.getElementById('i-'+id); const x=ITEMS.find(i=>i.id===id);
   if(r){r.classList.add('done');setTimeout(()=>r.classList.add('leaving'),220);}
@@ -434,6 +530,8 @@ document.addEventListener('click',e=>{
   const tab=t.closest('.tab'); if(tab){show(tab.dataset.v);history.replaceState(null,'','#'+tab.dataset.v);window.scrollTo({top:0,behavior:'smooth'});return}
   const g=t.closest('[data-go]'); if(g){e.preventDefault();go(g.dataset.go);return}
   const ck=t.closest('.chk'); if(ck){markDone(ck.closest('.row').dataset.id);return}
+  const tr=t.closest('.trs'); if(tr){markTrash(tr.closest('.row').dataset.id);return}
+  const rs=t.closest('[data-restore]'); if(rs){delete trashed[rs.dataset.restore];saveT();renderAll();toast('Restored',null);return}
   const ex=t.closest('.exp')||(t.closest('.body')&&!t.closest('a')?t.closest('.body'):null);
   if(ex){const r=ex.closest('.row');const o=!r.classList.contains('open');r.classList.toggle('open',o);r.querySelector('.exp').setAttribute('aria-expanded',o);return}
   const cp=t.closest('[data-copy]'); if(cp){e.preventDefault();const u=location.href.split('#')[0]+'#i-'+cp.dataset.copy;navigator.clipboard&&navigator.clipboard.writeText(u);toast('Link copied',null);return}
@@ -446,8 +544,8 @@ document.addEventListener('click',e=>{
   const pr=t.closest('[data-prio]'); if(pr){e.preventDefault();pf=pr.dataset.prio;filt='all';q='';document.getElementById('q').value='';document.querySelectorAll('#filters .chipf').forEach(c=>c.setAttribute('aria-pressed',c.dataset.f==='all'));show('focus');renderTicker();document.getElementById('filters').scrollIntoView({behavior:'smooth',block:'start'});return}
   if(t.id==='more-wait'){document.querySelectorAll('#p-wait .extra').forEach(n=>n.classList.toggle('hide'));t.textContent=t.textContent.startsWith('Show')?'Show fewer':'Show all';return}
   if(t.id==='toast-u'){if(lastUndo)lastUndo();document.getElementById('toast').classList.remove('show');return}
-  if(t.id==='sb-copy'){copySync();return}
-  if(t.id==='sb-view'){show('done');history.replaceState(null,'','#done');window.scrollTo({top:0,behavior:'smooth'});return}
+  if(t.id==='sb-copy'||t.id==='copy-sync2'){copySync();return}
+  if(t.id==='sb-view'){const v=Object.keys(marked).length?'done':'trash';show(v);history.replaceState(null,'','#'+v);window.scrollTo({top:0,behavior:'smooth'});return}
   if(t.id==='copy-sync'){copySync();return;
     const pend=Object.keys(marked).map(id=>ITEMS.find(x=>x.id===id)).filter(Boolean);
     const txt='Dashboard sync. Move these to Done:\n'+pend.map(x=>'- '+x.id+' ('+lead(x)+'), done '+marked[x.id].at).join('\n');
@@ -460,7 +558,7 @@ document.getElementById('today-date').textContent=new Date().toLocaleDateString(
 document.getElementById('sweep').textContent='Last sweep · '+LAST_SWEEP;
 renderAll();
 const h=location.hash.slice(1);
-if(h.startsWith('i-'))setTimeout(()=>go(h.slice(2)),60); else if(['focus','priorities','risks','done','decisions'].includes(h))show(h); else if(h&&ITEMS.some(x=>x.id===h))setTimeout(()=>go(h),60);
+if(h.startsWith('i-'))setTimeout(()=>go(h.slice(2)),60); else if(['focus','priorities','risks','done','decisions','trash'].includes(h))show(h); else if(h&&ITEMS.some(x=>x.id===h))setTimeout(()=>go(h),60);
 })();
 </script>
 </body>
