@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>MerCap team readout</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0E1A15;--ink2:#3A4741;--mute:#7A847F;--line:#E6E3DA;--line2:#F0EEE8;--paper:#F6F5F0;--card:#fff;
+--forest:#01271A;--forest2:#083524;--orange:#FE6D12;--teal:#008573;--turq:#75D1D0;--pist:#E7E5AA;
+--ok:#2F7D3A;--ok-bg:#EAF5EA;--warn:#C25400;--warn-bg:#FFF2E6;
+--sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+--shadow:0 1px 2px rgba(1,39,26,.04),0 14px 34px -18px rgba(1,39,26,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px;text-rendering:optimizeLegibility}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.003em}
+::selection{background:#FFE3CC;color:var(--forest)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+/* hero */
+.hero{background:var(--forest);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-180px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(117,209,208,.16),transparent 68%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--turq) 55%,transparent)}
+.hero .wrap{position:relative;padding-top:84px;padding-bottom:84px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--turq)}
+.hero h1{font-size:60px;line-height:1.03;font-weight:600;letter-spacing:-.03em;margin:22px 0 24px;max-width:860px}
+.hero h1 em{font-style:normal;color:var(--pist)}
+.hero .lede{font-size:19px;line-height:1.6;color:rgba(255,255,255,.8);max-width:700px;font-weight:300}
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;margin-top:48px;max-width:860px}
+.srcs div{background:var(--forest);padding:20px 22px}
+.srcs b{display:block;font-size:17px;font-weight:600}
+.srcs span{font-size:13.5px;color:rgba(255,255,255,.62)}
+.anon{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-size:13.5px;color:rgba(255,255,255,.72)}
+.anon{align-items:flex-start}
+.anon i{width:8px;height:8px;border-radius:50%;background:var(--turq);display:inline-block;flex:none;margin-top:.5em}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(246,245,240,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:12px;padding-bottom:12px;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--ink2);font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:20px;transition:background .15s,color .15s}
+.nav a:hover{background:#ECEAE3;color:var(--forest)}
+.nav a.on{background:var(--forest);color:#fff}
+.nav a:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+/* sections */
+section.s{padding:104px 0 0}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--orange)}
+h2{font-size:42px;line-height:1.08;font-weight:600;letter-spacing:-.026em;color:var(--forest);max-width:820px}
+.sub{font-size:18px;color:var(--ink2);margin-top:16px;max-width:720px;font-weight:300}
+/* outcome */
+.oc{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+.oc div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 34px 36px;box-shadow:var(--shadow)}
+.oc .lab{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.oc p{font-size:27px;line-height:1.28;font-weight:500;letter-spacing:-.018em;color:var(--forest);margin-top:14px}
+.oc div.go{background:var(--forest);border-color:var(--forest)}
+.oc div.go .lab{color:var(--turq)}
+.oc div.go p{color:#fff}
+/* measures */
+.mz{margin-top:18px;background:var(--forest);color:#fff;border-radius:20px;padding:36px 36px 28px;box-shadow:var(--shadow)}
+.mzh{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.mzh .lab{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--turq)}
+.mzh .leg{font-size:13px;color:rgba(255,255,255,.6)}
+.tier{display:flex;align-items:center;gap:12px;margin:26px 0 4px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.12)}
+.tier b{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);background:var(--c);padding:3px 9px;border-radius:5px;font-weight:500}
+.tier span{font-size:13.5px;color:rgba(255,255,255,.6)}
+.t1{--c:var(--orange)}.t2{--c:var(--turq)}.t3{--c:var(--pist)}.t4{--c:#FFB37A}.t5{--c:rgba(255,255,255,.7)}
+.m{display:grid;grid-template-columns:34px 1.5fr 150px 1fr 170px;gap:18px;align-items:center;padding:16px 0;border-bottom:1px dashed rgba(255,255,255,.1)}
+.m:last-child{border-bottom:none}
+.m .ix{font-family:var(--mono);font-size:11px;color:var(--c);letter-spacing:.08em}
+.m .nm b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.m .nm span{display:block;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62);margin-top:3px;max-width:420px}
+.m .v{font-size:19px;font-weight:600;letter-spacing:-.01em;font-feature-settings:"tnum"}
+.m .v i{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;font-weight:400;color:rgba(255,255,255,.5);letter-spacing:.04em;margin-top:2px}
+.m .v.tg{color:var(--c)}
+.t5 .m .v.tg,.m.t5 .v.tg{color:#fff}
+.trk{position:relative;height:6px;border-radius:3px;background:rgba(255,255,255,.1);margin:0 6px}
+.trk .f{position:absolute;top:0;height:6px;border-radius:3px;background:var(--c);opacity:.55}
+.trk .g{position:absolute;top:-6px;width:2px;height:18px;background:var(--c);border-radius:1px}
+.trk .d{position:absolute;top:-5px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#fff;border:3px solid var(--forest);box-shadow:0 0 0 1.5px #fff}
+.trk .p{position:absolute;top:16px;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,.6);white-space:nowrap}
+.trk.none{background:none}
+details.more{margin-top:8px}
+details.more summary{cursor:pointer;list-style:none;font-size:14px;font-weight:500;color:var(--turq);padding:16px 0 4px;display:flex;align-items:center;gap:8px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"+";font-family:var(--mono);font-size:15px}
+details.more[open] summary::after{content:"\2212"}
+details.more summary:focus-visible{outline:2px solid var(--turq);outline-offset:3px;border-radius:4px}
+.mzf{font-size:13.5px;color:rgba(255,255,255,.6);margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+/* findings */
+.fl{list-style:none;margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.fl li{display:grid;grid-template-columns:76px 1fr 190px;gap:20px;align-items:center;padding:28px 34px;border-top:1px solid var(--line2)}
+.fl li:first-child{border-top:none}
+.fl .n{font-size:38px;font-weight:300;letter-spacing:-.03em;color:var(--orange);line-height:1;font-feature-settings:"tnum"}
+.fl h3{font-size:22px;line-height:1.28;font-weight:600;letter-spacing:-.016em;color:var(--forest)}
+.fl p{font-size:15.5px;line-height:1.55;color:var(--ink2);margin-top:6px;max-width:640px}
+.fl .sig{text-align:right}
+.fl .sig b{white-space:nowrap;display:block;font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--forest);line-height:1.05;font-feature-settings:"tnum"}
+.fl .sig span{font-size:13px;color:var(--mute);line-height:1.35;display:block;margin-top:4px}
+.fl li.good{background:linear-gradient(90deg,#F2F9F2,#fff 70%)}
+.fl li.good .n{color:var(--ok)}
+.tag{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.tag.g{background:var(--ok-bg);color:var(--ok)}
+.tag.o{background:var(--warn-bg);color:var(--warn)}
+.fl.two li{grid-template-columns:76px 1fr}
+/* bridge */
+.bridge{margin-top:104px;background:var(--forest);color:#fff;border-radius:24px;padding:60px 56px;position:relative;overflow:hidden}
+.bridge::before{content:"";position:absolute;left:-140px;bottom:-180px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(254,109,18,.16),transparent 70%)}
+.bridge p{position:relative;font-size:34px;line-height:1.22;font-weight:500;letter-spacing:-.022em;max-width:860px}
+.bridge p em{font-style:normal;color:var(--pist)}
+.bridge span{position:relative;display:block;font-size:17px;color:rgba(255,255,255,.72);margin-top:18px;max-width:700px;font-weight:300}
+/* changes */
+.cl{margin-top:44px;display:flex;flex-direction:column;gap:16px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:32px 34px 28px;display:grid;grid-template-columns:76px 1fr;gap:20px}
+.c .n{font-size:38px;font-weight:300;letter-spacing:-.03em;color:var(--orange);line-height:1;font-feature-settings:"tnum"}
+.c h3{font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.018em;color:var(--forest)}
+.c .d{font-size:16px;line-height:1.6;color:var(--ink2);margin-top:8px;max-width:760px}
+.c ul.b{list-style:none;margin-top:12px;display:grid;gap:8px;max-width:780px}
+.c ul.b li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.55;color:var(--ink2)}
+.c ul.b li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;border:2px solid var(--teal)}
+.c ul.b li b{color:var(--forest);font-weight:600}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;margin-top:16px}
+.flow .a{font-size:13px;font-weight:500;padding:7px 12px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--forest)}
+.flow .g{width:22px;height:22px;border-radius:50%;background:var(--orange);margin:0 7px;display:grid;place-items:center;flex:none}
+.flow .g svg{width:11px;height:11px;stroke:#fff;stroke-width:2.6;fill:none}
+.flow .k{flex-basis:100%;font-size:13px;color:var(--mute);margin-top:4px;display:flex;align-items:center;gap:8px}
+.flow .k .g{margin:0;width:16px;height:16px}
+.flow .k .g svg{width:8px;height:8px}
+.who{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line2);align-items:baseline}
+.who dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.who dd{font-size:14.5px;color:var(--ink2);line-height:1.5}
+.who dd.tt{color:var(--forest);font-weight:500}
+.c.asp{border-top:3px solid var(--teal)}
+.c.asp .n{color:var(--teal)}
+.grid2{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.c.sm{grid-template-columns:1fr;gap:10px;padding:28px 30px 24px}
+.c.sm .n{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;color:var(--mute)}
+.c.sm h3{font-size:19.5px}
+.c.sm .d{font-size:15px}
+/* close */
+.close{margin-top:104px;border-top:1px solid var(--line);padding:56px 0 0;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.close h2{font-size:34px}
+.close ol{list-style:none;counter-reset:x;display:grid;gap:14px}
+.close ol li{counter-increment:x;position:relative;padding-left:44px;font-size:16px;color:var(--ink2);line-height:1.55}
+.close ol li::before{content:counter(x);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--forest);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center}
+.close ol li b{color:var(--forest);font-weight:600}
+footer{margin-top:88px;border-top:1px solid var(--line);padding:26px 0 48px;font-size:12.5px;color:var(--mute);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer strong{color:var(--ink2);font-weight:600}
+@media (max-width:980px){
+ .m{grid-template-columns:28px 1fr 1fr;gap:10px 14px;align-items:start}.m .ix{padding-top:5px}
+ .m .ix{grid-row:1;grid-column:1}.m .nm{grid-row:1;grid-column:2 / -1}
+ .m .v.nw{grid-row:2;grid-column:2}.m .v.tg{grid-row:2;grid-column:3;text-align:right}
+ .m .trk{grid-row:3;grid-column:2 / -1;margin:8px 8px 20px}.m .trk.none{display:none}
+ .grid2{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+ .wrap{padding:0 20px}.hero .wrap{padding-top:52px;padding-bottom:56px}
+ .hero h1{font-size:38px}.hero .lede{font-size:17px}.srcs{grid-template-columns:1fr}
+ section.s{padding-top:72px}h2{font-size:30px}.sub{font-size:16.5px}
+ .oc{grid-template-columns:1fr}.oc div{padding:26px 24px}.oc p{font-size:22px}
+ .mz{padding:26px 20px 20px;border-radius:18px}
+ .fl li,.fl.two li{grid-template-columns:48px 1fr;gap:14px;padding:22px 20px;align-items:start}.fl .n{padding-top:4px}
+ .m .v{font-size:16px;white-space:nowrap}.m .nm b{font-size:16.5px}
+ .fl .n,.c .n{font-size:28px}.fl h3{font-size:19px}
+ .fl .sig{grid-column:2;text-align:left;display:flex;align-items:baseline;gap:10px}.fl .sig b{font-size:22px}.fl .sig span{margin:0}
+ .bridge{padding:38px 26px;margin-top:72px;border-radius:20px}.bridge p{font-size:25px}
+ .c{grid-template-columns:1fr;gap:10px;padding:26px 22px 22px}.c h3{font-size:21px}
+ .who{grid-template-columns:1fr;gap:2px 0}.who dd{margin-bottom:8px}
+ .close{grid-template-columns:1fr;gap:28px;margin-top:72px}.close h2{font-size:28px}
+}
+@media print{.nav{display:none}details.more{display:block}details.more > *{display:block}.hero,.mz,.bridge,.oc div.go{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.s{padding-top:48px}.c,.fl li{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Merchant Capabilities &middot; Team readout &middot; November 2026</div>
+    <h1>What we learned together, <em>and what we&rsquo;ll change.</em></h1>
+    <p class="lede">Thank you. You answered the surveys, talked with us openly, and let us sit in on your work. Here is what we learned, and what we&rsquo;d like to change with you so we deliver value to the business, our partners, and our merchants faster.</p>
+    <div class="srcs">
+      <div><b>Surveys</b><span>from every role on the team</span></div>
+      <div><b>Conversations</b><span>one on one and in small groups</span></div>
+      <div><b>Your rituals</b><span>planning, grooming, standups, retros</span></div>
+    </div>
+    <div class="anon"><i></i>Everything we heard is shared anonymously. No names are attached to any feedback.</div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Sections"><div class="wrap">
+  <a href="#why">Why we&rsquo;re here</a>
+  <a href="#surveys">Surveys</a>
+  <a href="#heard">In person</a>
+  <a href="#observed">In action</a>
+  <a href="#now">Changes now</a>
+  <a href="#aspire">Aspirations</a>
+  <a href="#other">Also considering</a>
+  <a href="#next">What&rsquo;s next</a>
+</div></nav>
+
+<main class="wrap">
+
+  <section class="s" id="why">
+    <div class="kicker">Why we&rsquo;re here</div>
+    <h2>One opportunity, one outcome.</h2>
+    <div class="oc">
+      <div><span class="lab">Problem statement</span><p>We have an opportunity to accelerate our delivery of customer and business value.</p></div>
+      <div class="go"><span class="lab">Desired outcome</span><p>The business has confidence in our ability to deliver value predictably and efficiently.</p></div>
+    </div>
+    <div class="mz">
+      <div class="mzh"><span class="lab">How we will know &middot; today &rarr; February 16</span><span class="leg">The dot is where we sit among comparable companies. The line is the 75th percentile, where we&rsquo;re headed.</span></div>
+<div class="tier t1"><b>Primary</b><span>the two measures we move together</span></div>
+<div class="m t1"><span class="ix">01</span><div class="nm"><b>Issue cycle time</b><span>Our clearest read on speed to value, from In Progress to resolution. Halving it means merchants get work in half the time.</span></div><div class="v nw">5.82 days<i>Q3</i></div><div class="trk" role="img" aria-label="48th percentile today; target is the 75th"><i class="f" style="left:48%;width:27%"></i><i class="g" style="left:75%"></i><i class="d" style="left:48%"></i><span class="p" style="left:48%">48th</span></div><div class="v tg">&le; 2.92 days<i>Feb 16 target</i></div></div>
+<div class="m t1"><span class="ix">02</span><div class="nm"><b>Issues resolved</b><span>The throughput counterweight, so cycle time can&rsquo;t improve just by doing less.</span></div><div class="v nw">1.23 / FTE / wk<i>Q3</i></div><div class="trk" role="img" aria-label="53rd percentile today; target is the 75th"><i class="f" style="left:53%;width:22%"></i><i class="g" style="left:75%"></i><i class="d" style="left:53%"></i><span class="p" style="left:53%">53rd</span></div><div class="v tg">&ge; 2.07 / FTE / wk<i>Feb 16 target</i></div></div>
+<div class="tier t2"><b>Secondary</b><span>what makes the primaries move</span></div>
+<div class="m t2"><span class="ix">03</span><div class="nm"><b>Sprint predictability</b><span>Did we deliver what we committed to? It&rsquo;s what lets the business trust our dates.</span></div><div class="v nw">18.8%<i>Q3</i></div><div class="trk" role="img" aria-label="26th percentile today; target is the 75th"><i class="f" style="left:26%;width:49%"></i><i class="g" style="left:75%"></i><i class="d" style="left:26%"></i><span class="p" style="left:26%">26th</span></div><div class="v tg">&ge; 72%<i>sustained</i></div></div>
+<div class="m t2"><span class="ix">04</span><div class="nm"><b>Sprint addition rate</b><span>Work added after the sprint starts. Today the plan is rewritten about 2.5 times every sprint, which pulls predictability and cycle time down with it.</span></div><div class="v nw">263.1%<i>Q3</i></div><div class="trk" role="img" aria-label="3rd percentile today; target is the 75th"><i class="f" style="left:3%;width:72%"></i><i class="g" style="left:75%"></i><i class="d" style="left:3%"></i><span class="p" style="left:3%">3rd</span></div><div class="v tg">&le; 3.8%<i>Feb 16 target</i></div></div>
+      <details class="more"><summary>See all 14 measures</summary>
+<div class="tier t3"><b>Tertiary</b><span>the engineering loop behind them</span></div>
+<div class="m t3"><span class="ix">05</span><div class="nm"><b>PR cycle time</b><span>PR opened to merged. An issue can&rsquo;t close until its code merges.</span></div><div class="v nw">0.81 days<i>Q3</i></div><div class="trk" role="img" aria-label="39th percentile today; target is the 75th"><i class="f" style="left:39%;width:36%"></i><i class="g" style="left:75%"></i><i class="d" style="left:39%"></i><span class="p" style="left:39%">39th</span></div><div class="v tg">&le; 0.06 days<i>about 1.5 hours</i></div></div>
+<div class="m t3"><span class="ix">06</span><div class="nm"><b>PR pass rate</b><span>Reviewed PRs approved on the first pass. Every failed pass is a rework loop.</span></div><div class="v nw">88.2%<i>Q3</i></div><div class="trk" role="img" aria-label="7th percentile today; target is the 75th"><i class="f" style="left:7%;width:68%"></i><i class="g" style="left:75%"></i><i class="d" style="left:7%"></i><span class="p" style="left:7%">7th</span></div><div class="v tg">100%<i>Feb 16 target</i></div></div>
+<div class="m t3"><span class="ix">07</span><div class="nm"><b>PRs without comments</b><span>Keeps PR cycle time honest. Faster reviews only count if real review still happens.</span></div><div class="v nw">15 / week<i>Q3</i></div><div class="trk" role="img" aria-label="2nd percentile today; target is the 75th"><i class="f" style="left:2%;width:73%"></i><i class="g" style="left:75%"></i><i class="d" style="left:2%"></i><span class="p" style="left:2%">2nd</span></div><div class="v tg">0<i>Feb 16 target</i></div></div>
+<div class="tier t4"><b>New</b><span>tells us whether the new way of working is working</span></div>
+<div class="m t4"><span class="ix">08</span><div class="nm"><b>Rework rate per gate</b><span>How often a gate sends work back. Never means the gate can be lighter; often means what feeds it needs help.</span></div><div class="v nw">&mdash;<i>baseline first</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">trend down<i>per gate</i></div></div>
+<div class="m t4"><span class="ix">09</span><div class="nm"><b>Cost per shipped change</b><span>AI tooling plus review time for each change that reaches merchants.</span></div><div class="v nw">&mdash;<i>baseline first</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">trend down<i>per change</i></div></div>
+<div class="tier t5"><b>Guardrails</b><span>must hold or improve while we go faster</span></div>
+<div class="m t5"><span class="ix">G1</span><div class="nm"><b>Defects opened</b></div><div class="v nw">0.2 / FTE / wk<i>Q3</i></div><div class="trk" role="img" aria-label="37th percentile today; target is the 75th"><i class="f" style="left:37%;width:38%"></i><i class="g" style="left:75%"></i><i class="d" style="left:37%"></i><span class="p" style="left:37%">37th</span></div><div class="v tg">0<i>Feb 16 target</i></div></div>
+<div class="m t5"><span class="ix">G2</span><div class="nm"><b>Defects closed</b></div><div class="v nw">0.08 / FTE / wk<i>Q3</i></div><div class="trk" role="img" aria-label="56th percentile today; target is the 75th"><i class="f" style="left:56%;width:19%"></i><i class="g" style="left:75%"></i><i class="d" style="left:56%"></i><span class="p" style="left:56%">56th</span></div><div class="v tg">&ge; 0.27 / FTE / wk<i>Feb 16 target</i></div></div>
+<div class="m t5"><span class="ix">G3</span><div class="nm"><b>Defects MTTR</b><span>How long bugs stay open. Slow fixes come back into sprints as unplanned work.</span></div><div class="v nw">33 days<i>Q3</i></div><div class="trk" role="img" aria-label="10th percentile today; target is the 75th"><i class="f" style="left:10%;width:65%"></i><i class="g" style="left:75%"></i><i class="d" style="left:10%"></i><span class="p" style="left:10%">10th</span></div><div class="v tg">&le; 4.25 days<i>trend down</i></div></div>
+<div class="m t5"><span class="ix">G4</span><div class="nm"><b>Escaped defects, customer-impacting</b></div><div class="v nw">4<i>Q3</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">0<i>zero escapes</i></div></div>
+<div class="m t5"><span class="ix">G5</span><div class="nm"><b>Commitments shipped on the date promised</b></div><div class="v nw">&mdash;<i>baseline in flight</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">100%<i>trend up every sprint</i></div></div>
+      </details>
+      <p class="mzf">Every measure is baselined before anything changes and read together at each sprint checkpoint. For each one we also look at the effect of AI: whether it moved the number up, down, or not at all.</p>
+    </div>
+  </section>
+
+  <section class="s" id="surveys">
+    <div class="kicker">What you told us &middot; Surveys</div>
+    <h2>The top five things we heard across roles.</h2>
+    <p class="sub">Twelve responses across product, design, engineering, quality, and engineering management.</p>
+    <ol class="fl">
+<li class="good"><span class="n">01</span><div><span class="tag g">What&rsquo;s working</span><h3>You own your quality, and AI is already helping.</h3><p>Engineers test their own work, and every engineer says AI helps them write and test code.</p></div><div class="sig"><b>6 of 8</b><span>say engineers own their quality</span></div></li>
+<li><span class="n">02</span><div><h3>Work isn&rsquo;t clear when it starts.</h3><p>The problem, the outcome, or the requirements are still open when engineering begins.</p></div><div class="sig"><b>0 of 12</b><span>say work is clear at the start</span></div></li>
+<li><span class="n">03</span><div><h3>Dates are set before capacity is checked.</h3><p>Few of us see capacity and readiness confirmed before a date is committed.</p></div><div class="sig"><b>2 of 12</b><span>say engineering shapes the date</span></div></li>
+<li><span class="n">04</span><div><h3>Dependencies on other teams cost us time.</h3><p>It came up in every role, and several of you suggested the same fix: agree across teams before the work is assigned.</p></div><div class="sig"><b>Every role</b><span>named it</span></div></li>
+<li><span class="n">05</span><div><h3>We don&rsquo;t look back at the outcome.</h3><p>After a release, nobody reads whether it moved the number it was meant to move.</p></div><div class="sig"><b>0 of 12</b><span>say outcomes are reviewed</span></div></li>
+    </ol>
+  </section>
+
+  <section class="s" id="heard">
+    <div class="kicker">What you told us &middot; In person</div>
+    <h2>The top five things we heard in conversation.</h2>
+    <p class="sub">From one-on-ones and small-group sessions with product, design, engineering, and quality.</p>
+    <ol class="fl two">
+<li class="good"><span class="n">01</span><div><span class="tag g">What&rsquo;s working</span><h3>You want to keep getting better.</h3><p>You asked for more: time learning AI from each other, earlier involvement in the work, and contact with merchants.</p></div></li>
+<li><span class="n">02</span><div><h3>The date often arrives before the why.</h3><p>Requests land with a deadline attached and little context on the problem, the value, or why now.</p></div></li>
+<li><span class="n">03</span><div><h3>Design, engineering, and quality want in at the start.</h3><p>The best time to shape the work is at kickoff, before tickets exist. Today most of us join after that.</p></div></li>
+<li><span class="n">04</span><div><h3>There&rsquo;s nowhere to test end to end before a shared environment.</h3><p>Without a full local stack, testing happens in environments other work is also moving through.</p></div></li>
+<li><span class="n">05</span><div><h3>Regression gets redone, and production is a month away.</h3><p>Changes land in UAT mid-regression, and a finished change takes about a month to reach a merchant.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="s" id="observed">
+    <div class="kicker">What we saw &middot; In action</div>
+    <h2>The top five things we learned by sitting in.</h2>
+    <p class="sub">From sitting in on sprint planning, grooming, standups, and retros over the past four weeks.</p>
+    <ol class="fl two">
+<li class="good"><span class="n">01</span><div><span class="tag g">What&rsquo;s working</span><h3>Your own fixes are working.</h3><p>Grooming improved from one retro to the next, retro actions got done, and people speak up when something is off.</p></div></li>
+<li><span class="n">02</span><div><h3>Work reaches the sprint before it&rsquo;s ready.</h3><p>Our most frequent observation. Stories get clarified and estimated in planning, so planning does the grooming.</p></div></li>
+<li><span class="n">03</span><div><h3>Capacity isn&rsquo;t in the plan yet.</h3><p>Sprints are planned without a capacity number, carry-over goes in last, and new work arrives after we commit.</p></div></li>
+<li><span class="n">04</span><div><h3>There&rsquo;s no discovery ritual yet.</h3><p>Product, design, and engineering have no regular time together with merchants, so questions surface mid-sprint.</p></div></li>
+<li><span class="n">05</span><div><h3>A lot rests on a few people.</h3><p>Grooming, estimates, and know-how lean on a handful of teammates. That&rsquo;s a gap in the system, not in the people.</p></div></li>
+    </ol>
+  </section>
+
+  <div class="bridge">
+    <p>Three ways of listening, one picture: <em>the craft is strong, and the system around it slows us down.</em></p>
+    <span>So we change the system, together. Some of it we can start now. Some of it we&rsquo;ll need partners for.</span>
+  </div>
+
+  <section class="s" id="now">
+    <div class="kicker">What we&rsquo;ll change now</div>
+    <h2>Five changes we can start ourselves.</h2>
+    <p class="sub">These are within our own control. We&rsquo;d like to be working this way by Sprint 24.</p>
+    <div class="cl">
+<article class="c "><span class="n">01</span><div><h3>Continuous discovery</h3><p class="d">Our lead product manager, product designer, principal software engineer, and quality lead work as one discovery team, every week.</p><ul class="b"><li>Find <b>1 to 3 reference merchants</b> we can learn from directly.</li><li>Configure <b>FullStory</b> so it gives us insight we can use.</li><li>Sprint planning prioritizes only work that meets the <b>definition of ready</b>, and every team member knows how we&rsquo;ll tell if it succeeded.</li><li>Track <b>key results and KPIs</b>, and bring the team a regular read on how our products and features are performing.</li></ul><dl class="who"><dt>Tiger Team</dt><dd class="tt">Bart, Craig, Danny, Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Erin, Kyle, Alex, Mamatha</dd></dl></div></article>
+<article class="c "><span class="n">02</span><div><h3>Sprint planning</h3><ul class="b"><li><b>Capacity is respected.</b> Nobody is booked over 100%.</li><li><b>Carry-over first.</b></li><li><b>Nothing is added after we commit</b> unless something equal comes out.</li><li><b>Business partners stay informed.</b> Every sprint they hear what&rsquo;s planned, then what was delivered, through a bi-weekly sprint demo and an announcement.</li></ul><dl class="who"><dt>Tiger Team</dt><dd class="tt">Bart, Eric, Tony</dd><dt>MerCap</dt><dd>Erin, Quan</dd></dl></div></article>
+<article class="c "><span class="n">03</span><div><h3>An agent for every stage. A person for every gate.</h3><p class="d">Spec, design, architecture, build, review, and QA each get an agent. People are the gates: they approve the work or send it back.</p><div class="flow" aria-label="An agent at each stage, with a person approving at each gate"><span class="a">Spec</span><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span><span class="a">Design</span><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span><span class="a">Architecture</span><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span><span class="a">Build</span><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span><span class="a">Review</span><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span><span class="a">QA</span><span class="k"><span class="g"><svg viewBox="0 0 12 12" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span> a person approves the work, or sends it back</span></div><dl class="who"><dt>Tiger Team</dt><dd class="tt">Bart, Craig, Danny, Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Erin, Kyle, Alex, Leonel, Michael, Ramya, Ryan, Stephanie, Mamatha, Avni, Earnest</dd></dl></div></article>
+<article class="c "><span class="n">04</span><div><h3>Let the pipeline be the reviewer of first resort.</h3><p class="d">For MXM:</p><ul class="b"><li>A <b>standard merge checklist</b>, enforced in CI.</li><li><b>Failing tests block the build.</b></li><li><b>Feature flags</b>, so releases stop being all or nothing.</li></ul><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Alex, Leonel, Michael, Ramya, Ryan, Stephanie, Mamatha, Avni, Earnest</dd></dl></div></article>
+<article class="c "><span class="n">05</span><div><h3>Feedback loop</h3><p class="d">The gains come from the learning loop. After every development sprint, we capture what happened at each gate and why, then change the template, prompt, or test that caused it.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Bart, Craig, Danny, Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Erin, Kyle, Alex, Mamatha</dd></dl></div></article>
+    </div>
+  </section>
+
+  <section class="s" id="aspire">
+    <div class="kicker">What we must aspire to</div>
+    <h2>Three changes we&rsquo;ll need partners for.</h2>
+    <p class="sub">They reach beyond our team, and they set the ceiling on everything above.</p>
+    <div class="cl">
+<article class="c asp"><span class="n">01</span><div><h3>No deployment into UAT during an active regression without notice.</h3><p class="d">A rule across workstreams, not a MerCap habit. It protects work already done, and it costs other teams one Slack message.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Eric, Tony</dd><dt>MerCap</dt><dd>Quan, Mamatha</dd></dl></div></article>
+<article class="c asp"><span class="n">02</span><div><h3>A local stack for MXM</h3><p class="d">Without it, agents can&rsquo;t run end to end and engineers deploy without seeing the whole picture, which adds regression issues and regression time.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Alex, Mamatha</dd></dl></div></article>
+<article class="c asp"><span class="n">03</span><div><h3>Retire the DIP and shorten the path to production.</h3><p class="d">Today it takes about a month to get value to our merchants, with a hand-edited release plan and a 30-person call. A PR merged in hours means little if a merchant waits four weeks to feel it.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Quan, Alex, Mamatha</dd></dl></div></article>
+    </div>
+  </section>
+
+  <section class="s" id="other">
+    <div class="kicker">Other considerations</div>
+    <h2>Also on our list.</h2>
+    <div class="grid2">
+<article class="c sm"><span class="n">01</span><div><h3>Reliable test data in lower environments</h3><p class="d">Decide what Local, QA, and UAT are each for. One place for test data. A data loader for report grids.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Alex, Mamatha</dd></dl></div></article>
+<article class="c sm"><span class="n">02</span><div><h3>Right-size regression</h3><p class="d">Scope by what changed. Fix what ACH breaks every release. Ship MXM separately from MXC as the rule.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Alex, Mamatha</dd></dl></div></article>
+<article class="c sm"><span class="n">03</span><div><h3>Self-service access, and infra tickets with an SLA</h3><p class="d">Non-production secrets and repos without a chase. IRG office hours known to every team member.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Amrita</dd><dt>MerCap</dt><dd>Alex</dd></dl></div></article>
+<article class="c sm"><span class="n">04</span><div><h3>AI working sessions and a standard toolset</h3><p class="d">Product, design, engineering, and QA engineering watch Innovation Lab team members work with the tools.</p><dl class="who"><dt>Tiger Team</dt><dd class="tt">Bart, Craig, Danny, Amrita, Fabio, Steve</dd><dt>MerCap</dt><dd>Erin, Kyle, Alex, Leonel, Michael, Ramya, Ryan, Stephanie, Mamatha, Avni, Earnest</dd></dl></div></article>
+    </div>
+  </section>
+
+  <div class="close" id="next">
+    <div>
+      <div class="kicker">What&rsquo;s next</div>
+      <h2>This is ours to shape. Tell us what we got wrong.</h2>
+    </div>
+    <ol>
+      <li><b>React.</b> If something here doesn&rsquo;t match your experience, say so. The list gets better when you correct it.</li>
+      <li><b>Pair.</b> In Sprint 24 the Tiger Team works alongside you, role by role, on real work.</li>
+      <li><b>Measure.</b> We read the numbers together at every sprint checkpoint, and adjust.</li>
+    </ol>
+  </div>
+
+  <footer>
+    <div><strong>Priority Technology Holdings</strong> &middot; Office of the CTO &middot; MerCap Tiger Team</div>
+    <div>Internal &middot; for the MerCap team</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function mark(){
+    var y=window.scrollY+140,cur=-1;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)cur=i}
+    links.forEach(function(a,i){
+      var on=i===cur;a.classList.toggle('on',on);
+      if(on){a.setAttribute('aria-current','true')}else{a.removeAttribute('aria-current')}
+    });
+  }
+  window.addEventListener('scroll',mark,{passive:true});mark();
+  document.addEventListener('keydown',function(e){
+    if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    var d=(e.key==='ArrowRight'||e.key==='PageDown')?1:(e.key==='ArrowLeft'||e.key==='PageUp')?-1:0;
+    if(!d)return;
+    var y=window.scrollY+140,cur=-1;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)cur=i}
+    var n=Math.max(-1,Math.min(secs.length-1,cur+d));
+    e.preventDefault();
+    if(n<0){window.scrollTo({top:0,behavior:'smooth'})}else{secs[n].scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+})();
+</script>
+</body>
+</html>
