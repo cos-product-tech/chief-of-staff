@@ -86,6 +86,8 @@ details.more summary::-webkit-details-marker{display:none}
 details.more summary::after{content:"+";font-family:var(--mono);font-size:15px}
 details.more[open] summary::after{content:"\2212"}
 details.more summary:focus-visible{outline:2px solid var(--turq);outline-offset:3px;border-radius:4px}
+.m .fn{grid-column:2 / -1;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.72);border-left:2px solid var(--orange);padding:2px 0 2px 14px;margin-top:2px;max-width:760px}
+.m .fn b{color:#fff;font-weight:600}
 .mzf{font-size:13.5px;color:rgba(255,255,255,.6);margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
 /* findings */
 .fl{list-style:none;margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
@@ -147,9 +149,10 @@ details.more summary:focus-visible{outline:2px solid var(--turq);outline-offset:
 footer{margin-top:88px;border-top:1px solid var(--line);padding:26px 0 48px;font-size:12.5px;color:var(--mute);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer strong{color:var(--ink2);font-weight:600}
 @media (max-width:980px){
- .m{grid-template-columns:28px 1fr 1fr;gap:10px 14px;align-items:start}.m .ix{padding-top:5px}
+ .m{grid-template-columns:28px minmax(0,1fr) minmax(0,1fr);gap:10px 14px;align-items:start}.m .nm,.m .fn{min-width:0}.m .ix{padding-top:5px}
  .m .ix{grid-row:1;grid-column:1}.m .nm{grid-row:1;grid-column:2 / -1}
  .m .v.nw{grid-row:2;grid-column:2}.m .v.tg{grid-row:2;grid-column:3;text-align:right}
+ .m .fn{grid-row:4}
  .m .trk{grid-row:3;grid-column:2 / -1;margin:8px 8px 20px}.m .trk.none{display:none}
  .grid2{grid-template-columns:1fr}
 }
@@ -160,7 +163,7 @@ footer strong{color:var(--ink2);font-weight:600}
  .oc{grid-template-columns:1fr}.oc div{padding:26px 24px}.oc p{font-size:22px}
  .mz{padding:26px 20px 20px;border-radius:18px}
  .fl li,.fl.two li{grid-template-columns:48px 1fr;gap:14px;padding:22px 20px;align-items:start}.fl .n{padding-top:4px}
- .m .v{font-size:16px;white-space:nowrap}.m .nm b{font-size:16.5px}
+ .m .v{font-size:15.5px;white-space:normal;overflow-wrap:anywhere}.m .nm b{font-size:16.5px}
  .fl .n,.c .n{font-size:28px}.fl h3{font-size:19px}
  .fl .sig{grid-column:2;text-align:left;display:flex;align-items:baseline;gap:10px}.fl .sig b{font-size:22px}.fl .sig span{margin:0}
  .bridge{padding:38px 26px;margin-top:72px;border-radius:20px}.bridge p{font-size:25px}
@@ -227,7 +230,7 @@ footer strong{color:var(--ink2);font-weight:600}
 <div class="m t5"><span class="ix">G2</span><div class="nm"><b>Defects closed</b></div><div class="v nw">0.08 / FTE / wk<i>Q3</i></div><div class="trk" role="img" aria-label="56th percentile today; target is the 75th"><i class="f" style="left:56%;width:19%"></i><i class="g" style="left:75%"></i><i class="d" style="left:56%"></i><span class="p" style="left:56%">56th</span></div><div class="v tg">&ge; 0.27 / FTE / wk<i>Feb 16 target</i></div></div>
 <div class="m t5"><span class="ix">G3</span><div class="nm"><b>Defects MTTR</b><span>How long bugs stay open. Slow fixes come back into sprints as unplanned work.</span></div><div class="v nw">33 days<i>Q3</i></div><div class="trk" role="img" aria-label="10th percentile today; target is the 75th"><i class="f" style="left:10%;width:65%"></i><i class="g" style="left:75%"></i><i class="d" style="left:10%"></i><span class="p" style="left:10%">10th</span></div><div class="v tg">&le; 4.25 days<i>trend down</i></div></div>
 <div class="m t5"><span class="ix">G4</span><div class="nm"><b>Escaped defects, customer-impacting</b></div><div class="v nw">4<i>Q3</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">0<i>zero escapes</i></div></div>
-<div class="m t5"><span class="ix">G5</span><div class="nm"><b>Commitments shipped on the date promised</b></div><div class="v nw">&mdash;<i>baseline in flight</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">100%<i>trend up every sprint</i></div></div>
+<div class="m t5"><span class="ix">G5</span><div class="nm"><b>Commitments shipped on the date promised</b><span>Our nine Q4 roadmap commitments: Passkeys, PCI remediation, Card on File, Priority Capital, ACH.com testing, security notifications, open-batch management, APG enhancements, and Angular to React.</span></div><div class="v nw">9<i>Q4 commitments</i></div><div class="trk none" aria-hidden="true"></div><div class="v tg">9 of 9<i>on the date promised</i></div><p class="fn"><b>Worth noting.</b> Each commitment names a business objective, but only one carries a measurable target. So today we can tell whether something shipped, not whether it worked. Continuous discovery gives every commitment a KPI.</p></div>
       </details>
       <p class="mzf">Every measure is baselined before anything changes and read together at each sprint checkpoint. For each one we also look at the effect of AI: whether it moved the number up, down, or not at all.</p>
     </div>
